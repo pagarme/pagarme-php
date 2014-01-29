@@ -148,8 +148,8 @@ class PagarMe_TransactionCommon extends PagarMe_Model
 			if(!isset($first_parameter['card_hash'])) { 
 				$this->card_number = (isset($first_parameter["card_number"])) ? $first_parameter['card_number']  : null;
 				$this->card_holder_name = (isset($first_parameter["card_holder_name"])) ? $first_parameter['card_holder_name'] : null;
-				$this->card_expiration_month = isset($first_parameter["card_expiration_month"]) ? $first_parameter['card_expiration_month'] : null;
-				$this->card_expiration_year = isset($first_parameter["card_expiration_year"]) ? $first_parameter['card_expiration_year'] : null;
+				$this->card_expiration_month = isset($first_parameter["card_expiration_month"]) ? str_pad($first_parameter['card_expiration_month'], 2, '0', STR_PAD_LEFT) : null;
+				$this->card_expiration_year = isset($first_parameter["card_expiration_year"]) ? str_pad($first_parameter['card_expiration_year'], 2, '0', STR_PAD_LEFT) : null;
 				if(strlen($this->card_expiration_year) >= '4') {
 					$this->card_expiration_year = $this->card_expiration_year[2] . $this->card_expiration_year[3];
 				}
