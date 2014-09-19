@@ -1,2 +1,5 @@
-vendor/*
+.gitignore
 .DS_Store
+
+nbproject/
+vendor/
