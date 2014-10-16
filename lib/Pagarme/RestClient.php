@@ -27,6 +27,8 @@ class RestClient
 			curl_setopt($this->curl, CURLOPT_SSL_VERIFYPEER, false);
 			curl_setopt($this->curl, CURLOPT_SSLVERSION, 3);
 			curl_setopt($this->curl, CURLOPT_SSL_VERIFYHOST, false);
+			curl_setopt($this->curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
+			curl_setopt($this->curl, CURLOPT_SSL_CIPHER_LIST, 'RC4-SHA');
 
 			if($params["parameters"]) {
 				$this->parameters = array_merge($this->parameters, $params["parameters"]);
