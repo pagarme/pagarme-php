@@ -1,6 +1,7 @@
 <?php
 
-class RestClient {
+class RestClient
+{
 	private $http_client;
 	private $method;
 	private $url;
@@ -17,7 +18,7 @@ class RestClient {
 		);
 
 		if(!$params["url"]) {
-			throw new PagarMe_Exception("You must set the URL to make a request.");
+			throw new Exception("You must set the URL to make a request.");
 		} else {
 			$this->url = $params["url"];
 		}
@@ -73,7 +74,7 @@ class RestClient {
 		$error = curl_error($this->curl);
 
 		if ($error) {
-			throw new PagarMe_Exception("error: ".$error);
+			throw new Exception("error: ".$error);
 		}
 
 		$code = curl_getinfo($this->curl, CURLINFO_HTTP_CODE);

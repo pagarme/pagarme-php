@@ -1,6 +1,7 @@
 <?php
 
-class PagarMe_Request extends PagarMe {
+class PagarMe_Request extends PagarMe
+{
 	private $path;
 	private $method;
 	private $parameters = Array();
@@ -16,7 +17,7 @@ class PagarMe_Request extends PagarMe {
 	public function run()
 	{
 		if(!parent::getApiKey()) {
-			throw new PagarMe_Exception("You need to configure API key before performing requests.");
+			throw new Exception("You need to configure API key before performing requests.");
 		}
 
 		$this->parameters = array_merge($this->parameters, array( "api_key" => parent::getApiKey()));
@@ -26,7 +27,7 @@ class PagarMe_Request extends PagarMe {
 		$response = $client->run();
 		$decode = json_decode($response["body"], true);
 		if($decode === NULL) {
-			throw new Exception("Failed to decode json from response.\n\n Response: ".$response);
+			throw new Exception("Invalid JSON received from Pagarme API: (".$response.")");
 		} else {
 			if($response["code"] == 200) {
 				return $decode;
