@@ -41,5 +41,3 @@ require(dirname(__FILE__) . '/lib/Pagarme/Customer.php');
 require(dirname(__FILE__) . '/lib/Pagarme/Address.php');
 require(dirname(__FILE__) . '/lib/Pagarme/Phone.php');
 require(dirname(__FILE__) . '/lib/Pagarme/Card.php');
-
-?>

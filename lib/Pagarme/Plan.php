@@ -1,8 +1,7 @@
 <?php
 
-class PagarMe_Plan extends PagarMe_Model 
+namespace Pagarme;
+
+class Plan extends Model 
 {
 }
-
-
-?>

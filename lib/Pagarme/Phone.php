@@ -1,6 +1,7 @@
 <?php
-class PagarMe_Phone extends PagarMe_Model {
-	
-}
 
-?>
+namespace Pagarme;
+
+class Phone extends Model
+{
+}

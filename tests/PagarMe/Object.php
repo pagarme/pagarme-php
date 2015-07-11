@@ -1,27 +1,36 @@
 <?php
 
-class PagarMe_ObjectTest extends  PagarMeTestCase {
-	
-	public function testBuild() {
+class ObjectTest extends  PagarMeTestCase {
+	public function testBuild()
+	{
 		$obj = self::createPagarMeObject();
-		$this->assertTrue($obj instanceof PagarMe_Transaction);
-		$this->assertTrue($obj->customer instanceof PagarMe_Customer);
+		$this->assertTrue($obj instanceof Pagarme\Transaction);
+		$this->assertTrue($obj->customer instanceof Pagarme\Customer);
 	}
 
-	public function testSet() {
+	public function testSet()
+	{
 		$obj = self::createPagarMeObject();
 		$obj->abc = '123';
 
 		$this->assertTrue($obj->abc == '123');
 	}
 
-	public function testArray() {
+	public function testarray()
+	{
 		$obj = self::createPagarMeObject();
 		$this->assertTrue($obj['amount'] == 1590);
 	}
 
-	public function testForeach() {
-		$obj = new PagarMe_Object(array('abc' => 'd', 'bcd' => 'e', 'vvvv' => '1234', 'bkg' => 4444, 'bsfs' => 555));
+	public function testForeach()
+	{
+		$obj = new Pagarme\Object(array(
+			'abc' => 'd',
+			'bcd' => 'e',
+			'vvvv' => '1234',
+			'bkg' => 4444,
+			'bsfs' => 555
+		));
 		$count = 0;
 
 		foreach($obj as $k => $v) {
@@ -33,7 +42,8 @@ class PagarMe_ObjectTest extends  PagarMeTestCase {
 		$this->assertTrue($count == 5);
 	}
 
-	public function testUnset() {
+	public function testUnset()
+	{
 		$obj = self::createPagarMeObject();
 		unset($obj['amount']);
 		$this->assertFalse($obj['amount']);
@@ -42,4 +52,3 @@ class PagarMe_ObjectTest extends  PagarMeTestCase {
 		$this->assertFalse($obj->card_brand);
 	}
 }
-?>

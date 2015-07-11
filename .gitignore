@@ -1,4 +1,5 @@
-vendor/*
+vendor/
 .DS_Store
 *.swp
 *.swo
+composer.lock

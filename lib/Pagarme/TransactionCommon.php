@@ -1,68 +1,77 @@
 <?php
-class PagarMe_TransactionCommon extends PagarMe_CardHashCommon 
+
+namespace Pagarme;
+
+class TransactionCommon extends CardHashCommon 
 {
-	public function __construct($response = array())
-	{
-		parent::__construct($response);			
-		if(!isset($this->payment_method)) {
-			$this->payment_method = 'credit_card';
-		}
+    public function __construct($response = array())
+    {
+        parent::__construct($response);
 
-		if(!isset($this->status)) {
-			$this->status = 'local';
-		}
-	} 
+        if(!isset($this->payment_method)) {
+            $this->payment_method = 'credit_card';
+        }
 
-	protected function checkCard()
-	{
-		if ($this->card) {
-			if (!$this->hasUnsavedCardAttributes()) {
-				if ($this->card->id) {
-					$this->card_id = $this->card->id;
-				} else {
-					$this->card_number = $this->card->card_number;
-					$this->card_holder_name = $this->card->card_holder_name;
-					$this->card_expiration_month = $this->card->card_expiration_month;
-					$this->card_expiration_year = $this->card->card_expiration_year;
-					$this->card_cvv = $this->card->card_cvv;
-				}
-			}
-			unset($this->card);
-		}
-	}
+        if(!isset($this->status)) {
+            $this->status = 'local';
+        }
+    } 
 
-	public function create()
-	{
-		$this->checkCard();
-		parent::create();
-	}
+    protected function checkCard()
+    {
+        if ($this->card) {
+            if (!$this->hasUnsavedCardAttributes()) {
+                if ($this->card->id) {
+                    $this->card_id = $this->card->id;
+                } else {
+                    $this->card_number = $this->card->card_number;
+                    $this->card_holder_name = $this->card->card_holder_name;
+                    $this->card_expiration_month = $this->card->card_expiration_month;
+                    $this->card_expiration_year = $this->card->card_expiration_year;
+                    $this->card_cvv = $this->card->card_cvv;
+                }
+            }
+            
+            unset($this->card);
+        }
+    }
 
-	public function save()
-	{
-		$this->checkCard();
-		parent::save();
-	}
+    public function create()
+    {
+        $this->checkCard();
+        parent::create();
+    }
 
-	public static function calculateInstallmentsAmount($amount, $interest_rate, $max_installments)
-	{
-		$request = new PagarMe_Request(self::getUrl() . '/calculate_installments_amount', 'GET');
-		$params = array('amount' => $amount, 'interest_rate' => $interest_rate, 'max_installments' => $max_installments);	
-		$request->setParameters($params);
-		$response = $request->run();
-		
-		return $response;
-	}
+    public function save()
+    {
+        $this->checkCard();
+        parent::save();
+    }
 
-	protected function shouldGenerateCardHash()
-	{
-		return $this->payment_method == 'credit_card' && !$this->card_id;
-	}
+    public static function calculateInstallmentsAmount($amount, $interest_rate, $max_installments)
+    {
+        $request = new Request();
+        $params = array(
+            'amount' => $amount,
+            'interest_rate' => $interest_rate,
+            'max_installments' => $max_installments
+        );    
+        $request->setParameters($params);
+        $response = $request->send(self::getUrl() . '/calculate_installments_amount', 'GET');
+        
+        return $response;
+    }
 
-	protected function hasUnsavedCardAttributes()
-	{
-		$hasUnsavedCardAttrbutes = $this->_unsavedAttributes->includes('card_number');
+    protected function shouldGenerateCardHash()
+    {
+        return $this->payment_method == 'credit_card' && !$this->card_id;
+    }
 
-		return $hasUnsavedCardAttrbutes;
-	}
+    protected function hasUnsavedCardAttributes()
+    {
+        $hasUnsavedCardAttrbutes = $this->_unsavedAttributes->includes('card_number');
+
+        return $hasUnsavedCardAttrbutes;
+    }
 }
 

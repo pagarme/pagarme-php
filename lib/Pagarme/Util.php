@@ -1,20 +1,22 @@
 <?php
 
-class PagarMe_Util {
+namespace Pagarme;
 
-	 public static function fromCamelCase($str) {
-		 $matches = NULL;
-		 if (preg_match_all('/(^|[A-Z])+([a-z]|$)*/', $str, $matches)){
-			 $words = $matches[0];
-			 $words_clean = array();
-			 foreach($words as $key => $word){
-				 if (strlen($word) > 0)
-					 $words_clean[] = strtolower($word);
-			 }
-			 return implode('_', $words_clean);
-		 } else {
-			 return strtolower($str);
-		 }
+class Util
+{
+    public static function fromCamelCase($str) {
+	    $matches = NULL;
+	    if (preg_match_all('/(^|[A-Z])+([a-z]|$)*/', $str, $matches)){
+		    $words = $matches[0];
+		    $words_clean = array();
+		    foreach($words as $key => $word){
+			    if (strlen($word) > 0)
+				    $words_clean[] = strtolower($word);
+		    }
+		    return implode('_', $words_clean);
+	    } else {
+		    return strtolower($str);
+	    }
    }
 
 	public static function isList($arr) {
@@ -29,15 +31,15 @@ class PagarMe_Util {
 		return true;
 	}
 
-	public static function convertPagarMeObjectToArray($object)
+	public static function convertPagarMeObjectToarray($object)
 	{
-		$output = Array();
+		$output = array();
 		foreach ($object as $key => $value) {
-			if ($value instanceof PagarMe_Object) {
-				$output[$key] = $value->__toArray(true);
+			if ($value instanceof Object) {
+				$output[$key] = $value->__toarray(true);
 			}
 			else if (is_array($value)) {
-				$output[$key] = self::convertPagarMeObjectToArray($value);
+				$output[$key] = self::convertPagarMeObjectToarray($value);
 			}
 			else {
 				$output[$key] = $value;
@@ -48,12 +50,12 @@ class PagarMe_Util {
 
 	public static function convertToPagarMeObject($response) {
 		$types = array(
-			'transaction' => 'PagarMe_Transaction',
-			'plan' => 'PagarMe_Plan',
-			'customer' => "PagarMe_Customer",
-			'address' => "PagarMe_Address",
-			'phone' => "PagarMe_Phone",
-			'subscription' => 'PagarMe_Subscription',
+			'transaction' => 'Transaction',
+			'plan' => 'Plan',
+			'customer' => 'Customer',
+			'address' => 'Address',
+			'phone' => 'Phone',
+			'subscription' => 'Subscription',
 		);
 
 		if(self::isList($response)) {
@@ -64,12 +66,12 @@ class PagarMe_Util {
 			return $output;
 		} else if(is_array($response)) {
 			if(isset($response['object']) && is_string($response['object']) && isset($types[$response['object']])) {
-				$class = $types[$response['object']];	
+				$class = 'Pagarme\\' . $types[$response['object']];	
 			} else {
-				$class = 'PagarMe_Object';
+				$class = 'Pagarme\\Object';
 			}
 
-			return PagarMe_Object::build($response, $class);
+			return Object::build($response, $class);
 		} else {
 			return $response;
 		}

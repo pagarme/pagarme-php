@@ -18,7 +18,7 @@
 		}
 	],
 	"require": {
-		"php": ">5.3",
+		"php": ">=5.3",
 		"ext-curl":"*",
 		"ext-json":"*",
 		"ext-mbstring":"*"
@@ -27,6 +27,8 @@
 		 "simpletest/simpletest": "*"
 	},
 	"autoload": { 
-		"classmap":["lib/Pagarme"]
+		"psr-4": {
+			"Pagarme\\": "lib/Pagarme/"
+		}
 	}
 }

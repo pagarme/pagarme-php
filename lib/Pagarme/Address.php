@@ -1,4 +1,7 @@
 <?php
-class PagarMe_Address extends PagarMe_Model {
+
+namespace Pagarme;
+
+class Address extends Model
+{
 }
-?>

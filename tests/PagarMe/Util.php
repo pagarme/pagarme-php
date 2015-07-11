@@ -1,32 +1,34 @@
 <?php
 
-class PagarMe_UtilTest extends PagarMeTestCase {
+class UtilTest extends PagarMeTestCase {
 	
-	public function testIsList() {
+	public function testIsList()
+	{
 		$arr1 = '123';
 		$arr2 = array('abc' => 'bcd', '456' => 'bcd');
 		$arr3 = array('abc', 'bcd', 'def');
 
-		$this->assertFalse(PagarMe_Util::isList($arr1));	
-		$this->assertFalse(PagarMe_Util::isList($arr2));	
-		$this->assertTrue(PagarMe_Util::isList($arr3));	
+		$this->assertFalse(Pagarme\Util::isList($arr1));	
+		$this->assertFalse(Pagarme\Util::isList($arr2));	
+		$this->assertTrue(Pagarme\Util::isList($arr3));	
 	}
 
-	public function testCamelCase() {
+	public function testCamelCase()
+	{
 		$str = 'getPhones';
 		$str2 = 'getBoletoUrl';
 		$str3 = 'BoletoUrl';
 		$str4 = 'Phone';
 
-		$this->assertEqual(PagarMe_Util::fromCamelCase($str), 'get_phones');
-		$this->assertEqual(PagarMe_Util::fromCamelCase($str2), 'get_boleto_url');
-		$this->assertEqual(PagarMe_Util::fromCamelCase($str3), 'boleto_url');
-		$this->assertEqual(PagarMe_Util::fromCamelCase($str4), 'phone');
+		$this->assertEqual(Pagarme\Util::fromCamelCase($str), 'get_phones');
+		$this->assertEqual(Pagarme\Util::fromCamelCase($str2), 'get_boleto_url');
+		$this->assertEqual(Pagarme\Util::fromCamelCase($str3), 'boleto_url');
+		$this->assertEqual(Pagarme\Util::fromCamelCase($str4), 'phone');
 	}
 
-	public function testConvertToArray() {
+	public function testConvertToarray() {
 		$obj = self::createPagarMeObject();
-		$arr = PagarMe_Util::convertPagarMeObjectToArray($obj);
+		$arr = Pagarme\Util::convertPagarMeObjectToarray($obj);
 
 		$this->assertTrue(is_array($arr));
 		$this->assertTrue(is_array($arr['customer']));
@@ -55,11 +57,11 @@ class PagarMe_UtilTest extends PagarMeTestCase {
 				)
 			));
 
-		$obj = PagarMe_Util::convertToPagarMeObject($response);
+		$obj = Pagarme\Util::convertToPagarMeObject($response);
 
-		$this->assertTrue($obj instanceof PagarMe_Transaction);
-		$this->assertTrue($obj->customer instanceof PagarMe_Customer);
-		$this->assertTrue($obj->customer->address instanceof PagarMe_Address);
+		$this->assertTrue($obj instanceof Pagarme\Transaction);
+		$this->assertTrue($obj->customer instanceof Pagarme\Customer);
+		$this->assertTrue($obj->customer->address instanceof Pagarme\Address);
 	}
 }
 

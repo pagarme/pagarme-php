@@ -1,7 +1,9 @@
 <?php
 
-class PagarMe_CardTest extends PagarMeTestCase {
-	public function testCreate() {
+class Pagarme\CardTest extends PagarMeTestCase
+{
+	public function testCreate()
+    {
 		$card = self::createTestCard();
 		$card->create();
 		$this->assertTrue($card->getId());

@@ -1,27 +1,30 @@
 <?php
 
-class PagarMe_PlanTest extends PagarMeTestCase {
-	public function testCreate() {
+class PlanTest extends PagarMeTestCase {
+	public function testCreate()
+	{
 		$plan = self::createTestPlan();
 		$plan->create();
 		$this->assertTrue($plan->getId());
 	}
 
-	public function testUpdate() {
+	public function testUpdate()
+	{
 		$plan = self::createTestPlan();
 		$plan->create();
 		$this->assertEqual($plan->getName(), "Plano Silver");
 		$plan->setName("Plano gold!");
 		$plan->save();
-		$plan2 = PagarMe_Plan::findById($plan->getId());		
+		$plan2 = Pagarme\Plan::findById($plan->getId());		
 		$this->assertEqual($plan->getName(), $plan2->getName());
 
-		$this->expectException(new IsAExpectation('PagarMe_Exception'));
+		$this->expectException(new IsAExpectation('Pagarme\Exception'));
 		$plan2->setDays('60');
 		$plan2->save();
 	} 
 
-	public function testUpdatePaymentMethods() {
+	public function testUpdatePaymentMethods()
+	{
 		$plan = self::createTestPlan();	
 		$plan->create();
 		$this->assertTrue(in_array('credit_card', $plan->getPaymentMethods()));
@@ -34,25 +37,26 @@ class PagarMe_PlanTest extends PagarMeTestCase {
 		$this->assertFalse(in_array('boleto', $plan2->getPaymentMethods()));
 	}
 
-	public function testValidate() {
-		$plan = new PagarMe_Plan();
+	public function testValidate()
+	{
+		$plan = new Pagarme\Plan();
 
-		$this->expectException(new IsAExpectation('PagarMe_Exception'));
+		$this->expectException(new IsAExpectation('Pagarme\Exception'));
 		$plan->setAmount('0');
 		$plan->create();
 		$plan->setAmount('10000');
 
-		$this->expectException(new IsAExpectation('PagarMe_Exception'));
+		$this->expectException(new IsAExpectation('Pagarme\Exception'));
 		$plan->days('0');
 		$plan->create();
 		$plan->setDays('30');
 
-		$this->expectException(new IsAExpectation('PagarMe_Exception'));
+		$this->expectException(new IsAExpectation('Pagarme\Exception'));
 		$plan->setTrialDays('-1');
 		$plan->create();
 		$plan->setTrialDays("10");
 
-		$this->expectException(new IsAExpectation('PagarMe_Exception'));
+		$this->expectException(new IsAExpectation('Pagarme\Exception'));
 		$plan->setName('');
 		$plan->create();
 		$plan->setName('Plan');
@@ -62,5 +66,3 @@ class PagarMe_PlanTest extends PagarMeTestCase {
 		$plan->assertTrue($plan->getId());
 	}
 }
-
-?>

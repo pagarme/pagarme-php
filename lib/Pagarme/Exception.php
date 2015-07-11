@@ -1,63 +1,75 @@
 <?php
 
-class PagarMe_Exception extends Exception 
+namespace Pagarme;
+
+use \Exception as BaseException;
+
+class Exception extends BaseException
 {
-	protected $url, $method, $return_code, $parameter_name, $type, $errors;
+    private $url;
 
-	// Builds with a message and a response from the server
-	public function __construct($message = null, $response_error = null) 
-	{
-		$this->url = (isset($response_error['url'])) ? $response_error['url'] : null;
-		$this->method = (isset($response_error['method'])) ? $response_error['method'] : null;
+    private $method;
 
-		if(isset($response_error['errors'])) {
-			foreach($response_error['errors'] as $error) {
-				$this->errors[] = new PagarMe_Error($error);
-			}
-		}
+    private $returnCode;
 
-		parent::__construct($message);
-	}
+    private $parameterName;
+
+    private $type;
+
+    private $errors;
+
+    // Builds with a message and a response from the server
+    public function __construct($message = null, $responseError = null) 
+    {
+        $this->url = (isset($responseError['url'])) ? $responseError['url'] : null;
+        $this->method = (isset($responseError['method'])) ? $responseError['method'] : null;
+
+        if(isset($responseError['errors'])) {
+            foreach($responseError['errors'] as $error) {
+                $this->errors[] = new Error($error);
+            }
+        }
+
+        parent::__construct($message);
+    }
 
 
-	// Builds an exception based on an error object
-	public static function buildWithError($error) {
-		$instance = new self($error->getMessage());
-		return $instance;
-	}
+    // Builds an exception based on an error object
+    public static function buildWithError($error)
+    {
+        $instance = new self($error->getMessage());
+        return $instance;
+    }
 
-	// Builds an exception with the server response and joins all the errors
-	public static function buildWithFullMessage($response_error) {
-		$joined_messages = '';
+    // Builds an exception with the server response and joins all the errors
+    public static function buildWithFullMessage($responseError)
+    {
+        $joinedMessages = null;
 
-		foreach($response_error['errors'] as $error) {
-			$joined_messages .= $error['message'] . "\n";
-		}
+        foreach ($responseError['errors'] as $error) {
+            $joinedMessages .= $error['message'] . "\n";
+        }
 
-		$instance =  new self($joined_messages, $response_error);
-		return $instance;
-	}
+        return new self($joinedMessages, $responseError);
+    }
 
-	public function getErrors()
-	{
-		return $this->errors;
-	}
+    public function getErrors()
+    {
+        return $this->errors;
+    }
 
-	public function getUrl() 
-	{
-		return $this->url;
-	}
+    public function getUrl() 
+    {
+        return $this->url;
+    }
 
-	public function getMethod() 
-	{
-		return $this->method;
-	}
+    public function getMethod() 
+    {
+        return $this->method;
+    }
 
-	public function getReturnCode() 
-	{
-		return $this->return_code;
-	}
+    public function getReturnCode() 
+    {
+        return $this->returnCode;
+    }
 }
-
-
-?>
