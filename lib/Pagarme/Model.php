@@ -5,13 +5,7 @@ namespace Pagarme;
 use \Exception as BaseException;
 
 class Model extends Object
-{    
-    protected static $root_url;
-
-    public function __construct($response = array()) {
-        parent::__construct($response);
-    }
-
+{
     public static function getUrl() {
         $parts = explode('\\', get_called_class());
         $search = end($parts);
@@ -33,8 +27,8 @@ class Model extends Object
     public function save() 
     {
         try {
-            if(method_exists(get_called_class(), 'validate')) {
-                if(!$this->validate()) return false;
+            if (method_exists(get_called_class(), 'validate')) {
+                if (!$this->validate()) return false;
             }
             $request = new Request();
             $parameters = $this->unsavedarray();
@@ -63,11 +57,10 @@ class Model extends Object
         $return_array = array();
         $class = get_called_class();
         
-        foreach($response as $r) {
+        foreach ($response as $r) {
             $return_array[] = new $class($r);
         }
 
         return $return_array;
     }
 }
-?>

@@ -46,7 +46,7 @@ class Subscription extends TransactionCommon
 
     private function checkPlan()
     {
-        if($this->plan) {
+        if ($this->plan) {
             $this->plan_id = $this->plan->id;
             unset($this->plan);
         }

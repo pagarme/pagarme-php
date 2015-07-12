@@ -2,7 +2,7 @@
 
 namespace Pagarme;
 
-use \Exception as StdException;
+use \Exception as BaseException;
 
 class Request
 {
@@ -12,7 +12,7 @@ class Request
 
     public function send($path, $method, $live = PagarMe::LIVE) 
     {
-        if(!PagarMe::getApiKey()) {
+        if (!PagarMe::getApiKey()) {
             throw new Exception('You need to configure API key before performing requests.');
         }
 

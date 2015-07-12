@@ -5,10 +5,15 @@ namespace Pagarme;
 class RestClient 
 {
     private $http_client;
+
     private $method;
+
     private $url;
+
     private $headers = array();
+
     private $parameters =  array();
+    
     private $curl;
 
     public function __construct($params = array()) 
@@ -19,7 +24,7 @@ class RestClient
             'Content-Type: application/json',
         );
 
-        if(!$params["url"]) {
+        if (!$params["url"]) {
             throw new Exception('You must set the URL to make a request.');
         } else {
             $this->url = $params["url"];
@@ -32,11 +37,11 @@ class RestClient
             $this->parameters = array_merge($this->parameters, $params["parameters"]);
         }
 
-        if($params["method"]) {
+        if ($params["method"]) {
             $this->method = $params["method"];
         }
 
-        if(isset($params["headers"])) {
+        if (isset($params["headers"])) {
             $this->headers = array_merge($this->headers, $params["headers"]);
         }
 
@@ -84,5 +89,4 @@ class RestClient
 
         return array('code' => $code, 'body' => $response);
     }
-
 }

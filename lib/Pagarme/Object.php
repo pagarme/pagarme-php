@@ -10,7 +10,8 @@ class Object implements \ArrayAccess, \Iterator
 
     private $_position;
 
-    public function __construct($response = array()) {
+    public function __construct($response = array())
+    {
         $this->_attributes = array();
         $this->_unsavedAttributes = new Set();
         $this->_position = 0;
@@ -18,8 +19,9 @@ class Object implements \ArrayAccess, \Iterator
         $this->refresh($response);
     }
 
-    public function __set($key, $value) {
-        if(empty($key)) {
+    public function __set($key, $value)
+    {
+        if (empty($key)) {
             throw new Exception('Cannot store invalid key');
         }
 
@@ -27,16 +29,19 @@ class Object implements \ArrayAccess, \Iterator
         $this->_unsavedAttributes->add($key);
     }
 
-    public function __isset($key) {
+    public function __isset($key)
+    {
         return isset($this->_attributes[$key]);
     }
 
-    public function __unset($key) {
+    public function __unset($key)
+    {
         unset($this->_attributes[$key]);
         $this->_unsavedAttributes->remove($key);
     }
 
-    public function __get($key) {
+    public function __get($key)
+    {
         if (array_key_exists($key, $this->_attributes)) {
             return $this->_attributes[$key];
         } else {
@@ -47,13 +52,14 @@ class Object implements \ArrayAccess, \Iterator
     public function __call($name, $arguments)
     {
         $var = Util::fromCamelCase(substr($name,3));
-        if(!strncasecmp($name, 'get', 3)) {
+
+        if (!strncasecmp($name, 'get', 3)) {
             return $this->$var;    
-        }    else if(!strncasecmp($name, 'set',3)) {
+        } else if (!strncasecmp($name, 'set',3)) {
             $this->$var = $arguments[0];
-        } else {
-            throw new Exception('Metodo inexistente '.$name);
         }
+        
+        throw new Exception('Unknown method: ' . $name);
     }
 
     public function rewind()
@@ -69,7 +75,8 @@ class Object implements \ArrayAccess, \Iterator
     public function key()
     {
         $keys = $this->keys();
-        if(isset($keys[$this->_position])) {
+
+        if (isset($keys[$this->_position])) {
             return $keys[$this->_position];
         }
     }
@@ -105,7 +112,8 @@ class Object implements \ArrayAccess, \Iterator
         unset($this->$key);
     }
 
-    public function keys() {
+    public function keys()
+    {
         return array_keys($this->_attributes);    
     }
 
@@ -113,12 +121,10 @@ class Object implements \ArrayAccess, \Iterator
     {
         $arr = array();
 
-        foreach($this->_unsavedAttributes->toarray() as $a) {
-            if($this->_attributes[$a] instanceof Object) {
-                $arr[$a] = $this->_attributes[$a]->unsavedarray();
-            } else {
-                $arr[$a] = $this->_attributes[$a];
-            }
+        foreach ($this->_unsavedAttributes->toarray() as $a) {
+            $arr[$a] = $this->_attributes[$a] instanceof Object
+                       ? $this->_attributes[$a]->unsavedarray()
+                       : $this->_attributes[$a];
         }
 
         return $arr;
@@ -135,11 +141,11 @@ class Object implements \ArrayAccess, \Iterator
     {
         $removed = array_diff(array_keys($this->_attributes), array_keys($response));        
 
-        foreach($removed as $k) {
+        foreach ($removed as $k) {
             unset($this->$k);
         }
 
-        foreach($response as $key => $value) {
+        foreach ($response as $key => $value) {
             $this->_attributes[$key] = Util::convertToPagarMeObject($value);    
             $this->_unsavedAttributes->remove($key);
         }
@@ -176,9 +182,9 @@ class Object implements \ArrayAccess, \Iterator
     {
         if (defined('JSON_PRETTY_PRINT')) {
             return json_encode($this->__toarray(true), JSON_PRETTY_PRINT);
-        } else {
-            return json_encode($this->__toarray(true));
         }
+
+        return json_encode($this->__toarray(true));
     }
 
     public function __toString()
@@ -190,8 +196,8 @@ class Object implements \ArrayAccess, \Iterator
     {
         if ($recursive) {
             return Util::convertPagarMeObjectToarray($this->_attributes);
-        } else {
-            return $this->_attributes;
         }
+
+        return $this->_attributes;
     }
 }

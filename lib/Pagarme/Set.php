@@ -5,7 +5,9 @@ namespace Pagarme;
 class Set implements \Iterator
 {
     private $_values;
+
     private $_orderedValues;
+    
     private $_position;
     
     public function __construct(array $members = array())
@@ -14,8 +16,8 @@ class Set implements \Iterator
         $this->_position = 0;
         $this->_orderedValues = array();
 
-        foreach($members as $m) {
-            if(!isset($this->_values[$m])) {
+        foreach ($members as $m) {
+            if (!isset($this->_values[$m])) {
                 $this->_orderedValues[] = $m;
             }
             $this->_values[$m] = true;
