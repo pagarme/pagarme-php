@@ -51,16 +51,17 @@ class Object implements \ArrayAccess, \Iterator
 
     public function __call($name, $arguments)
     {
-        $var = Util::fromCamelCase(substr($name,3));
+        $var = Util::fromCamelCase(substr($name, 3));
 
-        if (!strncasecmp($name, 'get', 3)) {
-            return $this->$var;    
-        } else if (!strncasecmp($name, 'set',3)) {
-            $this->$var = $arguments[0];
-            return;
+        switch (substr($name, 0, 3)) {
+            case 'get':
+                return $this->$var;
+            case 'set':
+                $this->$var = $arguments[0];
+                break;
+            default:
+                throw new Exception('Unknown method: ' . $name);
         }
-        
-        throw new Exception('Unknown method: ' . $name);
     }
 
     public function rewind()
