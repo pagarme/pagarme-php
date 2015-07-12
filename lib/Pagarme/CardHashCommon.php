@@ -1,56 +1,59 @@
 <?php
 
-class PagarMe_CardHashCommon extends PagarMe_Model
+namespace Pagarme;
+
+class CardHashCommon extends Model
 {
-	public function generateCardHash() 
-	{
-		$request = new PagarMe_Request('/transactions/card_hash_key','GET');
-		$response = $request->run();
-		$key = openssl_get_publickey($response['public_key']);
-		$params = array(
-			"card_number" => $this->card_number,
-			"card_holder_name" => $this->card_holder_name,
-			"card_expiration_date" => $this->card_expiration_month . $this->card_expiration_year,
-			"card_cvv" => $this->card_cvv
-		);
-		$str = "";
-		foreach($params as $k => $v) {
-			$str .= $k . "=" . $v . "&";	
-		}
-		$str = substr($str, 0, -1);
-		openssl_public_encrypt($str,$encrypt, $key);
-		return $response['id'].'_'.base64_encode($encrypt);
-	}
+    public function generateCardHash() 
+    {
+        $request = new Request();
+        $response = $request->send('/transactions/card_hash_key', 'GET');
+        $key = openssl_get_publickey($response['public_key']);
+        $params = array(
+            "card_number" => $this->card_number,
+            "card_holder_name" => $this->card_holder_name,
+            "card_expiration_date" => $this->card_expiration_month . $this->card_expiration_year,
+            "card_cvv" => $this->card_cvv
+        );
 
-	protected function shouldGenerateCardHash()
-	{
-		return true;
-	}
+        openssl_public_encrypt(
+            http_build_query($params),
+            $encrypt,
+            $key
+        );
 
-	public function create()
-	{
-		$this->generateCardHashIfNecessary();
-		parent::create();
-	}
+        return $response['id'] . '_' . base64_encode($encrypt);
+    }
 
-	public function save()
-	{
-		$this->generateCardHashIfNecessary();
-		parent::save();
-	}
+    protected function shouldGenerateCardHash()
+    {
+        return true;
+    }
 
-	private function generateCardHashIfNecessary()
-	{
-		if(!$this->card_hash && $this->shouldGenerateCardHash()) {
-			$this->card_hash = $this->generateCardHash();
-		} 
+    public function create()
+    {
+        $this->generateCardHashIfNecessary();
+        parent::create();
+    }
 
-		if($this->card_hash) {
-			unset($this->card_holder_name);
-			unset($this->card_number);
-			unset($this->card_expiration_month);
-			unset($this->card_expiration_year);
-			unset($this->card_cvv);
-		}
-	}
+    public function save()
+    {
+        $this->generateCardHashIfNecessary();
+        parent::save();
+    }
+
+    private function generateCardHashIfNecessary()
+    {
+        if (!$this->card_hash && $this->shouldGenerateCardHash()) {
+            $this->card_hash = $this->generateCardHash();
+        } 
+
+        if ($this->card_hash) {
+            unset($this->card_holder_name);
+            unset($this->card_number);
+            unset($this->card_expiration_month);
+            unset($this->card_expiration_year);
+            unset($this->card_cvv);
+        }
+    }
 }

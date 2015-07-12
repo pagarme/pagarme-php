@@ -5,7 +5,7 @@ function authorizeFromEnv()
   $apiKey = getenv('PAGARME_API_KEY');
   if (!$apiKey)
     $apiKey = "ak_test_Rw4JR98FmYST2ngEHtMvVf5QJW7Eoo";
-  PagarMe::setApiKey($apiKey);
+  Pagarme\PagarMe::setApiKey($apiKey);
 }
 
 $ok = @include_once(dirname(__FILE__).'/simpletest/autorun.php');
@@ -34,6 +34,3 @@ require_once(dirname(__FILE__) . '/PagarMe/Set.php');
 require_once(dirname(__FILE__) . '/PagarMe/Transaction.php');
 require_once(dirname(__FILE__) . '/PagarMe/Plan.php');
 require_once(dirname(__FILE__) . '/PagarMe/Subscription.php');
-
-
-?>

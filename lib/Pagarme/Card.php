@@ -1,5 +1,7 @@
 <?php
 
-class PagarMe_Card extends PagarMe_CardHashCommon
+namespace Pagarme;
+
+class Card extends CardHashCommon
 {
 }

@@ -1,29 +1,29 @@
 <?php
 
-abstract class PagarMe 
+namespace Pagarme;
+
+class PagarMe 
 {
-	public static $api_key; 
-	const live = 1;
-	const endpoint = "https://api.pagar.me";
-	const api_version = '1';
+    public static $api_key;
 
-	public static function full_api_url($path) {
-		return self::endpoint . '/' . self::api_version . $path;
-		// return self::endpoint . $path;
-	}
+    const LIVE = 1;
 
-	public static function setApiKey($api_key) {
-		self::$api_key = $api_key; 
-	}
+    const ENDPOIT = 'https://api.pagar.me';
 
-	public static function getApiKey() {
-		return self::$api_key;
-	}
+    const API_VERSION = '1';
 
-	public static function validateFingerprint($id, $fingerprint) {
-			return (sha1($id."#".self::$api_key) == $fingerprint);
-	}
+    public static function setApiKey($api_key)
+    {
+        self::$api_key = $api_key; 
+    }
+
+    public static function getApiKey()
+    {
+        return self::$api_key;
+    }
+
+    public static function validateFingerprint($id, $fingerprint)
+    {
+        return sha1($id . '#' . self::$api_key) == $fingerprint;
+    }
 }
-
-
-?>

@@ -1,41 +1,46 @@
 <?php
-class PagarMe_SetTest extends PagarMeTestCase {
 
-	public function testAdd() {
-		$set = self::createTestSet();
+class SetTest extends PagarMeTestCase
+{
+    public function testAdd()
+    {
+        $set = self::createTestSet();
 
-		$set->add('kkkkkkkk');
-		$set->add('1234');
+        $set->add('kkkkkkkk');
+        $set->add('1234');
 
-		$arr = $set->toArray();
+        $arr = $set->toarray();
 
-		$this->assertTrue(in_array('key', $arr));
-		$this->assertTrue(in_array('value', $arr));
-		$this->assertTrue(in_array('1234', $arr));
-		$this->assertTrue(in_array('abc', $arr));
-		$this->assertTrue(in_array('bcd', $arr));
-	}
+        $this->assertTrue(in_array('key', $arr));
+        $this->assertTrue(in_array('value', $arr));
+        $this->assertTrue(in_array('1234', $arr));
+        $this->assertTrue(in_array('abc', $arr));
+        $this->assertTrue(in_array('bcd', $arr));
+    }
 
-	public function testIncludes() {
-		$set = self::createTestSet();
-		$this->assertTrue($set->includes('bcd'));
-	}
+    public function testIncludes()
+    {
+        $set = self::createTestSet();
+        $this->assertTrue($set->includes('bcd'));
+    }
 
-	public function testRemove() {
-		$set = self::createTestSet();
-		$set->remove('key');
-		$this->assertFalse($set->includes('key'));
-	}
+    public function testRemove()
+    {
+        $set = self::createTestSet();
+        $set->remove('key');
+        $this->assertFalse($set->includes('key'));
+    }
 
-	public function testForeach() {
-		$set = self::createTestSet();
-		$count = 0;
+    public function testForeach()
+    {
+        $set = self::createTestSet();
+        $count = 0;
 
-		foreach($set as $k) {
-			$this->assertTrue($k);
-			$count++;
-		}
-		$this->assertTrue($count == 5);
-	}
+        foreach ($set as $k) {
+            $this->assertTrue($k);
+            $count++;
+        }
+
+        $this->assertTrue($count == 5);
+    }
 }
-?>
