@@ -57,6 +57,7 @@ class Object implements \ArrayAccess, \Iterator
             return $this->$var;    
         } else if (!strncasecmp($name, 'set',3)) {
             $this->$var = $arguments[0];
+            return;
         }
         
         throw new Exception('Unknown method: ' . $name);
