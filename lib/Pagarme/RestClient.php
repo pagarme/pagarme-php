@@ -71,10 +71,10 @@ class RestClient
 	public function run()
 	{
 		$response = curl_exec($this->curl);
-		$error = curl_error($this->curl);
+		$error = curl_errno($this->curl);
 
-		if ($error) {
-			throw new Exception("error: ".$error);
+		if ($error > 0) {
+			throw new PagarMeNetworkException($error);
 		}
 
 		$code = curl_getinfo($this->curl, CURLINFO_HTTP_CODE);
