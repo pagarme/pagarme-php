@@ -20,7 +20,7 @@ Pagar.me's PHP API
 ## Install
 
 ```
-composer.phar install
+composer require pagarme/pagarme-php
 ```
 
 ## Testing
