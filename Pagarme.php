@@ -44,5 +44,6 @@ require(dirname(__FILE__) . '/lib/Pagarme/Card.php');
 require(dirname(__FILE__) . '/lib/Pagarme/Bank_Account.php');
 require(dirname(__FILE__) . '/lib/Pagarme/Recipient.php');
 require(dirname(__FILE__) . '/lib/Pagarme/Customer.php');
+require(dirname(__FILE__) . '/lib/Pagarme/Search.php');
 
 ?>
