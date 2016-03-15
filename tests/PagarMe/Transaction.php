@@ -1,260 +1,285 @@
 <?php
 
-class PagarMe_TransactionTest extends PagarMeTestCase {
+use Pagarme\Transaction\Transaction,
+    Pagarme\Core as PagarMe;
 
-	public function testCharge() {
-		$transaction = self::createTestTransaction();
-		$this->assertFalse($transaction->getId());
-		$transaction->charge();
-		$this->validateTransactionResponse($transaction);
-	}
+class PagarMe_TransactionTest extends PagarMeTestCase
+{
 
-	public function testAntifraudTransaction() {
-		$t = self::createTestTransactionWithCustomer();
-		$t->charge();
-		$this->validateTransactionResponse($t);
-	}
+    public function testCharge()
+    {
+        $transaction = self::createTestTransaction();
+        $this->assertFalse($transaction->getId());
+        $transaction->charge();
+        $this->validateTransactionResponse($transaction);
+    }
 
-	public function testPostbackUrl() {
-		$t = self::createTestTransaction();
-		$t->setPostbackUrl('http://url.com');
-		$t->charge();
+    public function testAntifraudTransaction()
+    {
+        $t = self::createTestTransactionWithCustomer();
+        $t->charge();
+        $this->validateTransactionResponse($t);
+    }
 
-		$this->assertEqual($t->getStatus(), 'processing');
-	}
+    public function testPostbackUrl()
+    {
+        $t = self::createTestTransaction();
+        $t->setPostbackUrl('http://url.com');
+        $t->charge();
 
-	public function testCalculateInstallmentsAmount() {
-		$request = PagarMe_Transaction::calculateInstallmentsAmount('10000', '1.5', '12');
-		$installments = $request['installments'];
-		$this->assertEqual($installments["5"]["amount"], 10750);
-		$this->assertEqual($installments["5"]["installment"],  '5');
-		$this->assertEqual($installments["5"]["installment_amount"],  2150);
-	}
+        $this->assertEqual($t->getStatus(), 'processing');
+    }
 
-	public function testPostbackWithBoleto() {
-		$t = self::createTestTransactionWithCustomer();
-		$t->setPaymentMethod('boleto');
-		$t->setPostbackUrl('http://requestb.in/1a4cif91');
-		$t->charge();
+    public function testCalculateInstallmentsAmount()
+    {
+        $request      = Transaction::calculateInstallmentsAmount('10000', '1.5', '12');
+        $installments = $request['installments'];
+        $this->assertEqual($installments["5"]["amount"], 10750);
+        $this->assertEqual($installments["5"]["installment"], '5');
+        $this->assertEqual($installments["5"]["installment_amount"], 2150);
+    }
 
-		$this->assertEqual($t->getStatus(), 'waiting_payment');
-	}
+    public function testPostbackWithBoleto()
+    {
+        $t = self::createTestTransactionWithCustomer();
+        $t->setPaymentMethod('boleto');
+        $t->setPostbackUrl('http://requestb.in/1a4cif91');
+        $t->charge();
 
-	public function testSeparateAuthAndCapture() {
-		$t = self::createTestTransaction();
-		$t->setCapture(false);
-		$t->charge();
+        $this->assertEqual($t->getStatus(), 'waiting_payment');
+    }
 
-		$this->assertEqual($t->getStatus(), 'authorized');
+    public function testSeparateAuthAndCapture()
+    {
+        $t = self::createTestTransaction();
+        $t->setCapture(false);
+        $t->charge();
 
-		$t->capture();
+        $this->assertEqual($t->getStatus(), 'authorized');
 
-		$this->assertEqual($t->getStatus(), 'paid');
-	}
+        $t->capture();
 
-	public function testPartialCapture() {
-		$t = self::createTestTransaction();
-		$t->setCapture(false);
-		$t->charge();
+        $this->assertEqual($t->getStatus(), 'paid');
+    }
 
-		$this->assertEqual($t->getStatus(), 'authorized');
+    public function testPartialCapture()
+    {
+        $t = self::createTestTransaction();
+        $t->setCapture(false);
+        $t->charge();
 
-		$t->capture(1000);
-		$this->assertEqual($t->getAmount(), 1000);
-		$this->assertEqual($t->getStatus(), 'paid');
-	}
+        $this->assertEqual($t->getStatus(), 'authorized');
 
-	public function testPostbackUrlWithCardHash() {
-		$t = self::createTestTransactionWithCustomer();
-		$card_hash = $t->generateCardHash();
+        $t->capture(1000);
+        $this->assertEqual($t->getAmount(), 1000);
+        $this->assertEqual($t->getStatus(), 'paid');
+    }
 
-		$t->setPostbackUrl('http://url.com');
-		$t->charge();
+    public function testPostbackUrlWithCardHash()
+    {
+        $t         = self::createTestTransactionWithCustomer();
+        $card_hash = $t->generateCardHash();
 
-		$this->validateTransactionResponse($t);
+        $t->setPostbackUrl('http://url.com');
+        $t->charge();
 
-		$this->assertEqual($t->getPostbackUrl(), 'http://url.com');
-		$this->assertEqual($t->getStatus(), 'processing');
-	}
+        $this->validateTransactionResponse($t);
 
-	public function testChargeWithCardHash() {
-		$t = self::createTestTransactionWithCustomer();
-		$card_hash = $t->generateCardHash();
+        $this->assertEqual($t->getPostbackUrl(), 'http://url.com');
+        $this->assertEqual($t->getStatus(), 'processing');
+    }
 
-		$transaction = self::createTestTransactionWithCustomer();
-		$transaction->setCardHash($card_hash);
-		$transaction->charge();
-		$this->validateTransactionResponse($transaction);
-	}
+    public function testChargeWithCardHash()
+    {
+        $t         = self::createTestTransactionWithCustomer();
+        $card_hash = $t->generateCardHash();
 
-	public function testTransactionWithBoleto() {
-		authorizeFromEnv();
-		$t1 = self::createTestTransaction();
-		$t1->setPaymentMethod('boleto');
-		$t1->charge();
+        $transaction = self::createTestTransactionWithCustomer();
+        $transaction->setCardHash($card_hash);
+        $transaction->charge();
+        $this->validateTransactionResponse($transaction);
+    }
 
-		$this->validateTransactionResponse($t1);
+    public function testTransactionWithBoleto()
+    {
+        authorizeFromEnv();
+        $t1 = self::createTestTransaction();
+        $t1->setPaymentMethod('boleto');
+        $t1->charge();
 
-		$t2 = self::createTestTransactionWithCustomer();
-		$t2->setPaymentMethod('boleto');
-		$t2->charge();
+        $this->validateTransactionResponse($t1);
 
-		$this->validateTransactionResponse($t2);
+        $t2 = self::createTestTransactionWithCustomer();
+        $t2->setPaymentMethod('boleto');
+        $t2->charge();
+
+        $this->validateTransactionResponse($t2);
 
 
-		$this->assertEqual($t2->getPaymentMethod(), 'boleto');
-		$this->assertEqual($t2->getBoletoUrl(), 'https://pagar.me');
-		$this->assertTrue($t2->getBoletoBarcode());
-	}
+        $this->assertEqual($t2->getPaymentMethod(), 'boleto');
+        $this->assertEqual($t2->getBoletoUrl(), 'https://pagar.me');
+        $this->assertTrue($t2->getBoletoBarcode());
+    }
 
-	public function testTransactionWithUnsavedCardObject() {
-		$card = self::createTestCard();
-		$transaction = new PagarMe_Transaction(array(
-			'amount' => 10000,
-			'payment_method' => 'credit_card',
-		));
+    public function testTransactionWithUnsavedCardObject()
+    {
+        $card        = self::createTestCard();
+        $transaction = new Transaction(array(
+            'amount'         => 10000,
+            'payment_method' => 'credit_card',
+        ));
 
-		$transaction->setCard($card);
-		$transaction->charge();
+        $transaction->setCard($card);
+        $transaction->charge();
 
-		$this->assertEqual($transaction->getStatus(), 'paid');
-	}
+        $this->assertEqual($transaction->getStatus(), 'paid');
+    }
 
-	public function testTransactionWithSavedCardObject() {
-		$card = self::createTestCard();
-		$card->create();
+    public function testTransactionWithSavedCardObject()
+    {
+        $card = self::createTestCard();
+        $card->create();
 
-		$transaction = new PagarMe_Transaction(array(
-			'amount' => 10000,
-			'payment_method' => 'credit_card',
-		));
+        $transaction = new Transaction(array(
+            'amount'         => 10000,
+            'payment_method' => 'credit_card',
+        ));
 
-		$transaction->setCard($card);
-		$transaction->charge();
+        $transaction->setCard($card);
+        $transaction->charge();
 
-		$this->assertEqual($transaction->getStatus(), 'paid');
-	}
+        $this->assertEqual($transaction->getStatus(), 'paid');
+    }
 
-	public function testTransactionWithReturnedCard() {
-		$transaction = self::createTestTransaction();
-		$transaction->charge();
+    public function testTransactionWithReturnedCard()
+    {
+        $transaction = self::createTestTransaction();
+        $transaction->charge();
 
-		$card = $transaction->getCard();
+        $card = $transaction->getCard();
 
-		$transaction2 = new PagarMe_Transaction(array(
-			'amount' => 123456,
-			'payment_method' => 'credit_card',
-		));
-		$transaction2->setCard($card);
-		$transaction2->charge();
+        $transaction2 = new Transaction(array(
+            'amount'         => 123456,
+            'payment_method' => 'credit_card',
+        ));
+        $transaction2->setCard($card);
+        $transaction2->charge();
 
-		$this->assertEqual($transaction->getStatus(), 'paid');
-	}
+        $this->assertEqual($transaction->getStatus(), 'paid');
+    }
 
-	public function testPostback() {
-		$transaction = self::createTestTransaction();
-		$transaction->setPostbackUrl('abc2');
+    public function testPostback()
+    {
+        $transaction = self::createTestTransaction();
+        $transaction->setPostbackUrl('abc2');
 
-		$this->assertEqual('abc2', $transaction->getPostbackUrl());
-	}
+        $this->assertEqual('abc2', $transaction->getPostbackUrl());
+    }
 
-	public function testRefund() {
-		$transaction = self::createTestTransaction();
-		$transaction->charge();
-		$this->validateTransactionResponse($transaction);
-		$transaction->refund();
-		$this->assertEqual($transaction->getStatus(), 'refunded');
+    public function testRefund()
+    {
+        $transaction = self::createTestTransaction();
+        $transaction->charge();
+        $this->validateTransactionResponse($transaction);
+        $transaction->refund();
+        $this->assertEqual($transaction->getStatus(), 'refunded');
 
-		$this->expectException(new IsAExpectation('PagarMe_Exception'));
-		$transaction->refund();
-	}
+        $this->expectException(new IsAExpectation('PagarMe_Exception'));
+        $transaction->refund();
+    }
 
-	public function testBoletoRefund() {
-		$transaction = self::createTestTransaction();
-		$transaction->setPaymentMethod('boleto');
-		$transaction->charge();
+    public function testBoletoRefund()
+    {
+        $transaction = self::createTestTransaction();
+        $transaction->setPaymentMethod('boleto');
+        $transaction->charge();
 
-		$transaction->setStatus('paid');
-		$transaction->save();
+        $transaction->setStatus('paid');
+        $transaction->save();
 
-		$transaction->refund(array(
-			'bank_account' => array(
-				'bank_code' => '001',
-				'agencia' => '1111',
-				'agencia_dv' => '1',
-				'conta' => '11111111',
-				'conta_dv' => '1',
-				'document_number' => '11111111111',
-				'legal_name' => 'Jose da Silva',
-			),
-		));
+        $transaction->refund(array(
+            'bank_account' => array(
+                'bank_code'       => '001',
+                'agencia'         => '1111',
+                'agencia_dv'      => '1',
+                'conta'           => '11111111',
+                'conta_dv'        => '1',
+                'document_number' => '11111111111',
+                'legal_name'      => 'Jose da Silva',
+            ),
+        ));
 
-		$this->assertEqual('pending_refund', $transaction->getStatus());
-	}
+        $this->assertEqual('pending_refund', $transaction->getStatus());
+    }
 
-	public function testCreation() {
-		$transaction = self::createTestTransaction();
-		$this->assertEqual($transaction->getStatus(), 'local');
-		$this->assertEqual($transaction->getPaymentMethod(), 'credit_card');
-	}
+    public function testCreation()
+    {
+        $transaction = self::createTestTransaction();
+        $this->assertEqual($transaction->getStatus(), 'local');
+        $this->assertEqual($transaction->getPaymentMethod(), 'credit_card');
+    }
 
-	public function testMetadata() {
-		$transaction = self::createTestTransaction();
-		$transaction->setMetadata(array('event' => array('name' => "Evento irado", 'quando'=> 'amanha')));
-		$transaction->charge();
-		$this->assertTrue($transaction->getId());
+    public function testMetadata()
+    {
+        $transaction = self::createTestTransaction();
+        $transaction->setMetadata(array('event' => array('name' => "Evento irado", 'quando' => 'amanha')));
+        $transaction->charge();
+        $this->assertTrue($transaction->getId());
 
-		$transaction2 = PagarMe_Transaction::findById($transaction->getId());
-		$metadata = $transaction2->getMetadata();
-		$this->assertEqual($metadata['event']['name'], "Evento irado");
-	}
+        $transaction2 = Transaction::findById($transaction->getId());
+        $metadata     = $transaction2->getMetadata();
+        $this->assertEqual($metadata['event']['name'], "Evento irado");
+    }
 
-	public function testDeepMetadata() {
-		$transaction = self::createTestTransaction();
-		$transaction->setMetadata(array('basket' => array('session' => array('date' => "31/04/2014", 'time' => "12:00:00"), 'ticketTypeId'=> '5209', 'type' => "inteira", 'quantity' => '1', 'price' => 2000)));
-		$transaction->charge();
-		$this->assertTrue($transaction->getId());
+    public function testDeepMetadata()
+    {
+        $transaction = self::createTestTransaction();
+        $transaction->setMetadata(array('basket' => array('session' => array('date' => "31/04/2014", 'time' => "12:00:00"), 'ticketTypeId' => '5209', 'type' => "inteira", 'quantity' => '1', 'price' => 2000)));
+        $transaction->charge();
+        $this->assertTrue($transaction->getId());
 
-		$transaction2 = PagarMe_Transaction::findById($transaction->getId());
-		$metadata = $transaction2->getMetadata();
-		$this->assertEqual($metadata['basket']['quantity'], "1");
-		$this->assertEqual($metadata['basket']['session']['date'], "31/04/2014");
-	}
+        $transaction2 = Transaction::findById($transaction->getId());
+        $metadata     = $transaction2->getMetadata();
+        $this->assertEqual($metadata['basket']['quantity'], "1");
+        $this->assertEqual($metadata['basket']['session']['date'], "31/04/2014");
+    }
 
-	public function testValidation() {
-		$transaction = new PagarMe_Transaction();
-		$transaction->setCardNumber("123");
-		$this->expectException(new IsAExpectation('PagarMe_Exception'));
-		$transaction->charge();
-		$transaction->setCardNumber('4111111111111111');
+    public function testValidation()
+    {
+        $transaction = new Transaction();
+        $transaction->setCardNumber("123");
+        $this->expectException(new IsAExpectation('PagarMe_Exception'));
+        $transaction->charge();
+        $transaction->setCardNumber('4111111111111111');
 
-		$transaction->setCardHolderName('');
-		$this->expectException(new IsAExpectation('PagarMe_Exception'));
-		$transaction->charge();
-		$transaction->setCardHolderName("Jose da silva");
+        $transaction->setCardHolderName('');
+        $this->expectException(new IsAExpectation('PagarMe_Exception'));
+        $transaction->charge();
+        $transaction->setCardHolderName("Jose da silva");
 
-		$transaction->setExpiracyMonth(13);
-		$this->expectException(new IsAExpectation('PagarMe_Exception'));
-		$transaction->charge();
-		$transaction->setExpiracyMonth(12);
+        $transaction->setExpiracyMonth(13);
+        $this->expectException(new IsAExpectation('PagarMe_Exception'));
+        $transaction->charge();
+        $transaction->setExpiracyMonth(12);
 
-		$transaction->setExpiracyYear(10);
-		$this->expectException(new IsAExpectation('PagarMe_Exception'));
-		$transaction->charge();
-		$transaction->setExpiracyYear(16);
+        $transaction->setExpiracyYear(10);
+        $this->expectException(new IsAExpectation('PagarMe_Exception'));
+        $transaction->charge();
+        $transaction->setExpiracyYear(16);
 
-		$transaction->setCvv(123456);
-		$this->expectException(new IsAExpectation('PagarMe_Exception'));
-		$transaction->charge();
-		$transaction->setCvv(123);
+        $transaction->setCvv(123456);
+        $this->expectException(new IsAExpectation('PagarMe_Exception'));
+        $transaction->charge();
+        $transaction->setCvv(123);
 
-		$transaction->setAmount(0);
-		$this->expectException(new IsAExpectation('PagarMe_Exception'));
-		$transaction->charge();
-		$transaction->setAmount(1000);
-	}
+        $transaction->setAmount(0);
+        $this->expectException(new IsAExpectation('PagarMe_Exception'));
+        $transaction->charge();
+        $transaction->setAmount(1000);
+    }
 
-	public function testFingerprint() {
-		$this->assertTrue(PagarMe::validateFingerprint('13', sha1('13' . '#' . PagarMe::getApiKey())));
-	}
+    public function testFingerprint()
+    {
+        $this->assertTrue(PagarMe::validateFingerprint('13', sha1('13' . '#' . PagarMe::getApiKey())));
+    }
 }

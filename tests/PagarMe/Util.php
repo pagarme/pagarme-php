@@ -1,64 +1,76 @@
 <?php
 
-class PagarMe_UtilTest extends PagarMeTestCase {
+use Pagarme\Util,
+    Pagarme\Transaction\Transaction,
+    Pagarme\Customer,
+    Pagarme\Address;
 
-	public function testIsList() {
-		$arr1 = '123';
-		$arr2 = array('abc' => 'bcd', '456' => 'bcd');
-		$arr3 = array('abc', 'bcd', 'def');
+class UtilTest extends PagarMeTestCase
+{
 
-		$this->assertFalse(PagarMe_Util::isList($arr1));
-		$this->assertFalse(PagarMe_Util::isList($arr2));
-		$this->assertTrue(PagarMe_Util::isList($arr3));
-	}
+    public function testIsList()
+    {
+        $arr1 = '123';
+        $arr2 = array('abc' => 'bcd', '456' => 'bcd');
+        $arr3 = array('abc', 'bcd', 'def');
 
-	public function testCamelCase() {
-		$str = 'getPhones';
-		$str2 = 'getBoletoUrl';
-		$str3 = 'BoletoUrl';
-		$str4 = 'Phone';
+        $this->assertFalse(Util::isList($arr1));
+        $this->assertFalse(Util::isList($arr2));
+        $this->assertTrue(Util::isList($arr3));
+    }
 
-		$this->assertEqual(PagarMe_Util::fromCamelCase($str), 'get_phones');
-		$this->assertEqual(PagarMe_Util::fromCamelCase($str2), 'get_boleto_url');
-		$this->assertEqual(PagarMe_Util::fromCamelCase($str3), 'boleto_url');
-		$this->assertEqual(PagarMe_Util::fromCamelCase($str4), 'phone');
-	}
+    public function testCamelCase()
+    {
+        $str  = 'getPhones';
+        $str2 = 'getBoletoUrl';
+        $str3 = 'BoletoUrl';
+        $str4 = 'Phone';
 
-	public function testConvertToArray() {
-		$obj = self::createPagarMeObject();
-		$arr = PagarMe_Util::convertPagarMeObjectToArray($obj);
+        $this->assertEqual(Util::fromCamelCase($str), 'get_phones');
+        $this->assertEqual(Util::fromCamelCase($str2), 'get_boleto_url');
+        $this->assertEqual(Util::fromCamelCase($str3), 'boleto_url');
+        $this->assertEqual(Util::fromCamelCase($str4), 'phone');
+    }
 
-		$this->assertTrue(is_array($arr));
-		$this->assertTrue(is_array($arr['customer']));
-		$this->assertTrue($arr['customer']['address']['street'] == 'asdas');
-	}
+    public function testConvertToArray()
+    {
+        $obj = self::createPagarMeObject();
+        $arr = Util::convertPagarMeObjectToArray($obj);
 
-	public function testConvertToPagarMeObject() {
-		$response = array("status"=> "paid",
-			"object" => 'transaction',
-			"refuse_reason" => null,
-			"date_created" => "2013-09-26T03:19:36.000Z",
-			"amount" => 1590,
-			"installments" => 1,
-			"id" => 1379,
-			"card_holder_name" => "Jose da Silva",
-			"card_last_digits" => "4448",
-			"card_brand" => "visa",
-			"postback_url" => null,
-			"payment_method" => "credit_card",
-			"customer" => array(
-				'object' => 'customer',
-				"document_number" => "51472745531",
-				'address' => array(
-					'object' => "address",
-					'street' => 'asdas'
-				)
-			));
+        $this->assertTrue(is_array($arr));
+        $this->assertTrue(is_array($arr['customer']));
+        $this->assertTrue($arr['customer']['address']['street'] == 'asdas');
+    }
 
-		$obj = PagarMe_Util::convertToPagarMeObject($response);
+    public function testConvertToPagarMeObject()
+    {
+        $response = array(
+            "status"           => "paid",
+            "object"           => 'transaction',
+            "refuse_reason"    => null,
+            "date_created"     => "2013-09-26T03:19:36.000Z",
+            "amount"           => 1590,
+            "installments"     => 1,
+            "id"               => 1379,
+            "card_holder_name" => "Jose da Silva",
+            "card_last_digits" => "4448",
+            "card_brand"       => "visa",
+            "postback_url"     => null,
+            "payment_method"   => "credit_card",
+            "customer"         => array(
+                'object'          => 'customer',
+                "document_number" => "51472745531",
+                'address'         => array(
+                    'object' => "address",
+                    'street' => 'asdas'
+                )
+            )
+        );
 
-		$this->assertTrue($obj instanceof PagarMe_Transaction);
-		$this->assertTrue($obj->customer instanceof PagarMe_Customer);
-		$this->assertTrue($obj->customer->address instanceof PagarMe_Address);
-	}
+        $obj = Util::convertToPagarMeObject($response);
+
+        $this->assertTrue($obj instanceof Transaction);
+        $this->assertTrue($obj->customer instanceof Customer);
+        $this->assertTrue($obj->customer->address instanceof Address);
+    }
 }

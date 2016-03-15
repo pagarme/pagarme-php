@@ -1,167 +1,182 @@
 <?php
 
-class PagarMe_SubscriptionTest extends PagarMeTestCase {
+use Pagarme\Subscription,
+    Pagarme\Plan;
 
-	public function testCreate() {
-		$subscription = self::createTestSubscription();
-		$subscription->create();
-		$this->validateSubscription($subscription);
-	}
+class PagarMe_SubscriptionTest extends PagarMeTestCase
+{
 
-	public function testCreateAndSave() {
-		$subscription = self::createTestSubscription();
-		$subscription->create();
-		$subscription->save();
-		$this->validateSubscription($subscription);
-	}
+    public function testCreate()
+    {
+        $subscription = self::createTestSubscription();
+        $subscription->create();
+        $this->validateSubscription($subscription);
+    }
 
-	public function testSubscriptionTransactions() {
-		$subscription = self::createTestSubscription();
-		$subscription->create();
-		$subscription->charge(1000);
-		$subscription->charge(2000);
+    public function testCreateAndSave()
+    {
+        $subscription = self::createTestSubscription();
+        $subscription->create();
+        $subscription->save();
+        $this->validateSubscription($subscription);
+    }
 
-		$transactions = $subscription->getTransactions();
+    public function testSubscriptionTransactions()
+    {
+        $subscription = self::createTestSubscription();
+        $subscription->create();
+        $subscription->charge(1000);
+        $subscription->charge(2000);
 
-		$this->assertEqual(sizeof($transactions), 2);
-		$this->assertEqual($transactions[1]->amount, 1000);
-		$this->assertEqual($transactions[0]->amount, 2000);
-	}
+        $transactions = $subscription->getTransactions();
 
-	public function testUpdate() {
-		$subscription = self::createTestSubscription();
-		$subscription->create();
+        $this->assertEqual(sizeof($transactions), 2);
+        $this->assertEqual($transactions[1]->amount, 1000);
+        $this->assertEqual($transactions[0]->amount, 2000);
+    }
 
-		$subscription->setPaymentMethod('boleto');
-		$subscription->save();
+    public function testUpdate()
+    {
+        $subscription = self::createTestSubscription();
+        $subscription->create();
 
-		$subscription2 = PagarMe_Subscription::findById($subscription->getId());
-		$this->assertEqual($subscription2->getPaymentMethod(), 'boleto');
-	}
+        $subscription->setPaymentMethod('boleto');
+        $subscription->save();
 
-	public function testUpdatePlan() {
-		$subscription = self::createTestSubscription();
-		$plan = self::createTestPlan();
-		$plan->create();
-		$subscription->setPlan($plan);
-		$subscription->create();
+        $subscription2 = Subscription::findById($subscription->getId());
+        $this->assertEqual($subscription2->getPaymentMethod(), 'boleto');
+    }
 
-		$plan2 = new PagarMe_Plan(array(
-			'name' => 'Plano 2',
-			'days' => '10',
-			'amount' => 4500,
-			'payment_method' => "credit_card",
-			'trial_days' => "3"
-		));
-		$plan2->create();
+    public function testUpdatePlan()
+    {
+        $subscription = self::createTestSubscription();
+        $plan         = self::createTestPlan();
+        $plan->create();
+        $subscription->setPlan($plan);
+        $subscription->create();
 
-		$subscription->plan = $plan2;
-		$subscription->save();
+        $plan2 = new Plan(array(
+            'name'           => 'Plano 2',
+            'days'           => '10',
+            'amount'         => 4500,
+            'payment_method' => "credit_card",
+            'trial_days'     => "3"
+        ));
+        $plan2->create();
 
-		$s2 = PagarMe_Subscription::findById($subscription->id);
+        $subscription->plan = $plan2;
+        $subscription->save();
 
-		$this->assertEqual($s2->plan->id, $plan2->id);
-	}
+        $s2 = Subscription::findById($subscription->id);
 
-	public function testCreateWithFraud() {
-		$subscription = self::createSubscriptionWithCustomer();
-		$subscription->create();
-		$this->validateSubscription($subscription);
-	}
+        $this->assertEqual($s2->plan->id, $plan2->id);
+    }
 
-	public function testCreateWithPlanAndFraud() {
-		$subscription = self::createSubscriptionWithCustomer();
-		$plan = self::createTestPlan();
-		$plan->create();
-		$subscription->setPlan($plan);
+    public function testCreateWithFraud()
+    {
+        $subscription = self::createSubscriptionWithCustomer();
+        $subscription->create();
+        $this->validateSubscription($subscription);
+    }
 
-		$subscription->create();
-		$this->validateSubscription($subscription);
-		$this->assertTrue($subscription->getId());
-		$this->assertTrue($subscription->getCustomer());
-		$this->assertTrue($subscription->getPlan()->getId());
-		$this->assertTrue($plan->getId());
+    public function testCreateWithPlanAndFraud()
+    {
+        $subscription = self::createSubscriptionWithCustomer();
+        $plan         = self::createTestPlan();
+        $plan->create();
+        $subscription->setPlan($plan);
 
-		$subscription2 = PagarMe_Subscription::findById($subscription->getId());
-		$this->assertTrue($subscription2->getPlan());
-		$this->assertEqual($subscription2->getPlan()->getId(), $plan->getId());
-	}
+        $subscription->create();
+        $this->validateSubscription($subscription);
+        $this->assertTrue($subscription->getId());
+        $this->assertTrue($subscription->getCustomer());
+        $this->assertTrue($subscription->getPlan()->getId());
+        $this->assertTrue($plan->getId());
 
-	public function testCreateWithPlan() {
-		$plan = self::createTestPlan();
-		$subscription = self::createTestSubscription();
-		$plan->create();
+        $subscription2 = Subscription::findById($subscription->getId());
+        $this->assertTrue($subscription2->getPlan());
+        $this->assertEqual($subscription2->getPlan()->getId(), $plan->getId());
+    }
 
-		$subscription->setPlan($plan);
-		$subscription->create();
+    public function testCreateWithPlan()
+    {
+        $plan         = self::createTestPlan();
+        $subscription = self::createTestSubscription();
+        $plan->create();
 
-		$this->validateSubscription($subscription);
-		$this->assertTrue($subscription->getPlan()->getId());
-		$this->assertTrue($plan->getId());
+        $subscription->setPlan($plan);
+        $subscription->create();
 
-		$subscription2 = PagarMe_Subscription::findById($subscription->getId());
-		$this->assertTrue($subscription2->getPlan());
-		$this->assertEqual($subscription2->getPlan()->getId(), $plan->getId());
+        $this->validateSubscription($subscription);
+        $this->assertTrue($subscription->getPlan()->getId());
+        $this->assertTrue($plan->getId());
 
-		$card = self::createTestCard();
-		$subscription3 = new PagarMe_Subscription(array(
-			'customer' => array(
-				'email' => 'lala@lala.com',
-			),
-		));
-		$subscription3->setPlan($plan);
-		$subscription3->setCard($card);
-		$subscription3->create();
+        $subscription2 = Subscription::findById($subscription->getId());
+        $this->assertTrue($subscription2->getPlan());
+        $this->assertEqual($subscription2->getPlan()->getId(), $plan->getId());
 
-		$this->assertTrue($subscription3->getId());
+        $card          = self::createTestCard();
+        $subscription3 = new Subscription(array(
+            'customer' => array(
+                'email' => 'lala@lala.com',
+            ),
+        ));
+        $subscription3->setPlan($plan);
+        $subscription3->setCard($card);
+        $subscription3->create();
 
-		$card->create();
-		$subscription4 = new PagarMe_Subscription(array(
-			'customer' => array(
-				'email' => 'lala@lala.com',
-			),
-		));
-		$subscription4->setPlan($plan);
-		$subscription4->setCard($card);
-		$subscription4->create();
+        $this->assertTrue($subscription3->getId());
 
-		$this->assertTrue($subscription4->getId());
+        $card->create();
+        $subscription4 = new Subscription(array(
+            'customer' => array(
+                'email' => 'lala@lala.com',
+            ),
+        ));
+        $subscription4->setPlan($plan);
+        $subscription4->setCard($card);
+        $subscription4->create();
 
-		$subscription4 = new PagarMe_Subscription(array(
-			'card' => $card,
-			'customer' => array(
-				'email' => 'lala@lala.com',
-			),
-		));
-		$subscription4->setPlan($plan);
-		$subscription4->create();
+        $this->assertTrue($subscription4->getId());
 
-		$this->assertTrue($subscription4->getId());
-	}
+        $subscription4 = new Subscription(array(
+            'card'     => $card,
+            'customer' => array(
+                'email' => 'lala@lala.com',
+            ),
+        ));
+        $subscription4->setPlan($plan);
+        $subscription4->create();
 
-	public function testCancel() {
-		$subscription = self::createTestSubscription();
-		$subscription->create();
+        $this->assertTrue($subscription4->getId());
+    }
 
-		$subscription->cancel();
-		$this->assertEqual($subscription->status, 'canceled');
-	}
+    public function testCancel()
+    {
+        $subscription = self::createTestSubscription();
+        $subscription->create();
 
-	public function testCharge() {
-		$subscription = self::createTestSubscription();
-		$subscription->create();
-		$subscription->charge(3600);
-		$transaction = $subscription->getCurrentTransaction();
-		$this->assertEqual($transaction->getInstallments(), '1');
-		$this->assertEqual($transaction->getAmount(), '3600');
-	}
+        $subscription->cancel();
+        $this->assertEqual($subscription->status, 'canceled');
+    }
 
-	public function testChargeWithInstallments() {
-		$subscription = self::createTestSubscription();
-		$subscription->create();
-		$subscription->charge(3600, 3);
-		$transaction = $subscription->getCurrentTransaction();
-		$this->assertEqual($transaction->getAmount(), '3600');
-		$this->assertEqual($transaction->getInstallments(), '3');
-	}
+    public function testCharge()
+    {
+        $subscription = self::createTestSubscription();
+        $subscription->create();
+        $subscription->charge(3600);
+        $transaction = $subscription->getCurrentTransaction();
+        $this->assertEqual($transaction->getInstallments(), '1');
+        $this->assertEqual($transaction->getAmount(), '3600');
+    }
+
+    public function testChargeWithInstallments()
+    {
+        $subscription = self::createTestSubscription();
+        $subscription->create();
+        $subscription->charge(3600, 3);
+        $transaction = $subscription->getCurrentTransaction();
+        $this->assertEqual($transaction->getAmount(), '3600');
+        $this->assertEqual($transaction->getInstallments(), '3');
+    }
 }
