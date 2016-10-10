@@ -30,4 +30,12 @@ class TransactionGet implements Request
     {
         return 'GET';
     }
+
+    /**
+     * @return string
+     */
+    public function getAuthenticationMethod()
+    {
+        return self::API_KEY;
+    }
 }

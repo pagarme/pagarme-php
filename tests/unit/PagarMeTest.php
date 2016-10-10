@@ -12,7 +12,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
     **/
     public function mustReturnCardHandler()
     {
-        $pagarMe = new PagarMe('apiKey');
+        $pagarMe = new PagarMe('apiKey', 'encryptionKey');
         $this->assertInstanceOf(
             'PagarMe\Sdk\Card\CardHandler',
             $pagarMe->card()
@@ -24,7 +24,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
     **/
     public function mustReturnCustomerHandler()
     {
-        $pagarMe = new PagarMe('apiKey');
+        $pagarMe = new PagarMe('apiKey', 'encryptionKey');
         $this->assertInstanceOf(
             'PagarMe\Sdk\Customer\CustomerHandler',
             $pagarMe->customer()
@@ -36,7 +36,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
     **/
     public function mustReturnSameCardHandler()
     {
-        $pagarMe = new PagarMe('apiKey');
+        $pagarMe = new PagarMe('apiKey', 'encryptionKey');
 
         $cardHandlerA = $pagarMe->card();
         $cardHandlerB = $pagarMe->card();
@@ -49,7 +49,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
     **/
     public function mustReturnTransactionHandler()
     {
-        $pagarMe = new PagarMe('apiKey');
+        $pagarMe = new PagarMe('apiKey', 'encryptionKey');
         $this->assertInstanceOf(
             'PagarMe\Sdk\Transaction\TransactionHandler',
             $pagarMe->transaction()
@@ -61,7 +61,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
     **/
     public function mustReturnSameTransactionHandler()
     {
-        $pagarMe = new PagarMe('apiKey');
+        $pagarMe = new PagarMe('apiKey', 'encryptionKey');
         $transactionHandlerA = $pagarMe->transaction();
         $transactionHandlerB = $pagarMe->transaction();
         $this->assertSame($transactionHandlerA, $transactionHandlerB);
@@ -72,7 +72,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
     **/
     public function mustReturnSameCustomerHandler()
     {
-        $pagarMe = new PagarMe('apiKey');
+        $pagarMe = new PagarMe('apiKey', 'encryptionKey');
 
         $customerHandlerA = $pagarMe->customer();
         $customerHandlerB = $pagarMe->customer();

@@ -58,4 +58,12 @@ class TransactionCreate implements Request
     {
         return 'POST';
     }
+
+    /**
+     * @return string
+     */
+    public function getAuthenticationMethod()
+    {
+        return self::API_KEY;
+    }
 }

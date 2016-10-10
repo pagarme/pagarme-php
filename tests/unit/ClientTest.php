@@ -10,6 +10,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     const REQUEST_PATH   = 'test';
     const CONTENT        = 'sample content';
     const API_KEY        = 'myApiKey';
+    const ENCRYPTION_KEY = 'myEncryptionKey';
 
     /**
      * @test
@@ -50,7 +51,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $client = new Client(
             $guzzleClientMock,
-            self::API_KEY
+            self::API_KEY,
+            self::ENCRYPTION_KEY
         );
 
         $client->send($request);
@@ -105,7 +107,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $client = new Client(
             $guzzleClientMock,
-            self::API_KEY
+            self::API_KEY,
+            self::ENCRYPTION_KEY
         );
 
         $client->send($request);
@@ -151,7 +154,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $client = new Client(
             $guzzleClientMock,
-            self::API_KEY
+            self::API_KEY,
+            self::ENCRYPTION_KEY
         );
 
         $client->send($request);

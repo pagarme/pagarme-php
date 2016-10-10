@@ -1,24 +1,11 @@
 <?php
 
-namespace PagarMe\Sdk\Customer\Request;
+namespace PagarMe\Sdk\Card\Request;
 
 use PagarMe\Sdk\Request;
 
-class CustomerGet implements Request
+class PublicKey implements Request
 {
-    /**
-     * @var int | Identificador do cliente
-     */
-    private $customerId;
-
-    /**
-     * @param int
-     */
-    public function __construct($customerId)
-    {
-        $this->customerId  = $customerId;
-    }
-
     /**
      * @return array
      */
@@ -32,7 +19,7 @@ class CustomerGet implements Request
      */
     public function getPath()
     {
-        return sprintf('customers/%d', $this->customerId);
+        return 'transactions/card_hash_key';
     }
 
     /**
@@ -48,6 +35,6 @@ class CustomerGet implements Request
      */
     public function getAuthenticationMethod()
     {
-        return self::API_KEY;
+        return self::ENCRYPTION_KEY;
     }
 }

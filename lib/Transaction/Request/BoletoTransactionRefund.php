@@ -61,4 +61,12 @@ class BoletoTransactionRefund implements Request
 
         return ['bank_account_id' => $account->getBankAccountId()];
     }
+
+    /**
+     * @return string
+     */
+    public function getAuthenticationMethod()
+    {
+        return self::API_KEY;
+    }
 }

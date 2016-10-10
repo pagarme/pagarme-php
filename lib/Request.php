@@ -6,6 +6,9 @@ use PagarMe\Sdk\Request;
 
 interface Request
 {
+    const API_KEY        = 'api_key';
+    const ENCRYPTION_KEY = 'encryption_key';
+
     /**
      * @return array
      */
@@ -20,4 +23,9 @@ interface Request
      * @return string
      */
     public function getMethod();
+
+    /**
+     * @return string
+     */
+    public function getAuthenticationMethod();
 }

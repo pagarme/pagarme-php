@@ -149,4 +149,12 @@ class CustomerCreate implements Request
 
         return $phoneData;
     }
+
+    /**
+     * @return string
+     */
+    public function getAuthenticationMethod()
+    {
+        return self::API_KEY;
+    }
 }
