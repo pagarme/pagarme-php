@@ -21,6 +21,11 @@ class CreditCardTransaction extends AbstractTransaction
         return $this->card->getId();
     }
 
+    public function getCardHash()
+    {
+        return $this->card->getHash();
+    }
+
     public function getInstallments()
     {
         return $this->installments;

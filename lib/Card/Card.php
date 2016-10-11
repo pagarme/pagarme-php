@@ -52,6 +52,11 @@ class Card
     private $customer;
 
     /**
+     * @var string | Hash dos dados de cartao
+     */
+    private $hash;
+
+    /**
      * @var boolean | Propriedade para verificar a validade do cartão
      */
     private $valid;
@@ -137,6 +142,14 @@ class Card
     public function getCustomer()
     {
         return $this->customer;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHash()
+    {
+        return $this->hash;
     }
 
     /**
