@@ -2,6 +2,8 @@
 
 namespace PagarMe\Sdk\Transaction;
 
+use PagarMe\Sdk\SplitRule\SplitRuleCollection;
+
 abstract class AbstractTransaction
 {
     use \PagarMe\Sdk\Fillable;
@@ -40,9 +42,14 @@ abstract class AbstractTransaction
     protected $metadata;
     protected $paidAmount;
     protected $refundedAmount;
+    protected $splitRules;
 
     public function __construct($transactionData)
     {
+        if (!is_null($transactionData['split_rules'])) {
+            $this->setSplitRules($transactionData['split_rules']);
+            unset($transactionData['split_rules']);
+        }
         $this->fill($transactionData);
     }
 
@@ -324,5 +331,21 @@ abstract class AbstractTransaction
     public function isRefused()
     {
         return $this->status == self::REFUSED;
+    }
+
+    /**
+     * @return SplitRuleCollection
+     */
+    public function getSplitRules()
+    {
+        return $this->splitRules;
+    }
+
+    /**
+     * @param SplitRuleCollection $splitRules
+     */
+    public function setSplitRules($splitRules)
+    {
+        $this->splitRules = $splitRules;
     }
 }

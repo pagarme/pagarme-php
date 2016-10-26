@@ -45,7 +45,7 @@ class TransactionHandler extends AbstractHandler
 
         $result = $this->client->send($request);
 
-        return new CreditCardTransaction($result);
+        return $this->buildTransaction($result);
     }
 
     public function boletoTransaction(
@@ -69,7 +69,7 @@ class TransactionHandler extends AbstractHandler
 
         $result = $this->client->send($request);
 
-        return new BoletoTransaction($result);
+        return $this->buildTransaction($result);
     }
 
     public function get($transactionId)
@@ -121,11 +121,11 @@ class TransactionHandler extends AbstractHandler
     private function buildTransaction($transactionData)
     {
         if ($transactionData->payment_method == BoletoTransaction::PAYMENT_METHOD) {
-            return new BoletoTransaction($transactionData);
+            return new BoletoTransaction(get_object_vars($transactionData));
         }
 
         if ($transactionData->payment_method == CreditCardTransaction::PAYMENT_METHOD) {
-            return new CreditCardTransaction($transactionData);
+            return new CreditCardTransaction(get_object_vars($transactionData));
         }
 
         throw new UnsupportedTransaction(
