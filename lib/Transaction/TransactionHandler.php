@@ -14,6 +14,9 @@ use PagarMe\Sdk\Transaction\Request\BoletoTransactionRefund;
 use PagarMe\Sdk\Account\Account;
 use PagarMe\Sdk\Card\Card;
 use PagarMe\Sdk\Customer\Customer;
+use PagarMe\Sdk\SplitRule\SplitRuleCollection;
+use PagarMe\Sdk\SplitRule\SplitRule;
+use PagarMe\Sdk\Recipient\Recipient;
 
 class TransactionHandler extends AbstractHandler
 {
@@ -42,7 +45,6 @@ class TransactionHandler extends AbstractHandler
 
         $transaction = new CreditCardTransaction($transactionData);
         $request = new CreditCardTransactionCreate($transaction);
-
         $result = $this->client->send($request);
 
         return $this->buildTransaction($result);
@@ -120,6 +122,12 @@ class TransactionHandler extends AbstractHandler
 
     private function buildTransaction($transactionData)
     {
+        if (!is_null($transactionData->split_rules)) {
+            $transactionData->split_rules = $this->buildSplitRules(
+                $transactionData->split_rules
+            );
+        }
+
         if ($transactionData->payment_method == BoletoTransaction::PAYMENT_METHOD) {
             return new BoletoTransaction(get_object_vars($transactionData));
         }
@@ -135,5 +143,17 @@ class TransactionHandler extends AbstractHandler
             ),
             1
         );
+    }
+
+    private function buildSplitRules($splitRuleData)
+    {
+        $rules = new SplitRuleCollection();
+
+        foreach ($splitRuleData as $rule) {
+            $rule->recipient = new Recipient(['id' =>$rule->recipient_id]);
+            $rules[] = new SplitRule(get_object_vars($rule));
+        }
+
+        return $rules;
     }
 }

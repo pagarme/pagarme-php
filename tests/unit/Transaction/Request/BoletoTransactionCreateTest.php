@@ -129,13 +129,11 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 'split_rules' => [
                     0 => [
                         'amount'                => 100,
-                        'percentage'            => null,
                         'recipient_id'          => 1,
                         'liable'                => true,
                         'charge_processing_fee' => true
                     ],
                     1 => [
-                        'amount'                => null,
                         'percentage'            => 10,
                         'recipient_id'          => 3,
                         'liable'                => false,

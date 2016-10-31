@@ -5,6 +5,7 @@ namespace PagarMe\Sdk\Transaction\Request;
 use PagarMe\Sdk\Request;
 use PagarMe\Sdk\Transaction\Transaction;
 use PagarMe\Sdk\SplitRule\SplitRuleCollection;
+use PagarMe\Sdk\SplitRule\SplitRule;
 
 class TransactionCreate implements Request
 {
@@ -73,15 +74,24 @@ class TransactionCreate implements Request
         $rules = [];
 
         foreach ($splitRules as $key => $splitRule) {
-            $rules[$key] = [
+            $rule = [
                 'recipient_id'          => $splitRule->getRecipient()->getId(),
                 'charge_processing_fee' => $splitRule->getChargeProcessingFee(),
-                'liable'                => $splitRule->getLiable(),
-                'amount'                => $splitRule->getAmount(),
-                'percentage'            => $splitRule->getPercentage()
+                'liable'                => $splitRule->getLiable()
             ];
+
+            $rules[$key] = array_merge($rule, $this->getRuleValue($splitRule));
         }
 
         return $rules;
+    }
+
+    private function getRuleValue($splitRule)
+    {
+        if (!is_null($splitRule->getAmount())) {
+            return ['amount' => $splitRule->getAmount()];
+        }
+
+        return ['percentage' => $splitRule->getPercentage()];
     }
 }

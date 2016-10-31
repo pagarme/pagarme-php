@@ -25,3 +25,8 @@ default:
         - %paths.base%/tests/acceptance/features/recipient.feature
       contexts:
         - PagarMe\Acceptance\RecipientContext
+    split_rule:
+      paths:
+        - %paths.base%/tests/acceptance/features/split_rule.feature
+      contexts:
+        - PagarMe\Acceptance\SplitRuleContext

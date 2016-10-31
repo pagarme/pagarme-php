@@ -47,6 +47,8 @@ class SplitRule
     public function __construct($ruleData)
     {
         $this->setRecipient($ruleData['recipient']);
+        unset($ruleData['recipient']);
+
         $this->fill($ruleData);
     }
 
