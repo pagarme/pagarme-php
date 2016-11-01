@@ -122,7 +122,7 @@ class TransactionHandler extends AbstractHandler
 
     private function buildTransaction($transactionData)
     {
-        if (!is_null($transactionData->split_rules)) {
+        if (!isset($transactionData->split_rules)) {
             $transactionData->split_rules = $this->buildSplitRules(
                 $transactionData->split_rules
             );
