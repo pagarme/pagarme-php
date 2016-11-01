@@ -45,7 +45,7 @@ class PagarMe
     /**
      * @param PlanHandler | Manipulador de planos
      */
-    private $plan;
+    private $planHandler;
 
     /**
      * @param $apiKey
