@@ -18,3 +18,8 @@ Feature: Plan
     | 8008    |  7    | Plano E | null  | null    | null  | 10      | null          |
     | 486     |  35   | Plano F | null  | null    | null  | null    | 6             |
     | 586     |  60   | Plano G | 7     | boleto  | prata | 10      | 5             |
+
+  Scenario: Listing Plans
+    Given a previous created plans
+    When i query for plans
+    Then a list of Plans must be returned
