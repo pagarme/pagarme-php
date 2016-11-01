@@ -105,4 +105,17 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($recipientHandlerA, $recipientHandlerB);
     }
+
+    /**
+     * @test
+    **/
+    public function mustReturnSamePlanHandler()
+    {
+        $pagarMe = new PagarMe('apiKey');
+
+        $planHandlerA = $pagarMe->plan();
+        $planHandlerB = $pagarMe->plan();
+
+        $this->assertSame($planHandlerA, $planHandlerB);
+    }
 }
