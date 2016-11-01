@@ -127,10 +127,10 @@ class PagarMe
      */
     public function splitRule()
     {
-        if (!$this->splitRule instanceof SplitRuleHandler) {
-            $this->splitRule = new SplitRuleHandler();
+        if (!$this->splitRuleHandler instanceof SplitRuleHandler) {
+            $this->splitRuleHandler = new SplitRuleHandler();
         }
 
-        return $this->splitRule;
+        return $this->splitRuleHandler;
     }
 }

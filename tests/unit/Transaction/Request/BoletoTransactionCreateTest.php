@@ -85,6 +85,8 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
             'charge_processing_fee' => false
         ]);
 
+        $expirationDate = strtotime("tomorrow");
+
         $transaction =  new BoletoTransaction(
             [
                 'amount'                 => 1337,
