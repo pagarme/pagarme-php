@@ -21,8 +21,9 @@ class PlanContext extends BasicContext
     private $charges;
     private $installments;
 
-    private $plan;
+    private $createdPlan;
     private $plans;
+    private $plan;
 
     /**
      * @Given a :amount, :days and :name
@@ -71,7 +72,7 @@ class PlanContext extends BasicContext
      */
     public function registerThePlan()
     {
-        $this->plan = self::getPagarMe()
+        $this->createdPlan = self::getPagarMe()
             ->plan()
             ->create(
                 $this->amount,
@@ -92,7 +93,7 @@ class PlanContext extends BasicContext
     {
         assertInstanceOf(
             'PagarMe\Sdk\Plan\Plan',
-            $this->plan
+            $this->createdPlan
         );
     }
 
@@ -101,19 +102,19 @@ class PlanContext extends BasicContext
      */
     public function mustPlanContainSameData()
     {
-        assertEquals($this->amount, $this->plan->getAmount());
-        assertEquals($this->days, $this->plan->getDays());
-        assertEquals($this->name, $this->plan->getName());
-        assertEquals($this->trial, $this->plan->getTrialDays());
+        assertEquals($this->amount, $this->createdPlan->getAmount());
+        assertEquals($this->days, $this->createdPlan->getDays());
+        assertEquals($this->name, $this->createdPlan->getName());
+        assertEquals($this->trial, $this->createdPlan->getTrialDays());
         assertEquals(
             $this->defaultPaymentMethods($this->methods),
-            $this->plan->getPaymentMethods()
+            $this->createdPlan->getPaymentMethods()
         );
-        assertEquals($this->color, $this->plan->getColor());
-        assertEquals($this->charges, $this->plan->getCharges());
+        assertEquals($this->color, $this->createdPlan->getColor());
+        assertEquals($this->charges, $this->createdPlan->getCharges());
         assertEquals(
             $this->defaultInstallmets($this->installments),
-            $this->plan->getInstallments()
+            $this->createdPlan->getInstallments()
         );
     }
 
@@ -141,18 +142,7 @@ class PlanContext extends BasicContext
     public function aPreviousCreatedPlans()
     {
         for ($i=0; $i < 3; $i++) {
-            self::getPagarMe()
-                ->plan()
-                ->create(
-                    rand(1000, 10000),
-                    rand(10, 60),
-                    uniqid('plan'),
-                    null,
-                    null,
-                    null,
-                    null,
-                    null
-                );
+            $this->createRandomPlan();
         }
     }
 
@@ -177,5 +167,52 @@ class PlanContext extends BasicContext
             $this->plans
         );
         assertGreaterThanOrEqual(3, count($this->plans));
+    }
+
+    /**
+     * @Given a previous created plan
+     */
+    public function aPreviousCreatedPlan()
+    {
+        $this->createdPlan = $this->createRandomPlan();
+    }
+
+    /**
+     * @When i query for planId
+     */
+    public function iQueryForPlanid()
+    {
+        $this->plan = self::getPagarMe()
+                ->plan()
+                ->get(
+                    $this->createdPlan->getId()
+                );
+    }
+
+    /**
+     * @Then the same plan must be returned
+     */
+    public function theSamePlanMustBeReturned()
+    {
+        assertEquals(
+            $this->createdPlan,
+            $this->plan
+        );
+    }
+
+    private function createRandomPlan()
+    {
+        return self::getPagarMe()
+                ->plan()
+                ->create(
+                    rand(1000, 10000),
+                    rand(10, 60),
+                    uniqid('plan'),
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                );
     }
 }

@@ -5,6 +5,7 @@ namespace PagarMe\Sdk\Plan;
 use PagarMe\Sdk\AbstractHandler;
 use PagarMe\Sdk\Plan\Request\PlanCreate;
 use PagarMe\Sdk\Plan\Request\PlanList;
+use PagarMe\Sdk\Plan\Request\PlanGet;
 
 class PlanHandler extends AbstractHandler
 {
@@ -48,5 +49,14 @@ class PlanHandler extends AbstractHandler
         }
 
         return $plans;
+    }
+
+    public function get($planId)
+    {
+        $request = new PlanGet($planId);
+
+        $response = $this->client->send($request);
+
+        return new Plan(get_object_vars($response));
     }
 }

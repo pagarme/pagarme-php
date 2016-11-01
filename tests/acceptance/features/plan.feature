@@ -23,3 +23,8 @@ Feature: Plan
     Given a previous created plans
     When i query for plans
     Then a list of Plans must be returned
+  @only
+  Scenario: Geting Plans
+    Given a previous created plan
+    When i query for planId
+    Then the same plan must be returned
