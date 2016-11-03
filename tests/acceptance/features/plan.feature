@@ -1,0 +1,20 @@
+Feature: Plan
+ Como cliente da Pagar.me integrando uma aplicação PHP
+ Eu quero uma camada de abstração
+ Para que eu possa manter planos
+
+  Scenario Outline: Creating plan
+    Given a "<amount>", "<days>" and "<name>"
+    And "<trial>", "<methods>", "<color>", "<charges>", and "<installments>"
+    When register the plan
+    Then a plan must be created
+    And must plan contain same data
+    Examples:
+    | amount  | days  |  name   | trial | methods | color | charges | installments  |
+    | 100     |  30   | Plano A | null  | null    | null  | null    | null          |
+    | 1337    |  15   | Plano B |  7    | null    | null  | null    | null          |
+    | 1000001 |  10   | Plano C | null  | boleto  | null  | null    | null          |
+    | 50688   |  45   | Plano D | null  | null    | ouro  | null    | null          |
+    | 8008    |  7    | Plano E | null  | null    | null  | 10      | null          |
+    | 486     |  35   | Plano F | null  | null    | null  | null    | 6             |
+    | 586     |  60   | Plano G | 7     | boleto  | prata | 10      | 5             |
