@@ -1,6 +1,6 @@
 <?php
 
-namespace PagarMe\SdkTest\Request;
+namespace PagarMe\SdkTest\Customer\Request;
 
 use PagarMe\Sdk\Customer\Request\CustomerList;
 

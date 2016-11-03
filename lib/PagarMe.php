@@ -9,6 +9,7 @@ use PagarMe\Sdk\Card\CardHandler;
 use PagarMe\Sdk\Calculation\CalculationHandler;
 use PagarMe\Sdk\Recipient\RecipientHandler;
 use PagarMe\Sdk\Plan\PlanHandler;
+use PagarMe\Sdk\SplitRule\SplitRuleHandler;
 
 class PagarMe
 {
@@ -46,6 +47,11 @@ class PagarMe
      * @param PlanHandler | Manipulador de planos
      */
     private $planHandler;
+
+    /**
+     * @param SplitRuleHandler | Manipulador de splitRule
+     */
+    private $splitRuleHandler;
 
     /**
      * @param $apiKey
@@ -132,5 +138,17 @@ class PagarMe
         }
 
         return $this->planHandler;
+    }
+
+    /**
+     * @return SplitRuleHandler
+     */
+    public function splitRule()
+    {
+        if (!$this->splitRuleHandler instanceof SplitRuleHandler) {
+            $this->splitRuleHandler = new SplitRuleHandler();
+        }
+
+        return $this->splitRuleHandler;
     }
 }

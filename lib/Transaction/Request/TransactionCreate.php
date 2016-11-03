@@ -4,6 +4,8 @@ namespace PagarMe\Sdk\Transaction\Request;
 
 use PagarMe\Sdk\Request;
 use PagarMe\Sdk\Transaction\Transaction;
+use PagarMe\Sdk\SplitRule\SplitRuleCollection;
+use PagarMe\Sdk\SplitRule\SplitRule;
 
 class TransactionCreate implements Request
 {
@@ -24,7 +26,7 @@ class TransactionCreate implements Request
         $address  = $customer->getAddress();
         $phone    = $customer->getPhone();
 
-        return [
+        $transactionData = [
             'amount'         => $this->transaction->getAmount(),
             'payment_method' => $this->transaction->getPaymentMethod(),
             'postback_url'   => $this->transaction->getPostbackUrl(),
@@ -47,6 +49,14 @@ class TransactionCreate implements Request
                 ]
             ]
         ];
+
+        if ($this->transaction->getSplitRules() instanceof SplitRuleCollection) {
+            $transactionData['split_rules'] = $this->getSplitRulesInfo(
+                $this->transaction->getSplitRules()
+            );
+        }
+
+        return $transactionData;
     }
 
     public function getPath()
@@ -57,5 +67,31 @@ class TransactionCreate implements Request
     public function getMethod()
     {
         return 'POST';
+    }
+
+    private function getSplitRulesInfo(SplitRuleCollection $splitRules)
+    {
+        $rules = [];
+
+        foreach ($splitRules as $key => $splitRule) {
+            $rule = [
+                'recipient_id'          => $splitRule->getRecipient()->getId(),
+                'charge_processing_fee' => $splitRule->getChargeProcessingFee(),
+                'liable'                => $splitRule->getLiable()
+            ];
+
+            $rules[$key] = array_merge($rule, $this->getRuleValue($splitRule));
+        }
+
+        return $rules;
+    }
+
+    private function getRuleValue($splitRule)
+    {
+        if (!is_null($splitRule->getAmount())) {
+            return ['amount' => $splitRule->getAmount()];
+        }
+
+        return ['percentage' => $splitRule->getPercentage()];
     }
 }

@@ -4,6 +4,9 @@ namespace PagarMe\SdkTest\Transaction\Request;
 
 use PagarMe\Sdk\Transaction\Request\BoletoTransactionCreate;
 use PagarMe\Sdk\Transaction\BoletoTransaction;
+use PagarMe\Sdk\SplitRule\SplitRuleCollection;
+use PagarMe\Sdk\SplitRule\SplitRule;
+use PagarMe\Sdk\Recipient\Recipient;
 
 class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
 {
@@ -54,6 +57,89 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
                     'phone' => [
                         'ddd'    => 15,
                         'number' => 987523421
+                    ]
+                ]
+            ],
+            $transactionCreate->getPayload()
+        );
+    }
+
+    /**
+     * @test
+    **/
+    public function mustPayloadContainSplitRule()
+    {
+        $customerMock = $this->getCustomerMock();
+
+        $rules = new SplitRuleCollection();
+        $rules[]= new SplitRule([
+            'amount'                => 100,
+            'recipient'             => new Recipient(['id' => 1]),
+            'liable'                => true,
+            'charge_processing_fee' => true
+        ]);
+        $rules[]= new SplitRule([
+            'percentage'            => 10,
+            'recipient'             => new Recipient(['id' => 3]),
+            'liable'                => false,
+            'charge_processing_fee' => false
+        ]);
+
+        $expirationDate = strtotime("tomorrow");
+
+        $transaction =  new BoletoTransaction(
+            [
+                'amount'                 => 1337,
+                'postback_url'           => 'example.com/postback',
+                'customer'               => $customerMock,
+                'boleto_expiration_date' => $expirationDate,
+                'split_rules'            => $rules
+            ]
+        );
+
+        $transactionCreate = new BoletoTransactionCreate(
+            $transaction,
+            null,
+            null,
+            ['splitRules' => $rules]
+        );
+
+        $this->assertEquals(
+            [
+                'amount'                 => 1337,
+                'payment_method'         => 'boleto',
+                'postback_url'           => 'example.com/postback',
+                'boleto_expiration_date' => $expirationDate,
+                'customer' => [
+                    'name'            => 'Eduardo Nascimento',
+                    'born_at'         => '15071991',
+                    'document_number' => '10586649727',
+                    'email'           => 'eduardo@eduardo.com',
+                    'sex'             => 'M',
+                    'address' => [
+                        'street'        => 'rua teste',
+                        'street_number' => 42,
+                        'neighborhood'  => 'centro',
+                        'zipcode'       => '01227200',
+                        'complementary' => null
+                    ],
+                    'phone' => [
+                        'ddd'    => 15,
+                        'number' => 987523421
+                    ]
+                ],
+                'split_rules' => [
+                    0 => [
+                        'amount'                => 100,
+                        'recipient_id'          => 1,
+                        'liable'                => true,
+                        'charge_processing_fee' => true
+                    ],
+                    1 => [
+                        'percentage'            => 10,
+                        'recipient_id'          => 3,
+                        'liable'                => false,
+                        'charge_processing_fee' => false
                     ]
                 ]
             ],

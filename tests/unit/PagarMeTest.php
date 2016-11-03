@@ -118,4 +118,17 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($planHandlerA, $planHandlerB);
     }
+
+    /**
+     * @test
+    **/
+    public function mustReturnSameSplitRuleHandler()
+    {
+        $pagarMe = new PagarMe('apiKey');
+
+        $splitRuleHandlerA = $pagarMe->splitRule();
+        $splitRuleHandlerB = $pagarMe->splitRule();
+
+        $this->assertSame($splitRuleHandlerA, $splitRuleHandlerB);
+    }
 }
