@@ -14,6 +14,11 @@ class Plan
     /**
     * @var int
     **/
+    private $id;
+
+    /**
+    * @var int
+    **/
     private $days;
 
     /**
@@ -53,6 +58,14 @@ class Plan
     public function __construct($planData)
     {
         $this->fill($planData);
+    }
+
+    /**
+    * @return int
+    **/
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
