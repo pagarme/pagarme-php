@@ -25,6 +25,8 @@ class PlanContext extends BasicContext
     private $plans;
     private $plan;
 
+    const NEW_PLAN_NAME = 'Changed Plan Name';
+
     /**
      * @Given a :amount, :days and :name
      */
@@ -147,7 +149,7 @@ class PlanContext extends BasicContext
     }
 
     /**
-     * @When i query for plans
+     * @When I query for plans
      */
     public function iQueryForPlans()
     {
@@ -178,7 +180,7 @@ class PlanContext extends BasicContext
     }
 
     /**
-     * @When i query for planId
+     * @When I query for planId
      */
     public function iQueryForPlanid()
     {
@@ -214,5 +216,30 @@ class PlanContext extends BasicContext
                     null,
                     null
                 );
+    }
+
+    /**
+     * @When I edit the plan name
+     */
+    public function iEditThePlanName()
+    {
+        $plan = $this->createdPlan;
+
+        $plan->setName(self::NEW_PLAN_NAME);
+
+        $this->plan = self::getPagarMe()
+            ->plan()
+            ->update($plan);
+    }
+
+    /**
+     * @Then the name must be changed
+     */
+    public function theNameMustBeChanged()
+    {
+        assertEquals(
+            self::NEW_PLAN_NAME,
+            $this->plan->getName()
+        );
     }
 }

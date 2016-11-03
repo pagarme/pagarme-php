@@ -6,6 +6,7 @@ use PagarMe\Sdk\AbstractHandler;
 use PagarMe\Sdk\Plan\Request\PlanCreate;
 use PagarMe\Sdk\Plan\Request\PlanList;
 use PagarMe\Sdk\Plan\Request\PlanGet;
+use PagarMe\Sdk\Plan\Request\PlanUpdate;
 
 class PlanHandler extends AbstractHandler
 {
@@ -54,6 +55,15 @@ class PlanHandler extends AbstractHandler
     public function get($planId)
     {
         $request = new PlanGet($planId);
+
+        $response = $this->client->send($request);
+
+        return new Plan(get_object_vars($response));
+    }
+
+    public function update(Plan $plan)
+    {
+        $request = new PlanUpdate($plan);
 
         $response = $this->client->send($request);
 

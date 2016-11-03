@@ -21,10 +21,17 @@ Feature: Plan
 
   Scenario: Listing Plans
     Given a previous created plans
-    When i query for plans
+    When I query for plans
     Then a list of Plans must be returned
-  @only
+
   Scenario: Geting Plans
     Given a previous created plan
-    When i query for planId
+    When I query for planId
     Then the same plan must be returned
+  @only
+  Scenario: Updating Plans
+    Given a previous created plan
+    When I edit the plan name
+    And I query for planId
+    Then the same plan must be returned
+    And the name must be changed
