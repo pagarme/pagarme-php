@@ -22,6 +22,7 @@ class PlanContext extends BasicContext
     private $installments;
 
     private $plan;
+    private $plans;
 
     /**
      * @Given a :amount, :days and :name
@@ -132,5 +133,49 @@ class PlanContext extends BasicContext
         }
 
         return $methods;
+    }
+
+    /**
+     * @Given a previous created plans
+     */
+    public function aPreviousCreatedPlans()
+    {
+        for ($i=0; $i < 3; $i++) {
+            self::getPagarMe()
+                ->plan()
+                ->create(
+                    rand(1000, 10000),
+                    rand(10, 60),
+                    uniqid('plan'),
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                );
+        }
+    }
+
+    /**
+     * @When i query for plans
+     */
+    public function iQueryForPlans()
+    {
+        sleep(1);
+        $this->plans = self::getPagarMe()
+                ->plan()
+                ->getList();
+    }
+
+    /**
+     * @Then a list of Plans must be returned
+     */
+    public function aListOfPlansMustBeReturned()
+    {
+        assertContainsOnly(
+            'PagarMe\Sdk\Plan\Plan',
+            $this->plans
+        );
+        assertGreaterThanOrEqual(3, count($this->plans));
     }
 }
