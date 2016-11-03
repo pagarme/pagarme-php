@@ -123,7 +123,7 @@ class PagarMe
     }
 
     /**
-     * @return CalculationHandler
+     * @return SplitRuleHandler
      */
     public function splitRule()
     {
