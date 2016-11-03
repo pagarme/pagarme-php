@@ -68,9 +68,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @group failing
     **/
-    public function mustPayloadContainSplitRules()
+    public function mustPayloadContainMonetarySplitRules()
     {
         $customerMock = $this->getCustomerMock();
         $cardMock     = $this->getCardMock();
@@ -78,6 +77,87 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
         $rules = new SplitRuleCollection();
         $rules[]= new SplitRule([
             'amount'                => 100,
+            'recipient'             => new Recipient(['id' => 1]),
+            'liable'                => true,
+            'charge_processing_fee' => true
+        ]);
+        $rules[]= new SplitRule([
+            'amount'                => 1237,
+            'recipient'             => new Recipient(['id' => 3]),
+            'liable'                => false,
+            'charge_processing_fee' => false
+        ]);
+
+        $transaction =  new CreditCardTransaction(
+            [
+                'amount'       => 1337,
+                'card'         => $cardMock,
+                'customer'     => $customerMock,
+                'installments' => 1,
+                'capture'      => false,
+                'postback_url' => null,
+                'split_rules'  => $rules
+            ]
+        );
+
+        $transactionCreate = new CreditCardTransactionCreate($transaction);
+
+        $this->assertEquals(
+            [
+                'amount'         => 1337,
+                'card_id'        => self::CARD_ID,
+                'installments'   => 1,
+                'payment_method' => 'credit_card',
+                'capture'        => false,
+                'postback_url'   => null,
+                'customer' => [
+                    'name'            => 'Eduardo Nascimento',
+                    'born_at'         => '15071991',
+                    'document_number' => '10586649727',
+                    'email'           => 'eduardo@eduardo.com',
+                    'sex'             => 'M',
+                    'address' => [
+                        'street'        => 'rua teste',
+                        'street_number' => 42,
+                        'neighborhood'  => 'centro',
+                        'zipcode'       => '01227200',
+                        'complementary' => null
+                    ],
+                    'phone' => [
+                        'ddd'    => 15,
+                        'number' => 987523421
+                    ]
+                ],
+                'split_rules' => [
+                    0 => [
+                        'amount'                => 100,
+                        'recipient_id'          => 1,
+                        'liable'                => true,
+                        'charge_processing_fee' => true
+                    ],
+                    1 => [
+                        'amount'                => 1237,
+                        'recipient_id'          => 3,
+                        'liable'                => false,
+                        'charge_processing_fee' => false
+                    ]
+                ]
+            ],
+            $transactionCreate->getPayload()
+        );
+    }
+
+    /**
+     * @test
+    **/
+    public function mustPayloadContainPercentageSplitRules()
+    {
+        $customerMock = $this->getCustomerMock();
+        $cardMock     = $this->getCardMock();
+
+        $rules = new SplitRuleCollection();
+        $rules[]= new SplitRule([
+            'percentage'            => 90,
             'recipient'             => new Recipient(['id' => 1]),
             'liable'                => true,
             'charge_processing_fee' => true
@@ -131,7 +211,7 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 ],
                 'split_rules' => [
                     0 => [
-                        'amount'                => 100,
+                        'percentage'            => 90,
                         'recipient_id'          => 1,
                         'liable'                => true,
                         'charge_processing_fee' => true

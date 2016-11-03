@@ -8,7 +8,7 @@ class SplitRuleCollection implements \ArrayAccess, \Iterator
     /**
      * @var array $rules
      **/
-    private $rules    = [];
+    private $rules = [];
 
     /**
      * @var int $position
@@ -33,7 +33,7 @@ class SplitRuleCollection implements \ArrayAccess, \Iterator
 
     public function offsetExists($offset)
     {
-            return isset($this->rules[$offset]);
+        return isset($this->rules[$offset]);
     }
 
     public function offsetUnset($offset)
