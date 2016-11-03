@@ -77,15 +77,6 @@ class Plan
     }
 
     /**
-    * @param int $amount
-    **/
-    public function setAmount($amount)
-    {
-        $this->amount = $amount;
-        return $this;
-    }
-
-    /**
     * @return int
     **/
     public function getDays()
@@ -136,15 +127,6 @@ class Plan
     }
 
     /**
-    * @param array $paymentMethods
-    **/
-    public function setPaymentMethods($paymentMethods)
-    {
-        $this->paymentMethods = $paymentMethods;
-        return $this;
-    }
-
-    /**
     * @return string
     **/
     public function getColor()
@@ -184,14 +166,5 @@ class Plan
     public function getInstallments()
     {
         return $this->installments;
-    }
-
-    /**
-    * @param int $installments
-    **/
-    public function setInstallments($installments)
-    {
-        $this->installments = $installments;
-        return $this;
     }
 }
