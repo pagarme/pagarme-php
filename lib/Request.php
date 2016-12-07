@@ -6,6 +6,9 @@ use PagarMe\Sdk\Request;
 
 interface Request
 {
+    const HTTP_GET  = 'GET';
+    const HTTP_POST = 'POST';
+
     /**
      * @return array
      */
