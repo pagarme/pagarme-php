@@ -7,6 +7,9 @@ use PagarMe\Sdk\Company\Request\CompanyInfo;
 
 class CompanyHandler extends AbstractHandler
 {
+    /**
+     * @return array
+     **/
     public function info()
     {
         $request = new CompanyInfo();
