@@ -17,7 +17,7 @@ class BankAccountHandler extends AbstractHandler
      * @param $documentNumber string
      * @param $legalName string
      * @param $agenciaDv int
-    **/
+     */
     public function create(
         $bankCode,
         $agencia,
@@ -45,7 +45,7 @@ class BankAccountHandler extends AbstractHandler
     /**
      * @param $page int
      * @param $count int
-     **/
+     */
     public function getList($page = null, $count = null)
     {
         $request = new BankAccountList($page, $count);
@@ -62,7 +62,7 @@ class BankAccountHandler extends AbstractHandler
 
     /**
      * @param $bankAccountId int
-     **/
+     */
     public function get($bankAccountId)
     {
         $request = new BankAccountGet($bankAccountId);
