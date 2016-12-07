@@ -8,7 +8,7 @@ class CompanyInfo implements Request
 {
     /**
      * @return array
-     **/
+     */
     public function getPayload()
     {
         return [];
@@ -16,7 +16,7 @@ class CompanyInfo implements Request
 
     /**
      * @return string
-     **/
+     */
     public function getPath()
     {
         return 'company';
@@ -24,7 +24,7 @@ class CompanyInfo implements Request
 
     /**
      * @return string
-     **/
+     */
     public function getMethod()
     {
         return 'GET';

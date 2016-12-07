@@ -9,7 +9,7 @@ class CompanyHandler extends AbstractHandler
 {
     /**
      * @return array
-     **/
+     */
     public function info()
     {
         $request = new CompanyInfo();

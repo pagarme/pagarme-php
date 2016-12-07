@@ -11,7 +11,7 @@ class CompanyInfoTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     **/
+     */
     public function mustPayloadBeCorrect()
     {
         $companyInfo = new CompanyInfo();
@@ -24,7 +24,7 @@ class CompanyInfoTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     **/
+     */
     public function mustMethodBeCorrect()
     {
         $companyInfo = new CompanyInfo();
@@ -37,7 +37,7 @@ class CompanyInfoTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     **/
+     */
     public function mustMPathBeCorrect()
     {
         $companyInfo = new CompanyInfo();
