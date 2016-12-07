@@ -15,47 +15,47 @@ use PagarMe\Sdk\BankAccount\BankAccountHandler;
 class PagarMe
 {
     /**
-     * @param Client | Client do PagarMe
+     * @param Client
      */
     private $client;
 
     /**
-     * @param CustomerHandler | Manipulador de clientes
+     * @param CustomerHandler
      */
     private $customerHandler;
 
     /**
-     * @param TransactionHandler | Manipulador de transações
+     * @param TransactionHandler
      */
     private $transactionHandler;
 
     /**
-     * @param CardHandler | Manipulador de cartões
+     * @param CardHandler
      */
     private $cardHandler;
 
     /**
-     * @param CalculationHandler | Manipulador de calculos
+     * @param CalculationHandler
      */
     private $calculationHandler;
 
     /**
-     * @param RecipientHandler | Manipulador de recebedores
+     * @param RecipientHandler
      */
     private $recipientHandler;
 
     /**
-     * @param PlanHandler | Manipulador de planos
+     * @param PlanHandler
      */
     private $planHandler;
 
     /**
-     * @param SplitRuleHandler | Manipulador de splitRule
+     * @param SplitRuleHandler
      */
     private $splitRuleHandler;
 
     /**
-     * @param BankAccount | Manipulador de contas bancarias
+     * @param BankAccount
      */
     private $bankAccountHandler;
 

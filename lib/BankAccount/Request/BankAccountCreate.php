@@ -7,37 +7,37 @@ use PagarMe\Sdk\Request;
 class BankAccountCreate implements Request
 {
     /**
-     * @var int | Valor identificador do código do banco
+     * @var int
      */
     private $bankCode;
 
     /**
-     * @var int | Valor identificador da agência a qual a conta pertence
+     * @var int
      */
     private $agencia;
 
     /**
-     * @var int | Dígito verificador da agência
+     * @var int
      */
     private $agenciaDv;
 
     /**
-     * @var int | Número da conta bancária
+     * @var int
      */
     private $conta;
 
     /**
-     * @var int | Dígito verificador da conta
+     * @var int
      */
     private $contaDv;
 
     /**
-     * @var int | Tipo do documento do titular da conta
+     * @var int
      */
     private $documentNumber;
 
     /**
-     * @var string | Nome completo (se pessoa física) ou Razão Social (se pessoa jurídica)
+     * @var string
      */
     private $legalName;
 
