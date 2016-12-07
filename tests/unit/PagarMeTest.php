@@ -134,7 +134,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnSameBankAccountHandler()
     {
         $pagarMe = new PagarMe('apiKey');
