@@ -131,4 +131,21 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($splitRuleHandlerA, $splitRuleHandlerB);
     }
+
+    /**
+     * @test
+    **/
+    public function mustReturnSameCompanyHandler()
+    {
+        $pagarMe = new PagarMe('apiKey');
+
+        $companyHandlerA = $pagarMe->company();
+        $companyHandlerB = $pagarMe->company();
+
+        $this->assertSame($companyHandlerA, $companyHandlerB);
+        $this->assertInstanceOf(
+            'PagarMe\Sdk\Company\CompanyHandler',
+            $companyHandlerA
+        );
+    }
 }
