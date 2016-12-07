@@ -12,7 +12,7 @@ class BankAccountGetTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustContentBeCorrect()
     {
         $request = new BankAccountGet(self::BANK_ACCOUNT_ID);

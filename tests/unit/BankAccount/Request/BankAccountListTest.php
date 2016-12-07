@@ -22,7 +22,7 @@ class BankAccountListTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider bankAccountListParams
      * @test
-    **/
+     */
     public function mustContentBeCorrect($page, $count)
     {
         $request = new BankAccountList(

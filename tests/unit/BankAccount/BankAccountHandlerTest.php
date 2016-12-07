@@ -10,7 +10,7 @@ class BankAccountTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnBankAccount()
     {
         $clientMock =  $this->getMockBuilder('PagarMe\Sdk\Client')
@@ -37,7 +37,7 @@ class BankAccountTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnBankAccountArray()
     {
         $clientMock =  $this->getMockBuilder('PagarMe\Sdk\Client')
@@ -59,7 +59,7 @@ class BankAccountTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustObtainBankAccount()
     {
         $clientMock =  $this->getMockBuilder('PagarMe\Sdk\Client')

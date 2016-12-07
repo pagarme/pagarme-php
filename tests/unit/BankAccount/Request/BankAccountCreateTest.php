@@ -23,7 +23,7 @@ class BankAccountCreateTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider accountDataProvider
      * @test
-    **/
+     */
     public function mustContentBeCorrect(
         $bankCode,
         $agencia,
