@@ -14,22 +14,22 @@ class BankAccountCreate implements Request
     /**
      * @var int
      */
-    private $agencia;
+    private $office;
 
     /**
      * @var int
      */
-    private $agenciaDv;
+    private $officeDigit;
 
     /**
      * @var int
      */
-    private $conta;
+    private $accountNumber;
 
     /**
      * @var int
      */
-    private $contaDv;
+    private $accountDigit;
 
     /**
      * @var int
@@ -43,29 +43,29 @@ class BankAccountCreate implements Request
 
     /**
      * @param int $bankCode
-     * @param int $agencia
-     * @param int $conta
-     * @param int $contaDv
+     * @param int $office
+     * @param int $accountNumber
+     * @param int $accountDigit
      * @param int $documentNumber
      * @param int $legalName
-     * @param string $agenciaDv
+     * @param string $officeDigit
      */
     public function __construct(
         $bankCode,
-        $agencia,
-        $conta,
-        $contaDv,
+        $office,
+        $accountNumber,
+        $accountDigit,
         $documentNumber,
         $legalName,
-        $agenciaDv
+        $officeDigit
     ) {
         $this->bankCode       = $bankCode;
-        $this->agencia        = $agencia;
-        $this->conta          = $conta;
-        $this->contaDv        = $contaDv;
+        $this->office         = $office;
+        $this->accountNumber  = $accountNumber;
+        $this->accountDigit   = $accountDigit;
         $this->documentNumber = $documentNumber;
         $this->legalName      = $legalName;
-        $this->agenciaDv      = $agenciaDv;
+        $this->officeDigit    = $officeDigit;
     }
 
     /**
@@ -75,12 +75,12 @@ class BankAccountCreate implements Request
     {
         return [
             'bank_code'       => $this->bankCode,
-            'agencia'         => $this->agencia,
-            'conta'           => $this->conta,
-            'conta_dv'        => $this->contaDv,
+            'agencia'         => $this->office,
+            'conta'           => $this->accountNumber,
+            'conta_dv'        => $this->accountDigit,
             'document_number' => $this->documentNumber,
             'legal_name'      => $this->legalName,
-            'agencia_dv'      => $this->agenciaDv
+            'agencia_dv'      => $this->officeDigit
         ];
     }
 

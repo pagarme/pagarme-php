@@ -11,30 +11,30 @@ class BankAccountHandler extends AbstractHandler
 {
     /**
      * @param $bankCode int
-     * @param $agencia int
-     * @param $conta int
-     * @param $contaDv int
+     * @param $officeNumber int
+     * @param $accountNumber int
+     * @param $accountDigit int
      * @param $documentNumber string
      * @param $legalName string
-     * @param $agenciaDv int
+     * @param $officeDigit int
      */
     public function create(
         $bankCode,
-        $agencia,
-        $conta,
-        $contaDv,
+        $officeNumber,
+        $accountNumber,
+        $accountDigit,
         $documentNumber,
         $legalName,
-        $agenciaDv = null
+        $officeDigit = null
     ) {
         $request = new BankAccountCreate(
             $bankCode,
-            $agencia,
-            $conta,
-            $contaDv,
+            $officeNumber,
+            $accountNumber,
+            $accountDigit,
             $documentNumber,
             $legalName,
-            $agenciaDv
+            $officeDigit
         );
 
         $result = $this->client->send($request);
