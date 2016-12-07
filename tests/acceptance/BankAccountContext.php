@@ -26,7 +26,7 @@ class BankAccountContext extends BasicContext
     /**
      * @Given following account data :bankCode, :office, :accountNumber, :accountDigit, :document, :name and :officeDigit
      */
-    public function followingAccountDataAnd(
+    public function followingAccountData(
         $bankCode,
         $office,
         $accountNumber,
