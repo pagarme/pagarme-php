@@ -55,19 +55,11 @@ class PagarMe
     private $splitRuleHandler;
 
     /**
-<<<<<<< HEAD
-=======
-     * @param SubscriptionHandler | Manipulador de assinaturas
-     */
-    private $subscriptionHandler;
-
-    /**
      * @param CompanyHandler | Manipulador de companhia
      */
     private $companyHandler;
 
     /**
->>>>>>> da495bf... Get company info
      * @param $apiKey
      */
     public function __construct($apiKey)
