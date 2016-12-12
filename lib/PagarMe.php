@@ -11,6 +11,7 @@ use PagarMe\Sdk\Recipient\RecipientHandler;
 use PagarMe\Sdk\Plan\PlanHandler;
 use PagarMe\Sdk\SplitRule\SplitRuleHandler;
 use PagarMe\Sdk\BankAccount\BankAccountHandler;
+use PagarMe\Sdk\Subscription\SubscriptionHandler;
 
 class PagarMe
 {
@@ -58,6 +59,11 @@ class PagarMe
      * @param BankAccount
      */
     private $bankAccountHandler;
+
+    /**
+     * @param SubscriptionHandler
+     */
+    private $subscriptionHandler;
 
     /**
      * @param $apiKey
@@ -168,5 +174,17 @@ class PagarMe
         }
 
         return $this->bankAccountHandler;
+    }
+
+    /**
+     * @return SubscriptionHandler
+     */
+    public function subscription()
+    {
+        if (!$this->subscriptionHandler instanceof SubscriptionHandler) {
+            $this->subscriptionHandler = new SubscriptionHandler($this->client);
+        }
+
+        return $this->subscriptionHandler;
     }
 }

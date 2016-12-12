@@ -28,7 +28,7 @@ Feature: Plan
     Given a previous created plan
     When I query for planId
     Then the same plan must be returned
-  @only
+
   Scenario: Updating Plans
     Given a previous created plan
     When I edit the plan name

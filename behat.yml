@@ -40,3 +40,8 @@ default:
         - %paths.base%/tests/acceptance/features/bank_account.feature
       contexts:
         - PagarMe\Acceptance\BankAccountContext
+    subscription:
+      paths:
+        - %paths.base%/tests/acceptance/features/subscription.feature
+      contexts:
+        - PagarMe\Acceptance\SubscriptionContext
