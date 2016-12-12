@@ -47,6 +47,32 @@ class Transfer
     private $dateCreated;
 
     /**
+     * @var string
+     **/
+    private $sourceType;
+
+    /**
+     * @var string
+     **/
+    private $sourceId;
+
+    /**
+     * @var string
+     **/
+    private $targetType;
+
+    /**
+     * @var int
+     **/
+    private $targetId;
+
+    /**
+     * @var string
+     **/
+    private $fundingDate;
+
+
+    /**
      * @param array $arrayData
      **/
     public function __construct($arrayData)
@@ -116,5 +142,45 @@ class Transfer
     public function getDateCreated()
     {
         return $this->dateCreated;
+    }
+
+    /**
+    * @return string
+    **/
+    public function getSourceType()
+    {
+        return $this->sourceType;
+    }
+
+    /**
+    * @return string
+    **/
+    public function getSourceId()
+    {
+        return $this->sourceId;
+    }
+
+    /**
+    * @return string
+    **/
+    public function getTargetType()
+    {
+        return $this->targetType;
+    }
+
+    /**
+    * @return int
+    **/
+    public function getTargetID()
+    {
+        return $this->targetId;
+    }
+
+    /**
+    * @return string
+    **/
+    public function getFundingDate()
+    {
+        return $this->fundingDate;
     }
 }

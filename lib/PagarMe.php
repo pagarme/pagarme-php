@@ -10,6 +10,7 @@ use PagarMe\Sdk\Calculation\CalculationHandler;
 use PagarMe\Sdk\Recipient\RecipientHandler;
 use PagarMe\Sdk\Plan\PlanHandler;
 use PagarMe\Sdk\SplitRule\SplitRuleHandler;
+use PagarMe\Sdk\Transfer\TransferHandler;
 
 class PagarMe
 {
@@ -52,6 +53,11 @@ class PagarMe
      * @param SplitRuleHandler | Manipulador de splitRule
      */
     private $splitRuleHandler;
+
+    /**
+     * @param TransferHandler | Manipulador de transferencia
+     */
+    private $transferHandler;
 
     /**
      * @param $apiKey
@@ -150,5 +156,17 @@ class PagarMe
         }
 
         return $this->splitRuleHandler;
+    }
+
+    /**
+     * @return transferHandler
+     */
+    public function transfer()
+    {
+        if (!$this->transferHandler instanceof TransferHandler) {
+            $this->transferHandler = new TransferHandler($this->client);
+        }
+
+        return $this->transferHandler;
     }
 }

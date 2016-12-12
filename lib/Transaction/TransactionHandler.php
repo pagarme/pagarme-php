@@ -11,6 +11,7 @@ use PagarMe\Sdk\Transaction\Request\TransactionList;
 use PagarMe\Sdk\Transaction\Request\TransactionCapture;
 use PagarMe\Sdk\Transaction\Request\CreditCardTransactionRefund;
 use PagarMe\Sdk\Transaction\Request\BoletoTransactionRefund;
+use PagarMe\Sdk\Transaction\Request\TransactionPay;
 use PagarMe\Sdk\BankAccount\BankAccount;
 use PagarMe\Sdk\Card\Card;
 use PagarMe\Sdk\Customer\Customer;
@@ -118,6 +119,15 @@ class TransactionHandler extends AbstractHandler
         $amount = null
     ) {
         $request = new BoletoTransactionRefund($transaction, $bankAccount, $amount);
+        $response = $this->client->send($request);
+
+        return $this->buildTransaction($response);
+    }
+
+    public function payTransaction(BoletoTransaction $transaction)
+    {
+        $request = new TransactionPay($transaction);
+
         $response = $this->client->send($request);
 
         return $this->buildTransaction($response);

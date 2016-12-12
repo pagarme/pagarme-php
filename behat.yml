@@ -35,3 +35,8 @@ default:
         - %paths.base%/tests/acceptance/features/split_rule.feature
       contexts:
         - PagarMe\Acceptance\SplitRuleContext
+    transfer:
+      paths:
+        - %paths.base%/tests/acceptance/features/transfer.feature
+      contexts:
+        - PagarMe\Acceptance\TransferContext
