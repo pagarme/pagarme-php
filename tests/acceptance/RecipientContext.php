@@ -7,7 +7,7 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Behat\Tester\Exception\PendingException;
-use PagarMe\Sdk\Account\Account;
+use PagarMe\Sdk\BankAccount\BankAccount;
 
 class RecipientContext extends BasicContext
 {
@@ -108,7 +108,7 @@ class RecipientContext extends BasicContext
         $document,
         $legalName
     ) {
-        return new Account(
+        return new BankAccount(
             [
                 'bank_code'       => $this->bankCode,
                 'agencia'         => $this->agencia,

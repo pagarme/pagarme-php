@@ -10,6 +10,9 @@ use PagarMe\Sdk\Customer\Request\CustomerList;
 
 class CustomerHandler extends AbstractHandler
 {
+    use AddressBuilder;
+    use PhoneBuilder;
+
     /**
      * @param string $name
      * @param string $email
@@ -69,42 +72,6 @@ class CustomerHandler extends AbstractHandler
         }
 
         return $customers;
-    }
-
-    /**
-     * @param array $addressData
-     * @return Address
-     */
-    private function buildAddress($addressData)
-    {
-        $address = new Address(
-            $addressData->street,
-            $addressData->street_number,
-            $addressData->neighborhood,
-            $addressData->zipcode
-        );
-
-        $address->setComplementary($addressData->complementary);
-        $address->setCity($addressData->city);
-        $address->setState($addressData->state);
-        $address->setCountry($addressData->country);
-
-        return $address;
-    }
-
-    /**
-     * @param array $phoneData
-     * @return Phone
-     */
-    private function buildPhone($phoneData)
-    {
-        $phone = new Phone(
-            $phoneData->ddd,
-            $phoneData->number,
-            $phoneData->ddi
-        );
-
-        return $phone;
     }
 
     /**

@@ -9,7 +9,7 @@ use Behat\Gherkin\Node\TableNode;
 use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Testwork\Hook\Scope\BeforeSuiteScope;
 use PagarMe\Sdk\SplitRule\SplitRuleCollection;
-use PagarMe\Sdk\Account\Account;
+use PagarMe\Sdk\BankAccount\BankAccount;
 use PagarMe\Sdk\Customer\Customer;
 
 class SplitRuleContext extends BasicContext
@@ -121,7 +121,7 @@ class SplitRuleContext extends BasicContext
             "legal_name" => "API BANK ACCOUNT"
         ];
 
-        $bankAccount = new Account($accountData);
+        $bankAccount = new BankAccount($accountData);
         return self::getPagarMe()
             ->recipient()
             ->create($bankAccount);

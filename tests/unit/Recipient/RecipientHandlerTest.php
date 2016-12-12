@@ -16,7 +16,7 @@ class RecipientHandlerTest extends \PHPUnit_Framework_TestCase
     **/
     public function mustReturnCreatedRecipient()
     {
-        $bankAccountMock = $this->getMockBuilder('PagarMe\Sdk\Account\Account')
+        $bankAccountMock = $this->getMockBuilder('PagarMe\Sdk\BankAccount\BankAccount')
             ->disableOriginalConstructor()
             ->getMock();
 

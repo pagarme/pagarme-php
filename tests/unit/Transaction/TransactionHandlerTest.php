@@ -153,7 +153,7 @@ class TransactionHandlerTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $accountMock = $this->getMockBuilder('PagarMe\Sdk\Account\Account')
+        $bankAccountMock = $this->getMockBuilder('PagarMe\Sdk\BankAccount\BankAccount')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -162,7 +162,7 @@ class TransactionHandlerTest extends \PHPUnit_Framework_TestCase
 
         $transaction = $handler->boletoRefund(
             $boletoTransactionMock,
-            $accountMock
+            $bankAccountMock
         );
 
         $this->assertTrue($transaction->isPendingRefund());

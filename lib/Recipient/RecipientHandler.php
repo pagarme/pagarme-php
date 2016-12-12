@@ -3,7 +3,7 @@
 namespace PagarMe\Sdk\Recipient;
 
 use PagarMe\Sdk\AbstractHandler;
-use PagarMe\Sdk\Account\Account;
+use PagarMe\Sdk\BankAccount\BankAccount;
 use PagarMe\Sdk\Recipient\Request\RecipientCreate;
 use PagarMe\Sdk\Recipient\Request\RecipientList;
 use PagarMe\Sdk\Recipient\Request\RecipientGet;
@@ -18,7 +18,7 @@ use PagarMe\Sdk\Balance\Movement;
 class RecipientHandler extends AbstractHandler
 {
     /**
-    * @param Account $bankAccount
+    * @param BankAccount $bankAccount
     * @param string $transferInterval
     * @param int $transferDay
     * @param bool $transferEnabled
@@ -27,7 +27,7 @@ class RecipientHandler extends AbstractHandler
     * @return Recipient
     **/
     public function create(
-        Account $bankAccount,
+        BankAccount $bankAccount,
         $transferInterval = null,
         $transferDay = null,
         $transferEnabled = null,
@@ -45,7 +45,7 @@ class RecipientHandler extends AbstractHandler
 
         $result = $this->client->send($request);
 
-        $result->bank_account = new Account(
+        $result->bank_account = new BankAccount(
             get_object_vars($result->bank_account)
         );
 
@@ -65,7 +65,7 @@ class RecipientHandler extends AbstractHandler
 
         $recipients = [];
         foreach ($result as $recipient) {
-            $recipient->bank_account = new Account(
+            $recipient->bank_account = new BankAccount(
                 get_object_vars($recipient->bank_account)
             );
 
@@ -88,7 +88,7 @@ class RecipientHandler extends AbstractHandler
 
         $result = $this->client->send($request);
 
-        $result->bank_account = new Account(
+        $result->bank_account = new BankAccount(
             $result->bank_account
         );
 
@@ -107,7 +107,7 @@ class RecipientHandler extends AbstractHandler
 
         $result = $this->client->send($request);
 
-        $result->bank_account = new Account(
+        $result->bank_account = new BankAccount(
             $result->bank_account
         );
 

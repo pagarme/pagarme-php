@@ -3,7 +3,7 @@
 namespace PagarMe\Sdk\Recipient\Request;
 
 use PagarMe\Sdk\Request;
-use PagarMe\Sdk\Account\Account;
+use PagarMe\Sdk\BankAccount\BankAccount;
 
 class RecipientCreate implements Request
 {
@@ -16,7 +16,7 @@ class RecipientCreate implements Request
     private $anticipatableVolumePercentage;
 
     public function __construct(
-        Account $bankAccount,
+        BankAccount $bankAccount,
         $transferInterval,
         $transferDay,
         $transferEnabled,

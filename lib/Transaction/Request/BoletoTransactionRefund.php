@@ -4,12 +4,12 @@ namespace PagarMe\Sdk\Transaction\Request;
 
 use PagarMe\Sdk\Request;
 use PagarMe\Sdk\Transaction\BoletoTransaction;
-use PagarMe\Sdk\Account\Account;
+use PagarMe\Sdk\BankAccount\BankAccount;
 
 class BoletoTransactionRefund implements Request
 {
     protected $transaction;
-    protected $account;
+    protected $bankAccount;
     protected $amount;
 
     /**
@@ -17,11 +17,11 @@ class BoletoTransactionRefund implements Request
      */
     public function __construct(
         BoletoTransaction $transaction,
-        Account $account,
+        BankAccount $bankAccount,
         $amount
     ) {
         $this->transaction = $transaction;
-        $this->account     = $account;
+        $this->bankAccount = $bankAccount;
         $this->amount      = $amount;
     }
 
@@ -29,7 +29,7 @@ class BoletoTransactionRefund implements Request
     {
         return array_merge(
             ['amount' => $this->amount],
-            $this->getAccountData()
+            $this->getBankAccountData()
         );
     }
 
@@ -43,22 +43,22 @@ class BoletoTransactionRefund implements Request
         return 'POST';
     }
 
-    private function getAccountData()
+    private function getBankAccountData()
     {
-        $account = $this->account;
+        $bankAccount = $this->bankAccount;
 
-        if (is_null($account->getId())) {
+        if (is_null($bankAccount->getId())) {
             return [
-                'bank_code'       => $account->getBankCode(),
-                'agencia'         => $account->getAgencia(),
-                'agencia_dv'      => $account->getAgenciaDv(),
-                'conta'           => $account->getConta(),
-                'conta_dv'        => $account->getContaDv(),
-                'document_number' => $account->getDocumentNumber(),
-                'legal_name'      => $account->getLegalName()
+                'bank_code'       => $bankAccount->getBankCode(),
+                'agencia'         => $bankAccount->getAgencia(),
+                'agencia_dv'      => $bankAccount->getAgenciaDv(),
+                'conta'           => $bankAccount->getConta(),
+                'conta_dv'        => $bankAccount->getContaDv(),
+                'document_number' => $bankAccount->getDocumentNumber(),
+                'legal_name'      => $bankAccount->getLegalName()
             ];
         }
 
-        return ['bank_account_id' => $account->getId()];
+        return ['bank_account_id' => $bankAccount->getId()];
     }
 }

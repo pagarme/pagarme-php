@@ -60,7 +60,7 @@ class RecipientUpdateTest extends \PHPUnit_Framework_TestCase
      **/
     public function mustPayloadBeCorrect()
     {
-        $bankAccountMock = $this->getMockBuilder('PagarMe\Sdk\Account\Account')
+        $bankAccountMock = $this->getMockBuilder('PagarMe\Sdk\BankAccount\BankAccount')
             ->disableOriginalConstructor()
             ->getMock();
 

@@ -11,46 +11,48 @@ use PagarMe\Sdk\Recipient\RecipientHandler;
 use PagarMe\Sdk\Plan\PlanHandler;
 use PagarMe\Sdk\SplitRule\SplitRuleHandler;
 use PagarMe\Sdk\Company\CompanyHandler;
+use PagarMe\Sdk\BankAccount\BankAccountHandler;
+use PagarMe\Sdk\Subscription\SubscriptionHandler;
 
 class PagarMe
 {
     /**
-     * @param Client | Client do PagarMe
+     * @param Client
      */
     private $client;
 
     /**
-     * @param CustomerHandler | Manipulador de clientes
+     * @param CustomerHandler
      */
     private $customerHandler;
 
     /**
-     * @param TransactionHandler | Manipulador de transações
+     * @param TransactionHandler
      */
     private $transactionHandler;
 
     /**
-     * @param CardHandler | Manipulador de cartões
+     * @param CardHandler
      */
     private $cardHandler;
 
     /**
-     * @param CalculationHandler | Manipulador de calculos
+     * @param CalculationHandler
      */
     private $calculationHandler;
 
     /**
-     * @param RecipientHandler | Manipulador de recebedores
+     * @param RecipientHandler
      */
     private $recipientHandler;
 
     /**
-     * @param PlanHandler | Manipulador de planos
+     * @param PlanHandler
      */
     private $planHandler;
 
     /**
-     * @param SplitRuleHandler | Manipulador de splitRule
+     * @param SplitRuleHandler
      */
     private $splitRuleHandler;
 
@@ -58,6 +60,16 @@ class PagarMe
      * @param CompanyHandler | Manipulador de companhia
      */
     private $companyHandler;
+
+    /**
+     * @param BankAccount
+     */
+    private $bankAccountHandler;
+
+    /**
+     * @param SubscriptionHandler
+     */
+    private $subscriptionHandler;
 
     /**
      * @param $apiKey
@@ -168,5 +180,29 @@ class PagarMe
         }
 
         return $this->companyHandler;
+    }
+
+    /**
+     * @return BankAccountHandler
+     */
+    public function bankAccount()
+    {
+        if (!$this->bankAccountHandler instanceof BankAccountHandler) {
+            $this->bankAccountHandler = new BankAccountHandler($this->client);
+        }
+
+        return $this->bankAccountHandler;
+    }
+
+    /**
+     * @return SubscriptionHandler
+     */
+    public function subscription()
+    {
+        if (!$this->subscriptionHandler instanceof SubscriptionHandler) {
+            $this->subscriptionHandler = new SubscriptionHandler($this->client);
+        }
+
+        return $this->subscriptionHandler;
     }
 }

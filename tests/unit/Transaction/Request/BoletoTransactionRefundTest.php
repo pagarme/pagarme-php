@@ -25,15 +25,15 @@ class BoletoTransactionRefundTest extends \PHPUnit_Framework_TestCase
     **/
     public function payloadMustContainBankAccountId()
     {
-        $accountMock = $this->getMockBuilder('PagarMe\Sdk\Account\Account')
+        $bankAccountMock = $this->getMockBuilder('PagarMe\Sdk\BankAccount\BankAccount')
             ->disableOriginalConstructor()
             ->getMock();
-        $accountMock->method('getId')
+        $bankAccountMock->method('getId')
             ->willReturn(self::BANKACCOUNT_ID);
 
         $transactionCreate = new BoletoTransactionRefund(
             $this->getTransactionMock(),
-            $accountMock,
+            $bankAccountMock,
             self::AMOUNT
         );
 
@@ -58,21 +58,21 @@ class BoletoTransactionRefundTest extends \PHPUnit_Framework_TestCase
     **/
     public function payloadMustContainBankData()
     {
-        $accountMock = $this->getMockBuilder('PagarMe\Sdk\Account\Account')
+        $bankAccountMock = $this->getMockBuilder('PagarMe\Sdk\BankAccount\BankAccount')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $accountMock->method('getBankCode')->willReturn(self::BANK_CODE);
-        $accountMock->method('getAgencia')->willReturn(self::AGENCIA);
-        $accountMock->method('getAgenciaDv')->willReturn(self::AGENCIA_DV);
-        $accountMock->method('getConta')->willReturn(self::CONTA);
-        $accountMock->method('getContaDv')->willReturn(self::CONTA_DV);
-        $accountMock->method('getDocumentNumber')->willReturn(self::DOCUMENT_NUMBER);
-        $accountMock->method('getLegalName')->willReturn(self::LEGAL_NAME);
+        $bankAccountMock->method('getBankCode')->willReturn(self::BANK_CODE);
+        $bankAccountMock->method('getAgencia')->willReturn(self::AGENCIA);
+        $bankAccountMock->method('getAgenciaDv')->willReturn(self::AGENCIA_DV);
+        $bankAccountMock->method('getConta')->willReturn(self::CONTA);
+        $bankAccountMock->method('getContaDv')->willReturn(self::CONTA_DV);
+        $bankAccountMock->method('getDocumentNumber')->willReturn(self::DOCUMENT_NUMBER);
+        $bankAccountMock->method('getLegalName')->willReturn(self::LEGAL_NAME);
 
         $transactionCreate = new BoletoTransactionRefund(
             $this->getTransactionMock(),
-            $accountMock,
+            $bankAccountMock,
             self::AMOUNT
         );
 
