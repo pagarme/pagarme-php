@@ -10,6 +10,8 @@ use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Testwork\Hook\Scope\BeforeSuiteScope;
 use PagarMe\Sdk\BankAccount\BankAccount;
 use PagarMe\Sdk\Customer\Customer;
+use PagarMe\Sdk\SplitRule\SplitRuleCollection;
+use PagarMe\Sdk\Recipient\Recipient;
 
 class TransferContext extends BasicContext
 {
@@ -55,18 +57,26 @@ class TransferContext extends BasicContext
         $customerData = $this->getValidCustomerData();
         $customer = new Customer($customerData);
 
+        $splitRules = new SplitRuleCollection();
+        $splitRules[]= self::getPagarMe()
+            ->splitRule()
+            ->percentageRule(50, $this->recipient);
+        $splitRules[]=self::getPagarMe()
+            ->splitRule()
+            ->percentageRule(50, $this->getCompanyRecipient());
+
         $transaction = self::getPagarMe()
             ->transaction()
             ->boletoTransaction(
                 100000,
                 $customer,
-                'https://httpstatusdogs.com/200-ok'
+                'https://httpstatusdogs.com/200-ok',
+                ['split_rules' => $splitRules]
             );
 
         $this->transaction = self::getPagarMe()
             ->transaction()
             ->payTransaction($transaction);
-        sleep(3);
     }
 
 
@@ -75,10 +85,11 @@ class TransferContext extends BasicContext
      */
     public function makeTransactionWithRecipientAndAmountOf($amount)
     {
-        $this->$amount = $amount;
+        $this->amount = $amount;
+
         $this->transfer = self::getPagarMe()
             ->transfer()
-            ->createToRecipient($amount, $this->recipient);
+            ->createToRecipient($this->amount, $this->recipient);
     }
 
     /**
@@ -87,7 +98,7 @@ class TransferContext extends BasicContext
     public function aTransferMustBeCreated()
     {
         assertInstanceOf(
-            'PagarMe\Sdk\Transfer\Trasnfer',
+            'PagarMe\Sdk\Transfer\Transfer',
             $this->transfer
         );
     }
@@ -97,6 +108,24 @@ class TransferContext extends BasicContext
      */
     public function amountMustBeTheSame()
     {
-        throw new PendingException();
+        assertEquals(
+            $this->amount,
+            $this->transfer->getAmount()
+        );
+    }
+
+    private function getCompanyRecipient()
+    {
+        $companyInfo = self::getPagarMe()
+            ->company()
+            ->info();
+
+        $recipientId = $companyInfo->default_recipient_id->test;
+
+        return new Recipient(
+            [
+                'id' => $recipientId
+            ]
+        );
     }
 }
