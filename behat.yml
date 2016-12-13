@@ -40,3 +40,18 @@ default:
         - %paths.base%/tests/acceptance/features/transfer.feature
       contexts:
         - PagarMe\Acceptance\TransferContext
+    company:
+      paths:
+        - %paths.base%/tests/acceptance/features/company.feature
+      contexts:
+        - PagarMe\Acceptance\CompanyContext
+    bank_account:
+      paths:
+        - %paths.base%/tests/acceptance/features/bank_account.feature
+      contexts:
+        - PagarMe\Acceptance\BankAccountContext
+    subscription:
+      paths:
+        - %paths.base%/tests/acceptance/features/subscription.feature
+      contexts:
+        - PagarMe\Acceptance\SubscriptionContext

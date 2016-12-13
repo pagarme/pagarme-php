@@ -7,45 +7,54 @@ class BankAccount
     use \PagarMe\Sdk\Fillable;
 
     /**
-     * @var int | Identificador da conta bancária
+     * @var int
      */
     private $id;
 
     /**
-     * @var int | Valor identificador do código do banco
+     * @var int
      */
     private $bankCode;
 
     /**
-     * @var int | Valor identificador da agência a qual a conta pertence
+     * @var int
      */
     private $agencia;
 
     /**
-     * @var int | Dígito verificador da agência
+     * @var int
      */
     private $agenciaDv;
 
     /**
-     * @var int | Número da conta bancária
+     * @var int
      */
     private $conta;
 
     /**
-     * @var int | Dígito verificador da conta
+     * @var int
      */
     private $contaDv;
 
     /**
-     * @var int | Tipo do documento do titular da conta
+     * @var int
      */
     private $documentNumber;
 
     /**
-     * @var string | Nome completo (se pessoa física) ou Razão Social (se pessoa jurídica)
+     * @var string
+     */
+    private $documentType;
+
+    /**
+     * @var string
      */
     private $legalName;
 
+    /**
+     * @var string
+     */
+    private $dateCreated;
 
     /**
      * @param array $arrayData
@@ -114,8 +123,24 @@ class BankAccount
     /**
      * @return string
      */
+    public function getDocumentType()
+    {
+        return $this->documentType;
+    }
+
+    /**
+     * @return string
+     */
     public function getLegalName()
     {
         return $this->legalName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDateCreated()
+    {
+        return $this->dateCreated;
     }
 }

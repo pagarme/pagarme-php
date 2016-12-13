@@ -148,4 +148,55 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
         $transferHandlerB = $pagarMe->transfer();
         $this->assertSame($transferHandlerA, $transferHandlerB);
     }
+
+    /**
+     * @test
+    */
+    public function mustReturnSameCompanyHandler()
+    {
+        $pagarMe = new PagarMe('apiKey');
+
+        $companyHandlerA = $pagarMe->company();
+        $companyHandlerB = $pagarMe->company();
+
+        $this->assertSame($companyHandlerA, $companyHandlerB);
+        $this->assertInstanceOf(
+            'PagarMe\Sdk\Company\CompanyHandler',
+            $companyHandlerA
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function mustReturnSameBankAccountHandler()
+    {
+        $pagarMe = new PagarMe('apiKey');
+
+        $bankAccountHandlerA = $pagarMe->bankAccount();
+        $bankAccountHandlerB = $pagarMe->bankAccount();
+
+        $this->assertSame($bankAccountHandlerA, $bankAccountHandlerB);
+        $this->assertInstanceOf(
+            'PagarMe\Sdk\BankAccount\BankAccountHandler',
+            $bankAccountHandlerA
+        );
+    }
+
+    /**
+     * @test
+    **/
+    public function mustReturnSameSubscriptionHandler()
+    {
+        $pagarMe = new PagarMe('apiKey');
+
+        $subscriptionHandlerA = $pagarMe->subscription();
+        $subscriptionHandlerB = $pagarMe->subscription();
+
+        $this->assertSame($subscriptionHandlerA, $subscriptionHandlerB);
+        $this->assertInstanceOf(
+            'PagarMe\Sdk\Subscription\SubscriptionHandler',
+            $subscriptionHandlerA
+        );
+    }
 }
