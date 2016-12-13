@@ -13,9 +13,16 @@ class TransferHandler extends AbstractHandler
      * @param int amount
      * @param Recipient $recipient
      **/
-    public function createToRecipient($amount, Recipient $recipient)
-    {
-        $request = new TransactionRecipientCreate($amount, $recipient);
+    public function create(
+        $amount,
+        Recipient $recipient,
+        $bankAccountId = null
+    ) {
+        $request = new TransactionRecipientCreate(
+            $amount,
+            $recipient,
+            $bankAccountId
+        );
 
         $result = $this->client->send($request);
 

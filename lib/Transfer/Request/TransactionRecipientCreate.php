@@ -18,20 +18,27 @@ class TransactionRecipientCreate implements Request
     private $recipient;
 
     /**
+     * @var int
+     **/
+    private $bankAccountId;
+
+    /**
      * @param int $amount
      * @param Recipient $recipient
      **/
-    public function __construct($amount, Recipient $recipient)
+    public function __construct($amount, Recipient $recipient, $bankAccountId)
     {
-        $this->amount    = $amount;
-        $this->recipient = $recipient;
+        $this->amount        = $amount;
+        $this->recipient     = $recipient;
+        $this->bankAccountId = $bankAccountId;
     }
 
     public function getPayload()
     {
         return [
-            'amount'       =>$this->amount,
-            'recipient_id' =>$this->recipient->getId()
+            'amount'          =>$this->amount,
+            'recipient_id'    =>$this->recipient->getId(),
+            'bank_account_id' =>$this->bankAccountId
         ];
     }
 

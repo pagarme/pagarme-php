@@ -20,6 +20,7 @@ class TransferContext extends BasicContext
     private $recipient;
     private $transfer;
     private $amount;
+    private $bankAccount;
 
     /**
      * @Given a valid recipient
@@ -79,18 +80,41 @@ class TransferContext extends BasicContext
             ->payTransaction($transaction);
     }
 
-
     /**
-     * @When make transaction with recipient and amount of :amount
+     * @When make tranfer with amount of :amount
      */
-    public function makeTransactionWithRecipientAndAmountOf($amount)
+    public function makeTranferWithAmountOf($amount)
     {
         $this->amount = $amount;
 
         $this->transfer = self::getPagarMe()
             ->transfer()
-            ->createToRecipient($this->amount, $this->recipient);
+            ->create(
+                $this->amount,
+                $this->recipient
+            );
     }
+
+    /**
+     * @When make tranfer with amount of :amount to specific bank account
+     */
+    public function makeTranferWithAmountOfToSpecificBankAccount($amount)
+    {
+        $defaultRecipient = self::getPagarMe()
+            ->recipient()
+            ->get($this->getCompanyRecipient()->getId());
+
+        $this->amount = $amount;
+
+        $this->transfer = self::getPagarMe()
+            ->transfer()
+            ->create(
+                $this->amount,
+                $defaultRecipient,
+                $defaultRecipient->getBankAccount()->getId()
+            );
+    }
+
 
     /**
      * @Then a transfer must be created

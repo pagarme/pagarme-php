@@ -8,66 +8,52 @@ class TransactionRecipientCreateTest extends \PHPUnit_Framework_TestCase
 {
     const METHOD       = 'POST';
     const PATH         = 'transfers';
-    const RECIPIENT_ID = 123;
-    const AMOUNT       = 1337;
+
+    public function recipientData()
+    {
+        return [
+            [500, uniqid('re'), null],
+            [1337, uniqid('re'), 1234567],
+            [999, uniqid('re'), 8888888],
+            [1000001, uniqid('re'), 1010101],
+        ];
+    }
 
     /**
+     * @dataProvider recipientData
      * @test
      **/
-    public function mustPayloadBeCorrect()
+    public function mustPayloadBeCorrect($amount, $recipientId, $bankAccountId)
     {
         $recipientMock = $this->getMockBuilder('PagarMe\Sdk\Recipient\Recipient')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $recipientMock->method('getId')->willReturn(self::RECIPIENT_ID);
+        $recipientMock->method('getId')->willReturn($recipientId);
 
         $transactionRecipientCreate = new TransactionRecipientCreate(
-            self::AMOUNT,
-            $recipientMock
+            $amount,
+            $recipientMock,
+            $bankAccountId
         );
 
         $this->assertEquals(
             [
-                'amount'       => self::AMOUNT,
-                'recipient_id' => self::RECIPIENT_ID
+                'amount'          => $amount,
+                'recipient_id'    => $recipientId,
+                'bank_account_id' => $bankAccountId
             ],
             $transactionRecipientCreate->getPayload()
         );
-    }
 
-    /**
-     * @test
-     **/
-    public function mustMethodBeCorrect()
-    {
-        $recipientMock = $this->getMockBuilder('PagarMe\Sdk\Recipient\Recipient')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-
-        $transactionRecipientCreate = new TransactionRecipientCreate(
-            self::AMOUNT,
-            $recipientMock
+        $this->assertEquals(
+            self::METHOD,
+            $transactionRecipientCreate->getMethod()
         );
 
-        $this->assertEquals(self::METHOD, $transactionRecipientCreate->getMethod());
-    }
-
-    /**
-     * @test
-     **/
-    public function mustPathBeCorrect()
-    {
-        $recipientMock = $this->getMockBuilder('PagarMe\Sdk\Recipient\Recipient')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $transactionRecipientCreate = new TransactionRecipientCreate(
-            self::AMOUNT,
-            $recipientMock
+        $this->assertEquals(
+            self::PATH,
+            $transactionRecipientCreate->getPath()
         );
-
-        $this->assertEquals(self::PATH, $transactionRecipientCreate->getPath());
     }
 }
