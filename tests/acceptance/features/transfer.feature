@@ -1,7 +1,7 @@
 Feature: Transfer
  Como cliente da Pagar.me integrando uma aplicação PHP
  Eu quero uma camada de abstração
- Para que eu possa realizar transferencias
+ Para que eu possa manter transferencias
 
   Scenario: Create a transfer with a recipient
     Given a valid recipient
@@ -16,3 +16,10 @@ Feature: Transfer
     When make tranfer with amount of "5000" to specific bank account
     Then a transfer must be created
     And amount must be the same
+
+  @only
+  Scenario: Retrieve a transfer
+    Given a previous created transfer
+    When I query for the transfer
+    Then a transfer must be returned
+    And must be the same transfer

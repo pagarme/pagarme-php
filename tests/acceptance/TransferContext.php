@@ -21,6 +21,7 @@ class TransferContext extends BasicContext
     private $transfer;
     private $amount;
     private $bankAccount;
+    private $queryTransfer;
 
     /**
      * @Given a valid recipient
@@ -118,8 +119,9 @@ class TransferContext extends BasicContext
 
     /**
      * @Then a transfer must be created
+     * @Then a transfer must be returned
      */
-    public function aTransferMustBeCreated()
+    public function mustBeATransfer()
     {
         assertInstanceOf(
             'PagarMe\Sdk\Transfer\Transfer',
@@ -150,6 +152,37 @@ class TransferContext extends BasicContext
             [
                 'id' => $recipientId
             ]
+        );
+    }
+
+     /**
+     * @Given a previous created transfer
+     */
+    public function aPreviousCreatedTransfer()
+    {
+        $this->aValidRecipient();
+        $this->avaliableFounds();
+        $this->makeTranferWithAmountOf(rand(200, 5000));
+    }
+
+    /**
+     * @When I query for the transfer
+     */
+    public function iQueryForTheTransfer()
+    {
+        $this->queryTransfer = self::getPagarMe()
+            ->transfer()
+            ->get($this->transfer->getId());
+    }
+
+    /**
+     * @Then must be the same transfer
+     */
+    public function mustBeTheSameTransfer()
+    {
+        assertEquals(
+            $this->transfer,
+            $this->queryTransfer
         );
     }
 }
