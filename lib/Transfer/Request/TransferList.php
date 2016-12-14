@@ -8,18 +8,18 @@ class TransferList implements Request
 {
     /**
      * @var int
-     **/
+     */
     private $page;
 
     /**
      * @var int
-     **/
+     */
     private $count;
 
     /**
      * @param int $page
      * @param int $count
-     **/
+     */
     public function __construct($page, $count)
     {
         $this->page  = $page;

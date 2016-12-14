@@ -22,7 +22,7 @@ class TransferListTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider paginationData
      * @test
-     **/
+     */
     public function mustPayloadBeCorrect($page, $count)
     {
 

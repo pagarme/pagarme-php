@@ -12,7 +12,7 @@ class TransferGetTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     **/
+     */
     public function mustContentBeCorrect()
     {
         $transferGet = new TransferGet(self::TRANSFER_ID);

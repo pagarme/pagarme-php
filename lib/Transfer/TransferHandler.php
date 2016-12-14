@@ -16,7 +16,7 @@ class TransferHandler extends AbstractHandler
      * @param int amount
      * @param Recipient recipient
      * @param int id
-     **/
+     */
     public function create(
         $amount,
         Recipient $recipient,
@@ -35,7 +35,7 @@ class TransferHandler extends AbstractHandler
 
     /**
      * @param int transferId
-     **/
+     */
     public function get($transferId)
     {
         $request = new TransferGet($transferId);
@@ -48,7 +48,7 @@ class TransferHandler extends AbstractHandler
     /**
      * @param int page
      * @param int count
-     **/
+     */
     public function getList($page = null, $count = null)
     {
         $request = new TransferList($page, $count);
@@ -66,7 +66,7 @@ class TransferHandler extends AbstractHandler
 
     /**
      * @param Transfer transfer
-     **/
+     */
     public function cancel(Transfer $transfer)
     {
         $request = new TransferCancel($transfer);
@@ -78,7 +78,7 @@ class TransferHandler extends AbstractHandler
 
     /**
      * array transferData
-     **/
+     */
     private function buildTransfer($transferData)
     {
         $transferData->bank_account = new BankAccount(

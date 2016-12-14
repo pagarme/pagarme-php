@@ -12,7 +12,7 @@ class TransferCancelTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     **/
+     */
     public function mustContentBeCorrect()
     {
         $transferMock = $this->getMockBuilder('PagarMe\Sdk\Transfer\Transfer')

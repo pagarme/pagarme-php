@@ -8,12 +8,12 @@ class TransferGet implements Request
 {
     /**
      * @var int
-     **/
+     */
     private $transferId;
 
     /**
      * @param int $transferId
-     **/
+     */
     public function __construct($transferId)
     {
         $this->transferId = $transferId;

@@ -54,9 +54,9 @@ class TransferContext extends BasicContext
 
 
     /**
-     * @Given avaliable founds
+     * @Given avaliable funds
      */
-    public function avaliableFounds()
+    public function avaliableFunds()
     {
         $customerData = $this->getValidCustomerData();
         $customer = new Customer($customerData);
@@ -84,9 +84,9 @@ class TransferContext extends BasicContext
     }
 
     /**
-     * @When make tranfer with amount of :amount
+     * @When make transfer with amount of :amount
      */
-    public function makeTranferWithAmountOf($amount)
+    public function makeTransferWithAmountOf($amount)
     {
         $this->amount = $amount;
 
@@ -99,9 +99,9 @@ class TransferContext extends BasicContext
     }
 
     /**
-     * @When make tranfer with amount of :amount to specific bank account
+     * @When make transfer with amount of :amount to specific bank account
      */
-    public function makeTranferWithAmountOfToSpecificBankAccount($amount)
+    public function makeTransferWithAmountOfToSpecificBankAccount($amount)
     {
         $defaultRecipient = self::getPagarMe()
             ->recipient()
@@ -163,8 +163,8 @@ class TransferContext extends BasicContext
     public function aPreviousCreatedTransfer()
     {
         $this->aValidRecipient();
-        $this->avaliableFounds();
-        $this->makeTranferWithAmountOf(rand(200, 5000));
+        $this->avaliableFunds();
+        $this->makeTransferWithAmountOf(rand(200, 5000));
     }
 
     /**
@@ -232,9 +232,9 @@ class TransferContext extends BasicContext
     }
 
     /**
-     * @Then the same tranfer must be returned as canceled
+     * @Then the same transfer must be returned as canceled
      */
-    public function theSameTranferMustBeReturnedAsCanceled()
+    public function theSameTransferMustBeReturnedAsCanceled()
     {
         assertEquals(
             $this->transfer->getId(),

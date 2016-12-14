@@ -9,23 +9,23 @@ class TransferCreate implements Request
 {
     /**
      * @var int
-     **/
+     */
     private $amount;
 
     /**
      * @var Recipient
-     **/
+     */
     private $recipient;
 
     /**
      * @var int
-     **/
+     */
     private $bankAccountId;
 
     /**
      * @param int $amount
      * @param Recipient $recipient
-     **/
+     */
     public function __construct($amount, Recipient $recipient, $bankAccountId)
     {
         $this->amount        = $amount;

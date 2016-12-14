@@ -8,73 +8,73 @@ class Transfer
 
     /**
      * @var int
-     **/
+     */
     private $id;
 
     /**
      * @var int
-     **/
+     */
     private $amount;
 
     /**
      * @var string
-     **/
+     */
     private $type;
 
     /**
      * @var string
-     **/
+     */
     private $status;
 
     /**
      * @var int
-     **/
+     */
     private $fee;
 
     /**
      * @var string
-     **/
+     */
     private $fundingEstimatedDate;
 
     /**
      * @var PagarMe\Sdk\BankAccount\BankAccount
-     **/
+     */
     private $bankAccount;
 
     /**
      * @var string
-     **/
+     */
     private $dateCreated;
 
     /**
      * @var string
-     **/
+     */
     private $sourceType;
 
     /**
      * @var string
-     **/
+     */
     private $sourceId;
 
     /**
      * @var string
-     **/
+     */
     private $targetType;
 
     /**
      * @var int
-     **/
+     */
     private $targetId;
 
     /**
      * @var string
-     **/
+     */
     private $fundingDate;
 
 
     /**
      * @param array $arrayData
-     **/
+     */
     public function __construct($arrayData)
     {
         $this->fill($arrayData);
@@ -82,7 +82,7 @@ class Transfer
 
     /**
      * @return int $id
-     **/
+     */
     public function getId()
     {
         return $this->id;
@@ -90,7 +90,7 @@ class Transfer
 
     /**
      * @return int $amount
-     **/
+     */
     public function getAmount()
     {
         return $this->amount;
@@ -98,7 +98,7 @@ class Transfer
 
     /**
      * @return string $type
-     **/
+     */
     public function getType()
     {
         return $this->type;
@@ -106,7 +106,7 @@ class Transfer
 
     /**
      * @return string $status
-     **/
+     */
     public function getStatus()
     {
         return $this->status;
@@ -114,7 +114,7 @@ class Transfer
 
     /**
      * @return int $fee
-     **/
+     */
     public function getFee()
     {
         return $this->fee;
@@ -122,7 +122,7 @@ class Transfer
 
     /**
      * @return string $fundingEstimatedDate
-     **/
+     */
     public function getFundingEstimatedDate()
     {
         return $this->fundingEstimatedDate;
@@ -130,7 +130,7 @@ class Transfer
 
     /**
      * @return PagarMe\Sdk\BankAccount\BankAccount $bankAccount
-     **/
+     */
     public function getBankAccount()
     {
         return $this->bankAccount;
@@ -138,7 +138,7 @@ class Transfer
 
     /**
      * @return string $dateCreated
-     **/
+     */
     public function getDateCreated()
     {
         return $this->dateCreated;
@@ -146,7 +146,7 @@ class Transfer
 
     /**
     * @return string
-    **/
+    */
     public function getSourceType()
     {
         return $this->sourceType;
@@ -154,7 +154,7 @@ class Transfer
 
     /**
     * @return string
-    **/
+    */
     public function getSourceId()
     {
         return $this->sourceId;
@@ -162,7 +162,7 @@ class Transfer
 
     /**
     * @return string
-    **/
+    */
     public function getTargetType()
     {
         return $this->targetType;
@@ -170,7 +170,7 @@ class Transfer
 
     /**
     * @return int
-    **/
+    */
     public function getTargetID()
     {
         return $this->targetId;
@@ -178,7 +178,7 @@ class Transfer
 
     /**
     * @return string
-    **/
+    */
     public function getFundingDate()
     {
         return $this->fundingDate;

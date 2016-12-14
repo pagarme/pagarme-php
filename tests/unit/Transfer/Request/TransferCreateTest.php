@@ -22,7 +22,7 @@ class TransferCreateTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider recipientData
      * @test
-     **/
+     */
     public function mustPayloadBeCorrect($amount, $recipientId, $bankAccountId)
     {
         $recipientMock = $this->getMockBuilder('PagarMe\Sdk\Recipient\Recipient')

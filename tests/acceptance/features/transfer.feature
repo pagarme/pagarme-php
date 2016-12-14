@@ -5,15 +5,15 @@ Feature: Transfer
 
   Scenario: Create a transfer with a recipient
     Given a valid recipient
-    And avaliable founds
-    When make tranfer with amount of "5000"
+    And avaliable funds
+    When make transfer with amount of "5000"
     Then a transfer must be created
     And amount must be the same
 
   Scenario: Create a transfer with a recipient and custom bank account
     Given a valid recipient
-    And avaliable founds
-    When make tranfer with amount of "5000" to specific bank account
+    And avaliable funds
+    When make transfer with amount of "5000" to specific bank account
     Then a transfer must be created
     And amount must be the same
 
@@ -31,4 +31,4 @@ Feature: Transfer
   Scenario: Cancel a transfer
     Given a previous created transfer
     When I cancel the transfer
-    Then the same tranfer must be returned as canceled
+    Then the same transfer must be returned as canceled

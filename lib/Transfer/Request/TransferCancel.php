@@ -9,12 +9,13 @@ class TransferCancel implements Request
 {
     /**
      * @var Transfer
-     **/
+     */
+
     private $transfer;
 
     /**
      * @param $transfer
-     **/
+     */
     public function __construct(Transfer $transfer)
     {
         $this->transfer = $transfer;
