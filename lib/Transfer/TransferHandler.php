@@ -8,6 +8,7 @@ use PagarMe\Sdk\BankAccount\BankAccount;
 use PagarMe\Sdk\Transfer\Request\TransferCreate;
 use PagarMe\Sdk\Transfer\Request\TransferGet;
 use PagarMe\Sdk\Transfer\Request\TransferList;
+use PagarMe\Sdk\Transfer\Request\TransferCancel;
 
 class TransferHandler extends AbstractHandler
 {
@@ -61,6 +62,18 @@ class TransferHandler extends AbstractHandler
         }
 
         return $tranfers;
+    }
+
+    /**
+     * @param Transfer transfer
+     **/
+    public function cancel(Transfer $transfer)
+    {
+        $request = new TransferCancel($transfer);
+
+        $result = $this->client->send($request);
+
+        return $this->buildTransfer($result);
     }
 
     /**

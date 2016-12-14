@@ -27,3 +27,8 @@ Feature: Transfer
     Given a previous created transfers
     When I query for the transfers
     Then a list of transfer must be returned
+@only
+  Scenario: Cancel a transfer
+    Given a previous created transfer
+    When I cancel the transfer
+    Then the same tranfer must be returned as canceled

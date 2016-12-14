@@ -23,6 +23,7 @@ class TransferContext extends BasicContext
     private $bankAccount;
     private $queryTransfer;
     private $transfers;
+    private $canceledTransfer;
 
     /**
      * @Given a valid recipient
@@ -218,5 +219,27 @@ class TransferContext extends BasicContext
             'PagarMe\Sdk\Transfer\Transfer',
             $this->transfers
         );
+    }
+
+    /**
+     * @When I cancel the transfer
+     */
+    public function iCancelTheTransfer()
+    {
+        $this->canceledTransfer = $this->transfers = self::getPagarMe()
+            ->transfer()
+            ->cancel($this->transfer);
+    }
+
+    /**
+     * @Then the same tranfer must be returned as canceled
+     */
+    public function theSameTranferMustBeReturnedAsCanceled()
+    {
+        assertEquals(
+            $this->transfer->getId(),
+            $this->canceledTransfer->getId()
+        );
+        assertEquals('canceled', $this->canceledTransfer->getStatus());
     }
 }
