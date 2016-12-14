@@ -17,9 +17,13 @@ Feature: Transfer
     Then a transfer must be created
     And amount must be the same
 
-  @only
   Scenario: Retrieve a transfer
     Given a previous created transfer
     When I query for the transfer
     Then a transfer must be returned
     And must be the same transfer
+
+  Scenario: Retrieve transfers
+    Given a previous created transfers
+    When I query for the transfers
+    Then a list of transfer must be returned

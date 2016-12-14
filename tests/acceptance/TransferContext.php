@@ -22,6 +22,7 @@ class TransferContext extends BasicContext
     private $amount;
     private $bankAccount;
     private $queryTransfer;
+    private $transfers;
 
     /**
      * @Given a valid recipient
@@ -183,6 +184,39 @@ class TransferContext extends BasicContext
         assertEquals(
             $this->transfer,
             $this->queryTransfer
+        );
+    }
+
+    /**
+     * @Given a previous created transfers
+     */
+    public function aPreviousCreatedTransfers()
+    {
+        $this->aPreviousCreatedTransfer();
+        $this->aPreviousCreatedTransfer();
+        $this->aPreviousCreatedTransfer();
+    }
+
+    /**
+     * @When I query for the transfers
+     */
+    public function iQueryForTheTransfers()
+    {
+        $this->transfers = self::getPagarMe()
+            ->transfer()
+            ->getList();
+    }
+
+    /**
+     * @Then a list of transfer must be returned
+     */
+    public function aListOfTransferMustBeReturned()
+    {
+        assertGreaterThanOrEqual(3, count($this->transfers));
+
+        assertContainsOnly(
+            'PagarMe\Sdk\Transfer\Transfer',
+            $this->transfers
         );
     }
 }

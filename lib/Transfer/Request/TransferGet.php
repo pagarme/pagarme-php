@@ -3,7 +3,6 @@
 namespace PagarMe\Sdk\Transfer\Request;
 
 use PagarMe\Sdk\Request;
-use PagarMe\Sdk\Recipient\Recipient;
 
 class TransferGet implements Request
 {

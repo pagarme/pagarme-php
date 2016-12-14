@@ -7,6 +7,7 @@ use PagarMe\Sdk\Recipient\Recipient;
 use PagarMe\Sdk\BankAccount\BankAccount;
 use PagarMe\Sdk\Transfer\Request\TransferCreate;
 use PagarMe\Sdk\Transfer\Request\TransferGet;
+use PagarMe\Sdk\Transfer\Request\TransferList;
 
 class TransferHandler extends AbstractHandler
 {
@@ -41,6 +42,25 @@ class TransferHandler extends AbstractHandler
         $result = $this->client->send($request);
 
         return $this->buildTransfer($result);
+    }
+
+    /**
+     * @param int page
+     * @param int count
+     **/
+    public function getList($page = null, $count = null)
+    {
+        $request = new TransferList($page, $count);
+
+        $result = $this->client->send($request);
+
+        $tranfers = [];
+
+        foreach ($result as $transferData) {
+            $tranfers[] = $this->buildTransfer($transferData);
+        }
+
+        return $tranfers;
     }
 
     /**
