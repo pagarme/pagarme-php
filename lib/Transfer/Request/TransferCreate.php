@@ -5,7 +5,7 @@ namespace PagarMe\Sdk\Transfer\Request;
 use PagarMe\Sdk\Request;
 use PagarMe\Sdk\Recipient\Recipient;
 
-class TransactionRecipientCreate implements Request
+class TransferCreate implements Request
 {
     /**
      * @var int

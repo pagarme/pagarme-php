@@ -2,9 +2,9 @@
 
 namespace PagarMe\SdkTest\Transfer\Request;
 
-use PagarMe\Sdk\Transfer\Request\TransactionRecipientCreate;
+use PagarMe\Sdk\Transfer\Request\TransferCreate;
 
-class TransactionRecipientCreateTest extends \PHPUnit_Framework_TestCase
+class TransferCreateTest extends \PHPUnit_Framework_TestCase
 {
     const METHOD       = 'POST';
     const PATH         = 'transfers';
@@ -31,7 +31,7 @@ class TransactionRecipientCreateTest extends \PHPUnit_Framework_TestCase
 
         $recipientMock->method('getId')->willReturn($recipientId);
 
-        $transactionRecipientCreate = new TransactionRecipientCreate(
+        $transferCreate = new TransferCreate(
             $amount,
             $recipientMock,
             $bankAccountId
@@ -43,17 +43,17 @@ class TransactionRecipientCreateTest extends \PHPUnit_Framework_TestCase
                 'recipient_id'    => $recipientId,
                 'bank_account_id' => $bankAccountId
             ],
-            $transactionRecipientCreate->getPayload()
+            $transferCreate->getPayload()
         );
 
         $this->assertEquals(
             self::METHOD,
-            $transactionRecipientCreate->getMethod()
+            $transferCreate->getMethod()
         );
 
         $this->assertEquals(
             self::PATH,
-            $transactionRecipientCreate->getPath()
+            $transferCreate->getPath()
         );
     }
 }
