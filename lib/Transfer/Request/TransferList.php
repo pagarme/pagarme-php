@@ -26,6 +26,9 @@ class TransferList implements Request
         $this->count = $count;
     }
 
+    /**
+     * @return array
+     */
     public function getPayload()
     {
         return [
@@ -34,11 +37,17 @@ class TransferList implements Request
         ];
     }
 
+    /**
+     * @return string
+     */
     public function getPath()
     {
         return 'transfers';
     }
 
+    /**
+     * @return string
+     */
     public function getMethod()
     {
         return self::HTTP_GET;

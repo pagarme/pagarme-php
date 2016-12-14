@@ -20,16 +20,25 @@ class TransferCancel implements Request
         $this->transfer = $transfer;
     }
 
+    /**
+     * @return array
+     */
     public function getPayload()
     {
         return [];
     }
 
+    /**
+     * @return string
+     */
     public function getPath()
     {
         return sprintf('transfers/%d/cancel', $this->transfer->getId());
     }
 
+    /**
+     * @return string
+     */
     public function getMethod()
     {
         return self::HTTP_POST;

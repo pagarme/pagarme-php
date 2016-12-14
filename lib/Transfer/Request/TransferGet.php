@@ -19,16 +19,25 @@ class TransferGet implements Request
         $this->transferId = $transferId;
     }
 
+    /**
+     * @return array
+     */
     public function getPayload()
     {
         return [];
     }
 
+    /**
+     * @return string
+     */
     public function getPath()
     {
         return sprintf('transfers/%d', $this->transferId);
     }
 
+    /**
+     * @return string
+     */
     public function getMethod()
     {
         return self::HTTP_GET;

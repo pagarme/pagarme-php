@@ -17,6 +17,9 @@ class TransactionPay implements Request
         $this->transaction = $transaction;
     }
 
+    /**
+     * @return array
+     */
     public function getPayload()
     {
         return [
@@ -24,11 +27,17 @@ class TransactionPay implements Request
         ];
     }
 
+    /**
+     * @return string
+     */
     public function getPath()
     {
         return sprintf('transactions/%d', $this->transaction->getId());
     }
 
+    /**
+     * @return string
+     */
     public function getMethod()
     {
         return 'PUT';

@@ -126,6 +126,10 @@ class TransactionHandler extends AbstractHandler
         return $this->buildTransaction($response);
     }
 
+    /**
+     * @param BoletoTransaction $transaction
+     * @return BoletoTransaction
+     */
     public function payTransaction(BoletoTransaction $transaction)
     {
         $request = new TransactionPay($transaction);

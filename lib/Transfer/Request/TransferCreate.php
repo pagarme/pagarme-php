@@ -33,6 +33,9 @@ class TransferCreate implements Request
         $this->bankAccountId = $bankAccountId;
     }
 
+    /**
+     * @return array
+     */
     public function getPayload()
     {
         return [
@@ -42,11 +45,17 @@ class TransferCreate implements Request
         ];
     }
 
+    /**
+     * @return string
+     */
     public function getPath()
     {
         return 'transfers';
     }
 
+    /**
+     * @return string
+     */
     public function getMethod()
     {
         return self::HTTP_POST;

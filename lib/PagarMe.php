@@ -58,7 +58,7 @@ class PagarMe
     private $splitRuleHandler;
 
     /**
-     * @param TransferHandler | Manipulador de transferencia
+     * @param TransferHandler
      */
     private $transferHandler;
 
