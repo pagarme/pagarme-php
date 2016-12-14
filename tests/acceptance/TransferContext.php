@@ -54,9 +54,9 @@ class TransferContext extends BasicContext
 
 
     /**
-     * @Given avaliable funds
+     * @Given available funds
      */
-    public function avaliableFunds()
+    public function availableFunds()
     {
         $customerData = $this->getValidCustomerData();
         $customer = new Customer($customerData);
@@ -163,7 +163,7 @@ class TransferContext extends BasicContext
     public function aPreviousCreatedTransfer()
     {
         $this->aValidRecipient();
-        $this->avaliableFunds();
+        $this->availableFunds();
         $this->makeTransferWithAmountOf(rand(200, 5000));
     }
 

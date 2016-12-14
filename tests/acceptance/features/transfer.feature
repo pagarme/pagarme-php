@@ -5,14 +5,14 @@ Feature: Transfer
 
   Scenario: Create a transfer with a recipient
     Given a valid recipient
-    And avaliable funds
+    And available funds
     When make transfer with amount of "5000"
     Then a transfer must be created
     And amount must be the same
 
   Scenario: Create a transfer with a recipient and custom bank account
     Given a valid recipient
-    And avaliable funds
+    And available funds
     When make transfer with amount of "5000" to specific bank account
     Then a transfer must be created
     And amount must be the same
