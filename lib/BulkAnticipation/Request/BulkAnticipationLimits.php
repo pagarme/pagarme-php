@@ -7,6 +7,8 @@ use PagarMe\Sdk\Recipient\Recipient;
 
 class BulkAnticipationLimits implements Request
 {
+    use \PagarMe\Sdk\MicrosecondsFormatter;
+
     /**
      * @var  Recipient
      */
@@ -43,7 +45,9 @@ class BulkAnticipationLimits implements Request
     public function getPayload()
     {
         return [
-            'payment_date'     => $this->getFormatedPaymentDate(),
+            'payment_date'     => $this->getDateInMicroseconds(
+                $this->paymentDate
+            ),
             'timeframe'        => $this->timeframe
         ];
     }

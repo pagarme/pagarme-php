@@ -7,6 +7,8 @@ use PagarMe\Sdk\Recipient\Recipient;
 
 class BulkAnticipationCreate implements Request
 {
+    use \PagarMe\Sdk\MicrosecondsFormatter;
+
     /**
      * @var  Recipient
      */
@@ -59,7 +61,9 @@ class BulkAnticipationCreate implements Request
     public function getPayload()
     {
         return [
-            'payment_date'     => $this->getFormatedPaymentDate(),
+            'payment_date'     => $this->getDateInMicroseconds(
+                $this->paymentDate
+            ),
             'timeframe'        => $this->timeframe,
             'requested_amount' => $this->requestedAmount,
             'building'         => $this->building
@@ -83,14 +87,5 @@ class BulkAnticipationCreate implements Request
     public function getMethod()
     {
         return self::HTTP_POST;
-    }
-
-    private function getFormatedPaymentDate()
-    {
-        return substr(
-            $this->paymentDate->format('Uu'),
-            0,
-            13
-        );
     }
 }
