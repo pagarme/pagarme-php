@@ -5,6 +5,7 @@ namespace PagarMe\Sdk\BulkAnticipation;
 use PagarMe\Sdk\AbstractHandler;
 use PagarMe\Sdk\Recipient\Recipient;
 use PagarMe\Sdk\BulkAnticipation\Request\BulkAnticipationCreate;
+use PagarMe\Sdk\BulkAnticipation\Request\BulkAnticipationLimits;
 
 class BulkAnticipationHandler extends AbstractHandler
 {
@@ -14,6 +15,7 @@ class BulkAnticipationHandler extends AbstractHandler
     * @param  string $timeframe
     * @param  int $requestedAmount
     * @param  boolean $building
+    * @return BulkAnticipation
     */
     public function create(
         Recipient $recipient,
@@ -36,5 +38,22 @@ class BulkAnticipationHandler extends AbstractHandler
         $response->paymentDate = new \DateTime($response->paymentDate);
 
         return new BulkAnticipation(get_object_vars($response));
+    }
+
+    /**
+    * @param  Recipient $recipient
+    * @param  DateTime $paymentDate
+    * @param  string $timeframe
+    * @return  array
+    */
+    public function limits($recipient, $paymentDate, $timeframe)
+    {
+        $request = new BulkAnticipationLimits(
+            $recipient,
+            $paymentDate,
+            $timeframe
+        );
+
+        return $this->client->send($request);
     }
 }
