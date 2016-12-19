@@ -34,9 +34,7 @@ class BulkAnticipationLimitsTest extends \PHPUnit_Framework_TestCase
         $bulkAnticipationLimits = new BulkAnticipationLimits(
             $recipientMock,
             $paymentDate,
-            $timeframe,
-            $requestedAmount,
-            $building
+            $timeframe
         );
 
         $this->assertEquals(
