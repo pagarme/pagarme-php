@@ -81,7 +81,7 @@ class PagarMe
     /**
      * @param BulkAnticipation
      */
-    private $bulkAnticipation;
+    private $bulkAnticipationHandler;
 
     /**
      * @param $apiKey
