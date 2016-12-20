@@ -55,3 +55,8 @@ default:
         - %paths.base%/tests/acceptance/features/subscription.feature
       contexts:
         - PagarMe\Acceptance\SubscriptionContext
+    payable:
+      paths:
+        - %paths.base%/tests/acceptance/features/payable.feature
+      contexts:
+        - PagarMe\Acceptance\PayableContext
