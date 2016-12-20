@@ -14,6 +14,7 @@ use PagarMe\Sdk\Transfer\TransferHandler;
 use PagarMe\Sdk\Company\CompanyHandler;
 use PagarMe\Sdk\BankAccount\BankAccountHandler;
 use PagarMe\Sdk\Subscription\SubscriptionHandler;
+use PagarMe\Sdk\Payable\PayableHandler;
 
 class PagarMe
 {
@@ -76,6 +77,11 @@ class PagarMe
      * @param SubscriptionHandler
      */
     private $subscriptionHandler;
+
+    /**
+     * @param PayableHandler
+     */
+    private $payableHandler;
 
     /**
      * @param $apiKey
@@ -222,5 +228,17 @@ class PagarMe
         }
 
         return $this->subscriptionHandler;
+    }
+
+    /**
+     * @return PayableHandler
+     */
+    public function payable()
+    {
+        if (!$this->payableHandler instanceof PayableHandler) {
+            $this->payableHandler = new PayableHandler($this->client);
+        }
+
+        return $this->payableHandler;
     }
 }

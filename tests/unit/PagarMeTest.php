@@ -199,4 +199,21 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
             $subscriptionHandlerA
         );
     }
+
+    /**
+     * @test
+    **/
+    public function mustReturnSamePayableHandler()
+    {
+        $pagarMe = new PagarMe('apiKey');
+
+        $payableHandlerA = $pagarMe->payable();
+        $payableHandlerB = $pagarMe->payable();
+
+        $this->assertSame($payableHandlerA, $payableHandlerB);
+        $this->assertInstanceOf(
+            'PagarMe\Sdk\Payable\PayableHandler',
+            $payableHandlerA
+        );
+    }
 }
