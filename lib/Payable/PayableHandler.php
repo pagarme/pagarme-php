@@ -17,7 +17,7 @@ class PayableHandler extends AbstractHandler
 
         $response = $this->client->send($request);
 
-        return new Payable(get_object_vars($response));
+        return $this->buildPayable($response);
     }
 
     /**
@@ -33,9 +33,17 @@ class PayableHandler extends AbstractHandler
         $payables = [];
 
         foreach ($response as $payableData) {
-            $payables[] = new Payable(get_object_vars($payableData));
+            $payables[] = $this->buildPayable($payableData);
         }
 
         return $payables;
+    }
+
+    private function buildPayable($payableData)
+    {
+        $payableData->payment_date = new \DateTime($this->payment_date);
+        $payableData->date_created = new \DateTime($this->date_created);
+
+        return new Payable(get_object_vars($payableData));
     }
 }
