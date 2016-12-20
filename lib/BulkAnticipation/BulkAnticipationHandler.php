@@ -37,11 +37,8 @@ class BulkAnticipationHandler extends AbstractHandler
         );
 
         $response = $this->client->send($request);
-        $response->dateCreated = new \DateTime($response->dateCreated);
-        $response->dateUpdated = new \DateTime($response->dateUpdated);
-        $response->paymentDate = new \DateTime($response->paymentDate);
 
-        return new BulkAnticipation(get_object_vars($response));
+        return $this->buildBulkAnticipation($response);
     }
 
     /**
@@ -74,7 +71,7 @@ class BulkAnticipationHandler extends AbstractHandler
 
         $response = $this->client->send($request);
 
-        return new BulkAnticipation(get_object_vars($response));
+        return $this->buildBulkAnticipation($response);
     }
 
     /**
@@ -90,7 +87,7 @@ class BulkAnticipationHandler extends AbstractHandler
 
         $response = $this->client->send($request);
 
-        return new BulkAnticipation(get_object_vars($response));
+        return $this->buildBulkAnticipation($response);
     }
 
     /**
@@ -106,7 +103,7 @@ class BulkAnticipationHandler extends AbstractHandler
 
         $response = $this->client->send($request);
 
-        return new BulkAnticipation(get_object_vars($response));
+        return $this->buildBulkAnticipation($response);
     }
 
     /**
@@ -130,5 +127,24 @@ class BulkAnticipationHandler extends AbstractHandler
         }
 
         return $bulkAnticipations;
+    }
+
+    /**
+    * @param array $bulkAnticipationData
+    * @return BulkAnticipation
+    */
+    private function buildBulkAnticipation($bulkAnticipationData)
+    {
+        $bulkAnticipationData->dateCreated = new \DateTime(
+            $bulkAnticipationData->dateCreated
+        );
+        $bulkAnticipationData->dateUpdated = new \DateTime(
+            $bulkAnticipationData->dateUpdated
+        );
+        $bulkAnticipationData->paymentDate = new \DateTime(
+            $bulkAnticipationData->paymentDate
+        );
+
+        return new BulkAnticipation(get_object_vars($bulkAnticipationData));
     }
 }
