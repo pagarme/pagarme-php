@@ -21,7 +21,7 @@ class MicrosecondsFormatterTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider dateTimeProvider
      * @test
-     **/
+     */
     public function mustFormatDateTimeToMicroseconds($dateTime, $formattedTime)
     {
         $this->assertEquals(
