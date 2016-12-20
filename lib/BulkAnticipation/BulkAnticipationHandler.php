@@ -9,6 +9,7 @@ use PagarMe\Sdk\BulkAnticipation\Request\BulkAnticipationLimits;
 use PagarMe\Sdk\BulkAnticipation\Request\BulkAnticipationConfirm;
 use PagarMe\Sdk\BulkAnticipation\Request\BulkAnticipationCancel;
 use PagarMe\Sdk\BulkAnticipation\Request\BulkAnticipationDelete;
+use PagarMe\Sdk\BulkAnticipation\Request\BulkAnticipationList;
 
 class BulkAnticipationHandler extends AbstractHandler
 {
@@ -106,5 +107,28 @@ class BulkAnticipationHandler extends AbstractHandler
         $response = $this->client->send($request);
 
         return new BulkAnticipation(get_object_vars($response));
+    }
+
+    /**
+    * @param Recipient $recipient
+    * @param int $page
+    * @param int $count
+    * @return array
+    */
+    public function getList(Recipient $recipient, $page = null, $count = null)
+    {
+        $request = new BulkAnticipationList($recipient, $page, $count);
+
+        $response = $this->client->send($request);
+
+        $bulkAnticipations = [];
+
+        foreach ($response as $bulkAnticipationData) {
+            $bulkAnticipations[] = new BulkAnticipation(
+                get_object_vars($bulkAnticipationData)
+            );
+        }
+
+        return $bulkAnticipations;
     }
 }
