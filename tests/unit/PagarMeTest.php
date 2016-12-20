@@ -202,7 +202,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+    */
     public function mustReturnSamePayableHandler()
     {
         $pagarMe = new PagarMe('apiKey');

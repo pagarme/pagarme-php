@@ -22,7 +22,7 @@ class PayableListTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider payableListParams
      * @test
-    **/
+     */
     public function mustContentBeCorrect($page, $count)
     {
         $request = new PayableList($page, $count);

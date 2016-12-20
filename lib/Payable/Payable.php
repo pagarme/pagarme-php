@@ -121,7 +121,7 @@ class Payable
     }
 
     /**
-     * @return\DateTime
+     * @return \DateTime
      */
     public function getPaymentDate()
     {
@@ -137,7 +137,7 @@ class Payable
     }
 
     /**
-     * @return\DateTime
+     * @return \DateTime
      */
     public function getDateCreated()
     {
