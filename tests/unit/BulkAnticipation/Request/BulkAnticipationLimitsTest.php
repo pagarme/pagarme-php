@@ -6,6 +6,8 @@ use PagarMe\Sdk\BulkAnticipation\Request\BulkAnticipationLimits;
 
 class BulkAnticipationLimitsTest extends \PHPUnit_Framework_TestCase
 {
+    use \PagarMe\Sdk\MicrosecondsFormatter;
+
     const PATH         = 'recipients/re_123456/bulk_anticipations/limits';
     const RECIPIENT_ID = 're_123456';
     const METHOD       = 'GET';
@@ -39,7 +41,7 @@ class BulkAnticipationLimitsTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             [
-                'payment_date'     => substr($paymentDate->format('Uu'), 0, 13),
+                'payment_date'     => $this->getDateInMicroseconds($paymentDate),
                 'timeframe'        => $timeframe
             ],
             $bulkAnticipationLimits->getPayload()
