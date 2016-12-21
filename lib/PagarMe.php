@@ -15,6 +15,7 @@ use PagarMe\Sdk\Company\CompanyHandler;
 use PagarMe\Sdk\BankAccount\BankAccountHandler;
 use PagarMe\Sdk\Subscription\SubscriptionHandler;
 use PagarMe\Sdk\BulkAnticipation\BulkAnticipationHandler;
+use PagarMe\Sdk\Payable\PayableHandler;
 
 class PagarMe
 {
@@ -82,6 +83,11 @@ class PagarMe
      * @param BulkAnticipation
      */
     private $bulkAnticipationHandler;
+
+    /**
+     * @param PayableHandler
+     */
+    private $payableHandler;
 
     /**
      * @param $apiKey
@@ -240,5 +246,17 @@ class PagarMe
         }
 
         return $this->bulkAnticipationHandler;
+    }
+
+    /**
+     * @return PayableHandler
+     */
+    public function payable()
+    {
+        if (!$this->payableHandler instanceof PayableHandler) {
+            $this->payableHandler = new PayableHandler($this->client);
+        }
+
+        return $this->payableHandler;
     }
 }
