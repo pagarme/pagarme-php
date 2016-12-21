@@ -115,3 +115,8 @@ Feature: Transaction
     Given I had multiple transactions registered
     When query transactions
     Then an array of transactions must be returned
+  @only
+  Scenario: Getting transaction events
+    Given I had a transactions registered
+    When query transactions events
+    Then an array of events must be returned
