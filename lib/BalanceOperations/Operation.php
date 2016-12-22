@@ -1,6 +1,6 @@
 <?php
 
-namespace PagarMe\Sdk\Balance;
+namespace PagarMe\Sdk\BalanceOperations;
 
 class Operation
 {

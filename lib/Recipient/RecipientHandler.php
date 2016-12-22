@@ -12,8 +12,8 @@ use PagarMe\Sdk\Recipient\Request\RecipientBalance;
 use PagarMe\Sdk\Recipient\Request\RecipientBalanceOperation;
 use PagarMe\Sdk\Recipient\Request\RecipientBalanceOperations;
 use PagarMe\Sdk\Balance\Balance;
-use PagarMe\Sdk\Balance\Operation;
-use PagarMe\Sdk\Balance\Movement;
+use PagarMe\Sdk\BalanceOperations\Operation;
+use PagarMe\Sdk\BalanceOperations\Movement;
 
 class RecipientHandler extends AbstractHandler
 {

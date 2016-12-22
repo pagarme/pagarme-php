@@ -15,6 +15,7 @@ use PagarMe\Sdk\Company\CompanyHandler;
 use PagarMe\Sdk\BankAccount\BankAccountHandler;
 use PagarMe\Sdk\Subscription\SubscriptionHandler;
 use PagarMe\Sdk\Payable\PayableHandler;
+use PagarMe\Sdk\BalanceOperations\BalanceOperationsHandler;
 
 class PagarMe
 {
@@ -82,6 +83,11 @@ class PagarMe
      * @param PayableHandler
      */
     private $payableHandler;
+
+    /**
+     * @param BalanceOperationsHandler
+     */
+    private $balanceOperationsHandler;
 
     /**
      * @param $apiKey
@@ -240,5 +246,19 @@ class PagarMe
         }
 
         return $this->payableHandler;
+    }
+
+    /**
+     * @return BalanceOperationsHandler
+     */
+    public function balanceOperations()
+    {
+        if (!$this->balanceOperationsHandler instanceof BalanceOperationsHandler) {
+            $this->balanceOperationsHandler = new BalanceOperationsHandler(
+                $this->client
+            );
+        }
+
+        return $this->balanceOperationsHandler;
     }
 }
