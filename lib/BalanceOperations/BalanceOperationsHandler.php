@@ -14,11 +14,12 @@ class BalanceOperationsHandler extends AbstractHandler
     /**
      * @param int $page
      * @param int $count
+     * @param string $status
      * @return array
      **/
-    public function getList($page = null, $count = null)
+    public function getList($page = null, $count = null, $status = null)
     {
-        $request = new BalanceOperationsList($page, $count);
+        $request = new BalanceOperationsList($page, $count, $status);
 
         $response = $this->client->send($request);
         $operations = [];

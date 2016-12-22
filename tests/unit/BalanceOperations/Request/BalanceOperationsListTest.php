@@ -12,10 +12,10 @@ class BalanceOperationsListTest extends \PHPUnit_Framework_TestCase
     public function balanceOperationsListParams()
     {
         return [
-            [null, null],
-            [1, null],
-            [null, 2],
-            [3, 4],
+            [null, null, null],
+            [1, null, null],
+            [null, 2, 'waiting_funds'],
+            [3, 4, 'avaliable'],
         ];
     }
 
@@ -23,19 +23,21 @@ class BalanceOperationsListTest extends \PHPUnit_Framework_TestCase
      * @dataProvider balanceOperationsListParams
      * @test
      */
-    public function mustContentBeCorrect($page, $count)
+    public function mustContentBeCorrect($page, $count, $status)
     {
         $request = new BalanceOperationsList(
             $page,
-            $count
+            $count,
+            $status
         );
 
         $this->assertEquals(self::METHOD, $request->getMethod());
         $this->assertEquals(self::PATH, $request->getPath());
         $this->assertEquals(
             [
-                'page'  => $page,
-                'count' => $count
+                'page'   => $page,
+                'count'  => $count,
+                'status' => $status
             ],
             $request->getPayload()
         );

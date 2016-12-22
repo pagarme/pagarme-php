@@ -9,18 +9,21 @@ class BalanceOperationsList implements Request
 
     private $page;
     private $count;
+    private $status;
 
-    public function __construct($page, $count)
+    public function __construct($page, $count, $status)
     {
-        $this->page      = $page;
-        $this->count     = $count;
+        $this->page    = $page;
+        $this->count   = $count;
+        $this->status = $status;
     }
 
     public function getPayload()
     {
         return [
-            'page'  => $this->page,
-            'count' => $this->count
+            'page'   => $this->page,
+            'count'  => $this->count,
+            'status' => $this->status
         ];
     }
 

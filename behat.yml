@@ -60,3 +60,8 @@ default:
         - %paths.base%/tests/acceptance/features/payable.feature
       contexts:
         - PagarMe\Acceptance\PayableContext
+    balance_operation:
+      paths:
+        - %paths.base%/tests/acceptance/features/balance_operation.feature
+      contexts:
+        - PagarMe\Acceptance\BalanceOperationContext
