@@ -60,3 +60,8 @@ default:
         - %paths.base%/tests/acceptance/features/payable.feature
       contexts:
         - PagarMe\Acceptance\PayableContext
+    zipcode:
+      paths:
+        - %paths.base%/tests/acceptance/features/zipcode.feature
+      contexts:
+        - PagarMe\Acceptance\ZipcodeContext

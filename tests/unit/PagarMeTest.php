@@ -233,4 +233,21 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
             $payableHandlerA
         );
     }
+
+    /**
+     * @test
+    */
+    public function mustReturnSameZipcodeHandler()
+    {
+        $pagarMe = new PagarMe('apiKey');
+
+        $zipcodeHandlerA = $pagarMe->zipcode();
+        $zipcodeHandlerB = $pagarMe->zipcode();
+
+        $this->assertSame($zipcodeHandlerA, $zipcodeHandlerB);
+        $this->assertInstanceOf(
+            'PagarMe\Sdk\Zipcode\ZipcodeHandler',
+            $zipcodeHandlerA
+        );
+    }
 }
