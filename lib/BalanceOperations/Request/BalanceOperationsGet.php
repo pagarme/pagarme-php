@@ -26,6 +26,6 @@ class BalanceOperationsGet implements Request
 
     public function getMethod()
     {
-        return self::GET;
+        return self::HTTP_GET;
     }
 }
