@@ -9,6 +9,7 @@ use PagarMe\Sdk\Transaction\Request\BoletoTransactionCreate;
 use PagarMe\Sdk\Transaction\Request\TransactionGet;
 use PagarMe\Sdk\Transaction\Request\TransactionList;
 use PagarMe\Sdk\Transaction\Request\TransactionCapture;
+use PagarMe\Sdk\Transaction\Request\TransactionEvents;
 use PagarMe\Sdk\Transaction\Request\CreditCardTransactionRefund;
 use PagarMe\Sdk\Transaction\Request\BoletoTransactionRefund;
 use PagarMe\Sdk\Transaction\Request\TransactionPay;
@@ -18,6 +19,7 @@ use PagarMe\Sdk\Customer\Customer;
 use PagarMe\Sdk\SplitRule\SplitRuleCollection;
 use PagarMe\Sdk\SplitRule\SplitRule;
 use PagarMe\Sdk\Recipient\Recipient;
+use PagarMe\Sdk\Event\Event;
 
 class TransactionHandler extends AbstractHandler
 {
@@ -137,6 +139,27 @@ class TransactionHandler extends AbstractHandler
         $response = $this->client->send($request);
 
         return $this->buildTransaction($response);
+    }
+
+    /**
+     * @param AbstractTransaction $transaction
+     * @return array
+     */
+    public function events(AbstractTransaction $transaction)
+    {
+        $request = new TransactionEvents($transaction);
+
+        $response = $this->client->send($request);
+
+        $events = [];
+
+        foreach ($response as $eventData) {
+            $eventData->date_created = new \DateTime($eventData->date_created);
+            $eventData->date_updated = new \DateTime($eventData->date_updated);
+            $events[] = new Event($eventData);
+        }
+
+        return $events;
     }
 
     private function buildSplitRules($splitRuleData)

@@ -20,6 +20,7 @@ class TransactionContext extends BasicContext
     private $customer;
     private $transaction;
     private $transactionList;
+    private $events;
 
      /**
      * @When register a card with :number, :holder and :expiration
@@ -254,5 +255,33 @@ class TransactionContext extends BasicContext
     public function theTransactionMustBeRefundedWith($amount)
     {
         assertEquals($amount, $this->transaction->getRefundedAmount());
+    }
+
+    /**
+     * @Given I had a transactions registered
+     */
+    public function iHadATransactionsRegistered()
+    {
+        $this->aValidCustomer();
+        $this->aValidBoletoTransaction();
+    }
+
+    /**
+     * @When query transactions events
+     */
+    public function queryTransactionsEvents()
+    {
+        $this->events = $transaction = self::getPagarMe()
+            ->transaction()
+            ->events($this->transaction);
+    }
+
+    /**
+     * @Then an array of events must be returned
+     */
+    public function anArrayOfEventsMustBeReturned()
+    {
+        assertContainsOnly('PagarMe\Sdk\Event\Event', $this->events);
+        assertGreaterThanOrEqual(1, count($this->events));
     }
 }

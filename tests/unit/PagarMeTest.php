@@ -203,6 +203,23 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
     */
+    public function mustReturnSameBulkAnticipationHandler()
+    {
+        $pagarMe = new PagarMe('apiKey');
+
+        $bulkAnticipationHandlerA = $pagarMe->bulkAnticipation();
+        $bulkAnticipationHandlerB = $pagarMe->bulkAnticipation();
+
+        $this->assertSame($bulkAnticipationHandlerA, $bulkAnticipationHandlerB);
+        $this->assertInstanceOf(
+            'PagarMe\Sdk\BulkAnticipation\BulkAnticipationHandler',
+            $bulkAnticipationHandlerA
+        );
+    }
+
+    /**
+     * @test
+    */
     public function mustReturnSamePayableHandler()
     {
         $pagarMe = new PagarMe('apiKey');
