@@ -34,7 +34,7 @@ class BalanceOperationsHandler extends AbstractHandler
 
     /**
      * @param int $balanceOperationId
-     * @return Operations
+     * @return Operation
      */
     public function get($balanceOperationId)
     {
