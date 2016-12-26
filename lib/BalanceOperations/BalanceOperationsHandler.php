@@ -16,7 +16,7 @@ class BalanceOperationsHandler extends AbstractHandler
      * @param int $count
      * @param string $status
      * @return array
-     **/
+     */
     public function getList($page = null, $count = null, $status = null)
     {
         $request = new BalanceOperationsList($page, $count, $status);
@@ -35,7 +35,7 @@ class BalanceOperationsHandler extends AbstractHandler
     /**
      * @param int $balanceOperationId
      * @return Operations
-     **/
+     */
     public function get($balanceOperationId)
     {
         $request = new BalanceOperationsGet($balanceOperationId);

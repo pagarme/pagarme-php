@@ -14,7 +14,7 @@ class BalanceOperationsHandler extends AbstractHandler
      * @param int $page
      * @param int $count
      * @return array
-     **/
+     */
     public function operations($page = null, $count = null)
     {
         $request = new BalanceOperationsList($page, $count);

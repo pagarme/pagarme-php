@@ -34,6 +34,6 @@ class BalanceOperationsList implements Request
 
     public function getMethod()
     {
-        return 'GET';
+        return self::GET;
     }
 }
