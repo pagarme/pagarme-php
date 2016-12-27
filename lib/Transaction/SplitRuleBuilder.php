@@ -4,6 +4,7 @@ namespace PagarMe\Sdk\Transaction;
 
 use PagarMe\Sdk\SplitRule\SplitRuleCollection;
 use PagarMe\Sdk\SplitRule\SplitRule;
+use PagarMe\Sdk\Recipient\Recipient;
 
 trait SplitRuleBuilder
 {
