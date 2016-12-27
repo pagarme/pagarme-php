@@ -44,6 +44,20 @@ class PostbackHandler extends AbstractHandler
         return $this->buildPostback($response);
     }
 
+    /**
+     * @param AbstractTransaction $transaction
+     * @param string $postbackId
+     * @return Postback
+     */
+    public function redeliver(AbstractTransaction $transaction, $postbackId)
+    {
+        $request = new PostbackGet($transaction, $postbackId);
+
+        $response = $this->client->send($request);
+
+        return $this->buildPostback($response);
+    }
+
     private function buildPostback($postbackData)
     {
         $postbackDeliveries = [];
