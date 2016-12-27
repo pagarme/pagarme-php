@@ -5,10 +5,12 @@ namespace PagarMe\Sdk\Postback;
 use PagarMe\Sdk\AbstractHandler;
 use PagarMe\Sdk\Transaction\AbstractTransaction;
 use PagarMe\Sdk\Postback\Request\PostbackList;
+use PagarMe\Sdk\Postback\Request\PostbackGet;
 
 class PostbackHandler extends AbstractHandler
 {
     use \PagarMe\Sdk\Transaction\TransactionBuilder;
+
     /**
      * @param AbstractTransaction $transaction
      * @return array
@@ -22,15 +24,28 @@ class PostbackHandler extends AbstractHandler
         $postbacks = [];
 
         foreach ($response as $postbackData) {
-            $postbacks[] = $this->buildPostback($response);
+            $postbacks[] = $this->buildPostback($postbackData);
         }
 
         return $postbacks;
     }
 
-    private function buildPostback($postbacksData)
+    /**
+     * @param AbstractTransaction $transaction
+     * @param string $postbackId
+     * @return Postback
+     */
+    public function get(AbstractTransaction $transaction, $postbackId)
     {
-        $postbackData       = $postbacksData[0];
+        $request = new PostbackGet($transaction, $postbackId);
+
+        $response = $this->client->send($request);
+
+        return $this->buildPostback($response);
+    }
+
+    private function buildPostback($postbackData)
+    {
         $postbackDeliveries = [];
 
         foreach ($postbackData->deliveries as $postbackDeliveryData) {
