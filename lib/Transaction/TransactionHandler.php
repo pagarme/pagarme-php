@@ -17,8 +17,6 @@ use PagarMe\Sdk\Transaction\Request\PostbackTransactionList;
 use PagarMe\Sdk\BankAccount\BankAccount;
 use PagarMe\Sdk\Card\Card;
 use PagarMe\Sdk\Customer\Customer;
-use PagarMe\Sdk\SplitRule\SplitRuleCollection;
-use PagarMe\Sdk\SplitRule\SplitRule;
 use PagarMe\Sdk\Recipient\Recipient;
 use PagarMe\Sdk\Event\Event;
 use PagarMe\Sdk\Postback\Postback;
@@ -183,18 +181,6 @@ class TransactionHandler extends AbstractHandler
         }
 
         return $postbacks;
-    }
-
-    private function buildSplitRules($splitRuleData)
-    {
-        $rules = new SplitRuleCollection();
-
-        foreach ($splitRuleData as $rule) {
-            $rule->recipient = new Recipient(['id' =>$rule->recipient_id]);
-            $rules[] = new SplitRule(get_object_vars($rule));
-        }
-
-        return $rules;
     }
 
     private function buildPostback($postbacksData)
