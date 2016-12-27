@@ -216,6 +216,10 @@ class TransactionHandler extends AbstractHandler
         );
         $postbackData->deliveries = $postbackDeliveries;
 
+        $postbackData->payload = $this->buildPayload(
+            $postbackData->payload
+        );
+
         return new Postback(get_object_vars($postbackData));
     }
 
@@ -229,5 +233,16 @@ class TransactionHandler extends AbstractHandler
         );
 
         return new Delivery($postbackDeliveryData);
+    }
+
+    private function buildPayload($payloadData)
+    {
+        parse_str($payloadData, $payload);
+
+        $payload['transaction'] = $this->buildTransaction(
+            (object) $payload['transaction']
+        );
+
+        return new Payload($payload);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace PagarMe\Sdk\Postback;
 
-class Postback
+class Payload
 {
     use \PagarMe\Sdk\Fillable;
 
@@ -40,6 +40,14 @@ class Postback
      * @var AbstractTransaction
      */
     private $transaction;
+
+    /**
+     * @param array $payloadData
+     */
+    public function __construct($payloadData)
+    {
+        $this->fill($payloadData);
+    }
 
     /**
      * @var int
