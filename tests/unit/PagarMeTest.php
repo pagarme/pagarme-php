@@ -233,4 +233,21 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
             $payableHandlerA
         );
     }
+
+    /**
+     * @test
+    */
+    public function mustReturnSamePostbackHandler()
+    {
+        $pagarMe = new PagarMe('apiKey');
+
+        $postbackHandlerA = $pagarMe->postback();
+        $postbackHandlerB = $pagarMe->postback();
+
+        $this->assertSame($postbackHandlerA, $postbackHandlerB);
+        $this->assertInstanceOf(
+            'PagarMe\Sdk\Postback\PostbackHandler',
+            $postbackHandlerA
+        );
+    }
 }

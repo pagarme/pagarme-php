@@ -13,15 +13,11 @@ use PagarMe\Sdk\Transaction\Request\TransactionEvents;
 use PagarMe\Sdk\Transaction\Request\CreditCardTransactionRefund;
 use PagarMe\Sdk\Transaction\Request\BoletoTransactionRefund;
 use PagarMe\Sdk\Transaction\Request\TransactionPay;
-use PagarMe\Sdk\Transaction\Request\PostbackTransactionList;
 use PagarMe\Sdk\BankAccount\BankAccount;
 use PagarMe\Sdk\Card\Card;
 use PagarMe\Sdk\Customer\Customer;
 use PagarMe\Sdk\Recipient\Recipient;
 use PagarMe\Sdk\Event\Event;
-use PagarMe\Sdk\Postback\Postback;
-use PagarMe\Sdk\Postback\Delivery;
-use PagarMe\Sdk\Postback\Payload;
 
 class TransactionHandler extends AbstractHandler
 {
@@ -162,73 +158,5 @@ class TransactionHandler extends AbstractHandler
         }
 
         return $events;
-    }
-
-    /**
-     * @param AbstractTransaction $transaction
-     * @return array
-     */
-    public function postbackList(AbstractTransaction $transaction)
-    {
-        $request = new PostbackTransactionList($transaction);
-
-        $response = $this->client->send($request);
-
-        $postbacks = [];
-
-        foreach ($response as $postbackData) {
-            $postbacks[] = $this->buildPostback($response);
-        }
-
-        return $postbacks;
-    }
-
-    private function buildPostback($postbacksData)
-    {
-        $postbackData       = $postbacksData[0];
-        $postbackDeliveries = [];
-
-        foreach ($postbackData->deliveries as $postbackDeliveryData) {
-            $postbackDeliveries[] =$this->buildPostbackDelivery(
-                $postbackDeliveryData
-            );
-        }
-
-        $postbackData->date_created = new \DateTime(
-            $postbackData->date_created
-        );
-        $postbackData->date_updated = new \DateTime(
-            $postbackData->date_updated
-        );
-        $postbackData->deliveries = $postbackDeliveries;
-
-        $postbackData->payload = $this->buildPayload(
-            $postbackData->payload
-        );
-
-        return new Postback(get_object_vars($postbackData));
-    }
-
-    private function buildPostbackDelivery($postbackDeliveryData)
-    {
-        $postbackDeliveryData->date_created = new \DateTime(
-            $postbackDeliveryData->date_created
-        );
-        $postbackDeliveryData->date_updated = new \DateTime(
-            $postbackDeliveryData->date_updated
-        );
-
-        return new Delivery($postbackDeliveryData);
-    }
-
-    private function buildPayload($payloadData)
-    {
-        parse_str($payloadData, $payload);
-
-        $payload['transaction'] = $this->buildTransaction(
-            (object) $payload['transaction']
-        );
-
-        return new Payload($payload);
     }
 }
