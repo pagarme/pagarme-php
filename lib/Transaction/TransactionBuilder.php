@@ -4,6 +4,8 @@ namespace PagarMe\Sdk\Transaction;
 
 trait TransactionBuilder
 {
+    use SplitRuleBuilder;
+
     private function buildTransaction($transactionData)
     {
         if (isset($transactionData->split_rules)) {

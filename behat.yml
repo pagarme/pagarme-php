@@ -65,3 +65,8 @@ default:
         - %paths.base%/tests/acceptance/features/balance_operation.feature
       contexts:
         - PagarMe\Acceptance\BalanceOperationContext
+    postback:
+      paths:
+        - %paths.base%/tests/acceptance/features/postback.feature
+      contexts:
+        - PagarMe\Acceptance\PostbackContext
