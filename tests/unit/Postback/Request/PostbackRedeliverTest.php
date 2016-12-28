@@ -9,7 +9,7 @@ class PostbackRedeliverTest extends \PHPUnit_Framework_TestCase
     const TRANSACTION_ID = 1234;
     const POSTBACK_ID    = 'po_10000001';
     const PATH           = 'transactions/1234/postbacks/po_10000001/redeliver';
-    const METHOD         = POST;
+    const METHOD         = 'POST';
 
     /**
      * @test

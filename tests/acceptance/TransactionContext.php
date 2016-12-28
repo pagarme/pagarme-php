@@ -54,9 +54,7 @@ class TransactionContext extends BasicContext
                 $amount,
                 $this->creditCard,
                 $this->customer,
-                $installments,
-                true,
-                'http://eduardo.com'
+                $installments
             );
     }
 
@@ -104,8 +102,7 @@ class TransactionContext extends BasicContext
                 $this->creditCard,
                 $this->customer,
                 $installments,
-                false,
-                'http://eduardo.com'
+                false
             );
     }
 
