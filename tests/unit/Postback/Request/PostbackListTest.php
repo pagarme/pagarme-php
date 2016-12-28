@@ -8,7 +8,7 @@ class PostbackListTest extends \PHPUnit_Framework_TestCase
 {
     const TRANSACTION_ID = 1234;
     const PATH           = 'transactions/1234/postbacks';
-    const METHOD         = GET;
+    const METHOD         = 'GET';
 
     /**
      * @test
