@@ -12,9 +12,11 @@ trait SplitRuleBuilder
     {
         $rules = new SplitRuleCollection();
 
-        foreach ($splitRuleData as $rule) {
-            $rule->recipient = new Recipient(['id' =>$rule->recipient_id]);
-            $rules[] = new SplitRule(get_object_vars($rule));
+        if (is_array($splitRuleData)) {
+            foreach ($splitRuleData as $rule) {
+                $rule->recipient = new Recipient(['id' =>$rule->recipient_id]);
+                $rules[] = new SplitRule(get_object_vars($rule));
+            }
         }
 
         return $rules;
