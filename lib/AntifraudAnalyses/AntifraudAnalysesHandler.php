@@ -21,14 +21,7 @@ class AntifraudAnalysesHandler extends AbstractHandler
         $antifraudAnalyses = [];
 
         foreach ($response as $antifraudAnalysisData) {
-            $antifraudAnalysisData->date_created = new \DateTime(
-                $antifraudAnalysisData->date_created
-            );
-            $antifraudAnalysisData->date_updated = new \DateTime(
-                $antifraudAnalysisData->date_updated
-            );
-
-            $antifraudAnalyses[] = new AntifraudAnalysis(
+            $antifraudAnalyses[] = $this->buildAntifraudAnalysis(
                 $antifraudAnalysisData
             );
         }
@@ -47,9 +40,22 @@ class AntifraudAnalysesHandler extends AbstractHandler
 
         $response = $this->client->send($request);
 
-        $response->date_created = new \DateTime($response->date_created);
-        $response->date_updated = new \DateTime($response->date_updated);
+        return $this->buildAntifraudAnalysis($response);
+    }
 
-        return new AntifraudAnalysis($response);
+    /**
+     * @param array antifraudAnalysisData
+     * @return AntifraudAnalysis
+     */
+    private function buildAntifraudAnalysis($antifraudAnalysisData)
+    {
+        $antifraudAnalysisData->date_created = new \DateTime(
+            $antifraudAnalysisData->date_created
+        );
+        $antifraudAnalysisData->date_updated = new \DateTime(
+            $antifraudAnalysisData->date_updated
+        );
+
+        return new AntifraudAnalysis($antifraudAnalysisData);
     }
 }
