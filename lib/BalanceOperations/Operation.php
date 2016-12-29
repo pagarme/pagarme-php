@@ -1,6 +1,6 @@
 <?php
 
-namespace PagarMe\Sdk\Balance;
+namespace PagarMe\Sdk\BalanceOperations;
 
 class Operation
 {
@@ -8,47 +8,47 @@ class Operation
 
     /**
      * @var id int
-     **/
+     */
     protected $id;
 
     /**
      * @var status string
-     **/
+     */
     protected $status;
 
     /**
      * @var balanceAmount int
-     **/
+     */
     protected $balanceAmount;
 
     /**
      * @var balanceOldAmount int
-     **/
+     */
     protected $balanceOldAmount;
 
     /**
      * @var movementType string
-     **/
+     */
     protected $movementType;
 
     /**
      * @var amount int
-     **/
+     */
     protected $amount;
 
     /**
      * @var fee int
-     **/
+     */
     protected $fee;
 
     /**
      * @var dateCreated string
-     **/
+     */
     protected $dateCreated;
 
     /**
      * @var movement Movement
-     **/
+     */
     protected $movement;
 
     public function __construct($recipientData)
@@ -58,7 +58,7 @@ class Operation
 
     /**
      * @return int
-     **/
+     */
     public function getId()
     {
         return $this->id;
@@ -66,7 +66,7 @@ class Operation
 
     /**
      * @return string
-     **/
+     */
     public function getStatus()
     {
         return $this->status;
@@ -74,7 +74,7 @@ class Operation
 
     /**
      * @return int
-     **/
+     */
     public function getBalanceAmount()
     {
         return $this->balanceAmount;
@@ -82,7 +82,7 @@ class Operation
 
     /**
      * @return int
-     **/
+     */
     public function getBalanceOldAmount()
     {
         return $this->balanceOldAmount;
@@ -90,7 +90,7 @@ class Operation
 
     /**
      * @return string
-     **/
+     */
     public function getMovementType()
     {
         return $this->movementType;
@@ -98,7 +98,7 @@ class Operation
 
     /**
      * @return int
-     **/
+     */
     public function getAmount()
     {
         return $this->amount;
@@ -106,7 +106,7 @@ class Operation
 
     /**
      * @return int
-     **/
+     */
     public function getFee()
     {
         return $this->fee;
@@ -114,7 +114,7 @@ class Operation
 
     /**
      * @return string
-     **/
+     */
     public function getDateCreated()
     {
         return $this->dateCreated;
@@ -122,7 +122,7 @@ class Operation
 
     /**
      * @return Movement
-     **/
+     */
     public function getMovement()
     {
         return $this->movement;

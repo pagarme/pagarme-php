@@ -1,6 +1,6 @@
 <?php
 
-namespace PagarMe\Sdk\Balance;
+namespace PagarMe\Sdk\BalanceOperations;
 
 class Movement
 {
@@ -8,42 +8,42 @@ class Movement
 
     /**
      * @var id int
-     **/
+     */
     protected $id;
 
     /**
      * @var status string
-     **/
+     */
     protected $status;
 
     /**
      * @var amount int
-     **/
+     */
     protected $amount;
 
     /**
      * @var fee int
-     **/
+     */
     protected $fee;
 
     /**
      * @var installment int
-     **/
+     */
     protected $installment;
 
     /**
      * @var transactionId int
-     **/
+     */
     protected $transactionId;
 
     /**
      * @var paymentDate string
-     **/
+     */
     protected $paymentDate;
 
     /**
      * @var dateCreated string
-     **/
+     */
     protected $dateCreated;
 
     public function __construct($recipientData)
@@ -53,7 +53,7 @@ class Movement
 
     /**
      * @return int
-     **/
+     */
     public function getID()
     {
         return $this->id;
@@ -61,7 +61,7 @@ class Movement
 
     /**
      * @return string
-     **/
+     */
     public function getStatus()
     {
         return $this->status;
@@ -69,7 +69,7 @@ class Movement
 
     /**
      * @return int
-     **/
+     */
     public function getAmount()
     {
         return $this->amount;
@@ -77,7 +77,7 @@ class Movement
 
     /**
      * @return int
-     **/
+     */
     public function getFee()
     {
         return $this->fee;
@@ -85,7 +85,7 @@ class Movement
 
     /**
      * @return int
-     **/
+     */
     public function getInstallment()
     {
         return $this->installment;
@@ -93,7 +93,7 @@ class Movement
 
     /**
      * @return int
-     **/
+     */
     public function getTransactionID()
     {
         return $this->transactionID;
@@ -101,7 +101,7 @@ class Movement
 
     /**
      * @return string
-     **/
+     */
     public function getPaymentDate()
     {
         return $this->paymentDate;
@@ -109,7 +109,7 @@ class Movement
 
     /**
      * @return string
-     **/
+     */
     public function getDateCreated()
     {
         return $this->dateCreated;

@@ -17,6 +17,8 @@ use PagarMe\Sdk\Subscription\SubscriptionHandler;
 use PagarMe\Sdk\BulkAnticipation\BulkAnticipationHandler;
 use PagarMe\Sdk\Payable\PayableHandler;
 use PagarMe\Sdk\Zipcode\ZipcodeHandler;
+use PagarMe\Sdk\BalanceOperations\BalanceOperationsHandler;
+use PagarMe\Sdk\Postback\PostbackHandler;
 
 class PagarMe
 {
@@ -94,6 +96,16 @@ class PagarMe
      * @param ZipcodeHandler
      */
     private $zipcodeHandler;
+
+    /**
+     * @param BalanceOperationsHandler
+     */
+    private $balanceOperationsHandler;
+
+    /**
+     * @param PostbackHandler
+     */
+    private $postbackHandler;
 
     /**
      * @param $apiKey
@@ -276,5 +288,33 @@ class PagarMe
         }
 
         return $this->zipcodeHandler;
+    }
+
+    /**
+     * @return BalanceOperationsHandler
+     */
+    public function balanceOperations()
+    {
+        if (!$this->balanceOperationsHandler instanceof BalanceOperationsHandler) {
+            $this->balanceOperationsHandler = new BalanceOperationsHandler(
+                $this->client
+            );
+        }
+
+        return $this->balanceOperationsHandler;
+    }
+
+    /**
+     * @return postbackHandler
+     */
+    public function postback()
+    {
+        if (!$this->postbackHandler instanceof PostbackHandler) {
+            $this->postbackHandler = new PostbackHandler(
+                $this->client
+            );
+        }
+
+        return $this->postbackHandler;
     }
 }
