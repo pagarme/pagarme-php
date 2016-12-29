@@ -75,3 +75,8 @@ default:
         - %paths.base%/tests/acceptance/features/postback.feature
       contexts:
         - PagarMe\Acceptance\PostbackContext
+    antifraud_analysis:
+      paths:
+        - %paths.base%/tests/acceptance/features/antifraud_analysis.feature
+      contexts:
+        - PagarMe\Acceptance\AntifraudAnalysisContext

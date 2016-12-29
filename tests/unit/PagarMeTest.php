@@ -267,4 +267,25 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
             $postbackHandlerA
         );
     }
+
+    /**
+     * @test
+    */
+    public function mustReturnSameAntifraudAnalysesHandler()
+    {
+        $pagarMe = new PagarMe('apiKey');
+
+        $antifraudAnalysesHandlerA = $pagarMe->antifraudAnalyses();
+        $antifraudAnalysesHandlerB = $pagarMe->antifraudAnalyses();
+
+        $this->assertSame(
+            $antifraudAnalysesHandlerA,
+            $antifraudAnalysesHandlerB
+        );
+
+        $this->assertInstanceOf(
+            'PagarMe\Sdk\AntifraudAnalyses\AntifraudAnalysesHandler',
+            $antifraudAnalysesHandlerA
+        );
+    }
 }

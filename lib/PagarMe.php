@@ -19,6 +19,7 @@ use PagarMe\Sdk\Payable\PayableHandler;
 use PagarMe\Sdk\Zipcode\ZipcodeHandler;
 use PagarMe\Sdk\BalanceOperations\BalanceOperationsHandler;
 use PagarMe\Sdk\Postback\PostbackHandler;
+use PagarMe\Sdk\AntifraudAnalyses\AntifraudAnalysesHandler;
 
 class PagarMe
 {
@@ -106,6 +107,11 @@ class PagarMe
      * @param PostbackHandler
      */
     private $postbackHandler;
+
+    /**
+     * @param antifraudAnalysesHandler
+     */
+    private $antifraudAnalysesHandler;
 
     /**
      * @param $apiKey
@@ -316,5 +322,19 @@ class PagarMe
         }
 
         return $this->postbackHandler;
+    }
+
+    /**
+     * @return antifraudAnalysesHandler
+     */
+    public function antifraudAnalyses()
+    {
+        if (!$this->antifraudAnalysesHandler instanceof AntifraudAnalysesHandler) {
+            $this->antifraudAnalysesHandler = new AntifraudAnalysesHandler(
+                $this->client
+            );
+        }
+
+        return $this->antifraudAnalysesHandler;
     }
 }
