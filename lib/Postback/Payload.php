@@ -37,7 +37,7 @@ class Payload
     private $current_status;
 
     /**
-     * @var AbstractTransaction
+     * @var \PagarMe\Sdk\Transaction\AbstractTransaction
      */
     private $transaction;
 
