@@ -64,7 +64,7 @@ class AntifraudAnalysisContext extends BasicContext
         assertGreaterThanOrEqual(1, $this->analyses);
     }
 
-       /**
+    /**
      * @When query for the first antifraud analysis
      */
     public function queryForTheFirstAntifraudAnalysis()
