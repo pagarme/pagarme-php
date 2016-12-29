@@ -62,4 +62,26 @@ class AntifraudAnalysisContext extends BasicContext
         );
         assertGreaterThanOrEqual(1, $this->analyses);
     }
+
+       /**
+     * @When query for the first antifraud analysis
+     */
+    public function queryForTheFirstAntifraudAnalysis()
+    {
+        $this->analysis = self::getPagarMe()
+            ->antifraudAnalyses()
+            ->get($this->transaction, $this->analyses[0]->getId());
+    }
+
+    /**
+     * @Then the same antifraud analysis must be returned
+     */
+    public function theSameAntifraudAnalysisMustBeReturned()
+    {
+        assertInstanceOf(
+            'PagarMe\Sdk\AntifraudAnalyses\AntifraudAnalysis',
+            $this->analysis
+        );
+        assertGreaterThanOrEqual($this->analyses[0], $this->analysis);
+    }
 }

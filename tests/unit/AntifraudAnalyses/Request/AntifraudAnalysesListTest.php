@@ -6,9 +6,9 @@ use PagarMe\Sdk\AntifraudAnalyses\Request\AntifraudAnalysesList;
 
 class AntifraudAnalysesListTest extends \PHPUnit_Framework_TestCase
 {
-    const PATH                  = 'transactions/112233/antifraud_analyses';
-    const METHOD                = 'GET';
-    const ANTIFRAUD_ANALYSES_ID = 112233;
+    const PATH           = 'transactions/112233/antifraud_analyses';
+    const METHOD         = 'GET';
+    const TRANSACTION_ID = 112233;
 
     /**
      * @test
@@ -21,7 +21,7 @@ class AntifraudAnalysesListTest extends \PHPUnit_Framework_TestCase
         ->getMock();
 
         $transactionMock->method('getId')
-            ->willReturn(self::ANTIFRAUD_ANALYSES_ID);
+            ->willReturn(self::TRANSACTION_ID);
 
         $antifraudAnalysesList = new AntifraudAnalysesList($transactionMock);
 
