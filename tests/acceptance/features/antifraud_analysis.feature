@@ -3,7 +3,7 @@ Feature: Antifraud Analysis
  Eu quero uma camada de abstração
  Para que eu detalhar análises de antifraude
 
-  Scenario: Query antifraud analysis
+  Scenario: Query antifraud analyses
     Given a previous created transaction
-    When I query transaction antifraud analysis
-    Then a array of Antifraud Analyses must be returned
+    When I query transaction antifraud analyses
+    Then a array of Antifraud Analysis must be returned

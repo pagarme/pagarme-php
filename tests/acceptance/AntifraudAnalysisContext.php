@@ -42,9 +42,9 @@ class AntifraudAnalysisContext extends BasicContext
     }
 
     /**
-     * @When I query transaction antifraud analysis
+     * @When I query transaction antifraud analyses
      */
-    public function iQueryTransactionAntifraudAnalysis()
+    public function iQueryTransactionAntifraudAnalyses()
     {
         $this->analyses = self::getPagarMe()
             ->antifraudAnalyses()
@@ -52,9 +52,9 @@ class AntifraudAnalysisContext extends BasicContext
     }
 
     /**
-     * @Then a array of Antifraud Analyses must be returned
+     * @Then a array of Antifraud Analysis must be returned
      */
-    public function aArrayOfAntifraudAnalysesMustBeReturned()
+    public function aArrayOfAntifraudAnalysisMustBeReturned()
     {
         assertContainsOnly(
             'PagarMe\Sdk\AntifraudAnalyses\AntifraudAnalysis',
