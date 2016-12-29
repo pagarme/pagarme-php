@@ -46,6 +46,7 @@ class AntifraudAnalysisContext extends BasicContext
      */
     public function iQueryTransactionAntifraudAnalyses()
     {
+        sleep(1);
         $this->analyses = self::getPagarMe()
             ->antifraudAnalyses()
             ->getList($this->transaction);
