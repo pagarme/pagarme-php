@@ -30,7 +30,7 @@ class TransactionHandler extends AbstractHandler
         $installments = 1,
         $capture = true,
         $postBackUrl = null,
-        $metaData = null,
+        $metadata = null,
         $extraAttributes = []
     ) {
         $transactionData = array_merge(
@@ -41,7 +41,7 @@ class TransactionHandler extends AbstractHandler
                 'installments' => $installments,
                 'capture'      => $capture,
                 'postbackUrl'  => $postBackUrl,
-                'metadata'     => $metaData
+                'metadata'     => $metadata
             ],
             $extraAttributes
         );
@@ -57,13 +57,15 @@ class TransactionHandler extends AbstractHandler
         $amount,
         Customer $customer,
         $postBackUrl,
+        $metadata = null,
         $extraAttributes = []
     ) {
         $transactionData = array_merge(
             [
                 'amount'      => $amount,
                 'customer'    => $customer,
-                'postBackUrl' => $postBackUrl
+                'postBackUrl' => $postBackUrl,
+                'metadata'    => $metadata
             ],
             $extraAttributes
         );
