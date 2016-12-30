@@ -288,4 +288,22 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
             $antifraudAnalysesHandlerA
         );
     }
+
+    /**
+     * @test
+    */
+    public function mustReturnSameSearchHandler()
+    {
+        $pagarMe = new PagarMe('apiKey');
+
+        $searchHandlerA = $pagarMe->search();
+        $searchHandlerB = $pagarMe->search();
+
+        $this->assertSame($searchHandlerA, $searchHandlerB);
+
+        $this->assertInstanceOf(
+            'PagarMe\Sdk\Search\SearchHandler',
+            $searchHandlerA
+        );
+    }
 }

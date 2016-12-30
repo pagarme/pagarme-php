@@ -10,7 +10,7 @@ trait CustomerDataProvider
 
     protected function getCustomerName()
     {
-        return 'Eduardo Nascimento';
+        return 'Joao Silva';
     }
 
     protected function getCustomerEmail()

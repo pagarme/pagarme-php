@@ -20,6 +20,7 @@ use PagarMe\Sdk\Zipcode\ZipcodeHandler;
 use PagarMe\Sdk\BalanceOperations\BalanceOperationsHandler;
 use PagarMe\Sdk\Postback\PostbackHandler;
 use PagarMe\Sdk\AntifraudAnalyses\AntifraudAnalysesHandler;
+use PagarMe\Sdk\Search\SearchHandler;
 
 class PagarMe
 {
@@ -112,6 +113,11 @@ class PagarMe
      * @param antifraudAnalysesHandler
      */
     private $antifraudAnalysesHandler;
+
+    /**
+     * @param SearchHandler
+     */
+    private $searchHandler;
 
     /**
      * @param $apiKey
@@ -336,5 +342,19 @@ class PagarMe
         }
 
         return $this->antifraudAnalysesHandler;
+    }
+
+    /**
+     * @return SearchHandler
+     */
+    public function search()
+    {
+        if (!$this->searchHandler instanceof SearchHandler) {
+            $this->searchHandler = new SearchHandler(
+                $this->client
+            );
+        }
+
+        return $this->searchHandler;
     }
 }
