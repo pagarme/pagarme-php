@@ -105,7 +105,6 @@ class SplitRuleContext extends BasicContext
      */
     public function theTransactionMustContainSplitRule()
     {
-        var_dump($this->transaction->getSplitRules());
         assertInstanceOf(
             'PagarMe\Sdk\SplitRule\SplitRuleCollection',
             $this->transaction->getSplitRules()
