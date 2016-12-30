@@ -47,7 +47,8 @@ class TransactionCreate implements Request
                     'ddd'    => (string) $phone['ddd'],
                     'number' => (string) $phone['number']
                 ]
-            ]
+            ],
+            'metadata' => $this->transaction->getMetadata()
         ];
 
         if ($this->transaction->getSplitRules() instanceof SplitRuleCollection) {

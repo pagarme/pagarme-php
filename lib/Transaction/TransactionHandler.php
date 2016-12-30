@@ -41,7 +41,7 @@ class TransactionHandler extends AbstractHandler
                 'installments' => $installments,
                 'capture'      => $capture,
                 'postbackUrl'  => $postBackUrl,
-                'metaData'     => $metaData
+                'metadata'     => $metaData
             ],
             $extraAttributes
         );

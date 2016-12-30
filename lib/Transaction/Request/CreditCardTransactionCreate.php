@@ -14,7 +14,6 @@ class CreditCardTransactionCreate extends TransactionCreate
     public function getPayload()
     {
         $basicData = parent::getPayload();
-
         $cardData = [
             'installments' => $this->transaction->getInstallments(),
             'capture'      => $this->transaction->isCapturable()
