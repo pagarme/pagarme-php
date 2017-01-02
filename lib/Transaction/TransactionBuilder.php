@@ -22,8 +22,8 @@ trait TransactionBuilder
         );
 
         if ($transactionData->payment_method == BoletoTransaction::PAYMENT_METHOD) {
-            $transactionData->boletoExpirationDate = new \DateTime(
-                $transactionData->boletoExpirationDate
+            $transactionData->boleto_expiration_date = new \DateTime(
+                $transactionData->boleto_expiration_date
             );
 
             return new BoletoTransaction(get_object_vars($transactionData));
