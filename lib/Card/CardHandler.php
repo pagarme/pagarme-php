@@ -50,8 +50,8 @@ class CardHandler extends AbstractHandler
      */
     private function buildCard($cardData)
     {
-        $cardData->dateCreated = new \DateTime($cardData->dateCreated);
-        $cardData->dateUpdated = new \DateTime($cardData->dateUpdated);
+        $cardData->date_created = new \DateTime($cardData->date_created);
+        $cardData->date_updated = new \DateTime($cardData->date_updated);
 
         return new Card($cardData);
     }
