@@ -47,8 +47,8 @@ class Recipient
     protected $anticipatableVolumePercentage;
 
     /**
-     * @var string $dateCreated
-     */
+     * @var \DateTime
+     **/
     protected $dateCreated;
 
     /**
@@ -196,16 +196,16 @@ class Recipient
     }
 
     /**
-     * @return string
-     */
+     * @return \DateTime
+     **/
     public function getDateCreated()
     {
         return $this->dateCreated;
     }
 
     /**
-     * @return string
-     */
+     * @return \DateTime
+     **/
     public function getDateUpdated()
     {
         return $this->dateUpdated;

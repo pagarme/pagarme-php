@@ -22,7 +22,7 @@ class Customer
     private $bornAt;
 
     /**
-     * @var string
+     * @var \DateTime
      */
     private $dateCreated;
 

@@ -183,8 +183,8 @@ class TransferContext extends BasicContext
     public function mustBeTheSameTransfer()
     {
         assertEquals(
-            $this->transfer,
-            $this->queryTransfer
+            $this->transfer->getId(),
+            $this->queryTransfer->getId()
         );
     }
 

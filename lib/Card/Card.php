@@ -12,12 +12,12 @@ class Card
     private $id;
 
     /**
-     * @var string
+     * @var \DateTime
      */
     private $dateCreated;
 
     /**
-     * @var string
+     * @var \DateTime
      */
     private $dateUpdated;
 
@@ -94,7 +94,7 @@ class Card
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getDateCreated()
     {
@@ -102,7 +102,7 @@ class Card
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getDateUpdated()
     {

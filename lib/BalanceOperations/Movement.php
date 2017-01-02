@@ -7,42 +7,42 @@ class Movement
     use \PagarMe\Sdk\Fillable;
 
     /**
-     * @var id int
+     * @var int
      */
     protected $id;
 
     /**
-     * @var status string
+     * @var string
      */
     protected $status;
 
     /**
-     * @var amount int
+     * @var int
      */
     protected $amount;
 
     /**
-     * @var fee int
+     * @var int
      */
     protected $fee;
 
     /**
-     * @var installment int
+     * @var int
      */
     protected $installment;
 
     /**
-     * @var transactionId int
+     * @var int
      */
     protected $transactionId;
 
     /**
-     * @var paymentDate string
+     * @var \DateTime
      */
     protected $paymentDate;
 
     /**
-     * @var dateCreated string
+     * @var \DateTime
      */
     protected $dateCreated;
 
@@ -54,7 +54,7 @@ class Movement
     /**
      * @return int
      */
-    public function getID()
+    public function getId()
     {
         return $this->id;
     }
@@ -94,13 +94,13 @@ class Movement
     /**
      * @return int
      */
-    public function getTransactionID()
+    public function getTransactionId()
     {
-        return $this->transactionID;
+        return $this->transactionId;
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getPaymentDate()
     {
@@ -108,7 +108,7 @@ class Movement
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getDateCreated()
     {

@@ -68,6 +68,6 @@ class CardContext extends BasicContext
      */
     public function iShouldHaveTheSameCard()
     {
-        assertEquals($this->createdCard, $this->queryCard);
+        assertEquals($this->createdCard->getId(), $this->queryCard->getId());
     }
 }
