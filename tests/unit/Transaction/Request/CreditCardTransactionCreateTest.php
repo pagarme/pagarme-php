@@ -41,7 +41,7 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 'card_id'        => self::CARD_ID,
                 'installments'   => $installments,
                 'payment_method' => 'credit_card',
-                'capture'        => is_null($capture) ? true : $capture,
+                'capture'        => $capture,
                 'postback_url'   => $postbackUrl,
                 'customer' => [
                     'name'            => 'Eduardo Nascimento',
