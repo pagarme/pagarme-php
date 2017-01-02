@@ -24,7 +24,9 @@ class CardHandler extends AbstractHandler
             $cardExpirationDate
         );
 
-        return new Card($this->client->send($request));
+        $response = $this->client->send($request);
+
+        return $this->buildCard($response);
     }
 
     /**
@@ -37,6 +39,20 @@ class CardHandler extends AbstractHandler
             $cardId
         );
 
-        return new Card($this->client->send($request));
+        $response = $this->client->send($request);
+
+        return $this->buildCard($response);
+    }
+
+    /**
+     * @param $cardData
+     * @return Card
+     */
+    private function buildCard($cardData)
+    {
+        $cardData->dateCreated = new \DateTime($cardData->dateCreated);
+        $cardData->dateUpdated = new \DateTime($cardData->dateUpdated);
+
+        return new Card($cardData);
     }
 }

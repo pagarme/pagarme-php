@@ -52,7 +52,7 @@ class BankAccount
     private $legalName;
 
     /**
-     * @var string
+     * @var \DateTime
      */
     private $dateCreated;
 
@@ -137,7 +137,7 @@ class BankAccount
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getDateCreated()
     {

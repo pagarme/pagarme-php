@@ -45,11 +45,7 @@ class RecipientHandler extends AbstractHandler
 
         $result = $this->client->send($request);
 
-        $result->bank_account = new BankAccount(
-            get_object_vars($result->bank_account)
-        );
-
-        return new Recipient($result);
+        return $this->buildRecipient($result);
     }
 
     /**
@@ -64,14 +60,8 @@ class RecipientHandler extends AbstractHandler
         $result = $this->client->send($request);
 
         $recipients = [];
-        foreach ($result as $recipient) {
-            $recipient->bank_account = new BankAccount(
-                get_object_vars($recipient->bank_account)
-            );
-
-            $recipients[] = new Recipient(
-                get_object_vars($recipient)
-            );
+        foreach ($result as $recipientData) {
+            $recipients[] = $this->buildRecipient($recipientData);
         }
 
         return $recipients;
@@ -88,13 +78,7 @@ class RecipientHandler extends AbstractHandler
 
         $result = $this->client->send($request);
 
-        $result->bank_account = new BankAccount(
-            $result->bank_account
-        );
-
-        return new Recipient(
-            $result
-        );
+        return $this->buildRecipient($result);
     }
 
     /**
@@ -107,13 +91,7 @@ class RecipientHandler extends AbstractHandler
 
         $result = $this->client->send($request);
 
-        $result->bank_account = new BankAccount(
-            $result->bank_account
-        );
-
-        return new Recipient(
-            $result
-        );
+        return $this->buildRecipient($result);
     }
 
     /**
@@ -167,5 +145,26 @@ class RecipientHandler extends AbstractHandler
         }
 
         return $operations;
+    }
+
+    /**
+     * @param array $recipientData
+     * @return Recipient
+     */
+    private function buildRecipient($recipientData)
+    {
+        $recipientData->date_created = new \DateTime(
+            $recipientData->date_created
+        );
+
+        $recipientData->date_updated = new \DateTime(
+            $recipientData->date_updated
+        );
+
+        $recipientData->bank_account = new BankAccount(
+            get_object_vars($recipientData->bank_account)
+        );
+
+        return new Recipient($recipientData);
     }
 }
