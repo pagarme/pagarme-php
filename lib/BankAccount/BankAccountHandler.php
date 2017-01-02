@@ -39,7 +39,7 @@ class BankAccountHandler extends AbstractHandler
 
         $result = $this->client->send($request);
 
-        return new BankAccount(get_object_vars($result));
+        return $this->buildBankAccount($result);
     }
 
     /**
@@ -54,7 +54,7 @@ class BankAccountHandler extends AbstractHandler
 
         $bankAccounts = [];
         foreach ($result as $bankData) {
-            $bankAccounts[] = new BankAccount(get_object_vars($bankData));
+            $bankAccounts[] = $this->buildBankAccount($bankData);
         }
 
         return $bankAccounts;
@@ -69,6 +69,19 @@ class BankAccountHandler extends AbstractHandler
 
         $result = $this->client->send($request);
 
-        return new BankAccount(get_object_vars($result));
+        return $this->buildBankAccount($result);
+    }
+
+    /**
+     * @param $bankAccountData
+     * @return BankAccount
+     */
+    public function buildBankAccount($bankAccountData)
+    {
+        $bankAccountData->date_created = new \DateTime(
+            $bankAccountData->date_created
+        );
+
+        return new BankAccount(get_object_vars($bankAccountData));
     }
 }

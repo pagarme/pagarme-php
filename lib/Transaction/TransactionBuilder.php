@@ -14,6 +14,13 @@ trait TransactionBuilder
             );
         }
 
+        $transactionData->dateCreated = new \DateTime(
+            $transactionData->dateCreated
+        );
+        $transactionData->dateUpdated = new \DateTime(
+            $transactionData->dateUpdated
+        );
+
         if ($transactionData->payment_method == BoletoTransaction::PAYMENT_METHOD) {
             return new BoletoTransaction(get_object_vars($transactionData));
         }

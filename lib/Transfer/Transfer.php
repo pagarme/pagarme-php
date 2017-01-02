@@ -32,7 +32,7 @@ class Transfer
     private $fee;
 
     /**
-     * @var string
+     * @var \DateTime
      */
     private $fundingEstimatedDate;
 
@@ -42,7 +42,7 @@ class Transfer
     private $bankAccount;
 
     /**
-     * @var string
+     * @var \DateTime
      */
     private $dateCreated;
 
@@ -67,7 +67,7 @@ class Transfer
     private $targetId;
 
     /**
-     * @var string
+     * @var \DateTime
      */
     private $fundingDate;
 
@@ -121,7 +121,7 @@ class Transfer
     }
 
     /**
-     * @return string $fundingEstimatedDate
+     * @return \DateTime
      */
     public function getFundingEstimatedDate()
     {
@@ -137,7 +137,7 @@ class Transfer
     }
 
     /**
-     * @return string $dateCreated
+     * @return \DateTime
      */
     public function getDateCreated()
     {
@@ -177,7 +177,7 @@ class Transfer
     }
 
     /**
-    * @return string
+    * @return \DateTime
     */
     public function getFundingDate()
     {

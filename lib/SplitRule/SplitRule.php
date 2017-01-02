@@ -10,37 +10,37 @@ class SplitRule
     use \PagarMe\Sdk\Fillable;
 
     /**
-     * @var int $id
+     * @var int
      **/
     private $id;
 
     /**
-     * @var Recipient recipient
+     * @var Recipient
      **/
     private $recipient;
 
     /**
-     * @var bool chargeProcessingFee
+     * @var bool
      **/
     private $chargeProcessingFee;
     /**
-     * @var bool liable
+     * @var bool
      **/
     private $liable;
     /**
-     * @var int percentage
+     * @var int
      **/
     private $percentage;
     /**
-     * @var int amount
+     * @var int
      **/
     private $amount;
     /**
-     * @var string dateCreated
+     * @var \DateTime
      **/
     private $dateCreated;
     /**
-     * @var string dateUpdated
+     * @var \DateTime
      **/
     private $dateUpdated;
 

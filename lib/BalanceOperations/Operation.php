@@ -7,47 +7,47 @@ class Operation
     use \PagarMe\Sdk\Fillable;
 
     /**
-     * @var id int
+     * @var int
      */
     protected $id;
 
     /**
-     * @var status string
+     * @var string
      */
     protected $status;
 
     /**
-     * @var balanceAmount int
+     * @var int
      */
     protected $balanceAmount;
 
     /**
-     * @var balanceOldAmount int
+     * @var int
      */
     protected $balanceOldAmount;
 
     /**
-     * @var movementType string
+     * @var string
      */
     protected $movementType;
 
     /**
-     * @var amount int
+     * @var int
      */
     protected $amount;
 
     /**
-     * @var fee int
+     * @var int
      */
     protected $fee;
 
     /**
-     * @var dateCreated string
+     * @var \DateTime
      */
     protected $dateCreated;
 
     /**
-     * @var movement Movement
+     * @var Movement
      */
     protected $movement;
 
@@ -113,7 +113,7 @@ class Operation
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getDateCreated()
     {

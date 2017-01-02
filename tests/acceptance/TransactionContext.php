@@ -162,7 +162,7 @@ class TransactionContext extends BasicContext
             ->transaction()
             ->get($this->transaction->getId());
 
-        assertEquals($this->transaction, $transaction);
+        assertEquals($this->transaction->getId(), $transaction->getId());
     }
 
     /**
