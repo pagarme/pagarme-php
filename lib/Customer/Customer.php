@@ -7,52 +7,52 @@ class Customer
     use \PagarMe\Sdk\Fillable;
 
     /**
-     * @var int | Identificador do cliente
+     * @var int
      */
     private $id;
 
     /**
-     * @var PagarMe\Sdk\Customer\Address | Endereço do cliente
+     * @var PagarMe\Sdk\Customer\Address
      */
     private $address;
 
     /**
-     * @var string | Data de nascimento
+     * @var string
      */
     private $bornAt;
 
     /**
-     * @var string | Data de criação do registro
+     * @var \DateTime
      */
     private $dateCreated;
 
     /**
-     * @var int | Numero do documento do cliente
+     * @var int
      */
     private $documentNumber;
 
     /**
-     * @var string | Tipo de documento do cliente
+     * @var string
      */
     private $documentType;
 
     /**
-     * @var string | E-mail do cliente
+     * @var string
      */
     private $email;
 
     /**
-     * @var string | Gênero
+     * @var string
      */
     private $gender;
 
     /**
-     * @var string | Nome do cliente
+     * @var string
      */
     private $name;
 
     /**
-     * @var PagarMe\Sdk\Customer\PagarMe\Sdk\Customer\Phone | Telefone do cliente
+     * @var PagarMe\Sdk\Customer\Phone
      */
     private $phone;
 

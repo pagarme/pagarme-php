@@ -43,18 +43,18 @@ class CustomerHandler extends AbstractHandler
 
         $response = $this->client->send($request);
 
-        return new Customer($this->getCustomerInfo($response));
+        return $this->buildCustomer($response);
     }
 
     /**
-     * @param int $customerID
+     * @param int $customerId
      */
     public function get($customerId)
     {
         $request = new CustomerGet($customerId);
         $response = $this->client->send($request);
 
-        return new Customer($this->getCustomerInfo($response));
+        return $this->buildCustomer($response);
     }
 
     /**
@@ -68,28 +68,30 @@ class CustomerHandler extends AbstractHandler
 
         $customers = [];
         foreach ($response as $customerResponse) {
-            $customers[] = new Customer($this->getCustomerInfo($customerResponse));
+            $customers[] = $this->buildCustomer($customerResponse);
         }
 
         return $customers;
     }
 
     /**
-     * @param array $addressData
-     * @return array
+     * @param array $customerData
+     * @return Customer
      */
-    private function getCustomerInfo($response)
+    private function buildCustomer($customerData)
     {
-        $customerInfo = get_object_vars($response);
-
-        $customerInfo['address'] = $this->buildAddress(
-            $customerInfo['addresses'][0]
+        $customerData->address = $this->buildAddress(
+            $customerData->addresses[0]
         );
 
-        $customerInfo['phone'] = $this->buildPhone(
-            $customerInfo['phones'][0]
+        $customerData->phone = $this->buildPhone(
+            $customerData->phones[0]
         );
 
-        return $customerInfo;
+        $customerData->date_created = new \DateTime(
+            $customerData->date_created
+        );
+
+        return new Customer(get_object_vars($customerData));
     }
 }

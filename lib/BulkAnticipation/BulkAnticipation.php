@@ -22,12 +22,12 @@ class BulkAnticipation
     private $anticipationFee;
 
     /**
-     * @var DateTime
+     * @var \DateTime
      */
     private $dateCreated;
 
     /**
-     * @var DateTime
+     * @var \DateTime
      */
     private $dateUpdated;
 
@@ -37,7 +37,7 @@ class BulkAnticipation
     private $fee;
 
     /**
-     * @var DateTime
+     * @var \DateTime
      */
     private $paymentDate;
 

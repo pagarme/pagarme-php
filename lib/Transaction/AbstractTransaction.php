@@ -27,8 +27,16 @@ abstract class AbstractTransaction
     protected $softDescriptor;
     protected $tid;
     protected $nsu;
+
+    /**
+     * @return \DateTime
+     */
     protected $dateCreated;
+    /**
+     * @return \DateTime
+     */
     protected $dateUpdated;
+
     protected $amount;
     protected $cost;
     protected $postbackUrl;
@@ -132,6 +140,7 @@ abstract class AbstractTransaction
 
     /**
     * @codeCoverageIgnore
+    * @return \DateTime
     */
     public function getDateCreated()
     {
@@ -140,6 +149,7 @@ abstract class AbstractTransaction
 
     /**
     * @codeCoverageIgnore
+    * @return \DateTime
     */
     public function getDateUpdated()
     {

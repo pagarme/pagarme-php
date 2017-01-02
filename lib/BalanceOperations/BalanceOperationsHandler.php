@@ -24,9 +24,8 @@ class BalanceOperationsHandler extends AbstractHandler
         $response = $this->client->send($request);
         $operations = [];
 
-        foreach ($response as $operation) {
-            $operation->movement = new Movement($operation->movement_object);
-            $operations[]= new Operation(get_object_vars($operation));
+        foreach ($response as $operationData) {
+            $operations[] = $this->buildOperation($operationData);
         }
 
         return $operations;
@@ -42,7 +41,37 @@ class BalanceOperationsHandler extends AbstractHandler
 
         $response = $this->client->send($request);
 
-        $response->movement = new Movement($response->movement_object);
-        return new Operation(get_object_vars($response));
+        return $this->buildOperation($response);
+    }
+
+    /**
+     * @param array $operationData
+     * @return Operation
+     */
+    private function buildOperation($operationData)
+    {
+        $operationData->movement = $this->buildMovement(
+            $operationData->movement_object
+        );
+        $operationData->date_created = new \DateTime(
+            $operationData->date_created
+        );
+        return new Operation(get_object_vars($operationData));
+    }
+
+    /**
+     * @param array $movementData
+     * @return Movement
+     */
+    private function buildMovement($movementData)
+    {
+        $movementData->payment_date = new \DateTime(
+            $movementData->payment_date
+        );
+        $movementData->date_created = new \DateTime(
+            $movementData->date_created
+        );
+
+        return new Movement($movementData);
     }
 }

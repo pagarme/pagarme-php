@@ -178,7 +178,7 @@ class TransactionHandlerTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
         $clientMock->method('send')
-            ->willReturn(json_decode('{"object":"transaction","payment_method":"other"}'));
+            ->willReturn(json_decode('{"object":"transaction","payment_method":"other", "date_created":"2016-09-29T15:36:08.020Z","date_updated":"2016-09-29T17:48:34.600Z"}'));
 
         $handler = new TransactionHandler($clientMock);
 
