@@ -41,8 +41,7 @@ class BalanceOperationsHandler extends AbstractHandler
 
         $response = $this->client->send($request);
 
-        $response->movement = new Movement($response->movement_object);
-        return new Operation(get_object_vars($response));
+        return $this->buildOperation($response);
     }
 
     /**
