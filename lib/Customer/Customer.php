@@ -52,7 +52,7 @@ class Customer
     private $name;
 
     /**
-     * @var PagarMe\Sdk\Customer\PagarMe\Sdk\Customer\Phone
+     * @var PagarMe\Sdk\Customer\Phone
      */
     private $phone;
 
