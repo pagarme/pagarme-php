@@ -20,11 +20,17 @@ class SubscriptionTransactionsGet implements Request
         $this->subscription = $subscription;
     }
 
+    /**
+     * @return array
+     */
     public function getPayload()
     {
         return [];
     }
 
+    /**
+     * @return string
+     */
     public function getPath()
     {
         return sprintf(
@@ -33,6 +39,9 @@ class SubscriptionTransactionsGet implements Request
         );
     }
 
+    /**
+     * @return string
+     */
     public function getMethod()
     {
         return 'GET';

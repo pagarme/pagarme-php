@@ -8,6 +8,10 @@ use PagarMe\Sdk\Recipient\Recipient;
 
 trait SplitRuleBuilder
 {
+    /**
+     * @param array $splitRuleData
+     * @return PagarMe\Sdk\SplitRule\SplitRuleCollection
+     */
     private function buildSplitRules($splitRuleData)
     {
         $rules = new SplitRuleCollection();

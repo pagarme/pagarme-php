@@ -18,14 +18,14 @@ use PagarMe\Sdk\BalanceOperations\Movement;
 class RecipientHandler extends AbstractHandler
 {
     /**
-    * @param BankAccount $bankAccount
-    * @param string $transferInterval
-    * @param int $transferDay
-    * @param bool $transferEnabled
-    * @param bool $automaticAnticipationEnabled
-    * @param int $anticipatableVolumePercentage
-    * @return Recipient
-    */
+     * @param BankAccount $bankAccount
+     * @param string $transferInterval
+     * @param int $transferDay
+     * @param bool $transferEnabled
+     * @param bool $automaticAnticipationEnabled
+     * @param int $anticipatableVolumePercentage
+     * @return Recipient
+     */
     public function create(
         BankAccount $bankAccount,
         $transferInterval = null,

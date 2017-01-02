@@ -51,6 +51,9 @@ abstract class SubscriptionCreate implements Request
         $this->metadata    = $metadata;
     }
 
+    /**
+     * @return array
+     */
     public function getPayload()
     {
         return [
@@ -69,11 +72,17 @@ abstract class SubscriptionCreate implements Request
         ];
     }
 
+    /**
+     * @return string
+     */
     public function getPath()
     {
         return 'subscriptions';
     }
 
+    /**
+     * @return string
+     */
     public function getMethod()
     {
         return 'POST';

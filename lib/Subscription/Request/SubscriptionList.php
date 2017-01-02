@@ -26,6 +26,9 @@ class SubscriptionList implements Request
         $this->count = $count;
     }
 
+    /**
+     * @return array
+     */
     public function getPayload()
     {
         return [
@@ -34,11 +37,17 @@ class SubscriptionList implements Request
         ];
     }
 
+    /**
+     * @return string
+     */
     public function getPath()
     {
         return 'subscriptions';
     }
 
+    /**
+     * @return string
+     */
     public function getMethod()
     {
         return 'GET';

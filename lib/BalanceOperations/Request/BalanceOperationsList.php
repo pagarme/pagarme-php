@@ -7,17 +7,36 @@ use PagarMe\Sdk\Request;
 class BalanceOperationsList implements Request
 {
 
+    /**
+     * @var int
+     */
     private $page;
+
+    /**
+     * @var int
+     */
     private $count;
+
+    /**
+     * @var string
+     */
     private $status;
 
+    /**
+     * @param int $page
+     * @param int $count
+     * @param int $status
+     */
     public function __construct($page, $count, $status)
     {
-        $this->page    = $page;
-        $this->count   = $count;
+        $this->page   = $page;
+        $this->count  = $count;
         $this->status = $status;
     }
 
+    /**
+     * @return array
+     */
     public function getPayload()
     {
         return [
@@ -27,11 +46,17 @@ class BalanceOperationsList implements Request
         ];
     }
 
+    /**
+     * @return string
+     */
     public function getPath()
     {
         return 'balance/operations';
     }
 
+    /**
+     * @return string
+     */
     public function getMethod()
     {
         return self::HTTP_GET;

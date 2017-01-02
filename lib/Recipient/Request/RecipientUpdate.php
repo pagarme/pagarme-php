@@ -7,14 +7,22 @@ use PagarMe\Sdk\Recipient\Recipient;
 
 class RecipientUpdate implements Request
 {
-
+    /**
+     * @var Recipient
+     */
     private $recipient;
 
+    /**
+     * @param Recipient $recipient
+     */
     public function __construct(Recipient $recipient)
     {
         $this->recipient  = $recipient;
     }
 
+    /**
+     * @return array
+     */
     public function getPayload()
     {
         $recipient   = $this->recipient;
@@ -38,6 +46,9 @@ class RecipientUpdate implements Request
         ];
     }
 
+    /**
+     * @return string
+     */
     public function getPath()
     {
         return sprintf(
@@ -46,6 +57,9 @@ class RecipientUpdate implements Request
         );
     }
 
+    /**
+     * @return string
+     */
     public function getMethod()
     {
         return 'PUT';

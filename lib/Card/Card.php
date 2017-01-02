@@ -7,57 +7,57 @@ class Card
     use \PagarMe\Sdk\Fillable;
 
     /**
-     * @var int | Identificador do cartão
+     * @var int
      */
     private $id;
 
     /**
-     * @var string | Data de criação do objeto card
+     * @var string
      */
     private $dateCreated;
 
     /**
-     * @var string | Data de atualização do objeto card
+     * @var string
      */
     private $dateUpdated;
 
     /**
-     * @var string | Marca da operadora do cartão
+     * @var string
      */
     private $brand;
 
     /**
-     * @var string | Nome do portador do cartão
+     * @var string
      */
     private $holderName;
 
     /**
-     * @var int | Primeiros dígitos do cartão (6 dígitos)
+     * @var int
      */
     private $firstDigits;
 
     /**
-     * @var int | Últimos dígitos do cartão (4 dígitos)
+     * @var int
      */
     private $lastDigits;
 
     /**
-     * @var string | Hash que permite comparar dois cartões através de seus fingerprints para saber se são o mesmo
+     * @var string
      */
     private $fingerprint;
 
     /**
-     * @var object | Objeto com dados do comprador
+     * @var object
      */
     private $customer;
 
     /**
-     * @var boolean | Propriedade para verificar a validade do cartão
+     * @var boolean
      */
     private $valid;
 
     /**
-     * @var string | Hash dos dados do cartão
+     * @var string
      */
     private $hash;
 
@@ -70,7 +70,6 @@ class Card
     }
 
     /**
-     * @codeCoverageIgnore
      * @return int
      */
     public function getId()
@@ -79,7 +78,6 @@ class Card
     }
 
     /**
-     * @codeCoverageIgnore
      * @return int
      */
     public function getFirstDigits()
@@ -88,7 +86,6 @@ class Card
     }
 
     /**
-     * @codeCoverageIgnore
      * @return int
      */
     public function getLastDigits()

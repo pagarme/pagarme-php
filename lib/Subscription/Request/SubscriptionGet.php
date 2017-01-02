@@ -19,16 +19,25 @@ class SubscriptionGet implements Request
         $this->subscriptionId = $subscriptionId;
     }
 
+    /**
+     * @return array
+     */
     public function getPayload()
     {
         return [];
     }
 
+    /**
+     * @return string
+     */
     public function getPath()
     {
         return sprintf('subscriptions/%d', $this->subscriptionId);
     }
 
+    /**
+     * @return string
+     */
     public function getMethod()
     {
         return 'GET';
