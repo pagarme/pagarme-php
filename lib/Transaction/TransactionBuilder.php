@@ -14,11 +14,11 @@ trait TransactionBuilder
             );
         }
 
-        $transactionData->dateCreated = new \DateTime(
-            $transactionData->dateCreated
+        $transactionData->date_created = new \DateTime(
+            $transactionData->date_created
         );
-        $transactionData->dateUpdated = new \DateTime(
-            $transactionData->dateUpdated
+        $transactionData->date_updated = new \DateTime(
+            $transactionData->date_updated
         );
 
         if ($transactionData->payment_method == BoletoTransaction::PAYMENT_METHOD) {
