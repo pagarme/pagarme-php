@@ -6,6 +6,9 @@ class BoletoTransaction extends AbstractTransaction
 {
     const PAYMENT_METHOD = 'boleto';
 
+    /**
+     * @var \DateTime
+     */
     protected $boletoExpirationDate;
 
     public function __construct($transactionData)
@@ -14,6 +17,9 @@ class BoletoTransaction extends AbstractTransaction
         $this->paymentMethod = self::PAYMENT_METHOD;
     }
 
+    /**
+     * @return \DateTime
+     */
     public function getBoletoExpirationDate()
     {
         return $this->boletoExpirationDate;
