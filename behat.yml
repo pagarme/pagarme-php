@@ -80,3 +80,8 @@ default:
         - %paths.base%/tests/acceptance/features/antifraud_analysis.feature
       contexts:
         - PagarMe\Acceptance\AntifraudAnalysisContext
+    search:
+      paths:
+        - %paths.base%/tests/acceptance/features/search.feature
+      contexts:
+        - PagarMe\Acceptance\SearchContext

@@ -19,10 +19,10 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
     public function installmentsProvider()
     {
         return [
-            [1,null,null],
+            [1,true,null],
             [3,true, 'example.com'],
             [12,false, 'example.com'],
-            [rand(1, 12), null, null]
+            [rand(1, 12), false, null]
         ];
     }
 
@@ -60,7 +60,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                         'ddd'    => 15,
                         'number' => 987523421
                     ]
-                ]
+                ],
+                'metadata' => null
             ],
             $transactionCreate->getPayload()
         );
@@ -141,7 +142,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                         'liable'                => false,
                         'charge_processing_fee' => false
                     ]
-                ]
+                ],
+                'metadata' => null
             ],
             $transactionCreate->getPayload()
         );
@@ -222,7 +224,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                         'liable'                => false,
                         'charge_processing_fee' => false
                     ]
-                ]
+                ],
+                'metadata' => null
             ],
             $transactionCreate->getPayload()
         );
@@ -280,7 +283,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                         'ddd'    => 15,
                         'number' => 987523421
                     ]
-                ]
+                ],
+                'metadata' => null
             ],
             $transactionCreate->getPayload()
         );

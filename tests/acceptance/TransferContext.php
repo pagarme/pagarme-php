@@ -75,6 +75,7 @@ class TransferContext extends BasicContext
                 100000,
                 $customer,
                 'https://httpstatusdogs.com/200-ok',
+                null,
                 ['split_rules' => $splitRules]
             );
 

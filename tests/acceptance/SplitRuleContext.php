@@ -83,6 +83,7 @@ class SplitRuleContext extends BasicContext
                 5000,
                 $this->customer,
                 null,
+                null,
                 ['split_rules' => $this->splitRules]
             );
     }
