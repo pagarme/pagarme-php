@@ -85,14 +85,14 @@ class TransferHandler extends AbstractHandler
             $transferData->bank_account
         );
 
-        $transferData->fundingEstimatedDate = new \DateTime(
-            $transferData->fundingEstimatedDate
+        $transferData->funding_estimated_date = new \DateTime(
+            $transferData->funding_estimated_date
         );
-        $transferData->dateCreated = new \DateTime(
-            $transferData->dateCreated
+        $transferData->date_created = new \DateTime(
+            $transferData->date_created
         );
-        $transferData->fundingDate = new \DateTime(
-            $transferData->fundingDate
+        $transferData->funding_date = new \DateTime(
+            $transferData->funding_date
         );
 
         return new Transfer(get_object_vars($transferData));
