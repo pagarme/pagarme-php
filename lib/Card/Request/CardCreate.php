@@ -12,7 +12,7 @@ class CardCreate implements Request
     private $cardNumber;
 
     /**
-     * @var int
+     * @var string
      */
     private $holderName;
 
