@@ -9,7 +9,7 @@ class PlanUpdate implements Request
 {
     /**
     * @var Plan $plan
-    **/
+    */
     private $plan;
 
     /**

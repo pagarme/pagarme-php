@@ -9,42 +9,42 @@ class PlanCreate implements Request
 
     /**
     * @var int
-    **/
+    */
     private $amount;
 
     /**
     * @var int
-    **/
+    */
     private $days;
 
     /**
     * @var string
-    **/
+    */
     private $name;
 
     /**
     * @var int
-    **/
+    */
     private $trialDays;
 
     /**
     * @var array
-    **/
+    */
     private $paymentsMethods;
 
     /**
     * @var string
-    **/
+    */
     private $color;
 
     /**
     * @var int
-    **/
+    */
     private $charges;
 
     /**
     * @var int
-    **/
+    */
     private $installments;
 
 

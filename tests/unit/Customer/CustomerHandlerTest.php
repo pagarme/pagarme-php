@@ -13,7 +13,7 @@ class CustomerHandlerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+    */
     public function mustReturnArrayOfCustomers()
     {
         $clientMock =  $this->getMockBuilder('PagarMe\Sdk\Client')
@@ -32,7 +32,7 @@ class CustomerHandlerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+    */
     public function mustReturnCustomers()
     {
         $clientMock =  $this->getMockBuilder('PagarMe\Sdk\Client')
@@ -50,7 +50,7 @@ class CustomerHandlerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    **/
+    */
     public function mustReturnCustomerWithId()
     {
         $clientMock =  $this->getMockBuilder('PagarMe\Sdk\Client')

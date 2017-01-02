@@ -10,7 +10,7 @@ class CardHandlerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     **/
+     */
     public function mustReturnCreatedCard()
     {
         $clientMock = $this->getMockBuilder('PagarMe\Sdk\Client')
@@ -32,7 +32,7 @@ class CardHandlerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     **/
+     */
     public function mustReturnSpecificCard()
     {
         $clientMock = $this->getMockBuilder('PagarMe\Sdk\Client')

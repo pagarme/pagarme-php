@@ -9,7 +9,7 @@ class PlanGet implements Request
 
     /**
     * @var int
-    **/
+    */
     private $id;
 
     /**

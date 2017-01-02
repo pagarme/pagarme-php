@@ -10,27 +10,27 @@ abstract class SubscriptionCreate implements Request
 {
     /**
      * @var Plan $plan
-     **/
+     */
     protected $plan;
 
     /**
      * @var Customer $customer
-     **/
+     */
     protected $customer;
 
     /**
      * @var string $postbackUrl
-     **/
+     */
     protected $postbackUrl;
 
     /**
      * @var array $metadata
-     **/
+     */
     protected $metadata;
 
     /**
      * @var string $paymentMethod
-     **/
+     */
     protected $paymentMethod;
 
     /**
@@ -38,7 +38,7 @@ abstract class SubscriptionCreate implements Request
      * @var Customer $customer
      * @var string $postbackUrl
      * @var array $metadata
-    **/
+    */
     public function __construct(
         Plan $plan,
         Customer $customer,

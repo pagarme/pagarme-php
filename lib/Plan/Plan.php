@@ -8,47 +8,47 @@ class Plan
 
     /**
     * @var int
-    **/
+    */
     private $amount;
 
     /**
     * @var int
-    **/
+    */
     private $id;
 
     /**
     * @var int
-    **/
+    */
     private $days;
 
     /**
     * @var string
-    **/
+    */
     private $name;
 
     /**
     * @var int
-    **/
+    */
     private $trialDays;
 
     /**
     * @var array
-    **/
+    */
     private $paymentMethods;
 
     /**
     * @var string
-    **/
+    */
     private $color;
 
     /**
     * @var int
-    **/
+    */
     private $charges;
 
     /**
     * @var int
-    **/
+    */
     private $installments;
 
 
@@ -62,7 +62,7 @@ class Plan
 
     /**
     * @return int
-    **/
+    */
     public function getId()
     {
         return $this->id;
@@ -70,7 +70,7 @@ class Plan
 
     /**
     * @return int
-    **/
+    */
     public function getAmount()
     {
         return $this->amount;
@@ -78,7 +78,7 @@ class Plan
 
     /**
     * @return int
-    **/
+    */
     public function getDays()
     {
         return $this->days;
@@ -86,7 +86,7 @@ class Plan
 
     /**
     * @return string
-    **/
+    */
     public function getName()
     {
         return $this->name;
@@ -94,7 +94,7 @@ class Plan
 
     /**
     * @param string $name
-    **/
+    */
     public function setName($name)
     {
         $this->name = $name;
@@ -103,7 +103,7 @@ class Plan
 
     /**
     * @return int
-    **/
+    */
     public function getTrialDays()
     {
         return $this->trialDays;
@@ -111,7 +111,7 @@ class Plan
 
     /**
     * @param int $trialDays
-    **/
+    */
     public function setTrialDays($trialDays)
     {
         $this->trialDays = $trialDays;
@@ -120,7 +120,7 @@ class Plan
 
     /**
     * @return array
-    **/
+    */
     public function getPaymentMethods()
     {
         return $this->paymentMethods;
@@ -128,7 +128,7 @@ class Plan
 
     /**
     * @return string
-    **/
+    */
     public function getColor()
     {
         return $this->color;
@@ -136,7 +136,7 @@ class Plan
 
     /**
     * @param string $color
-    **/
+    */
     public function setColor($color)
     {
         $this->color = $color;
@@ -145,7 +145,7 @@ class Plan
 
     /**
     * @return int
-    **/
+    */
     public function getCharges()
     {
         return $this->charges;
@@ -153,7 +153,7 @@ class Plan
 
     /**
     * @param int $charges
-    **/
+    */
     public function setCharges($charges)
     {
         $this->charges = $charges;
@@ -162,7 +162,7 @@ class Plan
 
     /**
     * @return int
-    **/
+    */
     public function getInstallments()
     {
         return $this->installments;

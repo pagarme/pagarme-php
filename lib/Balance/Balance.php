@@ -8,17 +8,17 @@ class Balance
 
     /**
      * @var waitingFunds int
-     **/
+     */
     protected $waitingFunds;
 
     /**
      * @var available int
-     **/
+     */
     protected $available;
 
     /**
      * @var transferred int
-     **/
+     */
     protected $transferred;
 
     public function __construct($recipientData)
@@ -28,7 +28,7 @@ class Balance
 
     /**
      * @return int
-     **/
+     */
     public function getWaitingFunds()
     {
         return $this->waitingFunds;
@@ -36,7 +36,7 @@ class Balance
 
     /**
      * @return int
-     **/
+     */
     public function getAvailable()
     {
         return $this->available;
@@ -44,7 +44,7 @@ class Balance
 
     /**
      * @return int
-     **/
+     */
     public function getTransferred()
     {
         return $this->transferred;

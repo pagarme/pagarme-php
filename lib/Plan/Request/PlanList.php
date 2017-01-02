@@ -9,12 +9,12 @@ class PlanList implements Request
 
     /**
     * @var int
-    **/
+    */
     private $page;
 
     /**
     * @var int
-    **/
+    */
     private $count;
 
     /**

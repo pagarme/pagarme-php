@@ -8,18 +8,18 @@ class SubscriptionList implements Request
 {
     /**
      * @var int $page
-     **/
+     */
 
     protected $page;
     /**
      * @var int $count
-     **/
+     */
     protected $count;
 
     /**
      * @var int $page
      * @var int $count
-    **/
+    */
     public function __construct($page, $count)
     {
         $this->page = $page;

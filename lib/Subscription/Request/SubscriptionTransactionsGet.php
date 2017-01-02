@@ -9,12 +9,12 @@ class SubscriptionTransactionsGet implements Request
 {
     /**
      * @var Subscription $subscription
-     **/
+     */
     protected $subscription;
 
     /**
      * @param Subscription $subscription
-    **/
+    */
     public function __construct(Subscription $subscription)
     {
         $this->subscription = $subscription;

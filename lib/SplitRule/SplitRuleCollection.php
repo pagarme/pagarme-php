@@ -7,12 +7,12 @@ class SplitRuleCollection implements \ArrayAccess, \Iterator
 
     /**
      * @var array $rules
-     **/
+     */
     private $rules = [];
 
     /**
      * @var int $position
-     **/
+     */
     private $position = 0;
 
     public function offsetSet($offset, $value)
