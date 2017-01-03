@@ -70,7 +70,7 @@ class Card
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getId()
     {

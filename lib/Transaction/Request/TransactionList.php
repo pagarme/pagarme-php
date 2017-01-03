@@ -27,7 +27,7 @@ class TransactionList implements Request
     }
 
     /**
-     * @return array array
+     * @return array
      */
     public function getPayload()
     {
@@ -38,7 +38,7 @@ class TransactionList implements Request
     }
 
     /**
-     * @return array string
+     * @return string
      */
     public function getPath()
     {
@@ -46,7 +46,7 @@ class TransactionList implements Request
     }
 
     /**
-     * @return array string
+     * @return string
      */
     public function getMethod()
     {

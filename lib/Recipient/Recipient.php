@@ -7,52 +7,52 @@ class Recipient
     use \PagarMe\Sdk\Fillable;
 
     /**
-     * @var string $id
+     * @var string
      */
     protected $id;
 
     /**
-     * @var PagarMe\Sdk\Account\Account $bankAccount
+     * @var PagarMe
      */
     protected $bankAccount;
 
     /**
-     * @var bool $id
+     * @var bool
      */
     protected $transferEnabled;
 
     /**
-     * @var string $lastTransfer
+     * @var string
      */
     protected $lastTransfer;
 
     /**
-     * @var string $transferInterval
+     * @var string
      */
     protected $transferInterval;
 
     /**
-     * @var int $transferDay
+     * @var int
      */
     protected $transferDay;
 
     /**
-     * @var bool $automaticAnticipationEnabled
+     * @var bool
      */
     protected $automaticAnticipationEnabled;
 
     /**
-     * @var int $anticipatableVolumePercentage
+     * @var int
      */
     protected $anticipatableVolumePercentage;
 
     /**
      * @var \DateTime
-     **/
+     */
     protected $dateCreated;
 
     /**
-     * @var string $dateUpdated
+     * @var string
      */
     protected $dateUpdated;
 
@@ -197,7 +197,7 @@ class Recipient
 
     /**
      * @return \DateTime
-     **/
+     */
     public function getDateCreated()
     {
         return $this->dateCreated;
@@ -205,7 +205,7 @@ class Recipient
 
     /**
      * @return \DateTime
-     **/
+     */
     public function getDateUpdated()
     {
         return $this->dateUpdated;

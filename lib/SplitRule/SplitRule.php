@@ -11,37 +11,37 @@ class SplitRule
 
     /**
      * @var int
-     **/
+     */
     private $id;
 
     /**
      * @var Recipient
-     **/
+     */
     private $recipient;
 
     /**
      * @var bool
-     **/
+     */
     private $chargeProcessingFee;
     /**
      * @var bool
-     **/
+     */
     private $liable;
     /**
      * @var int
-     **/
+     */
     private $percentage;
     /**
      * @var int
-     **/
+     */
     private $amount;
     /**
      * @var \DateTime
-     **/
+     */
     private $dateCreated;
     /**
      * @var \DateTime
-     **/
+     */
     private $dateUpdated;
 
     public function __construct($ruleData)
