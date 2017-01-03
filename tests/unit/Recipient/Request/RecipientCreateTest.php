@@ -3,11 +3,11 @@
 namespace PagarMe\SdkTests\Recipient;
 
 use PagarMe\Sdk\Recipient\Request\RecipientCreate;
+use PagarMe\Sdk\Request;
 
 class RecipientCreateTest extends \PHPUnit_Framework_TestCase
 {
     const PATH            = 'recipients';
-    const METHOD          = 'POST';
 
     const BANK_ACCOUNT_ID = 123;
 
@@ -57,7 +57,7 @@ class RecipientCreateTest extends \PHPUnit_Framework_TestCase
             null
         );
 
-        $this->assertEquals(self::METHOD, $recipientCreate->getMethod());
+        $this->assertEquals(Request::HTTP_POST, $recipientCreate->getMethod());
     }
 
     public function recipientParams()

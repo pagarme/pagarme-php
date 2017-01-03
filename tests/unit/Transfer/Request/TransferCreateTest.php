@@ -3,10 +3,10 @@
 namespace PagarMe\SdkTest\Transfer\Request;
 
 use PagarMe\Sdk\Transfer\Request\TransferCreate;
+use PagarMe\Sdk\Request;
 
 class TransferCreateTest extends \PHPUnit_Framework_TestCase
 {
-    const METHOD       = 'POST';
     const PATH         = 'transfers';
 
     public function recipientData()
@@ -47,7 +47,7 @@ class TransferCreateTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertEquals(
-            self::METHOD,
+            Request::HTTP_POST,
             $transferCreate->getMethod()
         );
 

@@ -4,10 +4,10 @@ namespace PagarMe\SdkTest\Transaction\Request;
 
 use PagarMe\Sdk\Transaction\Request\TransactionCapture;
 use PagarMe\Sdk\Transaction\CreditCardTransaction;
+use PagarMe\Sdk\Request;
 
 class TransactionCaptureTest extends \PHPUnit_Framework_TestCase
 {
-    const METHOD = 'POST';
     const PATH   = 'transactions/%s/capture';
 
     public function transactionCaptureProvider()
@@ -37,6 +37,6 @@ class TransactionCaptureTest extends \PHPUnit_Framework_TestCase
             $transactionCreate->getPath()
         );
 
-        $this->assertEquals(self::METHOD, $transactionCreate->getMethod());
+        $this->assertEquals(Request::HTTP_POST, $transactionCreate->getMethod());
     }
 }

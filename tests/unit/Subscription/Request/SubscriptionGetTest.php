@@ -3,10 +3,10 @@
 namespace PagarMe\SdkTest\Subscription\Request;
 
 use PagarMe\Sdk\Subscription\Request\SubscriptionGet;
+use PagarMe\Sdk\Request;
 
 class SubscriptionGetTest extends \PHPUnit_Framework_TestCase
 {
-    const METHOD          = 'GET';
     const PATH            = 'subscriptions/123';
     const SUBSCRIPTION_ID = 123;
 
@@ -32,7 +32,7 @@ class SubscriptionGetTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             $subscriptionGetRequest->getMethod(),
-            self::METHOD
+            Request::HTTP_GET
         );
     }
 

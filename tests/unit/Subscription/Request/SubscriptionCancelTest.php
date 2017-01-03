@@ -3,10 +3,10 @@
 namespace PagarMe\SdkTest\Subscription\Request;
 
 use PagarMe\Sdk\Subscription\Request\SubscriptionCancel;
+use PagarMe\Sdk\Request;
 
 class SubscriptionCancelTest extends \PHPUnit_Framework_TestCase
 {
-    const METHOD          = 'POST';
     const PATH            = 'subscriptions/123/cancel';
     const SUBSCRIPTION_ID = 123;
 
@@ -32,7 +32,7 @@ class SubscriptionCancelTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             $subscriptionCancelRequest->getMethod(),
-            self::METHOD
+            Request::HTTP_POST
         );
     }
 

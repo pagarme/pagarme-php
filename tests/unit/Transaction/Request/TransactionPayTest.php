@@ -3,11 +3,11 @@
 namespace PagarMe\SdkTest\Transaction\Request;
 
 use PagarMe\Sdk\Transaction\Request\TransactionPay;
+use PagarMe\Sdk\Request;
 
 class TransactionPayTest extends \PHPUnit_Framework_TestCase
 {
-    const METHOD = 'PUT';
-    const PATH   = 'transactions/1337';
+    const PATH           = 'transactions/1337';
     const TRANSACTION_ID = 1337;
 
     /**
@@ -30,6 +30,6 @@ class TransactionPayTest extends \PHPUnit_Framework_TestCase
             $transactionCreate->getPayload()
         );
         $this->assertEquals(self::PATH, $transactionCreate->getPath());
-        $this->assertEquals(self::METHOD, $transactionCreate->getMethod());
+        $this->assertEquals(Request::HTTP_PUT, $transactionCreate->getMethod());
     }
 }

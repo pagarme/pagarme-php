@@ -3,10 +3,10 @@
 namespace PagarMe\SdkTest\Company\Request;
 
 use PagarMe\Sdk\Company\Request\CompanyInfo;
+use PagarMe\Sdk\Request;
 
 class CompanyInfoTest extends \PHPUnit_Framework_TestCase
 {
-    const METHOD = 'GET';
     const PATH   = 'company';
 
     /**
@@ -30,7 +30,7 @@ class CompanyInfoTest extends \PHPUnit_Framework_TestCase
         $companyInfo = new CompanyInfo();
 
         $this->assertEquals(
-            self::METHOD,
+            Request::HTTP_GET,
             $companyInfo->getMethod()
         );
     }

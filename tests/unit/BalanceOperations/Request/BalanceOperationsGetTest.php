@@ -3,11 +3,11 @@
 namespace PagarMe\SdkTest\BalanceOperations\Request;
 
 use PagarMe\Sdk\BalanceOperations\Request\BalanceOperationsGet;
+use PagarMe\Sdk\Request;
 
 class BalanceOperationsGetTest extends \PHPUnit_Framework_TestCase
 {
     const PATH                  = 'balance/operations/123';
-    const METHOD                = 'GET';
     const BALANCE_OPERATIONS_ID = '123';
 
     /**
@@ -17,7 +17,7 @@ class BalanceOperationsGetTest extends \PHPUnit_Framework_TestCase
     {
         $request = new BalanceOperationsGet(self::BALANCE_OPERATIONS_ID);
 
-        $this->assertEquals(self::METHOD, $request->getMethod());
+        $this->assertEquals(Request::HTTP_GET, $request->getMethod());
         $this->assertEquals(self::PATH, $request->getPath());
         $this->assertEquals([], $request->getPayload());
     }

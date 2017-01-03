@@ -3,11 +3,11 @@
 namespace PagarMe\SdkTest\Calculation\Request;
 
 use PagarMe\Sdk\Calculation\Request\CalculateInstallmentsRequest;
+use PagarMe\Sdk\Request;
 
 class CalculateInstallmentsRequestTest extends \PHPUnit_Framework_TestCase
 {
     const PATH   = 'transactions/calculate_installments_amount';
-    const METHOD = 'GET';
 
     /**
      * @test
@@ -44,7 +44,7 @@ class CalculateInstallmentsRequestTest extends \PHPUnit_Framework_TestCase
     {
         $calculateInstallmentsRequest = $this->getCalculateInstallmentsRequest();
 
-        $this->assertEquals(self::METHOD, $calculateInstallmentsRequest->getMethod());
+        $this->assertEquals(Request::HTTP_GET, $calculateInstallmentsRequest->getMethod());
     }
 
     protected function getCalculateInstallmentsRequest()

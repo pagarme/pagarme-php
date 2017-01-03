@@ -3,11 +3,11 @@
 namespace PagarMe\SdkTest\Card\Request;
 
 use PagarMe\Sdk\Card\Request\CardGet;
+use PagarMe\Sdk\Request;
 
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
     const PATH    = 'cards/card_ci6y37h16wrxsmzyi';
-    const METHOD  = 'GET';
     const CARD_ID = 'card_ci6y37h16wrxsmzyi';
 
     /**
@@ -37,6 +37,6 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         $cardGet = new CardGet(self::CARD_ID);
 
-        $this->assertEquals(self::METHOD, $cardGet->getMethod());
+        $this->assertEquals(Request::HTTP_GET, $cardGet->getMethod());
     }
 }

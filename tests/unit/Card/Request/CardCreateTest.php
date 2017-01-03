@@ -3,11 +3,11 @@
 namespace PagarMe\SdkTest\Card\Request;
 
 use PagarMe\Sdk\Card\Request\CardCreate;
+use PagarMe\Sdk\Request;
 
 class CardCreateTest extends \PHPUnit_Framework_TestCase
 {
     const PATH            = 'cards';
-    const METHOD          = 'POST';
     const CARD_NUMBER     = '4539401723324663';
     const CARD_HOLDER     = 'João Silva';
     const CARD_EXPIRATION = '0423';
@@ -58,6 +58,6 @@ class CardCreateTest extends \PHPUnit_Framework_TestCase
             self::CARD_EXPIRATION
         );
 
-        $this->assertEquals(self::METHOD, $cardCreate->getMethod());
+        $this->assertEquals(Request::HTTP_POST, $cardCreate->getMethod());
     }
 }

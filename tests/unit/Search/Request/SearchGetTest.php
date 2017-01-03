@@ -3,11 +3,11 @@
 namespace PagarMe\SdkTest\Search\Request;
 
 use PagarMe\Sdk\Search\Request\SearchGet;
+use PagarMe\Sdk\Request;
 
 class SearchGetTest extends \PHPUnit_Framework_TestCase
 {
     const PATH   = 'search';
-    const METHOD = 'GET';
     const TYPE   = 'transaction';
 
     /**
@@ -25,7 +25,7 @@ class SearchGetTest extends \PHPUnit_Framework_TestCase
             $searchGet->getPayload()
         );
         $this->assertEquals(self::PATH, $searchGet->getPath());
-        $this->assertEquals(self::METHOD, $searchGet->getMethod());
+        $this->assertEquals(Request::HTTP_GET, $searchGet->getMethod());
     }
 
     private function getQueryParams()
