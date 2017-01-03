@@ -11,7 +11,7 @@ class Address
     private $street;
 
     /**
-     * @var int
+     * @var string
      */
     private $streetNumber;
 
@@ -47,7 +47,7 @@ class Address
 
     /**
      * @param string $street
-     * @param int $streetNumber
+     * @param string $streetNumber
      * @param string $neighborhood
      * @param string $zipcode
      */
@@ -68,7 +68,7 @@ class Address
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getStreetNumber()
     {
