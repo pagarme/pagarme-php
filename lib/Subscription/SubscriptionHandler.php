@@ -46,9 +46,9 @@ class SubscriptionHandler extends AbstractHandler
             $metadata
         );
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
-        return $this->buildSubscription($result);
+        return $this->buildSubscription($response);
     }
 
     /**
@@ -71,9 +71,9 @@ class SubscriptionHandler extends AbstractHandler
             $metadata
         );
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
-        return $this->buildSubscription($result);
+        return $this->buildSubscription($response);
     }
 
     /**
@@ -83,9 +83,9 @@ class SubscriptionHandler extends AbstractHandler
     {
         $request = new SubscriptionGet($subscriptionId);
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
-        return $this->buildSubscription($result);
+        return $this->buildSubscription($response);
     }
 
     /**
@@ -96,10 +96,10 @@ class SubscriptionHandler extends AbstractHandler
     {
         $request = new SubscriptionList($page, $count);
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
         $subscriptions = [];
-        foreach ($result as $subscription) {
+        foreach ($response as $subscription) {
             $subscriptions[] = $this->buildSubscription($subscription);
         }
 
@@ -113,9 +113,9 @@ class SubscriptionHandler extends AbstractHandler
     {
         $request = new SubscriptionCancel($subscriptionId);
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
-        return $this->buildSubscription($result);
+        return $this->buildSubscription($response);
     }
 
     /**
@@ -125,9 +125,9 @@ class SubscriptionHandler extends AbstractHandler
     {
         $request = new SubscriptionUpdate($subscription);
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
-        return $this->buildSubscription($result);
+        return $this->buildSubscription($response);
     }
 
     /**
@@ -137,10 +137,10 @@ class SubscriptionHandler extends AbstractHandler
     {
         $request = new SubscriptionTransactionsGet($subscription);
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
         $transactions = [];
-        foreach ($result as $transaction) {
+        foreach ($response as $transaction) {
             $transactions[] = $this->buildTransaction($transaction);
         }
 

@@ -48,9 +48,9 @@ class TransactionHandler extends AbstractHandler
 
         $transaction = new CreditCardTransaction($transactionData);
         $request = new CreditCardTransactionCreate($transaction);
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
-        return $this->buildTransaction($result);
+        return $this->buildTransaction($response);
     }
 
     public function boletoTransaction(
@@ -74,18 +74,18 @@ class TransactionHandler extends AbstractHandler
 
         $request = new BoletoTransactionCreate($transaction);
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
-        return $this->buildTransaction($result);
+        return $this->buildTransaction($response);
     }
 
     public function get($transactionId)
     {
         $request = new TransactionGet($transactionId);
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
-        return $this->buildTransaction($result);
+        return $this->buildTransaction($response);
     }
 
     public function getList($page = 1, $count = 10)
