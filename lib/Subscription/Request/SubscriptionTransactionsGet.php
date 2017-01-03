@@ -14,7 +14,7 @@ class SubscriptionTransactionsGet implements Request
 
     /**
      * @param Subscription $subscription
-    */
+     */
     public function __construct(Subscription $subscription)
     {
         $this->subscription = $subscription;

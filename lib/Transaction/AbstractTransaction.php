@@ -378,7 +378,7 @@ abstract class AbstractTransaction
 
     /**
      * @return int
-    */
+     */
     public function getRefundedAmount()
     {
         return $this->refundedAmount;

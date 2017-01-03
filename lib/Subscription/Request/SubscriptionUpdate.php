@@ -14,7 +14,7 @@ class SubscriptionUpdate implements Request
 
     /**
      * @var Subscription $subscription
-    */
+     */
     public function __construct(Subscription $subscription)
     {
         $this->subscription = $subscription;

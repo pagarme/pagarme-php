@@ -13,7 +13,7 @@ class SubscriptionCancel implements Request
 
     /**
      * @var int $subscriptionId
-    */
+     */
     public function __construct($subscriptionId)
     {
         $this->subscriptionId = $subscriptionId;

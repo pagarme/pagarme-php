@@ -38,7 +38,7 @@ abstract class SubscriptionCreate implements Request
      * @var Customer $customer
      * @var string $postbackUrl
      * @var array $metadata
-    */
+     */
     public function __construct(
         Plan $plan,
         Customer $customer,

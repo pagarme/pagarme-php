@@ -19,7 +19,7 @@ class SubscriptionList implements Request
     /**
      * @var int $page
      * @var int $count
-    */
+     */
     public function __construct($page, $count)
     {
         $this->page = $page;

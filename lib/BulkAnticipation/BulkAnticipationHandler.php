@@ -14,13 +14,13 @@ use PagarMe\Sdk\BulkAnticipation\Request\BulkAnticipationList;
 class BulkAnticipationHandler extends AbstractHandler
 {
     /**
-    * @param  Recipient $recipient
-    * @param  DateTime $paymentDate
-    * @param  string $timeframe
-    * @param  int $requestedAmount
-    * @param  boolean $building
-    * @return BulkAnticipation
-    */
+     * @param  Recipient $recipient
+     * @param  DateTime $paymentDate
+     * @param  string $timeframe
+     * @param  int $requestedAmount
+     * @param  boolean $building
+     * @return BulkAnticipation
+     */
     public function create(
         Recipient $recipient,
         \DateTime $paymentDate,
@@ -42,11 +42,11 @@ class BulkAnticipationHandler extends AbstractHandler
     }
 
     /**
-    * @param  Recipient $recipient
-    * @param  DateTime $paymentDate
-    * @param  string $timeframe
-    * @return  array
-    */
+     * @param  Recipient $recipient
+     * @param  DateTime $paymentDate
+     * @param  string $timeframe
+     * @return  array
+     */
     public function limits($recipient, $paymentDate, $timeframe)
     {
         $request = new BulkAnticipationLimits(
@@ -59,10 +59,10 @@ class BulkAnticipationHandler extends AbstractHandler
     }
 
     /**
-    * @param Recipient $recipient
-    * @param BulkAnticipation $bulkAnticipation
-    * @return BulkAnticipation
-    */
+     * @param Recipient $recipient
+     * @param BulkAnticipation $bulkAnticipation
+     * @return BulkAnticipation
+     */
     public function confirm(
         Recipient $recipient,
         BulkAnticipation $bulkAnticipation
@@ -75,10 +75,10 @@ class BulkAnticipationHandler extends AbstractHandler
     }
 
     /**
-    * @param Recipient $recipient
-    * @param BulkAnticipation $bulkAnticipation
-    * @return BulkAnticipation
-    */
+     * @param Recipient $recipient
+     * @param BulkAnticipation $bulkAnticipation
+     * @return BulkAnticipation
+     */
     public function cancel(
         Recipient $recipient,
         BulkAnticipation $bulkAnticipation
@@ -91,10 +91,10 @@ class BulkAnticipationHandler extends AbstractHandler
     }
 
     /**
-    * @param Recipient $recipient
-    * @param BulkAnticipation $bulkAnticipation
-    * @return array
-    */
+     * @param Recipient $recipient
+     * @param BulkAnticipation $bulkAnticipation
+     * @return array
+     */
     public function delete(
         Recipient $recipient,
         BulkAnticipation $bulkAnticipation
@@ -107,11 +107,11 @@ class BulkAnticipationHandler extends AbstractHandler
     }
 
     /**
-    * @param Recipient $recipient
-    * @param int $page
-    * @param int $count
-    * @return array
-    */
+     * @param Recipient $recipient
+     * @param int $page
+     * @param int $count
+     * @return array
+     */
     public function getList(Recipient $recipient, $page = null, $count = null)
     {
         $request = new BulkAnticipationList($recipient, $page, $count);
@@ -130,9 +130,9 @@ class BulkAnticipationHandler extends AbstractHandler
     }
 
     /**
-    * @param array $bulkAnticipationData
-    * @return BulkAnticipation
-    */
+     * @param array $bulkAnticipationData
+     * @return BulkAnticipation
+     */
     private function buildBulkAnticipation($bulkAnticipationData)
     {
         $bulkAnticipationData->dateCreated = new \DateTime(

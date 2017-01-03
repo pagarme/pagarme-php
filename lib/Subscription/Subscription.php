@@ -78,7 +78,7 @@ class Subscription
 
     /**
      * @param array $subscriptionData
-    */
+     */
     public function __construct($subscriptionData)
     {
         $this->fill($subscriptionData);

@@ -22,10 +22,10 @@ class CardCreate implements Request
     private $cardExpirationDate;
 
     /**
-    * @param int $cardNumber
-    * @param int $holderName
-    * @param int $cardExpirationDate
-    */
+     * @param int $cardNumber
+     * @param int $holderName
+     * @param int $cardExpirationDate
+     */
     public function __construct($cardNumber, $holderName, $cardExpirationDate)
     {
         $this->cardNumber         = $cardNumber;

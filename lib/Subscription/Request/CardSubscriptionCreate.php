@@ -22,7 +22,7 @@ class CardSubscriptionCreate extends SubscriptionCreate
      * @var Customer $customer
      * @var string $postbackUrl
      * @var array $metadata
-    */
+     */
     public function __construct(
         Plan $plan,
         Card $card,

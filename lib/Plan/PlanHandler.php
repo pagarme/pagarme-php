@@ -11,16 +11,16 @@ use PagarMe\Sdk\Plan\Request\PlanUpdate;
 class PlanHandler extends AbstractHandler
 {
     /**
-    * @param int $amount
-    * @param int $days
-    * @param string $name
-    * @param int $trialDays
-    * @param array $paymentsMethods
-    * @param string $color
-    * @param int $charges
-    * @param int $installments
-    * @return Plan
-    */
+     * @param int $amount
+     * @param int $days
+     * @param string $name
+     * @param int $trialDays
+     * @param array $paymentsMethods
+     * @param string $color
+     * @param int $charges
+     * @param int $installments
+     * @return Plan
+     */
     public function create(
         $amount,
         $days,
