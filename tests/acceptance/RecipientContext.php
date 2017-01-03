@@ -18,10 +18,10 @@ class RecipientContext extends BasicContext
     private $percentage;
 
     private $bankAccount;
-    private $agencia;
-    private $agenciaDv;
-    private $conta;
-    private $contaDv;
+    private $office;
+    private $officeDigit;
+    private $accountNumber;
+    private $accountDigit;
     private $document;
     private $legalName;
 
@@ -42,17 +42,24 @@ class RecipientContext extends BasicContext
     }
 
     /**
-     * @Given bank data :bankCode, :agencia, :agenciaDv, :conta, :contaDv, :document and :legalName
+     * @Given bank data :bankCode, :office, :officeDigit, :accountNumber, :accountDigit, :document and :legalName
      */
-    public function bankData($bankCode, $agencia, $agenciaDv, $conta, $contaDv, $document, $legalName)
-    {
-        $this->bankCode  = $this->parseNullParam($bankCode);
-        $this->agencia   = $this->parseNullParam($agencia);
-        $this->agenciaDv = $this->parseNullParam($agenciaDv);
-        $this->conta     = $this->parseNullParam($conta);
-        $this->contaDv   = $this->parseNullParam($contaDv);
-        $this->document  = $this->parseNullParam($document);
-        $this->legalName = $this->parseNullParam($legalName);
+    public function bankData(
+        $bankCode,
+        $office,
+        $officeDigit,
+        $accountNumber,
+        $accountDigit,
+        $document,
+        $legalName
+    ) {
+        $this->bankCode      = $this->parseNullParam($bankCode);
+        $this->office        = $this->parseNullParam($office);
+        $this->officeDigit   = $this->parseNullParam($officeDigit);
+        $this->accountNumber = $this->parseNullParam($accountNumber);
+        $this->accountDigit  = $this->parseNullParam($accountDigit);
+        $this->document      = $this->parseNullParam($document);
+        $this->legalName     = $this->parseNullParam($legalName);
     }
 
     /**
@@ -62,10 +69,10 @@ class RecipientContext extends BasicContext
     {
         $account = $this->buildAccount(
             $this->bankCode,
-            $this->agencia,
-            $this->agenciaDv,
-            $this->conta,
-            $this->contaDv,
+            $this->office,
+            $this->officeDigit,
+            $this->accountNumber,
+            $this->accountDigit,
             $this->document,
             $this->legalName
         );
@@ -74,6 +81,23 @@ class RecipientContext extends BasicContext
             ->recipient()
             ->create(
                 $account,
+                $this->interval,
+                $this->day,
+                $this->transfer,
+                $this->anticipation,
+                $this->percentage
+            );
+    }
+
+    /**
+     * @When register the recipient with registred account
+     */
+    public function registerTheRecipientWithRegistredAccount()
+    {
+        $this->recipient = self::getPagarMe()
+            ->recipient()
+            ->create(
+                $this->bankAccount,
                 $this->interval,
                 $this->day,
                 $this->transfer,
@@ -95,26 +119,36 @@ class RecipientContext extends BasicContext
      */
     public function registerTheAccount()
     {
-        throw new PendingException('Criacao de contas nao implementado');
+        $this->bankAccount = self::getPagarMe()
+            ->bankAccount()
+            ->create(
+                $this->bankCode,
+                $this->office,
+                $this->accountDigit,
+                $this->accountDigit,
+                $this->document,
+                $this->legalName,
+                $this->officeDigit
+            );
     }
 
 
     private function buildAccount(
         $bankCode,
-        $agencia,
-        $agenciaDv,
-        $conta,
-        $contaDv,
+        $office,
+        $officeDigit,
+        $accountNumber,
+        $accountDigit,
         $document,
         $legalName
     ) {
         return new BankAccount(
             [
                 'bank_code'       => $this->bankCode,
-                'agencia'         => $this->agencia,
-                'agencia_dv'      => $this->agenciaDv,
-                'conta'           => $this->conta,
-                'conta_dv'        => $this->contaDv,
+                'agencia'         => $this->office,
+                'agencia_dv'      => $this->officeDigit,
+                'conta'           => $this->accountNumber,
+                'conta_dv'        => $this->accountDigit,
                 'document_number' => $this->document,
                 'legal_name'      => $this->legalName
             ]
