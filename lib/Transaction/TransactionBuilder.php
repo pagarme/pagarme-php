@@ -6,6 +6,10 @@ trait TransactionBuilder
 {
     use SplitRuleBuilder;
 
+    /**
+     * @param array transactionData
+     * @return Transaction
+     */
     private function buildTransaction($transactionData)
     {
         if (isset($transactionData->split_rules)) {

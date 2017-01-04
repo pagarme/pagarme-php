@@ -23,6 +23,17 @@ class TransactionHandler extends AbstractHandler
 {
     use TransactionBuilder;
 
+    /**
+     * @param int $amount
+     * @param PagarMe\Sdk\Card\Card $card
+     * @param PagarMe\Sdk\Customer\Customer $customer
+     * @param int $installments
+     * @param boolean $capture
+     * @param string $postBackUrl
+     * @param array $metaData
+     * @param array $extraAttributes
+     * @return CreditCardTransaction
+     */
     public function creditCardTransaction(
         $amount,
         Card $card,
@@ -53,6 +64,13 @@ class TransactionHandler extends AbstractHandler
         return $this->buildTransaction($result);
     }
 
+    /**
+     * @param int $amount
+     * @param PagarMe\Sdk\Customer\Customer $customer
+     * @param string $postBackUrl
+     * @param array $extraAttributes
+     * @return BoletoTransaction
+     */
     public function boletoTransaction(
         $amount,
         Customer $customer,
@@ -79,6 +97,10 @@ class TransactionHandler extends AbstractHandler
         return $this->buildTransaction($result);
     }
 
+    /**
+     * @param int $transactionId
+     * @return BoletoTransaction | CreditCardTransaction
+     */
     public function get($transactionId)
     {
         $request = new TransactionGet($transactionId);
@@ -88,6 +110,11 @@ class TransactionHandler extends AbstractHandler
         return $this->buildTransaction($result);
     }
 
+    /**
+     * @param int $page
+     * @param int $count
+     * @return array
+     */
     public function getList($page = 1, $count = 10)
     {
         $request = new TransactionList($page, $count);
@@ -101,6 +128,11 @@ class TransactionHandler extends AbstractHandler
         return $transactions;
     }
 
+    /**
+     * @param CreditCardTransaction $transaction
+     * @param int $amount
+     * @return CreditCardTransaction
+     */
     public function capture(CreditCardTransaction $transaction, $amount = null)
     {
         $request = new TransactionCapture($transaction->getId(), $amount);
@@ -109,6 +141,11 @@ class TransactionHandler extends AbstractHandler
         return $this->buildTransaction($response);
     }
 
+    /**
+     * @param CreditCardTransaction $transaction
+     * @param int $amount
+     * @return CreditCardTransaction
+     */
     public function creditCardRefund(CreditCardTransaction $transaction, $amount = null)
     {
         $request = new CreditCardTransactionRefund($transaction, $amount);
@@ -117,6 +154,11 @@ class TransactionHandler extends AbstractHandler
         return $this->buildTransaction($response);
     }
 
+    /**
+     * @param BoletoTransaction $transaction
+     * @param PagarMe\Sdk\BankAccount\BankAccount $bankAccount
+     * @return BoletoTransaction
+     */
     public function boletoRefund(
         BoletoTransaction $transaction,
         BankAccount $bankAccount,

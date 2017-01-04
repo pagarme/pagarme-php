@@ -7,53 +7,53 @@ class Recipient
     use \PagarMe\Sdk\Fillable;
 
     /**
-     * @var string $id
-     **/
+     * @var string
+     */
     protected $id;
 
     /**
-     * @var PagarMe\Sdk\Account\Account $bankAccount
-     **/
+     * @var PagarMe
+     */
     protected $bankAccount;
 
     /**
-     * @var bool $id
-     **/
+     * @var bool
+     */
     protected $transferEnabled;
 
     /**
-     * @var string $lastTransfer
-     **/
+     * @var string
+     */
     protected $lastTransfer;
 
     /**
-     * @var string $transferInterval
-     **/
+     * @var string
+     */
     protected $transferInterval;
 
     /**
-     * @var int $transferDay
-     **/
+     * @var int
+     */
     protected $transferDay;
 
     /**
-     * @var bool $automaticAnticipationEnabled
-     **/
+     * @var bool
+     */
     protected $automaticAnticipationEnabled;
 
     /**
-     * @var int $anticipatableVolumePercentage
-     **/
+     * @var int
+     */
     protected $anticipatableVolumePercentage;
 
     /**
      * @var \DateTime
-     **/
+     */
     protected $dateCreated;
 
     /**
-     * @var string $dateUpdated
-     **/
+     * @var string
+     */
     protected $dateUpdated;
 
     public function __construct($recipientData)
@@ -63,7 +63,7 @@ class Recipient
 
     /**
      * @return string
-     **/
+     */
     public function getId()
     {
         return $this->id;
@@ -71,7 +71,7 @@ class Recipient
 
     /**
      * @return PagarMe
-     **/
+     */
     public function getBankAccount()
     {
         return $this->bankAccount;
@@ -80,7 +80,7 @@ class Recipient
     /**
      * @param PagarMe
      * @return Recipient
-     **/
+     */
     public function setBankAccount($bankAccount)
     {
         $this->bankAccount = $bankAccount;
@@ -89,7 +89,7 @@ class Recipient
 
     /**
      * @return bool
-     **/
+     */
     public function getTransferEnabled()
     {
         return $this->transferEnabled;
@@ -98,7 +98,7 @@ class Recipient
     /**
      * @param bool
      * @return Recipient
-     **/
+     */
     public function setTransferEnabled($transferEnabled)
     {
         $this->transferEnabled = $transferEnabled;
@@ -107,7 +107,7 @@ class Recipient
 
     /**
      * @return string
-     **/
+     */
     public function getLastTransfer()
     {
         return $this->lastTransfer;
@@ -116,7 +116,7 @@ class Recipient
     /**
      * @param string
      * @return Recipient
-     **/
+     */
     public function setLastTransfer($lastTransfer)
     {
         $this->lastTransfer = $lastTransfer;
@@ -125,7 +125,7 @@ class Recipient
 
     /**
      * @return string
-     **/
+     */
     public function getTransferInterval()
     {
         return $this->transferInterval;
@@ -134,7 +134,7 @@ class Recipient
     /**
      * @param string
      * @return Recipient
-     **/
+     */
     public function setTransferInterval($transferInterval)
     {
         $this->transferInterval = $transferInterval;
@@ -143,7 +143,7 @@ class Recipient
 
     /**
      * @return int
-     **/
+     */
     public function getTransferDay()
     {
         return $this->transferDay;
@@ -152,7 +152,7 @@ class Recipient
     /**
      * @param int
      * @return Recipient
-     **/
+     */
     public function setTransferDay($transferDay)
     {
         $this->transferDay = $transferDay;
@@ -161,7 +161,7 @@ class Recipient
 
     /**
      * @return bool
-     **/
+     */
     public function getAutomaticAnticipationEnabled()
     {
         return $this->automaticAnticipationEnabled;
@@ -170,7 +170,7 @@ class Recipient
     /**
      * @param bool
      * @return Recipient
-     **/
+     */
     public function setAutomaticAnticipationEnabled($automaticAnticipationEnabled)
     {
         $this->automaticAnticipationEnabled = $automaticAnticipationEnabled;
@@ -179,7 +179,7 @@ class Recipient
 
     /**
      * @return int
-     **/
+     */
     public function getAnticipatableVolumePercentage()
     {
         return $this->anticipatableVolumePercentage;
@@ -188,7 +188,7 @@ class Recipient
     /**
      * @param int
      * @return Recipient
-     **/
+     */
     public function setAnticipatableVolumePercentage($anticipatableVolumePercentage)
     {
         $this->anticipatableVolumePercentage = $anticipatableVolumePercentage;
@@ -197,7 +197,7 @@ class Recipient
 
     /**
      * @return \DateTime
-     **/
+     */
     public function getDateCreated()
     {
         return $this->dateCreated;
@@ -205,7 +205,7 @@ class Recipient
 
     /**
      * @return \DateTime
-     **/
+     */
     public function getDateUpdated()
     {
         return $this->dateUpdated;

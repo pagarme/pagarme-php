@@ -29,7 +29,7 @@ class BoletoSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
     const ADDRESS_ZIPCODE      = '01034020';
     /**
      * @test
-    **/
+     */
     public function mustPayloadBeCorrect()
     {
         $planMock = $this->getMockBuilder('PagarMe\Sdk\Plan\Plan')
@@ -122,7 +122,7 @@ class BoletoSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustMethodBeCorrect()
     {
         $planMock = $this->getMockBuilder('PagarMe\Sdk\Plan\Plan')
@@ -149,7 +149,7 @@ class BoletoSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPathBeCorrect()
     {
         $planMock = $this->getMockBuilder('PagarMe\Sdk\Plan\Plan')

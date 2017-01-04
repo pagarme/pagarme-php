@@ -10,6 +10,7 @@ class PayableHandler extends AbstractHandler
 {
     /**
      * @param int $payableId
+     * @return Payable
      */
     public function get($payableId)
     {
@@ -39,6 +40,10 @@ class PayableHandler extends AbstractHandler
         return $payables;
     }
 
+    /**
+     * @param array $payableData
+     * @return Payable
+     */
     private function buildPayable($payableData)
     {
         $payableData->payment_date = new \DateTime($payableData->payment_date);

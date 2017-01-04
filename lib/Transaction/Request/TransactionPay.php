@@ -7,10 +7,13 @@ use PagarMe\Sdk\Transaction\BoletoTransaction;
 
 class TransactionPay implements Request
 {
+    /**
+     * @var BoletoTransaction
+     */
     protected $transaction;
 
     /**
-     * @codeCoverageIgnore
+     * @param BoletoTransaction $transaction
      */
     public function __construct(BoletoTransaction $transaction)
     {

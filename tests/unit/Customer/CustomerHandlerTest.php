@@ -13,7 +13,7 @@ class CustomerHandlerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnArrayOfCustomers()
     {
         $clientMock =  $this->getMockBuilder('PagarMe\Sdk\Client')
@@ -32,7 +32,7 @@ class CustomerHandlerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnCustomers()
     {
         $clientMock =  $this->getMockBuilder('PagarMe\Sdk\Client')
@@ -50,7 +50,8 @@ class CustomerHandlerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    **/
+     * @test
+     */
     public function mustReturnCustomerWithId()
     {
         $clientMock =  $this->getMockBuilder('PagarMe\Sdk\Client')
@@ -59,14 +60,22 @@ class CustomerHandlerTest extends \PHPUnit_Framework_TestCase
         $clientMock->method('send')
             ->willReturn(json_decode($this->customerGetResponse()));
 
+        $addressMock = $this->getMockBuilder('PagarMe\Sdk\Customer\Address')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $phoneMock = $this->getMockBuilder('PagarMe\Sdk\Customer\Phone')
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $handler = new CustomerHandler($clientMock);
 
         $customer = $handler->create(
             self::NAME,
             self::EMAIL,
             self::DOCUMENT_NUMBER,
-            new \PagarMe\Sdk\Customer\Address(),
-            new \PagarMe\Sdk\Customer\Phone()
+            $addressMock,
+            $phoneMock
         );
 
         $this->assertInstanceOf(

@@ -32,12 +32,12 @@ class Card
     private $holderName;
 
     /**
-     * @var int
+     * @var string
      */
     private $firstDigits;
 
     /**
-     * @var int
+     * @var string
      */
     private $lastDigits;
 
@@ -70,8 +70,7 @@ class Card
     }
 
     /**
-     * @codeCoverageIgnore
-     * @return int
+     * @return string
      */
     public function getId()
     {
@@ -79,8 +78,7 @@ class Card
     }
 
     /**
-     * @codeCoverageIgnore
-     * @return int
+     * @return string
      */
     public function getFirstDigits()
     {
@@ -88,8 +86,7 @@ class Card
     }
 
     /**
-     * @codeCoverageIgnore
-     * @return int
+     * @return string
      */
     public function getLastDigits()
     {

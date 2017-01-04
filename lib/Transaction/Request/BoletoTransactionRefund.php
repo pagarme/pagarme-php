@@ -8,12 +8,23 @@ use PagarMe\Sdk\BankAccount\BankAccount;
 
 class BoletoTransactionRefund implements Request
 {
+    /**
+     * @var BoletoTransaction
+     */
     protected $transaction;
+    /**
+     * @var BankAccount
+     */
     protected $bankAccount;
+    /**
+     * @var int
+     */
     protected $amount;
 
     /**
-     * @codeCoverageIgnore
+     * @param BoletoTransaction $transaction
+     * @param BankAccount $bankAccount
+     * @param int $amount
      */
     public function __construct(
         BoletoTransaction $transaction,
@@ -25,6 +36,9 @@ class BoletoTransactionRefund implements Request
         $this->amount      = $amount;
     }
 
+    /**
+     * @return array
+     */
     public function getPayload()
     {
         return array_merge(
@@ -33,16 +47,25 @@ class BoletoTransactionRefund implements Request
         );
     }
 
+    /**
+     * @return string
+     */
     public function getPath()
     {
         return sprintf('transactions/%d/refund', $this->transaction->getId());
     }
 
+    /**
+     * @return string
+     */
     public function getMethod()
     {
         return 'POST';
     }
 
+    /**
+     * @return array
+     */
     private function getBankAccountData()
     {
         $bankAccount = $this->bankAccount;

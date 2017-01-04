@@ -11,6 +11,9 @@ class BoletoTransaction extends AbstractTransaction
      */
     protected $boletoExpirationDate;
 
+    /**
+     * @param array $transactionData
+     */
     public function __construct($transactionData)
     {
         parent::__construct($transactionData);

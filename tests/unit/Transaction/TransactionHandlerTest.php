@@ -8,8 +8,8 @@ use PagarMe\Sdk\Transaction\AbstractTransaction;
 class TransactionHandlerTest extends \PHPUnit_Framework_TestCase
 {
     /**
-    * @test
-    **/
+     * @test
+     */
     public function mustCreateCreditCardTransaction()
     {
         $clientMock = $this->getMockBuilder('PagarMe\Sdk\Client')
@@ -40,7 +40,7 @@ class TransactionHandlerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustCreateBoletoTransaction()
     {
         $clientMock = $this->getMockBuilder('PagarMe\Sdk\Client')
@@ -67,7 +67,7 @@ class TransactionHandlerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnBoletoTransaction()
     {
         $clientMock = $this->getMockBuilder('PagarMe\Sdk\Client')
@@ -90,7 +90,7 @@ class TransactionHandlerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnCreditCardTransaction()
     {
         $clientMock = $this->getMockBuilder('PagarMe\Sdk\Client')
@@ -113,7 +113,7 @@ class TransactionHandlerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnRefundedCreditCardTransaction()
     {
         $clientMock = $this->getMockBuilder('PagarMe\Sdk\Client')
@@ -138,7 +138,7 @@ class TransactionHandlerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnRefundedBoletoTransaction()
     {
         $clientMock = $this->getMockBuilder('PagarMe\Sdk\Client')
@@ -171,7 +171,7 @@ class TransactionHandlerTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      * @expectedException PagarMe\Sdk\Transaction\UnsupportedTransaction
-    **/
+     */
     public function mustThrowUnsupportedTransaction()
     {
         $clientMock = $this->getMockBuilder('PagarMe\Sdk\Client')
@@ -191,7 +191,7 @@ class TransactionHandlerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnArrayOfTransaction()
     {
         $clientMock =  $this->getMockBuilder('PagarMe\Sdk\Client')

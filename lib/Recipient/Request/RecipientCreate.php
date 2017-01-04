@@ -8,13 +8,45 @@ use PagarMe\Sdk\BankAccount\BankAccount;
 class RecipientCreate implements Request
 {
 
+    /**
+     * @var BankAccount
+     */
     private $bankAccount;
+
+    /**
+     * @var string
+     */
     private $transferInterval;
+
+    /**
+     * @var int
+     */
     private $transferDay;
+
+    /**
+     * @var bool
+     */
     private $transferEnabled;
+
+    /**
+     * @var bool
+     */
     private $automaticAnticipationEnabled;
+
+    /**
+     * @var int
+     */
     private $anticipatableVolumePercentage;
 
+
+    /**
+     * @param BankAccount $bankAccount
+     * @param string $transferInterval
+     * @param int $transferDay
+     * @param bool $transferEnabled
+     * @param bool $automaticAnticipationEnabled
+     * @param int $anticipatableVolumePercentage
+     */
     public function __construct(
         BankAccount $bankAccount,
         $transferInterval,
@@ -31,6 +63,9 @@ class RecipientCreate implements Request
         $this->anticipatableVolumePercentage = $anticipatableVolumePercentage;
     }
 
+    /**
+     * @return array
+     */
     public function getPayload()
     {
         $payload = [
@@ -44,16 +79,25 @@ class RecipientCreate implements Request
         return array_merge($payload, $this->getBankAccountData());
     }
 
+    /**
+     * @return string
+     */
     public function getPath()
     {
         return 'recipients';
     }
 
+    /**
+     * @return string
+     */
     public function getMethod()
     {
         return 'POST';
     }
 
+    /**
+     * @return array
+     */
     protected function getBankAccountData()
     {
         $bankAccount = $this->bankAccount;

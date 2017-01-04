@@ -8,7 +8,7 @@ class PlanHandlerTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
-    **/
+     */
     public function mustReturnPlan()
     {
         $clientMock =  $this->getMockBuilder('PagarMe\Sdk\Client')
