@@ -13,7 +13,7 @@ class TransactionGetTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPayloadBeCorrect()
     {
         $transactionCreate = new TransactionGet(self::TRANSACTION_ID);
@@ -26,7 +26,7 @@ class TransactionGetTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPathBeCorrect()
     {
         $transactionCreate = new TransactionGet(self::TRANSACTION_ID);
@@ -36,7 +36,7 @@ class TransactionGetTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustMethodBeCorrect()
     {
         $transactionCreate = new TransactionGet(self::TRANSACTION_ID);

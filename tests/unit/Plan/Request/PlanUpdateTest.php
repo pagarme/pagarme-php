@@ -21,7 +21,7 @@ class PlanUpdateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustContentBeCorrect()
     {
         $planMock = $this->getMockBuilder('PagarMe\Sdk\Plan\Plan')

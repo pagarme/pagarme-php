@@ -13,7 +13,7 @@ class RecipientHandlerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnCreatedRecipient()
     {
         $bankAccountMock = $this->getMockBuilder('PagarMe\Sdk\BankAccount\BankAccount')
@@ -44,7 +44,7 @@ class RecipientHandlerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnAnArrayOfRecipients()
     {
         $clientMock =  $this->getMockBuilder('PagarMe\Sdk\Client')
@@ -65,7 +65,7 @@ class RecipientHandlerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnAnRecipient()
     {
         $clientMock =  $this->getMockBuilder('PagarMe\Sdk\Client')
@@ -86,7 +86,7 @@ class RecipientHandlerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnBalance()
     {
         $clientMock =  $this->getMockBuilder('PagarMe\Sdk\Client')
@@ -114,7 +114,7 @@ class RecipientHandlerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnOperation()
     {
         $clientMock =  $this->getMockBuilder('PagarMe\Sdk\Client')
@@ -142,7 +142,7 @@ class RecipientHandlerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnArrayOfOperations()
     {
         $clientMock =  $this->getMockBuilder('PagarMe\Sdk\Client')

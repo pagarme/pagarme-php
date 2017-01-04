@@ -14,7 +14,7 @@ class RecipientBalanceOperationTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     **/
+     */
     public function mustPathBeCorrect()
     {
         $recipientMock = $this->getMockBuilder('PagarMe\Sdk\Recipient\Recipient')
@@ -32,7 +32,7 @@ class RecipientBalanceOperationTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     **/
+     */
     public function mustMethodBeCorrect()
     {
         $recipientMock = $this->getMockBuilder('PagarMe\Sdk\Recipient\Recipient')
@@ -50,7 +50,7 @@ class RecipientBalanceOperationTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     **/
+     */
     public function mustPayloadBeCorrect()
     {
         $recipientMock = $this->getMockBuilder('PagarMe\Sdk\Recipient\Recipient')

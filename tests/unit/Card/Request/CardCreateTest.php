@@ -14,7 +14,7 @@ class CardCreateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPayloadBeCorrect()
     {
         $cardCreate = new CardCreate(
@@ -35,7 +35,7 @@ class CardCreateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPathBeCorrect()
     {
         $cardCreate = new CardCreate(
@@ -49,7 +49,7 @@ class CardCreateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustMethodBeCorrect()
     {
         $cardCreate = new CardCreate(

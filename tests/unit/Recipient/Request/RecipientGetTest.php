@@ -12,7 +12,7 @@ class RecipientGetTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     **/
+     */
     public function mustPathBeCorrect()
     {
         $recipientGet = new RecipientGet(self::ID);
@@ -22,7 +22,7 @@ class RecipientGetTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     **/
+     */
     public function mustMethodBeCorrect()
     {
         $recipientGet = new RecipientGet(self::ID);
@@ -32,7 +32,7 @@ class RecipientGetTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     **/
+     */
     public function mustPayloadBeCorrect()
     {
         $recipientGet = new RecipientGet(self::ID);

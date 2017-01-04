@@ -27,7 +27,7 @@ class RecipientUpdateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     **/
+     */
     public function mustPathBeCorrect()
     {
         $recipientMock = $this->getMockBuilder('PagarMe\Sdk\Recipient\Recipient')
@@ -43,7 +43,7 @@ class RecipientUpdateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     **/
+     */
     public function mustMethodBeCorrect()
     {
         $recipientMock = $this->getMockBuilder('PagarMe\Sdk\Recipient\Recipient')
@@ -57,7 +57,7 @@ class RecipientUpdateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     **/
+     */
     public function mustPayloadBeCorrect()
     {
         $bankAccountMock = $this->getMockBuilder('PagarMe\Sdk\BankAccount\BankAccount')

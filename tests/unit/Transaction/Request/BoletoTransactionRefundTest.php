@@ -22,7 +22,7 @@ class BoletoTransactionRefundTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function payloadMustContainBankAccountId()
     {
         $bankAccountMock = $this->getMockBuilder('PagarMe\Sdk\BankAccount\BankAccount')
@@ -55,7 +55,7 @@ class BoletoTransactionRefundTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function payloadMustContainBankData()
     {
         $bankAccountMock = $this->getMockBuilder('PagarMe\Sdk\BankAccount\BankAccount')

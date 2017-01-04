@@ -13,7 +13,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustSendRequest()
     {
         $guzzleClientMock = $this->getMockBuilder('GuzzleHttp\Client')
@@ -58,7 +58,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustSendRequestWithProperContent()
     {
         $guzzleClientMock = $this->getMockBuilder('GuzzleHttp\Client')
@@ -114,7 +114,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     /**
     * @expectedException PagarMe\Sdk\ClientException
     * @test
-    **/
+     */
     public function mustReturnClientExeptionWhenGetRequestException()
     {
         $guzzleClientMock = $this->getMockBuilder('GuzzleHttp\Client')

@@ -12,7 +12,7 @@ class SubscriptionGetTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPayloadBeCorrect()
     {
         $subscriptionGetRequest = new SubscriptionGet(self::SUBSCRIPTION_ID);
@@ -25,7 +25,7 @@ class SubscriptionGetTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustMethodBeCorrect()
     {
         $subscriptionGetRequest = new SubscriptionGet(self::SUBSCRIPTION_ID);
@@ -38,7 +38,7 @@ class SubscriptionGetTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPathBeCorrect()
     {
         $subscriptionGetRequest = new SubscriptionGet(self::SUBSCRIPTION_ID);

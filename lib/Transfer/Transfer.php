@@ -145,40 +145,40 @@ class Transfer
     }
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function getSourceType()
     {
         return $this->sourceType;
     }
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function getSourceId()
     {
         return $this->sourceId;
     }
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function getTargetType()
     {
         return $this->targetType;
     }
 
     /**
-    * @return int
-    */
+     * @return int
+     */
     public function getTargetID()
     {
         return $this->targetId;
     }
 
     /**
-    * @return \DateTime
-    */
+     * @return \DateTime
+     */
     public function getFundingDate()
     {
         return $this->fundingDate;

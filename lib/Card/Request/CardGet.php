@@ -7,7 +7,7 @@ use PagarMe\Sdk\Request;
 class CardGet implements Request
 {
     /**
-     * @var int | Identificador do cartão
+     * @var int
      */
     private $cardId;
 

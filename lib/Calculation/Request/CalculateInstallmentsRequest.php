@@ -7,22 +7,22 @@ use PagarMe\Sdk\Request;
 class CalculateInstallmentsRequest implements Request
 {
     /**
-     * @var int | Valor máximo de parcelas
+     * @var int
      */
     private $maxInstallments;
 
     /**
-     * @var int | Número de parcelas isentas de juros
+     * @var int
      */
     private $freeInstallments;
 
     /**
-     * @var int | Valor da taxa de juros
+     * @var int
      */
     private $interestRate;
 
     /**
-     * @var int | Valor do produto/serviço vendido
+     * @var int
      */
     private $amount;
 

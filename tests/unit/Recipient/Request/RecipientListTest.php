@@ -23,7 +23,7 @@ class RecipientListTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider recipientListProvider
      * @test
-     **/
+     */
     public function mustPathBeCorrect($page, $count)
     {
         $recipientList = new RecipientList($page, $count);
@@ -34,7 +34,7 @@ class RecipientListTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider recipientListProvider
      * @test
-     **/
+     */
     public function mustMethodBeCorrect($page, $count)
     {
         $recipientList = new RecipientList($page, $count);
@@ -45,7 +45,7 @@ class RecipientListTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider recipientListProvider
      * @test
-     **/
+     */
     public function mustPayloadBeCorrect($page, $count)
     {
         $recipientList = new RecipientList($page, $count);

@@ -28,7 +28,7 @@ class RecipientBalanceOperationsTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider recipientBalanceOperationsMock
      * @test
-     **/
+     */
     public function mustPathBeCorrect($recipientMock, $page, $count)
     {
         $recipientBalanceOperations = new RecipientBalanceOperations(
@@ -43,7 +43,7 @@ class RecipientBalanceOperationsTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider recipientBalanceOperationsMock
      * @test
-     **/
+     */
     public function mustMethodBeCorrect($recipientMock, $page, $count)
     {
         $recipientBalanceOperations = new RecipientBalanceOperations(
@@ -59,7 +59,7 @@ class RecipientBalanceOperationsTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider recipientBalanceOperationsMock
      * @test
-     **/
+     */
     public function mustPayloadBeCorrect($recipientMock, $page, $count)
     {
         $recipientBalanceOperations = new RecipientBalanceOperations(

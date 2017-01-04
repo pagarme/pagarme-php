@@ -12,73 +12,73 @@ class Subscription
 
     /**
      * @var int $id
-     **/
+     */
     private $id;
 
     /**
      * @var Card $card
-     **/
+     */
     private $card;
 
     /**
      * @var Plan $plan
-     **/
+     */
     private $plan;
 
     /**
      * @var Customer $customer
-     **/
+     */
     private $customer;
 
     /**
      * @var string $postbackUrl
-     **/
+     */
     private $postbackUrl;
 
     /**
      * @var array $metadata
-     **/
+     */
     private $metadata;
 
     /**
      * @var Transaction $currentTransaction
-     **/
+     */
     private $currentTransaction;
 
     /**
      * @var string $paymentMethod
-     **/
+     */
     private $paymentMethod;
 
     /**
      * @var string $currentPeriodStart
-     **/
+     */
     private $currentPeriodStart;
 
     /**
      * @var string $currentPeriodEnd
-     **/
+     */
     private $currentPeriodEnd;
 
     /**
      * @var int $charges
-     **/
+     */
     private $charges;
 
     /**
      * @var string $status
-     **/
+     */
     private $status;
 
     /**
      * @var string $dateCreated
-     **/
+     */
     private $dateCreated;
 
 
     /**
      * @param array $subscriptionData
-    **/
+     */
     public function __construct($subscriptionData)
     {
         $this->fill($subscriptionData);
@@ -86,7 +86,7 @@ class Subscription
 
     /**
      * @return int
-     **/
+     */
     public function getId()
     {
         return $this->id;
@@ -94,7 +94,7 @@ class Subscription
 
     /**
      * @return Card
-     **/
+     */
     public function getCard()
     {
         return $this->card;
@@ -102,7 +102,7 @@ class Subscription
 
     /**
      * @param Card
-     **/
+     */
     public function setCard(Card $card)
     {
         $this->card = $card;
@@ -111,7 +111,7 @@ class Subscription
 
     /**
      * @return Plan
-     **/
+     */
     public function getPlan()
     {
         return $this->plan;
@@ -119,7 +119,7 @@ class Subscription
 
     /**
      * @param Plan
-     **/
+     */
     public function setPlan(Plan $plan)
     {
         $this->plan = $plan;
@@ -128,7 +128,7 @@ class Subscription
 
     /**
      * @return Customer
-     **/
+     */
     public function getCustomer()
     {
         return $this->customer;
@@ -136,7 +136,7 @@ class Subscription
 
     /**
      * @return string
-     **/
+     */
     public function getPostbackUrl()
     {
         return $this->postbackUrl;
@@ -144,7 +144,7 @@ class Subscription
 
     /**
      * @return array
-     **/
+     */
     public function getMetadata()
     {
         return $this->metadata;
@@ -152,7 +152,7 @@ class Subscription
 
     /**
      * @return Transaction
-     **/
+     */
     public function getCurrentTransaction()
     {
         return $this->currentTransaction;
@@ -160,7 +160,7 @@ class Subscription
 
     /**
      * @return string
-     **/
+     */
     public function getPaymentMethod()
     {
         return $this->paymentMethod;
@@ -168,7 +168,7 @@ class Subscription
 
     /**
      * @param string
-     **/
+     */
     public function setPaymentMethod($paymentMethod)
     {
         $this->paymentMethod = $paymentMethod;
@@ -177,7 +177,7 @@ class Subscription
 
     /**
      * @return string
-     **/
+     */
     public function getCurrentPeriodStart()
     {
         return $this->currentPeriodStart;
@@ -185,7 +185,7 @@ class Subscription
 
     /**
      * @return string
-     **/
+     */
     public function getCurrentPeriodEnd()
     {
         return $this->currentPeriodEnd;
@@ -193,7 +193,7 @@ class Subscription
 
     /**
      * @return int
-     **/
+     */
     public function getCharges()
     {
         return $this->charges;
@@ -201,7 +201,7 @@ class Subscription
 
     /**
      * @return string
-     **/
+     */
     public function getStatus()
     {
         return $this->status;
@@ -209,7 +209,7 @@ class Subscription
 
     /**
      * @return string
-     **/
+     */
     public function getDateCreated()
     {
         return $this->dateCreated;

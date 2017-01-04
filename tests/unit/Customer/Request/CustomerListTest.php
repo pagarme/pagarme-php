@@ -13,7 +13,7 @@ class CustomerListTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPayloadBeCorrect()
     {
         $customerList = new CustomerList(self::PAGE, self::COUNT);
@@ -29,7 +29,7 @@ class CustomerListTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPathBeCorrect()
     {
         $customerList = new CustomerList(1, 10);
@@ -38,7 +38,7 @@ class CustomerListTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustMethodBeCorrect()
     {
         $customerList = new CustomerList(1, 10);

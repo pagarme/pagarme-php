@@ -31,7 +31,7 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
     const CARD_ID = 123456;
     /**
      * @test
-    **/
+     */
     public function mustPayloadBeCorrect()
     {
         $planMock = $this->getMockBuilder('PagarMe\Sdk\Plan\Plan')
@@ -130,7 +130,7 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustMethodBeCorrect()
     {
         $planMock = $this->getMockBuilder('PagarMe\Sdk\Plan\Plan')
@@ -161,7 +161,7 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPathBeCorrect()
     {
         $planMock = $this->getMockBuilder('PagarMe\Sdk\Plan\Plan')

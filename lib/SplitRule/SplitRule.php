@@ -11,37 +11,37 @@ class SplitRule
 
     /**
      * @var int
-     **/
+     */
     private $id;
 
     /**
      * @var Recipient
-     **/
+     */
     private $recipient;
 
     /**
      * @var bool
-     **/
+     */
     private $chargeProcessingFee;
     /**
      * @var bool
-     **/
+     */
     private $liable;
     /**
      * @var int
-     **/
+     */
     private $percentage;
     /**
      * @var int
-     **/
+     */
     private $amount;
     /**
      * @var \DateTime
-     **/
+     */
     private $dateCreated;
     /**
      * @var \DateTime
-     **/
+     */
     private $dateUpdated;
 
     public function __construct($ruleData)
@@ -54,7 +54,7 @@ class SplitRule
 
     /**
      * @return int
-     **/
+     */
     public function getId()
     {
         return $this->id;
@@ -62,7 +62,7 @@ class SplitRule
 
     /**
      * @return Recipient
-     **/
+     */
     public function getRecipient()
     {
         return $this->recipient;
@@ -70,7 +70,7 @@ class SplitRule
 
     /**
      * @param Recipient $recipient
-     **/
+     */
     public function setRecipient(Recipient $recipient)
     {
         $this->recipient = $recipient;
@@ -78,7 +78,7 @@ class SplitRule
 
     /**
      * @return bool
-     **/
+     */
     public function getChargeProcessingFee()
     {
         return $this->chargeProcessingFee;
@@ -86,7 +86,7 @@ class SplitRule
 
     /**
      * @return bool
-     **/
+     */
     public function getLiable()
     {
         return $this->liable;
@@ -94,7 +94,7 @@ class SplitRule
 
     /**
      * @return int
-     **/
+     */
     public function getPercentage()
     {
         return $this->percentage;
@@ -102,7 +102,7 @@ class SplitRule
 
     /**
      * @return int
-     **/
+     */
     public function getAmount()
     {
         return $this->amount;
@@ -110,7 +110,7 @@ class SplitRule
 
     /**
      * @return string
-     **/
+     */
     public function getDateCreated()
     {
         return $this->dateCreated;
@@ -118,7 +118,7 @@ class SplitRule
 
     /**
      * @return string
-     **/
+     */
     public function getDateUpdated()
     {
         return $this->dateUpdated;

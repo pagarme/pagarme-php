@@ -44,14 +44,14 @@ class CustomerCreate implements Request
     private $gender;
 
     /**
-    * @param string $name
-    * @param string $email
-    * @param int $documentNumber
-    * @param Address $address
-    * @param Phone $phone
-    * @param string $bornAt
-    * @param string $gender
-    */
+     * @param string $name
+     * @param string $email
+     * @param int $documentNumber
+     * @param Address $address
+     * @param Phone $phone
+     * @param string $bornAt
+     * @param string $gender
+     */
     public function __construct(
         $name,
         $email,

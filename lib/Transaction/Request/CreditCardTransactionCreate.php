@@ -6,11 +6,17 @@ use PagarMe\Sdk\Transaction\CreditCardTransaction;
 
 class CreditCardTransactionCreate extends TransactionCreate
 {
+    /**
+     * @param CreditCardTransaction $transaction
+     */
     public function __construct(CreditCardTransaction $transaction)
     {
         $this->transaction = $transaction;
     }
 
+    /**
+     * @return array
+     */
     public function getPayload()
     {
         $basicData = parent::getPayload();

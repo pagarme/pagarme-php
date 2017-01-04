@@ -22,7 +22,7 @@ class TransactionCaptureTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider transactionCaptureProvider
      * @test
-    **/
+     */
     public function mustPayloadBeCorrect($transactionId, $amount, $payload)
     {
         $transactionCreate = new TransactionCapture($transactionId, $amount);

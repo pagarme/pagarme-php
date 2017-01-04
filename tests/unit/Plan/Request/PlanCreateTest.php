@@ -11,7 +11,7 @@ class PlanCreateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustContentBeCorrect()
     {
         $request = new PlanCreate(
