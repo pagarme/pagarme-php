@@ -15,7 +15,6 @@ class TransferGetTest extends \PHPUnit_Framework_TestCase
         $transfer = $this->buildTransfer(json_decode($payload));
 
         $this->assertInstanceOf('PagarMe\Sdk\Transfer\Transfer', $transfer);
-        $this->assertInstanceOf('PagarMe\Sdk\Transfer\Transfer', $transfer);
         $this->assertInstanceOf(
             '\DateTime',
             $transfer->getFundingEstimatedDate()
