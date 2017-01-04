@@ -8,56 +8,56 @@ class PlanCreate implements Request
 {
 
     /**
-    * @var int
-    **/
+     * @var int
+     */
     private $amount;
 
     /**
-    * @var int
-    **/
+     * @var int
+     */
     private $days;
 
     /**
-    * @var string
-    **/
+     * @var string
+     */
     private $name;
 
     /**
-    * @var int
-    **/
+     * @var int
+     */
     private $trialDays;
 
     /**
-    * @var array
-    **/
+     * @var array
+     */
     private $paymentsMethods;
 
     /**
-    * @var string
-    **/
+     * @var string
+     */
     private $color;
 
     /**
-    * @var int
-    **/
+     * @var int
+     */
     private $charges;
 
     /**
-    * @var int
-    **/
+     * @var int
+     */
     private $installments;
 
 
     /**
-    * @param int $amount
-    * @param int $days
-    * @param string $name
-    * @param int $trialDays
-    * @param array $paymentsMethods
-    * @param string $color
-    * @param int $charges
-    * @param int $installments
-    */
+     * @param int $amount
+     * @param int $days
+     * @param string $name
+     * @param int $trialDays
+     * @param array $paymentsMethods
+     * @param string $color
+     * @param int $charges
+     * @param int $installments
+     */
     public function __construct(
         $amount,
         $days,

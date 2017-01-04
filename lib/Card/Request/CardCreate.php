@@ -7,25 +7,25 @@ use PagarMe\Sdk\Request;
 class CardCreate implements Request
 {
     /**
-     * @var int | Número no cartão do portador
+     * @var int
      */
     private $cardNumber;
 
     /**
-     * @var int | Nome no cartão do portador
+     * @var string
      */
     private $holderName;
 
     /**
-     * @var int | Data de expiração do cartão
+     * @var int
      */
     private $cardExpirationDate;
 
     /**
-    * @param int $cardNumber
-    * @param int $holderName
-    * @param int $cardExpirationDate
-    */
+     * @param int $cardNumber
+     * @param int $holderName
+     * @param int $cardExpirationDate
+     */
     public function __construct($cardNumber, $holderName, $cardExpirationDate)
     {
         $this->cardNumber         = $cardNumber;

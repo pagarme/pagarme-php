@@ -11,7 +11,7 @@ class CalculateInstallmentsRequestTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPayloadBeCorrect()
     {
         $calculateInstallmentsRequest = $this->getCalculateInstallmentsRequest();
@@ -29,7 +29,7 @@ class CalculateInstallmentsRequestTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPathBeCorrect()
     {
         $calculateInstallmentsRequest = $this->getCalculateInstallmentsRequest();
@@ -39,7 +39,7 @@ class CalculateInstallmentsRequestTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustMethodBeCorrect()
     {
         $calculateInstallmentsRequest = $this->getCalculateInstallmentsRequest();

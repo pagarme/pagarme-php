@@ -24,7 +24,7 @@ class TransactionListTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider paginationProvider
      * @test
-    **/
+     */
     public function mustPayloadBeCorrect($page, $items)
     {
         $transactionCreate = new TransactionList($page, $items);
@@ -43,7 +43,7 @@ class TransactionListTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider paginationProvider
      * @test
-    **/
+     */
     public function mustPathBeCorrect($page, $items)
     {
         $transactionCreate = new TransactionList($page, $items);
@@ -54,7 +54,7 @@ class TransactionListTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider paginationProvider
      * @test
-    **/
+     */
     public function mustMethodBeCorrect($page, $items)
     {
         $transactionCreate = new TransactionList($page, $items);

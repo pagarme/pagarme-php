@@ -17,7 +17,7 @@ class SubscriptionUpdateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPayloadBeCorrectWhenNoCardSupplied()
     {
         $planMock = $this->getMockBuilder('PagarMe\Sdk\Plan\Plan')
@@ -46,7 +46,7 @@ class SubscriptionUpdateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPayloadBeCorrectWhenCardSupplied()
     {
         $cardMock = $this->getMockBuilder('PagarMe\Sdk\Card\Card')
@@ -82,7 +82,7 @@ class SubscriptionUpdateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustMethodBeCorrect()
     {
         $subscriptionMock = $this->getMockBuilder('PagarMe\Sdk\Subscription\Subscription')
@@ -99,7 +99,7 @@ class SubscriptionUpdateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPathBeCorrect()
     {
         $subscriptionMock = $this->getMockBuilder('PagarMe\Sdk\Subscription\Subscription')

@@ -13,7 +13,7 @@ class SplitRuleHandler
      * @param bool $liable
      * @param bool $chargeProcessingFee
      * @return SplitRule
-     **/
+     */
     public function monetaryRule(
         $value,
         Recipient $recipient,
@@ -36,7 +36,7 @@ class SplitRuleHandler
      * @param bool $liable
      * @param bool $chargeProcessingFee
      * @return SplitRule
-     **/
+     */
     public function percentageRule(
         $value,
         Recipient $recipient,

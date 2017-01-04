@@ -12,7 +12,7 @@ class SubscriptionCancelTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPayloadBeCorrect()
     {
         $subscriptionCancelRequest = new SubscriptionCancel(self::SUBSCRIPTION_ID);
@@ -25,7 +25,7 @@ class SubscriptionCancelTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustMethodBeCorrect()
     {
         $subscriptionCancelRequest = new SubscriptionCancel(self::SUBSCRIPTION_ID);
@@ -38,7 +38,7 @@ class SubscriptionCancelTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPathBeCorrect()
     {
         $subscriptionCancelRequest = new SubscriptionCancel(self::SUBSCRIPTION_ID);

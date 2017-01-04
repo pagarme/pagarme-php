@@ -9,20 +9,37 @@ use PagarMe\Sdk\Recipient\Recipient;
 class RecipientBalanceOperation implements Request
 {
 
+    /**
+     * @var Recipient
+     */
     private $recipient;
+
+    /**
+     * @var int
+     */
     private $operationId;
 
+    /**
+     * @var Recipient
+     * @var int
+     */
     public function __construct(Recipient $recipient, $operationId)
     {
         $this->recipient   = $recipient;
         $this->operationId = $operationId;
     }
 
+    /**
+     * @return array
+     */
     public function getPayload()
     {
         return [];
     }
 
+    /**
+     * @return string
+     */
     public function getPath()
     {
         return sprintf(
@@ -32,6 +49,9 @@ class RecipientBalanceOperation implements Request
         );
     }
 
+    /**
+     * @return string
+     */
     public function getMethod()
     {
         return 'GET';

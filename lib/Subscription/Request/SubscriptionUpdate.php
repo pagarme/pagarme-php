@@ -9,17 +9,20 @@ class SubscriptionUpdate implements Request
 {
     /**
      * @var Subscription $subscription
-     **/
+     */
     protected $subscription;
 
     /**
      * @var Subscription $subscription
-    **/
+     */
     public function __construct(Subscription $subscription)
     {
         $this->subscription = $subscription;
     }
 
+    /**
+     * @return array
+     */
     public function getPayload()
     {
         $payload = [
@@ -35,11 +38,17 @@ class SubscriptionUpdate implements Request
         return $payload;
     }
 
+    /**
+     * @return string
+     */
     public function getPath()
     {
         return sprintf('subscriptions/%d', $this->subscription->getId());
     }
 
+    /**
+     * @return string
+     */
     public function getMethod()
     {
         return 'PUT';

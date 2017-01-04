@@ -7,20 +7,23 @@ class Balance
     use \PagarMe\Sdk\Fillable;
 
     /**
-     * @var waitingFunds int
-     **/
+     * @var int
+     */
     protected $waitingFunds;
 
     /**
-     * @var available int
-     **/
+     * @var int
+     */
     protected $available;
 
     /**
-     * @var transferred int
-     **/
+     * @var int
+     */
     protected $transferred;
 
+    /**
+     * @param array $recipientData
+     */
     public function __construct($recipientData)
     {
         $this->fill($recipientData);
@@ -28,7 +31,7 @@ class Balance
 
     /**
      * @return int
-     **/
+     */
     public function getWaitingFunds()
     {
         return $this->waitingFunds;
@@ -36,7 +39,7 @@ class Balance
 
     /**
      * @return int
-     **/
+     */
     public function getAvailable()
     {
         return $this->available;
@@ -44,7 +47,7 @@ class Balance
 
     /**
      * @return int
-     **/
+     */
     public function getTransferred()
     {
         return $this->transferred;
