@@ -17,6 +17,8 @@ use PagarMe\Sdk\BalanceOperations\Movement;
 
 class RecipientHandler extends AbstractHandler
 {
+    use \PagarMe\Sdk\Recipient\RecipientBuilder;
+
     /**
      * @param BankAccount $bankAccount
      * @param string $transferInterval
@@ -145,26 +147,5 @@ class RecipientHandler extends AbstractHandler
         }
 
         return $operations;
-    }
-
-    /**
-     * @param array $recipientData
-     * @return Recipient
-     */
-    private function buildRecipient($recipientData)
-    {
-        $recipientData->date_created = new \DateTime(
-            $recipientData->date_created
-        );
-
-        $recipientData->date_updated = new \DateTime(
-            $recipientData->date_updated
-        );
-
-        $recipientData->bank_account = new BankAccount(
-            get_object_vars($recipientData->bank_account)
-        );
-
-        return new Recipient($recipientData);
     }
 }
