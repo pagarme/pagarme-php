@@ -13,7 +13,7 @@ class CardSubscriptionCreate extends SubscriptionCreate
 
     /**
      * @var Card $card
-     **/
+     */
     protected $card;
 
     /**
@@ -22,7 +22,7 @@ class CardSubscriptionCreate extends SubscriptionCreate
      * @var Customer $customer
      * @var string $postbackUrl
      * @var array $metadata
-    **/
+     */
     public function __construct(
         Plan $plan,
         Card $card,
@@ -41,6 +41,9 @@ class CardSubscriptionCreate extends SubscriptionCreate
         $this->paymentMethod = self::PAYMENT_METHOD;
     }
 
+    /**
+     * @return array
+     */
     public function getPayload()
     {
         return array_merge(

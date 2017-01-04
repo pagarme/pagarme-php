@@ -23,7 +23,7 @@ class CustomerCreateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPayloadBeCorrect()
     {
         $address = new \PagarMe\Sdk\Customer\Address(
@@ -75,7 +75,7 @@ class CustomerCreateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPathBeCorrect()
     {
         $customerCreate = new CustomerCreate(
@@ -93,7 +93,7 @@ class CustomerCreateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustMethodBeCorrect()
     {
         $customerCreate = new CustomerCreate(

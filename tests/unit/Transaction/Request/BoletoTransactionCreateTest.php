@@ -29,7 +29,7 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider boletoOptions
      * @test
-    **/
+     */
     public function mustPayloadBeCorrect($expirationDate)
     {
         $transaction =  $this->createTransaction($expirationDate);
@@ -67,7 +67,7 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPayloadContainSplitRule()
     {
         $customerMock = $this->getCustomerMock();
@@ -151,7 +151,7 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPathBeCorrect()
     {
         $transaction =  $this->getMockBuilder('PagarMe\Sdk\Transaction\BoletoTransaction')
@@ -165,7 +165,7 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustMethodBeCorrect()
     {
         $transaction =  $this->getMockBuilder('PagarMe\Sdk\Transaction\BoletoTransaction')

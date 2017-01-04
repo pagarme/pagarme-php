@@ -12,7 +12,7 @@ class TransactionPayTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPayloadBeCorrect()
     {
         $transactionMock = $this->getMockBuilder('PagarMe\Sdk\Transaction\BoletoTransaction')

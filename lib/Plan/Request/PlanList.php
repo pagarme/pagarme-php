@@ -8,19 +8,19 @@ class PlanList implements Request
 {
 
     /**
-    * @var int
-    **/
+     * @var int
+     */
     private $page;
 
     /**
-    * @var int
-    **/
+     * @var int
+     */
     private $count;
 
     /**
-    * @param int $page
-    * @param int $count
-    */
+     * @param int $page
+     * @param int $count
+     */
     public function __construct($page, $count)
     {
         $this->page  = $page;

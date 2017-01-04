@@ -12,7 +12,7 @@ class SubscriptionTransactionsGetTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPayloadBeCorrect()
     {
         $subscriptionMock = $this->getMockBuilder('PagarMe\Sdk\Subscription\Subscription')
@@ -30,7 +30,7 @@ class SubscriptionTransactionsGetTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustMethodBeCorrect()
     {
         $subscriptionMock = $this->getMockBuilder('PagarMe\Sdk\Subscription\Subscription')
@@ -48,7 +48,7 @@ class SubscriptionTransactionsGetTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPathBeCorrect()
     {
         $subscriptionMock = $this->getMockBuilder('PagarMe\Sdk\Subscription\Subscription')

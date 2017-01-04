@@ -6,49 +6,48 @@ class Address
 {
 
     /**
-     * @var string | Nome da rua
-
+     * @var string
      */
     private $street;
 
     /**
-     * @var int | Número do imóvel
+     * @var string
      */
     private $streetNumber;
 
     /**
-     * @var string | Bairro
+     * @var string
      */
     private $neighborhood;
 
     /**
-     * @var string | Código postal (CEP) ex '01034020'
+     * @var string
      */
     private $zipcode;
 
     /**
-     * @var string | Complemento do endereço
+     * @var string
      */
     private $complementary;
 
     /**
-     * @var string | Cidade
+     * @var string
      */
     private $city;
 
     /**
-     * @var string | Estado
+     * @var string
      */
     private $state;
 
     /**
-     * @var string | Pais
+     * @var string
      */
     private $country;
 
     /**
      * @param string $street
-     * @param int $streetNumber
+     * @param string $streetNumber
      * @param string $neighborhood
      * @param string $zipcode
      */
@@ -69,7 +68,7 @@ class Address
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getStreetNumber()
     {

@@ -7,94 +7,94 @@ class Plan
     use \PagarMe\Sdk\Fillable;
 
     /**
-    * @var int
-    **/
+     * @var int
+     */
     private $amount;
 
     /**
-    * @var int
-    **/
+     * @var int
+     */
     private $id;
 
     /**
-    * @var int
-    **/
+     * @var int
+     */
     private $days;
 
     /**
-    * @var string
-    **/
+     * @var string
+     */
     private $name;
 
     /**
-    * @var int
-    **/
+     * @var int
+     */
     private $trialDays;
 
     /**
-    * @var array
-    **/
+     * @var array
+     */
     private $paymentMethods;
 
     /**
-    * @var string
-    **/
+     * @var string
+     */
     private $color;
 
     /**
-    * @var int
-    **/
+     * @var int
+     */
     private $charges;
 
     /**
-    * @var int
-    **/
+     * @var int
+     */
     private $installments;
 
 
     /**
-    * @param array $planData
-    */
+     * @param array $planData
+     */
     public function __construct($planData)
     {
         $this->fill($planData);
     }
 
     /**
-    * @return int
-    **/
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
     }
 
     /**
-    * @return int
-    **/
+     * @return int
+     */
     public function getAmount()
     {
         return $this->amount;
     }
 
     /**
-    * @return int
-    **/
+     * @return int
+     */
     public function getDays()
     {
         return $this->days;
     }
 
     /**
-    * @return string
-    **/
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
     }
 
     /**
-    * @param string $name
-    **/
+     * @param string $name
+     */
     public function setName($name)
     {
         $this->name = $name;
@@ -102,16 +102,16 @@ class Plan
     }
 
     /**
-    * @return int
-    **/
+     * @return int
+     */
     public function getTrialDays()
     {
         return $this->trialDays;
     }
 
     /**
-    * @param int $trialDays
-    **/
+     * @param int $trialDays
+     */
     public function setTrialDays($trialDays)
     {
         $this->trialDays = $trialDays;
@@ -119,24 +119,24 @@ class Plan
     }
 
     /**
-    * @return array
-    **/
+     * @return array
+     */
     public function getPaymentMethods()
     {
         return $this->paymentMethods;
     }
 
     /**
-    * @return string
-    **/
+     * @return string
+     */
     public function getColor()
     {
         return $this->color;
     }
 
     /**
-    * @param string $color
-    **/
+     * @param string $color
+     */
     public function setColor($color)
     {
         $this->color = $color;
@@ -144,16 +144,16 @@ class Plan
     }
 
     /**
-    * @return int
-    **/
+     * @return int
+     */
     public function getCharges()
     {
         return $this->charges;
     }
 
     /**
-    * @param int $charges
-    **/
+     * @param int $charges
+     */
     public function setCharges($charges)
     {
         $this->charges = $charges;
@@ -161,8 +161,8 @@ class Plan
     }
 
     /**
-    * @return int
-    **/
+     * @return int
+     */
     public function getInstallments()
     {
         return $this->installments;

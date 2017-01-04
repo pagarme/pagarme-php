@@ -25,7 +25,7 @@ class SubscriptionListTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider paginationData
      * @test
-    **/
+     */
     public function mustPayloadBeCorrect($page, $count)
     {
         $subscriptionListRequest = new SubscriptionList($page, $count);

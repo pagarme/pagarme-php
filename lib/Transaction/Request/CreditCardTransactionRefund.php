@@ -7,11 +7,19 @@ use PagarMe\Sdk\Transaction\CreditCardTransaction;
 
 class CreditCardTransactionRefund implements Request
 {
+    /**
+     * @var CreditCardTransaction
+     */
     protected $transaction;
+
+    /**
+     * @var int
+     */
     protected $amount;
 
     /**
-     * @codeCoverageIgnore
+     * @param CreditCardTransaction $transaction
+     * @param int $amount
      */
     public function __construct(CreditCardTransaction $transaction, $amount)
     {
@@ -19,6 +27,9 @@ class CreditCardTransactionRefund implements Request
         $this->amount      = $amount;
     }
 
+    /**
+     * @param string
+     */
     public function getPayload()
     {
         return [
@@ -26,11 +37,17 @@ class CreditCardTransactionRefund implements Request
         ];
     }
 
+    /**
+     * @param string
+     */
     public function getPath()
     {
         return sprintf('transactions/%d/refund', $this->transaction->getId());
     }
 
+    /**
+     * @param string
+     */
     public function getMethod()
     {
         return 'POST';

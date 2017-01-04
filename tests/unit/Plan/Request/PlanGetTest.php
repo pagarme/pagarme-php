@@ -12,7 +12,7 @@ class PlanGetTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustContentBeCorrect()
     {
         $request = new PlanGet(self::PLAN_ID);

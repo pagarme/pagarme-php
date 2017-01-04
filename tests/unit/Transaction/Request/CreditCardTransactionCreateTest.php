@@ -29,7 +29,7 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider installmentsProvider
      * @test
-    **/
+     */
     public function mustPayloadBeCorrect($installments, $capture, $postbackUrl)
     {
         $transaction =  $this->getTransaction($installments, $capture, $postbackUrl);
@@ -69,7 +69,7 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPayloadContainMonetarySplitRules()
     {
         $customerMock = $this->getCustomerMock();
@@ -151,7 +151,7 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPayloadContainPercentageSplitRules()
     {
         $customerMock = $this->getCustomerMock();
@@ -234,7 +234,7 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider installmentsProvider
      * @test
-    **/
+     */
     public function mustPayloadContainCardHash($installments, $capture, $postbackUrl)
     {
         $customerMock = $this->getCustomerMock();
@@ -292,7 +292,7 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPathBeCorrect()
     {
         $transaction =  $this->getTransaction(rand(1, 12), false, null);
@@ -303,7 +303,7 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustMethodBeCorrect()
     {
         $transaction =  $this->getTransaction(rand(1, 12), false, null);

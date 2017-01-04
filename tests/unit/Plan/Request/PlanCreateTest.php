@@ -10,7 +10,7 @@ class PlanCreateTest extends \PHPUnit_Framework_TestCase
     const METHOD = 'POST';
     /**
      * @test
-    **/
+     */
     public function mustContentBeCorrect()
     {
         $request = new PlanCreate(
