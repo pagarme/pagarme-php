@@ -14,6 +14,12 @@ trait TransactionBuilder
             );
         }
 
+        if (!is_null($transactionData->metadata)) {
+            $transactionData->metadata = get_object_vars(
+                $transactionData->metadata
+            );
+        }
+
         $transactionData->date_created = new \DateTime(
             $transactionData->date_created
         );
