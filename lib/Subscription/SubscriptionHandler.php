@@ -24,13 +24,13 @@ class SubscriptionHandler extends AbstractHandler
     use \PagarMe\Sdk\Customer\AddressBuilder;
 
     /**
-    * @param int $id
-    * @param Plan $plan
-    * @param Card $card
-    * @param Customer $customer
-    * @param string $postbackUrl
-    * @param $metadata
-    **/
+     * @param int $id
+     * @param Plan $plan
+     * @param Card $card
+     * @param Customer $customer
+     * @param string $postbackUrl
+     * @param $metadata
+     */
     public function createCardSubscription(
         Plan $plan,
         Card $card,
@@ -52,12 +52,12 @@ class SubscriptionHandler extends AbstractHandler
     }
 
     /**
-    * @param int $id
-    * @param Plan $plan
-    * @param Customer $customer
-    * @param string $postbackUrl
-    * @param $metadata
-    **/
+     * @param int $id
+     * @param Plan $plan
+     * @param Customer $customer
+     * @param string $postbackUrl
+     * @param $metadata
+     */
     public function createBoletoSubscription(
         Plan $plan,
         Customer $customer,
@@ -78,7 +78,7 @@ class SubscriptionHandler extends AbstractHandler
 
     /**
      * @param int $subscriptionId
-    **/
+     */
     public function get($subscriptionId)
     {
         $request = new SubscriptionGet($subscriptionId);
@@ -91,7 +91,7 @@ class SubscriptionHandler extends AbstractHandler
     /**
      * @param int $page
      * @param int $count
-    **/
+     */
     public function getList($page = null, $count = null)
     {
         $request = new SubscriptionList($page, $count);
@@ -108,7 +108,7 @@ class SubscriptionHandler extends AbstractHandler
 
     /**
      * @param int $subscriptionId
-    **/
+     */
     public function cancel($subscriptionId)
     {
         $request = new SubscriptionCancel($subscriptionId);
@@ -120,7 +120,7 @@ class SubscriptionHandler extends AbstractHandler
 
     /**
      * @param Subscription $subscription
-    **/
+     */
     public function update(Subscription $subscription)
     {
         $request = new SubscriptionUpdate($subscription);
@@ -132,7 +132,7 @@ class SubscriptionHandler extends AbstractHandler
 
     /**
      * @param Subscription $subscription
-    **/
+     */
     public function transactions(Subscription $subscription)
     {
         $request = new SubscriptionTransactionsGet($subscription);
@@ -147,6 +147,10 @@ class SubscriptionHandler extends AbstractHandler
         return $transactions;
     }
 
+    /**
+     * @param array $subscriptionData
+     * @return Subscription
+     */
     private function buildSubscription($subscriptionData)
     {
         if (is_object($subscriptionData->card)) {

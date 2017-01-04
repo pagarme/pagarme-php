@@ -9,16 +9,22 @@ use PagarMe\Sdk\SplitRule\SplitRule;
 
 class TransactionCreate implements Request
 {
+    /**
+     * @var Transaction
+     */
     protected $transaction;
 
     /**
-     * @codeCoverageIgnore
+     * @param Transaction $transaction
      */
     public function __construct(Transaction $transaction)
     {
         $this->transaction = $transaction;
     }
 
+    /**
+     * @return array
+     */
     public function getPayload()
     {
         $customer = $this->transaction->getCustomer();
@@ -60,16 +66,26 @@ class TransactionCreate implements Request
         return $transactionData;
     }
 
+    /**
+     * @return string
+     */
     public function getPath()
     {
         return 'transactions';
     }
 
+    /**
+     * @return string
+     */
     public function getMethod()
     {
         return 'POST';
     }
 
+    /**
+     * @param PagarMe\Sdk\SplitRule\SplitRuleCollection $splitRules
+     * @return array
+     */
     private function getSplitRulesInfo(SplitRuleCollection $splitRules)
     {
         $rules = [];
@@ -87,6 +103,10 @@ class TransactionCreate implements Request
         return $rules;
     }
 
+    /**
+     * @param PagarMe\Sdk\SplitRule\SplitRule $splitRule
+     * @return array
+     */
     private function getRuleValue($splitRule)
     {
         if (!is_null($splitRule->getAmount())) {

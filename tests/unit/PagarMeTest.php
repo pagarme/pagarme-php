@@ -9,7 +9,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
-    **/
+     */
     public function mustReturnCardHandler()
     {
         $pagarMe = new PagarMe('apiKey');
@@ -21,7 +21,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnCustomerHandler()
     {
         $pagarMe = new PagarMe('apiKey');
@@ -33,7 +33,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnSameCardHandler()
     {
         $pagarMe = new PagarMe('apiKey');
@@ -46,7 +46,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnTransactionHandler()
     {
         $pagarMe = new PagarMe('apiKey');
@@ -58,7 +58,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnSameTransactionHandler()
     {
         $pagarMe = new PagarMe('apiKey');
@@ -69,7 +69,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnSameCustomerHandler()
     {
         $pagarMe = new PagarMe('apiKey');
@@ -82,7 +82,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     **/
+     */
     public function mustReturnRecipientsHandler()
     {
         $pagarMe =  new PagarMe('apiKey');
@@ -95,7 +95,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnSameRecipientHandler()
     {
         $pagarMe = new PagarMe('apiKey');
@@ -108,7 +108,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnSamePlanHandler()
     {
         $pagarMe = new PagarMe('apiKey');
@@ -121,7 +121,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnSameSplitRuleHandler()
     {
         $pagarMe = new PagarMe('apiKey');
@@ -134,7 +134,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnSameTransferHandler()
     {
         $pagarMe = new PagarMe('apiKey');
@@ -151,7 +151,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    */
+     */
     public function mustReturnSameCompanyHandler()
     {
         $pagarMe = new PagarMe('apiKey');
@@ -185,7 +185,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustReturnSameSubscriptionHandler()
     {
         $pagarMe = new PagarMe('apiKey');
@@ -202,7 +202,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    */
+     */
     public function mustReturnSameBulkAnticipationHandler()
     {
         $pagarMe = new PagarMe('apiKey');
@@ -219,7 +219,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    */
+     */
     public function mustReturnSamePayableHandler()
     {
         $pagarMe = new PagarMe('apiKey');
@@ -236,7 +236,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    */
+     */
     public function mustReturnSameZipcodeHandler()
     {
         $pagarMe = new PagarMe('apiKey');
@@ -253,7 +253,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    */
+     */
     public function mustReturnSamePostbackHandler()
     {
         $pagarMe = new PagarMe('apiKey');
@@ -270,7 +270,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    */
+     */
     public function mustReturnSameAntifraudAnalysesHandler()
     {
         $pagarMe = new PagarMe('apiKey');
@@ -291,7 +291,7 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    */
+     */
     public function mustReturnSameSearchHandler()
     {
         $pagarMe = new PagarMe('apiKey');

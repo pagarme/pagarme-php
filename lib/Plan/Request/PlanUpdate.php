@@ -8,13 +8,13 @@ use PagarMe\Sdk\Plan\Plan;
 class PlanUpdate implements Request
 {
     /**
-    * @var Plan $plan
-    **/
+     * @var Plan $plan
+     */
     private $plan;
 
     /**
-    * @param Plan $plan
-    */
+     * @param Plan $plan
+     */
     public function __construct(Plan $plan)
     {
         $this->plan = $plan;

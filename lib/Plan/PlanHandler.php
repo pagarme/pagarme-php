@@ -10,6 +10,17 @@ use PagarMe\Sdk\Plan\Request\PlanUpdate;
 
 class PlanHandler extends AbstractHandler
 {
+    /**
+     * @param int $amount
+     * @param int $days
+     * @param string $name
+     * @param int $trialDays
+     * @param array $paymentsMethods
+     * @param string $color
+     * @param int $charges
+     * @param int $installments
+     * @return Plan
+     */
     public function create(
         $amount,
         $days,
@@ -36,6 +47,11 @@ class PlanHandler extends AbstractHandler
         return new Plan(get_object_vars($response));
     }
 
+    /**
+     * @param int $page
+     * @param int $count
+     * @return array
+     */
     public function getList($page = null, $count = null)
     {
         $request = new PlanList(
@@ -52,6 +68,10 @@ class PlanHandler extends AbstractHandler
         return $plans;
     }
 
+    /**
+     * @param int $planId
+     * @return Plan
+     */
     public function get($planId)
     {
         $request = new PlanGet($planId);
@@ -61,6 +81,10 @@ class PlanHandler extends AbstractHandler
         return new Plan(get_object_vars($response));
     }
 
+    /**
+     * @param Plan $plan
+     * @return Plan
+     */
     public function update(Plan $plan)
     {
         $request = new PlanUpdate($plan);

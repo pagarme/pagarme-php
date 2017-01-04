@@ -19,7 +19,7 @@ class SplitRuleHandlerTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider splitData
      * @test
-     **/
+     */
     public function mustReturnSplitRuleWithMonetaryValue(
         $value,
         $recipientId,
@@ -49,7 +49,7 @@ class SplitRuleHandlerTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider splitData
      * @test
-     **/
+     */
     public function mustReturnSplitRuleWithPercentageValue(
         $value,
         $recipientId,

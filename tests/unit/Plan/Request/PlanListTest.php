@@ -22,7 +22,7 @@ class PlanListTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider planListParams
      * @test
-    **/
+     */
     public function mustContentBeCorrect($page, $count)
     {
         $request = new PlanList($page, $count);

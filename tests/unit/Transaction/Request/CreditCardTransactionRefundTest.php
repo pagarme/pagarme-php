@@ -24,7 +24,7 @@ class CreditCardTransactionRefundTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider refundAmountProvider
      * @test
-    **/
+     */
     public function mustContentBeCorrect($amount)
     {
         $transactionCreate = new CreditCardTransactionRefund(

@@ -18,14 +18,14 @@ use PagarMe\Sdk\BalanceOperations\Movement;
 class RecipientHandler extends AbstractHandler
 {
     /**
-    * @param BankAccount $bankAccount
-    * @param string $transferInterval
-    * @param int $transferDay
-    * @param bool $transferEnabled
-    * @param bool $automaticAnticipationEnabled
-    * @param int $anticipatableVolumePercentage
-    * @return Recipient
-    **/
+     * @param BankAccount $bankAccount
+     * @param string $transferInterval
+     * @param int $transferDay
+     * @param bool $transferEnabled
+     * @param bool $automaticAnticipationEnabled
+     * @param int $anticipatableVolumePercentage
+     * @return Recipient
+     */
     public function create(
         BankAccount $bankAccount,
         $transferInterval = null,
@@ -52,7 +52,7 @@ class RecipientHandler extends AbstractHandler
      * @param int $page
      * @param int $count
      * @return array
-     **/
+     */
     public function getList($page = null, $count = null)
     {
         $request = new RecipientList($page, $count);
@@ -71,7 +71,7 @@ class RecipientHandler extends AbstractHandler
      * @param int $recipientId
      * @param int $count
      * @return Recipient
-     **/
+     */
     public function get($recipientId)
     {
         $request = new RecipientGet($recipientId);
@@ -84,7 +84,7 @@ class RecipientHandler extends AbstractHandler
     /**
      * @param Recipient $recipient
      * @return Recipient
-     **/
+     */
     public function update(Recipient $recipient)
     {
         $request = new RecipientUpdate($recipient);
@@ -97,7 +97,7 @@ class RecipientHandler extends AbstractHandler
     /**
      * @param Recipient $recipient
      * @return Balance
-     **/
+     */
     public function balance(Recipient $recipient)
     {
         $request = new RecipientBalance($recipient);
@@ -111,7 +111,7 @@ class RecipientHandler extends AbstractHandler
      * @param Recipient $recipient
      * @param int $operationId
      * @return Operation
-     **/
+     */
     public function balanceOperation(Recipient $recipient, $operationId)
     {
         $request = new RecipientBalanceOperation($recipient, $operationId);
@@ -128,7 +128,7 @@ class RecipientHandler extends AbstractHandler
      * @param int $page
      * @param int $count
      * @return array
-     **/
+     */
     public function balanceOperations(
         Recipient $recipient,
         $page = null,

@@ -9,22 +9,28 @@ class SubscriptionTransactionsGet implements Request
 {
     /**
      * @var Subscription $subscription
-     **/
+     */
     protected $subscription;
 
     /**
      * @param Subscription $subscription
-    **/
+     */
     public function __construct(Subscription $subscription)
     {
         $this->subscription = $subscription;
     }
 
+    /**
+     * @return array
+     */
     public function getPayload()
     {
         return [];
     }
 
+    /**
+     * @return string
+     */
     public function getPath()
     {
         return sprintf(
@@ -33,6 +39,9 @@ class SubscriptionTransactionsGet implements Request
         );
     }
 
+    /**
+     * @return string
+     */
     public function getMethod()
     {
         return 'GET';

@@ -12,7 +12,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPayloadBeCorrect()
     {
         $cardGet = new CardGet(self::CARD_ID);
@@ -22,7 +22,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustPathBeCorrect()
     {
         $cardGet = new CardGet(self::CARD_ID);
@@ -32,7 +32,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-    **/
+     */
     public function mustMethodBeCorrect()
     {
         $cardGet = new CardGet(self::CARD_ID);

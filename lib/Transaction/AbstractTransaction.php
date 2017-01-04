@@ -17,331 +17,431 @@ abstract class AbstractTransaction
     const PENDING_REFUND  = 'pending_refund';
     const REFUSED         = 'refused';
 
+    /**
+     * @var int
+     */
     protected $id;
+
+    /**
+     * @var string
+     */
     protected $status;
+
+    /**
+     * @var string
+     */
     protected $refuseReason;
+
+    /**
+     * @var string
+     */
     protected $statusReason;
+
+    /**
+     * @var string
+     */
     protected $acquirerName;
+
+    /**
+     * @var string
+     */
     protected $acquirerResponseCode;
+
+    /**
+     * @var string
+     */
     protected $authorizationCode;
+
+    /**
+     * @var string
+     */
     protected $softDescriptor;
+
+    /**
+     * @var string
+     */
     protected $tid;
+
+    /**
+     * @var string
+     */
     protected $nsu;
 
     /**
-     * @return \DateTime
+     * @var \DateTime
      */
     protected $dateCreated;
+
     /**
-     * @return \DateTime
+     * @var \DateTime
      */
     protected $dateUpdated;
 
+    /**
+     * @var int
+     */
     protected $amount;
+
+    /**
+     * @var int
+     */
     protected $cost;
+
+    /**
+     * @var string
+     */
     protected $postbackUrl;
+
+    /**
+     * @var string
+     */
     protected $paymentMethod;
+
+    /**
+     * @var int
+     */
     protected $antifraudScore;
+
+    /**
+     * @var string
+     */
     protected $referer;
+
+    /**
+     * @var string
+     */
     protected $ip;
+
+    /**
+     * @var int
+     */
     protected $subscriptionId;
+
+    /**
+     * @var \PagarMe\Sdk\Customer\Phone
+     */
     protected $phone;
+
+    /**
+     * @var \PagarMe\Sdk\Customer\Address
+     */
     protected $address;
+
+    /**
+     * @var \PagarMe\Sdk\Customer\Customer
+     */
     protected $customer;
+
+    /**
+     * @var array
+     */
     protected $metadata;
+
+    /**
+     * @var int
+     */
     protected $paidAmount;
+
+    /**
+     * @var int
+     */
     protected $refundedAmount;
+
+    /**
+     * @var \PagarMe\Sdk\SplitRule\SplitRuleCollection
+     */
     protected $splitRules;
 
+    /**
+     * @param array $transactionData
+     */
     public function __construct($transactionData)
     {
         $this->fill($transactionData);
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return string
+     */
     public function getStatus()
     {
         return $this->status;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return string
+     */
     public function getRefuseReason()
     {
         return $this->refuseReason;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return string
+     */
     public function getStatusReason()
     {
         return $this->statusReason;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return string
+     */
     public function getAcquirerName()
     {
         return $this->acquirerName;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return string
+     */
     public function getAcquirerResponseCode()
     {
         return $this->acquirerResponseCode;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return string
+     */
     public function getAuthorizationCode()
     {
         return $this->authorizationCode;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return string
+     */
     public function getSoftDescriptor()
     {
         return $this->softDescriptor;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return string
+     */
     public function getTid()
     {
         return $this->tid;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return string
+     */
     public function getNsu()
     {
         return $this->nsu;
     }
 
     /**
-    * @codeCoverageIgnore
-    * @return \DateTime
-    */
+     * @return \DateTime
+     */
     public function getDateCreated()
     {
         return $this->dateCreated;
     }
 
     /**
-    * @codeCoverageIgnore
-    * @return \DateTime
-    */
+     * @return \DateTime
+     */
     public function getDateUpdated()
     {
         return $this->dateUpdated;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return int
+     */
     public function getAmount()
     {
         return $this->amount;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return int
+     */
     public function getInstallments()
     {
         return $this->installments;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return int
+     */
     public function getCost()
     {
         return $this->cost;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return string
+     */
     public function getPostbackUrl()
     {
         return $this->postbackUrl;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return string
+     */
     public function getPaymentMethod()
     {
         return $this->paymentMethod;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return string
+     */
     public function getAntifraudScore()
     {
         return $this->antifraudScore;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return string
+     */
     public function getReferer()
     {
         return $this->referer;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return string
+     */
     public function getIp()
     {
         return $this->ip;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return int
+     */
     public function getSubscriptionId()
     {
         return $this->subscriptionId;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return \PagarMe\Sdk\Customer\Phone
+     */
     public function getPhone()
     {
         return $this->phone;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return \PagarMe\Sdk\Customer\Address
+     */
     public function getAddress()
     {
         return $this->address;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return \PagarMe\Sdk\Customer\Customer
+     */
     public function getCustomer()
     {
         return $this->customer;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return PagarMe\Sdk\Card\Card
+     */
     public function getCard()
     {
         return $this->card;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return array
+     */
     public function getMetadata()
     {
         return $this->metadata;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return int
+     */
     public function getPaidAmount()
     {
         return $this->paidAmount;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return int
+     */
     public function getRefundedAmount()
     {
         return $this->refundedAmount;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return boolean
+     */
     public function isProcessing()
     {
         return $this->status == self::PROCESSING;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return boolean
+     */
     public function isAuthorized()
     {
         return $this->status == self::AUTHORIZED;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return boolean
+     */
     public function isPaid()
     {
         return $this->status == self::PAID;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return boolean
+     */
     public function isRefunded()
     {
         return $this->status == self::REFUNDED;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return boolean
+     */
     public function isWaitingPayment()
     {
         return $this->status == self::WAITING_PAYMENT;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return boolean
+     */
     public function isPendingRefund()
     {
         return $this->status == self::PENDING_REFUND;
     }
 
     /**
-    * @codeCoverageIgnore
-    */
+     * @return boolean
+     */
     public function isRefused()
     {
         return $this->status == self::REFUSED;
     }
 
     /**
-     * @return SplitRuleCollection
+     * @return \PagarMe\Sdk\SplitRule\SplitRuleCollection
      */
     public function getSplitRules()
     {

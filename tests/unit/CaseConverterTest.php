@@ -18,7 +18,7 @@ class CaseConverterTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider upperCamelProvider
      * @test
-     **/
+     */
     public function mustConvertToUpperCamelCase($snakeCase, $upperCamelCase)
     {
         $converter = $mock = $this->getMockForTrait('PagarMe\Sdk\CaseConverter');
@@ -43,7 +43,7 @@ class CaseConverterTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider lowerCamelProvider
      * @test
-     **/
+     */
     public function mustConvertToLowerCamelCase()
     {
         $converter = $mock = $this->getMockForTrait('PagarMe\Sdk\CaseConverter');

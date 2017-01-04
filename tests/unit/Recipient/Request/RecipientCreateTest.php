@@ -20,7 +20,7 @@ class RecipientCreateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     **/
+     */
     public function mustPathBeCorrect()
     {
         $bankAccountMock = $this->getMockBuilder('PagarMe\Sdk\BankAccount\BankAccount')
@@ -41,7 +41,7 @@ class RecipientCreateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     **/
+     */
     public function mustMethodBeCorrect()
     {
         $bankAccountMock = $this->getMockBuilder('PagarMe\Sdk\BankAccount\BankAccount')
@@ -77,7 +77,7 @@ class RecipientCreateTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider recipientParams
      * @test
-     **/
+     */
     public function mustPayloadBeCorrect(
         $bankAccount,
         $transferInterval,
@@ -125,7 +125,7 @@ class RecipientCreateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     **/
+     */
     public function mustContainBankAccountId()
     {
         $bankAccountMock = $this->getMockBuilder('PagarMe\Sdk\BankAccount\BankAccount')
@@ -152,7 +152,7 @@ class RecipientCreateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     **/
+     */
     public function mustContainBankAccountData()
     {
         $bankAccountMock = $this->getMockBuilder('PagarMe\Sdk\BankAccount\BankAccount')

@@ -6,11 +6,18 @@ use PagarMe\Sdk\Request;
 
 class TransactionCapture implements Request
 {
+    /**
+     * @var int
+     */
     protected $transactionId;
+    /**
+     * @var int
+     */
     protected $amount;
 
     /**
-     * @codeCoverageIgnore
+     * @param int $transaction
+     * @param int $amount
      */
     public function __construct($transactionId, $amount)
     {
@@ -18,6 +25,9 @@ class TransactionCapture implements Request
         $this->amount = $amount;
     }
 
+    /**
+     * @return array
+     */
     public function getPayload()
     {
         if (is_null($this->amount)) {
@@ -28,11 +38,17 @@ class TransactionCapture implements Request
         ];
     }
 
+    /**
+     * @return string
+     */
     public function getPath()
     {
         return sprintf('transactions/%d/capture', $this->transactionId);
     }
 
+    /**
+     * @return string
+     */
     public function getMethod()
     {
         return 'POST';

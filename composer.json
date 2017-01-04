@@ -19,6 +19,7 @@
     "homepage": "http://pagar.me",
     "license": "MIT",
     "require": {
+        "php": ">=5.4.0",
         "guzzlehttp/guzzle": "^5.3"
     },
     "require-dev": {
