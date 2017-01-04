@@ -18,9 +18,7 @@ trait TransactionBuilder
             );
         }
 
-        $transactionData->metadata = $this->parseMetadata(
-            $transactionData->metadata
-        );
+        $transactionData->metadata = $this->parseMetadata($transactionData);
 
         $transactionData->date_created = new \DateTime(
             $transactionData->date_created
@@ -51,19 +49,19 @@ trait TransactionBuilder
     }
 
     /**
-     * @param mixed
+     * @param array $transactionData
      * @return array
      */
-    private function parseMetadata($metadataInfo)
+    private function parseMetadata($transactionData)
     {
-        if (!isset($metadataInfo)) {
+        if (!isset($transactionData->metadata)) {
             return [];
         }
 
-        if (!isset($metadataInfo)) {
+        if (is_null($transactionData->metadata)) {
             return [];
         }
 
-        return get_object_vars($metadataInfo);
+        return get_object_vars($transactionData->metadata);
     }
 }
