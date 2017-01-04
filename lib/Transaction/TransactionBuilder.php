@@ -4,7 +4,7 @@ namespace PagarMe\Sdk\Transaction;
 
 trait TransactionBuilder
 {
-    use SplitRuleBuilder;
+    use \PagarMe\Sdk\SplitRule\SplitRuleBuilder;
 
     /**
      * @param array transactionData
