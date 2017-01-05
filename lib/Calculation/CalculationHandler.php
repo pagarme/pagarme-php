@@ -28,10 +28,10 @@ class CalculationHandler extends AbstractHandler
             $maxInstallments
         );
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
         $installments = [];
-        foreach ($result->installments as $key => $value) {
+        foreach ($response->installments as $key => $value) {
             $installments[$key] = [
                 'installment_amount' => $value->installment_amount,
                 'total_amount' => $value->amount

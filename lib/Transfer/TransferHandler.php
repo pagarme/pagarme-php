@@ -28,9 +28,9 @@ class TransferHandler extends AbstractHandler
             $bankAccountId
         );
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
-        return $this->buildTransfer($result);
+        return $this->buildTransfer($response);
     }
 
     /**
@@ -40,9 +40,9 @@ class TransferHandler extends AbstractHandler
     {
         $request = new TransferGet($transferId);
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
-        return $this->buildTransfer($result);
+        return $this->buildTransfer($response);
     }
 
     /**
@@ -53,11 +53,11 @@ class TransferHandler extends AbstractHandler
     {
         $request = new TransferList($page, $count);
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
         $tranfers = [];
 
-        foreach ($result as $transferData) {
+        foreach ($response as $transferData) {
             $tranfers[] = $this->buildTransfer($transferData);
         }
 
@@ -71,9 +71,9 @@ class TransferHandler extends AbstractHandler
     {
         $request = new TransferCancel($transfer);
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
-        return $this->buildTransfer($result);
+        return $this->buildTransfer($response);
     }
 
     /**

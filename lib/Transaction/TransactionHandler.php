@@ -59,9 +59,9 @@ class TransactionHandler extends AbstractHandler
 
         $transaction = new CreditCardTransaction($transactionData);
         $request = new CreditCardTransactionCreate($transaction);
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
-        return $this->buildTransaction($result);
+        return $this->buildTransaction($response);
     }
 
     /**
@@ -92,9 +92,9 @@ class TransactionHandler extends AbstractHandler
 
         $request = new BoletoTransactionCreate($transaction);
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
-        return $this->buildTransaction($result);
+        return $this->buildTransaction($response);
     }
 
     /**
@@ -105,9 +105,9 @@ class TransactionHandler extends AbstractHandler
     {
         $request = new TransactionGet($transactionId);
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
-        return $this->buildTransaction($result);
+        return $this->buildTransaction($response);
     }
 
     /**
