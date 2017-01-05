@@ -19,10 +19,10 @@ class BalanceOperationsHandler extends AbstractHandler
     {
         $request = new BalanceOperationsList($page, $count);
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
         $operations = [];
 
-        foreach ($result as $operation) {
+        foreach ($response as $operation) {
             $operation->movement = new Movement($operation->movement_object);
             $operations[]= new Operation(get_object_vars($operation));
         }

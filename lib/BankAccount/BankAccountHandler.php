@@ -37,9 +37,9 @@ class BankAccountHandler extends AbstractHandler
             $officeDigit
         );
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
-        return $this->buildBankAccount($result);
+        return $this->buildBankAccount($response);
     }
 
     /**
@@ -50,10 +50,10 @@ class BankAccountHandler extends AbstractHandler
     {
         $request = new BankAccountList($page, $count);
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
         $bankAccounts = [];
-        foreach ($result as $bankData) {
+        foreach ($response as $bankData) {
             $bankAccounts[] = $this->buildBankAccount($bankData);
         }
 
@@ -67,9 +67,9 @@ class BankAccountHandler extends AbstractHandler
     {
         $request = new BankAccountGet($bankAccountId);
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
-        return $this->buildBankAccount($result);
+        return $this->buildBankAccount($response);
     }
 
     /**
