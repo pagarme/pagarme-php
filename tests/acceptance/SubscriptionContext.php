@@ -132,7 +132,10 @@ class SubscriptionContext extends BasicContext
      */
     public function theSameSubscriptionMustBeReturned()
     {
-        assertEquals($this->subscription, $this->querySubscription);
+        assertEquals(
+            $this->subscription->getId(),
+            $this->querySubscription->getId()
+        );
     }
 
     /**
