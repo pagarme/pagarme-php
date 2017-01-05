@@ -135,7 +135,7 @@ class RecipientHandlerTest extends \PHPUnit_Framework_TestCase
         $operation = $handler->balanceOperation($recipientMock, 3861);
 
         $this->assertInstanceOf(
-            'PagarMe\Sdk\BalanceOperations\Operation',
+            'PagarMe\Sdk\BalanceOperation\Operation',
             $operation
         );
     }
@@ -165,7 +165,7 @@ class RecipientHandlerTest extends \PHPUnit_Framework_TestCase
         $this->assertGreaterThan(2, count($operations));
 
         $this->assertContainsOnlyInstancesOf(
-            'PagarMe\Sdk\BalanceOperations\Operation',
+            'PagarMe\Sdk\BalanceOperation\Operation',
             $operations
         );
     }

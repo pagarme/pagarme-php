@@ -1,8 +1,8 @@
 <?php
 
-namespace PagarMe\Sdk\BalanceOperations;
+namespace PagarMe\Sdk\BalanceOperation;
 
-class Operation
+class Movement
 {
     use \PagarMe\Sdk\Fillable;
 
@@ -19,21 +19,6 @@ class Operation
     /**
      * @var int
      */
-    protected $balanceAmount;
-
-    /**
-     * @var int
-     */
-    protected $balanceOldAmount;
-
-    /**
-     * @var string
-     */
-    protected $movementType;
-
-    /**
-     * @var int
-     */
     protected $amount;
 
     /**
@@ -42,14 +27,24 @@ class Operation
     protected $fee;
 
     /**
+     * @var int
+     */
+    protected $installment;
+
+    /**
+     * @var int
+     */
+    protected $transactionId;
+
+    /**
+     * @var \DateTime
+     */
+    protected $paymentDate;
+
+    /**
      * @var \DateTime
      */
     protected $dateCreated;
-
-    /**
-     * @var Movement
-     */
-    protected $movement;
 
     public function __construct($recipientData)
     {
@@ -75,30 +70,6 @@ class Operation
     /**
      * @return int
      */
-    public function getBalanceAmount()
-    {
-        return $this->balanceAmount;
-    }
-
-    /**
-     * @return int
-     */
-    public function getBalanceOldAmount()
-    {
-        return $this->balanceOldAmount;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMovementType()
-    {
-        return $this->movementType;
-    }
-
-    /**
-     * @return int
-     */
     public function getAmount()
     {
         return $this->amount;
@@ -113,18 +84,34 @@ class Operation
     }
 
     /**
+     * @return int
+     */
+    public function getInstallment()
+    {
+        return $this->installment;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTransactionId()
+    {
+        return $this->transactionId;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getPaymentDate()
+    {
+        return $this->paymentDate;
+    }
+
+    /**
      * @return \DateTime
      */
     public function getDateCreated()
     {
         return $this->dateCreated;
-    }
-
-    /**
-     * @return Movement
-     */
-    public function getMovement()
-    {
-        return $this->movement;
     }
 }
