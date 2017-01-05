@@ -9,6 +9,8 @@ use PagarMe\Sdk\BankAccount\Request\BankAccountGet;
 
 class BankAccountHandler extends AbstractHandler
 {
+    use BankAccountBuilder;
+
     /**
      * @param $bankCode int
      * @param $officeNumber int
@@ -70,18 +72,5 @@ class BankAccountHandler extends AbstractHandler
         $result = $this->client->send($request);
 
         return $this->buildBankAccount($result);
-    }
-
-    /**
-     * @param $bankAccountData
-     * @return BankAccount
-     */
-    public function buildBankAccount($bankAccountData)
-    {
-        $bankAccountData->date_created = new \DateTime(
-            $bankAccountData->date_created
-        );
-
-        return new BankAccount(get_object_vars($bankAccountData));
     }
 }
