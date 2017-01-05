@@ -62,6 +62,6 @@ class RecipientUpdate implements Request
      */
     public function getMethod()
     {
-        return 'PUT';
+        return self::HTTP_PUT;
     }
 }
