@@ -18,6 +18,7 @@ use PagarMe\Sdk\BalanceOperations\Movement;
 class RecipientHandler extends AbstractHandler
 {
     use \PagarMe\Sdk\Recipient\RecipientBuilder;
+    use \PagarMe\Sdk\BalanceOperations\OperationBuilder;
 
     /**
      * @param BankAccount $bankAccount
@@ -120,9 +121,7 @@ class RecipientHandler extends AbstractHandler
 
         $result = $this->client->send($request);
 
-        $result->movement = new Movement($result->movement_object);
-
-        return new Operation(get_object_vars($result));
+        return $this->buildOperation($result);
     }
 
     /**
@@ -142,8 +141,7 @@ class RecipientHandler extends AbstractHandler
         $operations = [];
 
         foreach ($result as $operation) {
-            $operation->movement = new Movement($operation->movement_object);
-            $operations[]= new Operation(get_object_vars($operation));
+            $operations[] = $this->buildOperation($operation);
         }
 
         return $operations;
