@@ -32,10 +32,12 @@ class CustomerContext extends BasicContext
     public function registerThisData()
     {
         $address = new \PagarMe\Sdk\Customer\Address(
-            'rua teste',
-            42,
-            'centro',
-            '01227200'
+            [
+                'street' => 'rua teste',
+                'street_number' => 42,
+                'neighborhood' => 'centro',
+                'zipcode' => '01227200'
+            ]
         );
 
         $this->customer = self::getPagarMe()
@@ -45,7 +47,12 @@ class CustomerContext extends BasicContext
                 $this->getCustomerEmail(),
                 $this->getCustomerDocumentNumber(),
                 $address,
-                new \PagarMe\Sdk\Customer\Phone(11, 987654321)
+                new \PagarMe\Sdk\Customer\Phone(
+                    [
+                        'ddd' =>11,
+                        'number' =>987654321
+                    ]
+                )
             );
     }
 

@@ -7,11 +7,12 @@ use PagarMe\Sdk\Client;
 use PagarMe\Sdk\Customer\Request\CustomerCreate;
 use PagarMe\Sdk\Customer\Request\CustomerGet;
 use PagarMe\Sdk\Customer\Request\CustomerList;
+use PagarMe\Sdk\Customer\Address;
+use PagarMe\Sdk\Customer\Phone;
 
 class CustomerHandler extends AbstractHandler
 {
-    use AddressBuilder;
-    use PhoneBuilder;
+    use CustomerBuilder;
 
     /**
      * @param string $name
@@ -72,26 +73,5 @@ class CustomerHandler extends AbstractHandler
         }
 
         return $customers;
-    }
-
-    /**
-     * @param array $customerData
-     * @return Customer
-     */
-    private function buildCustomer($customerData)
-    {
-        $customerData->address = $this->buildAddress(
-            $customerData->addresses[0]
-        );
-
-        $customerData->phone = $this->buildPhone(
-            $customerData->phones[0]
-        );
-
-        $customerData->date_created = new \DateTime(
-            $customerData->date_created
-        );
-
-        return new Customer(get_object_vars($customerData));
     }
 }

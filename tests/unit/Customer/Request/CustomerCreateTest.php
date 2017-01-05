@@ -16,33 +16,35 @@ class CustomerCreateTest extends \PHPUnit_Framework_TestCase
     const BORN_AT         = '15071991';
     const GENDER          = 'M';
 
-    const STREET          = 'rua teste';
-    const STREET_NUMBER   = 42;
-    const NEIGHBORHOOD    = 'centro';
-    const ZIPCODE         = '01227200';
-
     /**
      * @test
      */
     public function mustPayloadBeCorrect()
     {
         $address = new \PagarMe\Sdk\Customer\Address(
-            self::STREET,
-            self::STREET_NUMBER,
-            self::NEIGHBORHOOD,
-            self::ZIPCODE
+            [
+                'street'        => 'rua teste',
+                'street_number' => 42,
+                'neighborhood'  => 'centro',
+                'zipcode'       => '01227200',
+                'complementary' => 'Apto 42',
+                'city'          => 'São Paulo',
+                'state'         => 'SP',
+                'country'       => 'Brasil'
+            ]
         );
-        $address->setComplementary('Apto 42');
-        $address->setCity('São Paulo');
-        $address->setState('SP');
-        $address->setCountry('Brasil');
 
         $customerCreate = new CustomerCreate(
             self::NAME,
             self::EMAIL,
             self::DOCUMENT_NUMBER,
             $address,
-            new \PagarMe\Sdk\Customer\Phone(15, 987523421),
+            new \PagarMe\Sdk\Customer\Phone(
+                [
+                    'ddd'    =>15,
+                    'number' =>987523421
+                ]
+            ),
             self::BORN_AT,
             self::GENDER
         );
