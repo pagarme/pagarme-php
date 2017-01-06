@@ -85,7 +85,7 @@ abstract class SubscriptionCreate implements Request
      */
     public function getMethod()
     {
-        return 'POST';
+        return self::HTTP_POST;
     }
 
     /**

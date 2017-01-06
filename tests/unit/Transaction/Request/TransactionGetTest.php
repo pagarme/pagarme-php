@@ -4,11 +4,11 @@ namespace PagarMe\SdkTest\Transaction\Request;
 
 use PagarMe\Sdk\Transaction\Request\TransactionGet;
 use PagarMe\Sdk\Transaction\CreditCardTransaction;
+use PagarMe\Sdk\Request;
 
 class TransactionGetTest extends \PHPUnit_Framework_TestCase
 {
-    const METHOD = 'GET';
-    const PATH   = 'transactions/1337';
+    const PATH           = 'transactions/1337';
     const TRANSACTION_ID = 1337;
 
     /**
@@ -41,6 +41,6 @@ class TransactionGetTest extends \PHPUnit_Framework_TestCase
     {
         $transactionCreate = new TransactionGet(self::TRANSACTION_ID);
 
-        $this->assertEquals(self::METHOD, $transactionCreate->getMethod());
+        $this->assertEquals(Request::HTTP_GET, $transactionCreate->getMethod());
     }
 }

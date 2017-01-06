@@ -46,9 +46,9 @@ class RecipientHandler extends AbstractHandler
             $anticipatableVolumePercentage
         );
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
-        return $this->buildRecipient($result);
+        return $this->buildRecipient($response);
     }
 
     /**
@@ -60,10 +60,10 @@ class RecipientHandler extends AbstractHandler
     {
         $request = new RecipientList($page, $count);
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
         $recipients = [];
-        foreach ($result as $recipientData) {
+        foreach ($response as $recipientData) {
             $recipients[] = $this->buildRecipient($recipientData);
         }
 
@@ -79,9 +79,9 @@ class RecipientHandler extends AbstractHandler
     {
         $request = new RecipientGet($recipientId);
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
-        return $this->buildRecipient($result);
+        return $this->buildRecipient($response);
     }
 
     /**
@@ -92,9 +92,9 @@ class RecipientHandler extends AbstractHandler
     {
         $request = new RecipientUpdate($recipient);
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
-        return $this->buildRecipient($result);
+        return $this->buildRecipient($response);
     }
 
     /**
@@ -105,9 +105,9 @@ class RecipientHandler extends AbstractHandler
     {
         $request = new RecipientBalance($recipient);
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
-        return new Balance($result);
+        return new Balance($response);
     }
 
     /**
@@ -119,7 +119,7 @@ class RecipientHandler extends AbstractHandler
     {
         $request = new RecipientBalanceOperation($recipient, $operationId);
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
 
         return $this->buildOperation($result);
     }
@@ -137,7 +137,7 @@ class RecipientHandler extends AbstractHandler
     ) {
         $request = new RecipientBalanceOperations($recipient, $page, $count);
 
-        $result = $this->client->send($request);
+        $response = $this->client->send($request);
         $operations = [];
 
         foreach ($result as $operation) {

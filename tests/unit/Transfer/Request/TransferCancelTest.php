@@ -3,10 +3,10 @@
 namespace PagarMe\SdkTest\Transfer\Request;
 
 use PagarMe\Sdk\Transfer\Request\TransferCancel;
+use PagarMe\Sdk\Request;
 
 class TransferCancelTest extends \PHPUnit_Framework_TestCase
 {
-    const METHOD      = 'POST';
     const PATH        = 'transfers/123/cancel';
     const TRANSFER_ID = '123';
 
@@ -24,7 +24,7 @@ class TransferCancelTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals([], $transferCancel->getPayload());
 
-        $this->assertEquals(self::METHOD, $transferCancel->getMethod());
+        $this->assertEquals(Request::HTTP_POST, $transferCancel->getMethod());
 
         $this->assertEquals(self::PATH, $transferCancel->getPath());
     }

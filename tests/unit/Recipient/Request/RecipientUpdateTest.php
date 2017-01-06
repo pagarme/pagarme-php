@@ -3,12 +3,12 @@
 namespace PagarMe\SdkTests\Recipient;
 
 use PagarMe\Sdk\Recipient\Request\RecipientUpdate;
+use PagarMe\Sdk\Request;
 
 class RecipientUpdateTest extends \PHPUnit_Framework_TestCase
 {
-    const PATH            = 'recipients/re_x1y2z3';
-    const RECIPIENT_ID    = 're_x1y2z3';
-    const METHOD          = 'PUT';
+    const PATH         = 'recipients/re_x1y2z3';
+    const RECIPIENT_ID = 're_x1y2z3';
 
     const BANK_ACCOUNT_ID = 123;
 
@@ -52,7 +52,7 @@ class RecipientUpdateTest extends \PHPUnit_Framework_TestCase
 
         $recipientUpdate = new RecipientUpdate($recipientMock);
 
-        $this->assertEquals(self::METHOD, $recipientUpdate->getMethod());
+        $this->assertEquals(Request::HTTP_PUT, $recipientUpdate->getMethod());
     }
 
     /**

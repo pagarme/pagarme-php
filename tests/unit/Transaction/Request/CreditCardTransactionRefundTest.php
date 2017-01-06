@@ -4,10 +4,10 @@ namespace PagarMe\SdkTest\Transaction\Request;
 
 use PagarMe\Sdk\Transaction\Request\CreditCardTransactionRefund;
 use PagarMe\Sdk\Transaction\CreditCardTransaction;
+use PagarMe\Sdk\Request;
 
 class CreditCardTransactionRefundTest extends \PHPUnit_Framework_TestCase
 {
-    const METHOD         = 'POST';
     const PATH           = 'transactions/1337/refund';
     const TRANSACTION_ID = 1337;
 
@@ -44,7 +44,7 @@ class CreditCardTransactionRefundTest extends \PHPUnit_Framework_TestCase
             $transactionCreate->getPath()
         );
 
-        $this->assertEquals(self::METHOD, $transactionCreate->getMethod());
+        $this->assertEquals(Request::HTTP_POST, $transactionCreate->getMethod());
     }
 
     private function getTransactionMock()

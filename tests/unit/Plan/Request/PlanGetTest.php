@@ -3,11 +3,11 @@
 namespace PagarMe\SdkTest\Request;
 
 use PagarMe\Sdk\Plan\Request\PlanGet;
+use PagarMe\Sdk\Request;
 
 class PlanGetTest extends \PHPUnit_Framework_TestCase
 {
     const PATH    = 'plans/123';
-    const METHOD  = 'GET';
     const PLAN_ID = '123';
 
     /**
@@ -18,7 +18,7 @@ class PlanGetTest extends \PHPUnit_Framework_TestCase
         $request = new PlanGet(self::PLAN_ID);
 
         $this->assertEquals(self::PATH, $request->getPath());
-        $this->assertEquals(self::METHOD, $request->getMethod());
+        $this->assertEquals(Request::HTTP_GET, $request->getMethod());
         $this->assertEquals(
             [],
             $request->getPayload()

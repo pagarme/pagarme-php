@@ -115,8 +115,23 @@ Feature: Transaction
     Given I had multiple transactions registered
     When query transactions
     Then an array of transactions must be returned
-  @only
+
   Scenario: Getting transaction events
     Given I had a transactions registered
     When query transactions events
     Then an array of events must be returned
+
+  @only
+  Scenario: Create credit card transaction with metadata
+    Given a valid customer
+    And register a card with "4556425889100276", "João Silva" and "0623"
+    When make a credit card transaction with random amount and metadata
+    Then a valid transaction must be created
+    And must contain same metadata
+
+  @only
+  Scenario: Creating a Boleto Transaction
+    Given a valid customer
+    When make a boleto transaction with random amount and metadata
+    Then a valid transaction must be created
+    And must contain same metadata

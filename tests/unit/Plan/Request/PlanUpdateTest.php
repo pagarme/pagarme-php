@@ -3,11 +3,11 @@
 namespace PagarMe\SdkTest\Request;
 
 use PagarMe\Sdk\Plan\Request\PlanUpdate;
+use PagarMe\Sdk\Request;
 
 class PlanUpdateTest extends \PHPUnit_Framework_TestCase
 {
-    const METHOD  = 'PUT';
-    const PATH    = 'plans/1406';
+    const PATH = 'plans/1406';
 
     const ID              = 1406;
     const AMOUNT          = 1337;
@@ -41,7 +41,7 @@ class PlanUpdateTest extends \PHPUnit_Framework_TestCase
         $request = new PlanUpdate($planMock);
 
         $this->assertEquals(self::PATH, $request->getPath());
-        $this->assertEquals(self::METHOD, $request->getMethod());
+        $this->assertEquals(Request::HTTP_PUT, $request->getMethod());
         $this->assertEquals(
             [
                 'id'              => self::ID,

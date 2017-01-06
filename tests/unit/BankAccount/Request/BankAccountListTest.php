@@ -3,11 +3,11 @@
 namespace PagarMe\SdkTest\BankAccount\Request;
 
 use PagarMe\Sdk\BankAccount\Request\BankAccountList;
+use PagarMe\Sdk\Request;
 
 class BankAccountListTest extends \PHPUnit_Framework_TestCase
 {
-    const PATH            = 'bank_accounts';
-    const METHOD          = 'GET';
+    const PATH = 'bank_accounts';
 
     public function bankAccountListParams()
     {
@@ -30,7 +30,7 @@ class BankAccountListTest extends \PHPUnit_Framework_TestCase
             $count
         );
 
-        $this->assertEquals(self::METHOD, $request->getMethod());
+        $this->assertEquals(Request::HTTP_GET, $request->getMethod());
         $this->assertEquals(self::PATH, $request->getPath());
         $this->assertEquals(
             [

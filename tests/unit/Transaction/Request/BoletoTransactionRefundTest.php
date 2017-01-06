@@ -4,10 +4,10 @@ namespace PagarMe\SdkTest\Transaction\Request;
 
 use PagarMe\Sdk\Transaction\Request\BoletoTransactionRefund;
 use PagarMe\Sdk\Transaction\BoletoTransaction;
+use PagarMe\Sdk\Request;
 
 class BoletoTransactionRefundTest extends \PHPUnit_Framework_TestCase
 {
-    const METHOD          = 'POST';
     const PATH            = 'transactions/1337/refund';
     const TRANSACTION_ID  = 1337;
     const BANKACCOUNT_ID  = 12345;
@@ -50,7 +50,7 @@ class BoletoTransactionRefundTest extends \PHPUnit_Framework_TestCase
             $transactionCreate->getPath()
         );
 
-        $this->assertEquals(self::METHOD, $transactionCreate->getMethod());
+        $this->assertEquals(Request::HTTP_POST, $transactionCreate->getMethod());
     }
 
     /**
@@ -95,7 +95,7 @@ class BoletoTransactionRefundTest extends \PHPUnit_Framework_TestCase
             $transactionCreate->getPath()
         );
 
-        $this->assertEquals(self::METHOD, $transactionCreate->getMethod());
+        $this->assertEquals(Request::HTTP_POST, $transactionCreate->getMethod());
     }
 
     private function getTransactionMock()

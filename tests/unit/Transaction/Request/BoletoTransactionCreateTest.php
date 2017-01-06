@@ -7,11 +7,11 @@ use PagarMe\Sdk\Transaction\BoletoTransaction;
 use PagarMe\Sdk\SplitRule\SplitRuleCollection;
 use PagarMe\Sdk\SplitRule\SplitRule;
 use PagarMe\Sdk\Recipient\Recipient;
+use PagarMe\Sdk\Request;
 
 class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
 {
     const PATH   = 'transactions';
-    const METHOD = 'POST';
 
     const CARD_ID = 1;
 
@@ -174,7 +174,7 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
 
         $transactionCreate = new BoletoTransactionCreate($transaction);
 
-        $this->assertEquals(self::METHOD, $transactionCreate->getMethod());
+        $this->assertEquals(Request::HTTP_POST, $transactionCreate->getMethod());
     }
 
     private function createTransaction($expirationDate)

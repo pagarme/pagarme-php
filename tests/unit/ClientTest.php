@@ -3,10 +3,10 @@
 namespace PagarMe\SdkTest;
 
 use PagarMe\Sdk\Client;
+use PagarMe\Sdk\Request;
 
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
-    const REQUEST_METHOD = 'POST';
     const REQUEST_PATH   = 'test';
     const CONTENT        = 'sample content';
     const API_KEY        = 'myApiKey';
@@ -42,7 +42,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $request->method('getMethod')->willReturn(self::REQUEST_METHOD);
+        $request->method('getMethod')->willReturn(Request::HTTP_POST);
         $request->method('getPath')->willReturn(self::REQUEST_PATH);
         $request->method('getPayload')->willReturn(
             ['content' => self::CONTENT]
@@ -68,7 +68,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $guzzleClientMock->expects($this->once())
             ->method('createRequest')
             ->with(
-                self::REQUEST_METHOD,
+                Request::HTTP_POST,
                 self::REQUEST_PATH,
                 [
                     'json' => [
@@ -97,7 +97,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $request->method('getMethod')->willReturn(self::REQUEST_METHOD);
+        $request->method('getMethod')->willReturn(Request::HTTP_POST);
         $request->method('getPath')->willReturn(self::REQUEST_PATH);
         $request->method('getPayload')->willReturn(
             ['content' => self::CONTENT]
@@ -143,7 +143,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $request->method('getMethod')->willReturn(self::REQUEST_METHOD);
+        $request->method('getMethod')->willReturn(Request::HTTP_POST);
         $request->method('getPath')->willReturn(self::REQUEST_PATH);
         $request->method('getPayload')->willReturn(
             ['content' => self::CONTENT]

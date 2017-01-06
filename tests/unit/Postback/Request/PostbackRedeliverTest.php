@@ -3,13 +3,13 @@
 namespace PagarMe\SdkTest\Postback\Request;
 
 use PagarMe\Sdk\Postback\Request\PostbackRedeliver;
+use PagarMe\Sdk\Request;
 
 class PostbackRedeliverTest extends \PHPUnit_Framework_TestCase
 {
     const TRANSACTION_ID = 1234;
     const POSTBACK_ID    = 'po_10000001';
     const PATH           = 'transactions/1234/postbacks/po_10000001/redeliver';
-    const METHOD         = 'POST';
 
     /**
      * @test
@@ -29,6 +29,6 @@ class PostbackRedeliverTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals([], $postbackRedeliver->getPayload());
         $this->assertEquals(self::PATH, $postbackRedeliver->getPath());
-        $this->assertEquals(self::METHOD, $postbackRedeliver->getMethod());
+        $this->assertEquals(Request::HTTP_POST, $postbackRedeliver->getMethod());
     }
 }

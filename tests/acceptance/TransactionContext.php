@@ -21,6 +21,7 @@ class TransactionContext extends BasicContext
     private $transaction;
     private $transactionList;
     private $events;
+    private $metadata;
 
      /**
      * @When register a card with :number, :holder and :expiration
@@ -283,5 +284,55 @@ class TransactionContext extends BasicContext
     {
         assertContainsOnly('PagarMe\Sdk\Event\Event', $this->events);
         assertGreaterThanOrEqual(1, count($this->events));
+    }
+
+    /**
+     * @When make a credit card transaction with random amount and metadata
+     */
+    public function makeACreditCardTransactionWithRandomAmountAndMetadata()
+    {
+        $this->getRandomMetadata();
+
+        $this->transaction = self::getPagarMe()
+            ->transaction()
+            ->creditCardTransaction(
+                rand(5000, 10000),
+                $this->creditCard,
+                $this->customer,
+                null,
+                null,
+                self::POSTBACK_URL,
+                $this->metadata
+            );
+    }
+
+    /**
+     * @Then must contain same metadata
+     */
+    public function mustContainSameMetadata()
+    {
+        assertEquals($this->metadata, $this->transaction->getMetadata());
+    }
+
+    /**
+     * @When make a boleto transaction with random amount and metadata
+     */
+    public function makeABoletoTransactionWithRandomAmountAndMetadata()
+    {
+        $this->getRandomMetadata();
+
+        $this->transaction = self::getPagarMe()
+            ->transaction()
+            ->boletoTransaction(
+                rand(5000, 10000),
+                $this->customer,
+                self::POSTBACK_URL,
+                $this->metadata
+            );
+    }
+
+    private function getRandomMetadata()
+    {
+        $this->metadata = [uniqid('key') => uniqid('value')];
     }
 }
