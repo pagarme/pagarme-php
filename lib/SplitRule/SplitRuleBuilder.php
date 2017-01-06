@@ -1,16 +1,14 @@
 <?php
 
-namespace PagarMe\Sdk\Transaction;
+namespace PagarMe\Sdk\SplitRule;
 
-use PagarMe\Sdk\SplitRule\SplitRuleCollection;
-use PagarMe\Sdk\SplitRule\SplitRule;
 use PagarMe\Sdk\Recipient\Recipient;
 
 trait SplitRuleBuilder
 {
     /**
      * @param array $splitRuleData
-     * @return PagarMe\Sdk\SplitRule\SplitRuleCollection
+     * @return SplitRuleCollection
      */
     private function buildSplitRules($splitRuleData)
     {

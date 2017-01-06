@@ -4,6 +4,7 @@ namespace PagarMe\Sdk\Customer;
 
 class Address
 {
+    use \PagarMe\Sdk\Fillable;
 
     /**
      * @var string
@@ -46,17 +47,11 @@ class Address
     private $country;
 
     /**
-     * @param string $street
-     * @param string $streetNumber
-     * @param string $neighborhood
-     * @param string $zipcode
+     * @param array $addressData
      */
-    public function __construct($street, $streetNumber, $neighborhood, $zipcode)
+    public function __construct($addressData)
     {
-        $this->street       = $street;
-        $this->streetNumber = $streetNumber;
-        $this->neighborhood = $neighborhood;
-        $this->zipcode      = $zipcode;
+        $this->fill($addressData);
     }
 
     /**
@@ -92,31 +87,11 @@ class Address
     }
 
     /**
-     * @param string $complementary
-     * @return Address
-     */
-    public function setComplementary($complementary)
-    {
-        $this->complementary = $complementary;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getComplementary()
     {
         return $this->complementary;
-    }
-
-    /**
-     * @param string $city
-     * @return Address
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-        return $this;
     }
 
     /**
@@ -128,31 +103,11 @@ class Address
     }
 
     /**
-     * @param string $state
-     * @return Address
-     */
-    public function setState($state)
-    {
-        $this->state = $state;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getState()
     {
         return $this->state;
-    }
-
-    /**
-     * @param string $country
-     * @return Address
-     */
-    public function setCountry($country)
-    {
-        $this->country = $country;
-        return $this;
     }
 
     /**
