@@ -4,7 +4,7 @@ namespace PagarMe\Sdk\Transaction;
 
 trait TransactionBuilder
 {
-    use SplitRuleBuilder;
+    use \PagarMe\Sdk\SplitRule\SplitRuleBuilder;
 
     /**
      * @param array transactionData
@@ -60,6 +60,10 @@ trait TransactionBuilder
 
         if (is_null($transactionData->metadata)) {
             return [];
+        }
+
+        if (is_array($transactionData->metadata)) {
+            return $transactionData->metadata;
         }
 
         return get_object_vars($transactionData->metadata);

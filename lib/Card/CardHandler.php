@@ -10,6 +10,8 @@ use PagarMe\Sdk\Card\Request\CardGet;
 
 class CardHandler extends AbstractHandler
 {
+    use CardBuilder;
+
     /**
      * @param int $cardNumber
      * @param string $holderName
@@ -42,17 +44,5 @@ class CardHandler extends AbstractHandler
         $response = $this->client->send($request);
 
         return $this->buildCard($response);
-    }
-
-    /**
-     * @param $cardData
-     * @return Card
-     */
-    private function buildCard($cardData)
-    {
-        $cardData->date_created = new \DateTime($cardData->date_created);
-        $cardData->date_updated = new \DateTime($cardData->date_updated);
-
-        return new Card($cardData);
     }
 }

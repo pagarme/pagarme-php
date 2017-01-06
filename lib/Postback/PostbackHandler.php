@@ -9,7 +9,7 @@ use PagarMe\Sdk\Postback\Request\PostbackGet;
 
 class PostbackHandler extends AbstractHandler
 {
-    use \PagarMe\Sdk\Transaction\TransactionBuilder;
+    use \PagarMe\Sdk\Postback\PostbackBuilder;
 
     /**
      * @param AbstractTransaction $transaction
@@ -56,53 +56,5 @@ class PostbackHandler extends AbstractHandler
         $response = $this->client->send($request);
 
         return $this->buildPostback($response);
-    }
-
-    private function buildPostback($postbackData)
-    {
-        $postbackDeliveries = [];
-
-        foreach ($postbackData->deliveries as $postbackDeliveryData) {
-            $postbackDeliveries[] =$this->buildPostbackDelivery(
-                $postbackDeliveryData
-            );
-        }
-
-        $postbackData->date_created = new \DateTime(
-            $postbackData->date_created
-        );
-        $postbackData->date_updated = new \DateTime(
-            $postbackData->date_updated
-        );
-        $postbackData->deliveries = $postbackDeliveries;
-
-        $postbackData->payload = $this->buildPayload(
-            $postbackData->payload
-        );
-
-        return new Postback(get_object_vars($postbackData));
-    }
-
-    private function buildPostbackDelivery($postbackDeliveryData)
-    {
-        $postbackDeliveryData->date_created = new \DateTime(
-            $postbackDeliveryData->date_created
-        );
-        $postbackDeliveryData->date_updated = new \DateTime(
-            $postbackDeliveryData->date_updated
-        );
-
-        return new Delivery($postbackDeliveryData);
-    }
-
-    private function buildPayload($payloadData)
-    {
-        parse_str($payloadData, $payload);
-
-        $payload['transaction'] = $this->buildTransaction(
-            (object) $payload['transaction']
-        );
-
-        return new Payload($payload);
     }
 }

@@ -8,6 +8,8 @@ use PagarMe\Sdk\Payable\Request\PayableList;
 
 class PayableHandler extends AbstractHandler
 {
+    use PayableBuilder;
+
     /**
      * @param int $payableId
      * @return Payable
@@ -38,17 +40,5 @@ class PayableHandler extends AbstractHandler
         }
 
         return $payables;
-    }
-
-    /**
-     * @param array $payableData
-     * @return Payable
-     */
-    private function buildPayable($payableData)
-    {
-        $payableData->payment_date = new \DateTime($payableData->payment_date);
-        $payableData->date_created = new \DateTime($payableData->date_created);
-
-        return new Payable(get_object_vars($payableData));
     }
 }

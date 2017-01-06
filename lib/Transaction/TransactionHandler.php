@@ -17,11 +17,11 @@ use PagarMe\Sdk\BankAccount\BankAccount;
 use PagarMe\Sdk\Card\Card;
 use PagarMe\Sdk\Customer\Customer;
 use PagarMe\Sdk\Recipient\Recipient;
-use PagarMe\Sdk\Event\Event;
 
 class TransactionHandler extends AbstractHandler
 {
     use TransactionBuilder;
+    use \PagarMe\Sdk\Event\EventBuilder;
 
     /**
      * @param int $amount
@@ -196,9 +196,7 @@ class TransactionHandler extends AbstractHandler
         $events = [];
 
         foreach ($response as $eventData) {
-            $eventData->date_created = new \DateTime($eventData->date_created);
-            $eventData->date_updated = new \DateTime($eventData->date_updated);
-            $events[] = new Event($eventData);
+            $events[] = $this->buildEvent($eventData);
         }
 
         return $events;

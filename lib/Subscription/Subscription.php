@@ -51,12 +51,12 @@ class Subscription
     private $paymentMethod;
 
     /**
-     * @var string $currentPeriodStart
+     * @var \DateTime $currentPeriodStart
      */
     private $currentPeriodStart;
 
     /**
-     * @var string $currentPeriodEnd
+     * @var \DateTime $currentPeriodEnd
      */
     private $currentPeriodEnd;
 
@@ -176,7 +176,7 @@ class Subscription
     }
 
     /**
-     * @return string
+     * @return DateTime
      */
     public function getCurrentPeriodStart()
     {
@@ -184,7 +184,7 @@ class Subscription
     }
 
     /**
-     * @return string
+     * @return DateTime
      */
     public function getCurrentPeriodEnd()
     {
