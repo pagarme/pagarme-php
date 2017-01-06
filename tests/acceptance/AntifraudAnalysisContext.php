@@ -44,11 +44,11 @@ class AntifraudAnalysisContext extends BasicContext
     /**
      * @When I query transaction antifraud analyses
      */
-    public function iQueryTransactionAntifraudAnalyses()
+    public function iQueryTransactionAntifraudAnalysis()
     {
         sleep(1);
         $this->analyses = self::getPagarMe()
-            ->antifraudAnalyses()
+            ->antifraudAnalysis()
             ->getList($this->transaction);
     }
 
@@ -58,7 +58,7 @@ class AntifraudAnalysisContext extends BasicContext
     public function aArrayOfAntifraudAnalysisMustBeReturned()
     {
         assertContainsOnly(
-            'PagarMe\Sdk\AntifraudAnalyses\AntifraudAnalysis',
+            'PagarMe\Sdk\AntifraudAnalysis\AntifraudAnalysis',
             $this->analyses
         );
         assertGreaterThanOrEqual(1, $this->analyses);
@@ -70,7 +70,7 @@ class AntifraudAnalysisContext extends BasicContext
     public function queryForTheFirstAntifraudAnalysis()
     {
         $this->analysis = self::getPagarMe()
-            ->antifraudAnalyses()
+            ->antifraudAnalysis()
             ->get($this->transaction, $this->analyses[0]->getId());
     }
 
@@ -80,7 +80,7 @@ class AntifraudAnalysisContext extends BasicContext
     public function theSameAntifraudAnalysisMustBeReturned()
     {
         assertInstanceOf(
-            'PagarMe\Sdk\AntifraudAnalyses\AntifraudAnalysis',
+            'PagarMe\Sdk\AntifraudAnalysis\AntifraudAnalysis',
             $this->analysis
         );
         assertGreaterThanOrEqual($this->analyses[0], $this->analysis);

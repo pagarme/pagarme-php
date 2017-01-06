@@ -4,11 +4,11 @@ namespace PagarMe\Sdk\Balance;
 
 use PagarMe\Sdk\AbstractHandler;
 use PagarMe\Sdk\BankAccount\BankAccount;
-use PagarMe\Sdk\Balance\Request\BalanceOperationsList;
+use PagarMe\Sdk\Balance\Request\BalanceOperationList;
 use PagarMe\Sdk\Balance\Operation;
 use PagarMe\Sdk\Balance\Movement;
 
-class BalanceOperationsHandler extends AbstractHandler
+class BalanceOperationHandler extends AbstractHandler
 {
     /**
      * @param int $page
@@ -17,7 +17,7 @@ class BalanceOperationsHandler extends AbstractHandler
      */
     public function operations($page = null, $count = null)
     {
-        $request = new BalanceOperationsList($page, $count);
+        $request = new BalanceOperationList($page, $count);
 
         $response = $this->client->send($request);
         $operations = [];

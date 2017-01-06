@@ -1,15 +1,15 @@
 <?php
 
-namespace PagarMe\Sdk\BalanceOperations;
+namespace PagarMe\Sdk\BalanceOperation;
 
 use PagarMe\Sdk\AbstractHandler;
 use PagarMe\Sdk\BankAccount\BankAccount;
-use PagarMe\Sdk\BalanceOperations\Request\BalanceOperationsList;
-use PagarMe\Sdk\BalanceOperations\Request\BalanceOperationsGet;
-use PagarMe\Sdk\BalanceOperations\Operation;
-use PagarMe\Sdk\BalanceOperations\Movement;
+use PagarMe\Sdk\BalanceOperation\Request\BalanceOperationList;
+use PagarMe\Sdk\BalanceOperation\Request\BalanceOperationGet;
+use PagarMe\Sdk\BalanceOperation\Operation;
+use PagarMe\Sdk\BalanceOperation\Movement;
 
-class BalanceOperationsHandler extends AbstractHandler
+class BalanceOperationHandler extends AbstractHandler
 {
     /**
      * @param int $page
@@ -19,7 +19,7 @@ class BalanceOperationsHandler extends AbstractHandler
      */
     public function getList($page = null, $count = null, $status = null)
     {
-        $request = new BalanceOperationsList($page, $count, $status);
+        $request = new BalanceOperationList($page, $count, $status);
 
         $response = $this->client->send($request);
         $operations = [];
@@ -37,7 +37,7 @@ class BalanceOperationsHandler extends AbstractHandler
      */
     public function get($balanceOperationId)
     {
-        $request = new BalanceOperationsGet($balanceOperationId);
+        $request = new BalanceOperationGet($balanceOperationId);
 
         $response = $this->client->send($request);
 

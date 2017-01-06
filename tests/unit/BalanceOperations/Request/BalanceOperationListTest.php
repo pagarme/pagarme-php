@@ -1,15 +1,15 @@
 <?php
 
-namespace PagarMe\SdkTest\BalanceOperations\Request;
+namespace PagarMe\SdkTest\BalanceOperation\Request;
 
-use PagarMe\Sdk\BalanceOperations\Request\BalanceOperationsList;
+use PagarMe\Sdk\BalanceOperation\Request\BalanceOperationList;
 use PagarMe\Sdk\Request;
 
-class BalanceOperationsListTest extends \PHPUnit_Framework_TestCase
+class BalanceOperationListTest extends \PHPUnit_Framework_TestCase
 {
     const PATH = 'balance/operations';
 
-    public function balanceOperationsListParams()
+    public function balanceOperationListParams()
     {
         return [
             [null, null, null],
@@ -20,12 +20,12 @@ class BalanceOperationsListTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider balanceOperationsListParams
+     * @dataProvider balanceOperationListParams
      * @test
      */
     public function mustContentBeCorrect($page, $count, $status)
     {
-        $request = new BalanceOperationsList(
+        $request = new BalanceOperationList(
             $page,
             $count,
             $status
