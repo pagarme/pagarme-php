@@ -4,11 +4,11 @@ namespace PagarMe\SdkTest\Customer\Request;
 
 use PagarMe\Sdk\Customer\Request\CustomerCreate;
 use PagarMe\Sdk\Customer\Customer;
+use PagarMe\Sdk\Request;
 
 class CustomerCreateTest extends \PHPUnit_Framework_TestCase
 {
     const PATH            = 'customers';
-    const METHOD          = 'POST';
 
     const NAME            = 'Eduardo Nascimento';
     const EMAIL           = 'eduardo@eduardo.com';
@@ -106,7 +106,7 @@ class CustomerCreateTest extends \PHPUnit_Framework_TestCase
             null
         );
 
-        $this->assertEquals(self::METHOD, $customerCreate->getMethod());
+        $this->assertEquals(Request::HTTP_POST, $customerCreate->getMethod());
     }
 
     private function getAddressMock()

@@ -3,11 +3,11 @@
 namespace PagarMe\SdkTest\AntifraudAnalyses\Request;
 
 use PagarMe\Sdk\AntifraudAnalyses\Request\AntifraudAnalysesGet;
+use PagarMe\Sdk\Request;
 
 class AntifraudAnalysesGetTest extends \PHPUnit_Framework_TestCase
 {
     const PATH                  = 'transactions/112233/antifraud_analyses/123';
-    const METHOD                = 'GET';
     const TRANSACTION_ID        = 112233;
     const ANTIFRAUD_ANALYSES_ID = 123;
 
@@ -30,7 +30,10 @@ class AntifraudAnalysesGetTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertEquals([], $antifraudAnalysesGet->getPayload());
-        $this->assertEquals(self::METHOD, $antifraudAnalysesGet->getMethod());
+        $this->assertEquals(
+            Request::HTTP_GET,
+            $antifraudAnalysesGet->getMethod()
+        );
         $this->assertEquals(self::PATH, $antifraudAnalysesGet->getPath());
     }
 }

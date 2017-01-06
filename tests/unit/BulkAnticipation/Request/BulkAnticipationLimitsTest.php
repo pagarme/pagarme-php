@@ -3,6 +3,7 @@
 namespace PagarMe\SdkTest\BankAccount\Request;
 
 use PagarMe\Sdk\BulkAnticipation\Request\BulkAnticipationLimits;
+use PagarMe\Sdk\Request;
 
 class BulkAnticipationLimitsTest extends \PHPUnit_Framework_TestCase
 {
@@ -10,7 +11,6 @@ class BulkAnticipationLimitsTest extends \PHPUnit_Framework_TestCase
 
     const PATH         = 'recipients/re_123456/bulk_anticipations/limits';
     const RECIPIENT_ID = 're_123456';
-    const METHOD       = 'GET';
 
     public function bulkAnticipationProvider()
     {
@@ -47,6 +47,6 @@ class BulkAnticipationLimitsTest extends \PHPUnit_Framework_TestCase
             $bulkAnticipationLimits->getPayload()
         );
         $this->assertEquals(self::PATH, $bulkAnticipationLimits->getPath());
-        $this->assertEquals(self::METHOD, $bulkAnticipationLimits->getMethod());
+        $this->assertEquals(Request::HTTP_GET, $bulkAnticipationLimits->getMethod());
     }
 }

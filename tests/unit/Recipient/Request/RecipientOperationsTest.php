@@ -3,12 +3,12 @@
 namespace PagarMe\SdkTests\Recipient;
 
 use PagarMe\Sdk\Recipient\Request\RecipientBalanceOperations;
+use PagarMe\Sdk\Request;
 
 class RecipientBalanceOperationsTest extends \PHPUnit_Framework_TestCase
 {
     const RECIPIENT_ID = 're_x1y2z3';
     const PATH         = 'recipients/re_x1y2z3/balance/operations';
-    const METHOD       = 'GET';
 
     public function recipientBalanceOperationsMock()
     {
@@ -52,7 +52,7 @@ class RecipientBalanceOperationsTest extends \PHPUnit_Framework_TestCase
             $count
         );
 
-        $this->assertEquals(self::METHOD, $recipientBalanceOperations->getMethod());
+        $this->assertEquals(Request::HTTP_GET, $recipientBalanceOperations->getMethod());
     }
 
 

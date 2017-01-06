@@ -3,11 +3,11 @@
 namespace PagarMe\SdkTest\Transfer\Request;
 
 use PagarMe\Sdk\Transfer\Request\TransferList;
+use PagarMe\Sdk\Request;
 
 class TransferListTest extends \PHPUnit_Framework_TestCase
 {
-    const METHOD       = 'GET';
-    const PATH         = 'transfers';
+    const PATH = 'transfers';
 
     public function paginationData()
     {
@@ -36,7 +36,7 @@ class TransferListTest extends \PHPUnit_Framework_TestCase
             $transferList->getPayload()
         );
 
-        $this->assertEquals(self::METHOD, $transferList->getMethod());
+        $this->assertEquals(Request::HTTP_GET, $transferList->getMethod());
 
         $this->assertEquals(self::PATH, $transferList->getPath());
     }

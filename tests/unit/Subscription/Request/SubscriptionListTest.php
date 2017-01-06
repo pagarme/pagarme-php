@@ -3,13 +3,13 @@
 namespace PagarMe\SdkTest\Subscription\Request;
 
 use PagarMe\Sdk\Subscription\Request\SubscriptionList;
+use PagarMe\Sdk\Request;
 
 class SubscriptionListTest extends \PHPUnit_Framework_TestCase
 {
-    const METHOD = 'GET';
-    const PATH   = 'subscriptions';
-    const PAGE   = 1;
-    const COUNT  = 10;
+    const PATH  = 'subscriptions';
+    const PAGE  = 1;
+    const COUNT = 10;
 
     public function paginationData()
     {
@@ -40,7 +40,7 @@ class SubscriptionListTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             $subscriptionListRequest->getMethod(),
-            self::METHOD
+            Request::HTTP_GET
         );
 
         $this->assertEquals(

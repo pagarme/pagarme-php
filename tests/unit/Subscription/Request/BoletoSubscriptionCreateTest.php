@@ -3,10 +3,10 @@
 namespace PagarMe\SdkTest\Subscription\Request;
 
 use PagarMe\Sdk\Subscription\Request\BoletoSubscriptionCreate;
+use PagarMe\Sdk\Request;
 
 class BoletoSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
 {
-    const METHOD = 'POST';
     const PATH   = 'subscriptions';
 
     const PLAN_ID             = 123;
@@ -143,7 +143,7 @@ class BoletoSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             $boletoSubscriptionCreateRequest->getMethod(),
-            self::METHOD
+            Request::HTTP_POST
         );
     }
 

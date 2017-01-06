@@ -40,6 +40,6 @@ class SubscriptionGet implements Request
      */
     public function getMethod()
     {
-        return 'GET';
+        return self::HTTP_GET;
     }
 }

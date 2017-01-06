@@ -3,12 +3,12 @@
 namespace PagarMe\SdkTest\Zipcode\Request;
 
 use PagarMe\Sdk\Zipcode\Request\ZipcodeInfoGet;
+use PagarMe\Sdk\Request;
 
 class ZipcodeInfoGetTest extends \PHPUnit_Framework_TestCase
 {
-    const METHOD      = 'GET';
-    const PATH        = 'zipcodes/01034020';
-    const ZIPCODE     = '01034020';
+    const PATH    = 'zipcodes/01034020';
+    const ZIPCODE = '01034020';
 
     /**
      * @test
@@ -19,7 +19,7 @@ class ZipcodeInfoGetTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals([], $zipcodeInfoGet->getPayload());
 
-        $this->assertEquals(self::METHOD, $zipcodeInfoGet->getMethod());
+        $this->assertEquals(Request::HTTP_GET, $zipcodeInfoGet->getMethod());
 
         $this->assertEquals(self::PATH, $zipcodeInfoGet->getPath());
     }

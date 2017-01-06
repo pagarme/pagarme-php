@@ -4,11 +4,11 @@ namespace PagarMe\SdkTest\Transaction\Request;
 
 use PagarMe\Sdk\Transaction\Request\TransactionList;
 use PagarMe\Sdk\Transaction\CreditCardTransaction;
+use PagarMe\Sdk\Request;
 
 class TransactionListTest extends \PHPUnit_Framework_TestCase
 {
-    const METHOD = 'GET';
-    const PATH   = 'transactions';
+    const PATH = 'transactions';
 
     public function paginationProvider()
     {
@@ -36,8 +36,6 @@ class TransactionListTest extends \PHPUnit_Framework_TestCase
             ],
             $transactionCreate->getPayload()
         );
-        $this->assertEquals(self::PATH, $transactionCreate->getPath());
-        $this->assertEquals(self::METHOD, $transactionCreate->getMethod());
     }
 
     /**
@@ -59,6 +57,6 @@ class TransactionListTest extends \PHPUnit_Framework_TestCase
     {
         $transactionCreate = new TransactionList($page, $items);
 
-        $this->assertEquals(self::METHOD, $transactionCreate->getMethod());
+        $this->assertEquals(Request::HTTP_GET, $transactionCreate->getMethod());
     }
 }

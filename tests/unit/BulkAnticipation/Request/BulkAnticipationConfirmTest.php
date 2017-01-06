@@ -3,12 +3,12 @@
 namespace PagarMe\SdkTest\BankAccount\Request;
 
 use PagarMe\Sdk\BulkAnticipation\Request\BulkAnticipationConfirm;
+use PagarMe\Sdk\Request;
 
 class BulkAnticipationConfirmTest extends \PHPUnit_Framework_TestCase
 {
     const PATH         = 'recipients/re_123456/bulk_anticipations/ba_123456/confirm';
     const RECIPIENT_ID = 're_123456';
-    const METHOD       = 'POST';
 
     const ANTICIPATION_ID = 'ba_123456';
 
@@ -34,6 +34,6 @@ class BulkAnticipationConfirmTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals([], $bulkAnticipationConfirm->getPayload());
         $this->assertEquals(self::PATH, $bulkAnticipationConfirm->getPath());
-        $this->assertEquals(self::METHOD, $bulkAnticipationConfirm->getMethod());
+        $this->assertEquals(Request::HTTP_POST, $bulkAnticipationConfirm->getMethod());
     }
 }

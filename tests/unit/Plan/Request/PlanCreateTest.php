@@ -3,11 +3,12 @@
 namespace PagarMe\SdkTest\Request;
 
 use PagarMe\Sdk\Plan\Request\PlanCreate;
+use PagarMe\Sdk\Request;
 
 class PlanCreateTest extends \PHPUnit_Framework_TestCase
 {
-    const PATH   = 'plans';
-    const METHOD = 'POST';
+    const PATH = 'plans';
+
     /**
      * @test
      */
@@ -25,7 +26,7 @@ class PlanCreateTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertEquals(self::PATH, $request->getPath());
-        $this->assertEquals(self::METHOD, $request->getMethod());
+        $this->assertEquals(Request::HTTP_POST, $request->getMethod());
         $this->assertEquals(
             [
                 'amount'           => 1337,

@@ -3,13 +3,13 @@
 namespace PagarMe\SdkTest\Postback\Request;
 
 use PagarMe\Sdk\Postback\Request\PostbackGet;
+use PagarMe\Sdk\Request;
 
 class PostbackGetTest extends \PHPUnit_Framework_TestCase
 {
     const TRANSACTION_ID = 1234;
     const POSTBACK_ID    = 'po_10000001';
     const PATH           = 'transactions/1234/postbacks/po_10000001';
-    const METHOD         = 'GET';
 
     /**
      * @test
@@ -26,6 +26,6 @@ class PostbackGetTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals([], $postbackGet->getPayload());
         $this->assertEquals(self::PATH, $postbackGet->getPath());
-        $this->assertEquals(self::METHOD, $postbackGet->getMethod());
+        $this->assertEquals(Request::HTTP_GET, $postbackGet->getMethod());
     }
 }
