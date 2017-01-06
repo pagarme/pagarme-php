@@ -9,6 +9,8 @@ use PagarMe\Sdk\AntifraudAnalyses\Request\AntifraudAnalysesGet;
 
 class AntifraudAnalysesHandler extends AbstractHandler
 {
+    use AntifraudAnalysisBuilder;
+
     /**
      * @param PagarMe\Sdk\Transaction\AbstractTransaction $transaction
      * @return array
@@ -41,21 +43,5 @@ class AntifraudAnalysesHandler extends AbstractHandler
         $response = $this->client->send($request);
 
         return $this->buildAntifraudAnalysis($response);
-    }
-
-    /**
-     * @param array antifraudAnalysisData
-     * @return AntifraudAnalysis
-     */
-    private function buildAntifraudAnalysis($antifraudAnalysisData)
-    {
-        $antifraudAnalysisData->date_created = new \DateTime(
-            $antifraudAnalysisData->date_created
-        );
-        $antifraudAnalysisData->date_updated = new \DateTime(
-            $antifraudAnalysisData->date_updated
-        );
-
-        return new AntifraudAnalysis($antifraudAnalysisData);
     }
 }

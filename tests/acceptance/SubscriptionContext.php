@@ -35,8 +35,20 @@ class SubscriptionContext extends BasicContext
                 'John Doe',
                 'john@test.com',
                 '25123317171',
-                new Address('Rua Teste', 123, 'Centro', '01034020'),
-                new Phone('11', '44445555')
+                new Address(
+                    [
+                        'street'        => 'Rua Teste',
+                        'street_number' => 123,
+                        'neighborhood'  => 'Centro',
+                        'zipcode'       => '01034020'
+                    ]
+                ),
+                new Phone(
+                    [
+                        'ddd'    => '11',
+                        'number' => '44445555'
+                    ]
+                )
             );
     }
 
@@ -132,7 +144,10 @@ class SubscriptionContext extends BasicContext
      */
     public function theSameSubscriptionMustBeReturned()
     {
-        assertEquals($this->subscription, $this->querySubscription);
+        assertEquals(
+            $this->subscription->getId(),
+            $this->querySubscription->getId()
+        );
     }
 
     /**

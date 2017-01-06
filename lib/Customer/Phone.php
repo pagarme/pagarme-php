@@ -4,31 +4,29 @@ namespace PagarMe\Sdk\Customer;
 
 class Phone
 {
+    use \PagarMe\Sdk\Fillable;
+
     /**
-     * @var int $ddd | DDD (Discagem Direta à Distância)
+     * @var int $ddd
      */
     private $ddd;
 
     /**
-     * @var int $number | Número do telefone
+     * @var int $number
      */
     private $number;
 
     /**
-     * @var int $ddi | DDI (Discagem Direta Internacional)
+     * @var int $ddi
      */
     private $ddi;
 
-    /*
-     * @param int $ddd
-     * @param int $number
-     * @param int $ddi
+    /**
+     * @param array $phoneData
      */
-    public function __construct($ddd, $number, $ddi = null)
+    public function __construct($phoneData)
     {
-        $this->ddd    = $ddd;
-        $this->number = $number;
-        $this->ddi    = $ddi;
+        $this->fill($phoneData);
     }
 
     /**

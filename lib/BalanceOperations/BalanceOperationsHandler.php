@@ -11,6 +11,8 @@ use PagarMe\Sdk\BalanceOperations\Movement;
 
 class BalanceOperationsHandler extends AbstractHandler
 {
+    use \PagarMe\Sdk\BalanceOperations\OperationBuilder;
+
     /**
      * @param int $page
      * @param int $count
@@ -42,36 +44,5 @@ class BalanceOperationsHandler extends AbstractHandler
         $response = $this->client->send($request);
 
         return $this->buildOperation($response);
-    }
-
-    /**
-     * @param array $operationData
-     * @return Operation
-     */
-    private function buildOperation($operationData)
-    {
-        $operationData->movement = $this->buildMovement(
-            $operationData->movement_object
-        );
-        $operationData->date_created = new \DateTime(
-            $operationData->date_created
-        );
-        return new Operation(get_object_vars($operationData));
-    }
-
-    /**
-     * @param array $movementData
-     * @return Movement
-     */
-    private function buildMovement($movementData)
-    {
-        $movementData->payment_date = new \DateTime(
-            $movementData->payment_date
-        );
-        $movementData->date_created = new \DateTime(
-            $movementData->date_created
-        );
-
-        return new Movement($movementData);
     }
 }
