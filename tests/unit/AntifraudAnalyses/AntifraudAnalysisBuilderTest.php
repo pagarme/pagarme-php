@@ -17,7 +17,6 @@ class AntifraudAnalysisBuilderTest extends \PHPUnit_Framework_TestCase
             json_decode($payload)
         );
 
-
         $this->assertInstanceOf(
             'PagarMe\Sdk\AntifraudAnalyses\AntifraudAnalysis',
             $antifraudAnalysis

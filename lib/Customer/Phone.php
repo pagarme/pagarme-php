@@ -21,7 +21,7 @@ class Phone
      */
     private $ddi;
 
-    /*
+    /**
      * @param array $phoneData
      */
     public function __construct($phoneData)

@@ -4,7 +4,7 @@ namespace PagarMe\Sdk\Payable;
 
 trait PayableBuilder
 {
-   /**
+    /**
      * @param array $payableData
      * @return Payable
      */
