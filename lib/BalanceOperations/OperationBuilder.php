@@ -8,10 +8,10 @@ trait OperationBuilder
     use \PagarMe\Sdk\Transfer\TransferBuilder;
 
     /**
-     * @param stdClass $operationData
+     * @param \stdClass $operationData
      * @return Operation
      */
-    private function buildOperation(stdClass $operationData)
+    private function buildOperation(\stdClass $operationData)
     {
         $operationData->movement = $this->buildMovement(
             $operationData->movement_object
@@ -23,10 +23,10 @@ trait OperationBuilder
     }
 
     /**
-     * @param stdClass $movementData
+     * @param \stdClass $movementData
      * @return \PagarMe\Sdk\Payable\Payable | \PagarMe\Sdk\Transfer\Transfer
      */
-    private function buildMovement(stdClass $movementData)
+    private function buildMovement(\stdClass $movementData)
     {
         if ($movementData->object == 'payable') {
             return $this->buildPayable($movementData);
