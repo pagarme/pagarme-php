@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTests\Recipient;
 
 use PagarMe\Sdk\Recipient\Request\RecipientUpdate;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class RecipientUpdateTest extends \PHPUnit_Framework_TestCase
 {
@@ -52,7 +52,7 @@ class RecipientUpdateTest extends \PHPUnit_Framework_TestCase
 
         $recipientUpdate = new RecipientUpdate($recipientMock);
 
-        $this->assertEquals(Request::HTTP_PUT, $recipientUpdate->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_PUT, $recipientUpdate->getMethod());
     }
 
     /**

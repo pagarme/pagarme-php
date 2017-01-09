@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTests\Recipient;
 
 use PagarMe\Sdk\Recipient\Request\RecipientGet;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class RecipientGetTest extends \PHPUnit_Framework_TestCase
 {
@@ -27,7 +27,7 @@ class RecipientGetTest extends \PHPUnit_Framework_TestCase
     {
         $recipientGet = new RecipientGet(self::ID);
 
-        $this->assertEquals(Request::HTTP_GET, $recipientGet->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_GET, $recipientGet->getMethod());
     }
 
     /**

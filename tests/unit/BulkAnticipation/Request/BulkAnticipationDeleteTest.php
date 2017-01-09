@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTest\BankAccount\Request;
 
 use PagarMe\Sdk\BulkAnticipation\Request\BulkAnticipationDelete;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class BulkAnticipationDeleteTest extends \PHPUnit_Framework_TestCase
 {
@@ -34,6 +34,6 @@ class BulkAnticipationDeleteTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals([], $bulkAnticipationDelete->getPayload());
         $this->assertEquals(self::PATH, $bulkAnticipationDelete->getPath());
-        $this->assertEquals(Request::HTTP_DELETE, $bulkAnticipationDelete->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_DELETE, $bulkAnticipationDelete->getMethod());
     }
 }

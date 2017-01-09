@@ -2,9 +2,9 @@
 
 namespace PagarMe\Sdk\BankAccount\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
-class BankAccountGet implements Request
+class BankAccountGet implements RequestInterface
 {
     /**
      * @var int

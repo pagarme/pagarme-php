@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTest\Subscription\Request;
 
 use PagarMe\Sdk\Subscription\Request\CardSubscriptionCreate;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
 {
@@ -155,7 +155,7 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             $cardSubscriptionCreateRequest->getMethod(),
-            Request::HTTP_POST
+            RequestInterface::HTTP_POST
         );
     }
 

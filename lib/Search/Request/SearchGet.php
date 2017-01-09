@@ -2,9 +2,9 @@
 
 namespace PagarMe\Sdk\Search\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
-class SearchGet implements Request
+class SearchGet implements RequestInterface
 {
     /**
      * @var string

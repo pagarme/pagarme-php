@@ -2,11 +2,11 @@
 
 namespace PagarMe\Sdk\Customer\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 use PagarMe\Sdk\Customer\Address;
 use PagarMe\Sdk\Customer\Phone;
 
-class CustomerCreate implements Request
+class CustomerCreate implements RequestInterface
 {
      /**
      * @var string | Nome ou razão social do comprador

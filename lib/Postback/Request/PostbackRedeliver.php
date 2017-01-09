@@ -2,10 +2,10 @@
 
 namespace PagarMe\Sdk\Postback\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 use PagarMe\Sdk\Transaction\AbstractTransaction;
 
-class PostbackRedeliver implements Request
+class PostbackRedeliver implements RequestInterface
 {
     /**
      * @var AbstractTransaction

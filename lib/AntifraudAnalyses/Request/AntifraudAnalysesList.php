@@ -2,9 +2,9 @@
 
 namespace PagarMe\Sdk\AntifraudAnalyses\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
-class AntifraudAnalysesList implements Request
+class AntifraudAnalysesList implements RequestInterface
 {
     /**
      * @var PagarMe\Sdk\Transaction\AbstractTransaction

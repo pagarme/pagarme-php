@@ -2,12 +2,12 @@
 
 namespace PagarMe\Sdk\Transaction\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 use PagarMe\Sdk\Transaction\Transaction;
 use PagarMe\Sdk\SplitRule\SplitRuleCollection;
 use PagarMe\Sdk\SplitRule\SplitRule;
 
-class TransactionCreate implements Request
+class TransactionCreate implements RequestInterface
 {
     /**
      * @var Transaction

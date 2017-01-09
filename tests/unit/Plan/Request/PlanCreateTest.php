@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTest\Request;
 
 use PagarMe\Sdk\Plan\Request\PlanCreate;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class PlanCreateTest extends \PHPUnit_Framework_TestCase
 {
@@ -26,7 +26,7 @@ class PlanCreateTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertEquals(self::PATH, $request->getPath());
-        $this->assertEquals(Request::HTTP_POST, $request->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_POST, $request->getMethod());
         $this->assertEquals(
             [
                 'amount'           => 1337,

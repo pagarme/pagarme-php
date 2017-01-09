@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTest\Customer\Request;
 
 use PagarMe\Sdk\Customer\Request\CustomerList;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class CustomerListTest extends \PHPUnit_Framework_TestCase
 {
@@ -42,6 +42,6 @@ class CustomerListTest extends \PHPUnit_Framework_TestCase
     public function mustMethodBeCorrect()
     {
         $customerList = new CustomerList(1, 10);
-        $this->assertEquals(Request::HTTP_GET, $customerList->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_GET, $customerList->getMethod());
     }
 }

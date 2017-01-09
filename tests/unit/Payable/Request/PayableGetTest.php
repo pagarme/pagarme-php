@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTest\Payable\Request;
 
 use PagarMe\Sdk\Payable\Request\PayableGet;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class PayableGetTest extends \PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class PayableGetTest extends \PHPUnit_Framework_TestCase
         $payableGet = new PayableGet(self::PAYABLE_ID);
 
         $this->assertEquals([], $payableGet->getPayload());
-        $this->assertEquals(Request::HTTP_GET, $payableGet->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_GET, $payableGet->getMethod());
         $this->assertEquals(self::PATH, $payableGet->getPath());
     }
 }

@@ -2,9 +2,9 @@
 
 namespace PagarMe\Sdk\Customer\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
-class CustomerList implements Request
+class CustomerList implements RequestInterface
 {
     /**
      * @var int | Página da listagem

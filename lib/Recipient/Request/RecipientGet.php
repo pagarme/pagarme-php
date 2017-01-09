@@ -2,9 +2,9 @@
 
 namespace PagarMe\Sdk\Recipient\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
-class RecipientGet implements Request
+class RecipientGet implements RequestInterface
 {
 
     /**

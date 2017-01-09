@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTest\AntifraudAnalyses\Request;
 
 use PagarMe\Sdk\AntifraudAnalyses\Request\AntifraudAnalysesGet;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class AntifraudAnalysesGetTest extends \PHPUnit_Framework_TestCase
 {
@@ -31,7 +31,7 @@ class AntifraudAnalysesGetTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals([], $antifraudAnalysesGet->getPayload());
         $this->assertEquals(
-            Request::HTTP_GET,
+            RequestInterface::HTTP_GET,
             $antifraudAnalysesGet->getMethod()
         );
         $this->assertEquals(self::PATH, $antifraudAnalysesGet->getPath());

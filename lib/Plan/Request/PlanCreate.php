@@ -2,9 +2,9 @@
 
 namespace PagarMe\Sdk\Plan\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
-class PlanCreate implements Request
+class PlanCreate implements RequestInterface
 {
 
     /**

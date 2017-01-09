@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTest\Postback\Request;
 
 use PagarMe\Sdk\Postback\Request\PostbackList;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class PostbackListTest extends \PHPUnit_Framework_TestCase
 {
@@ -26,6 +26,6 @@ class PostbackListTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals([], $postbackList->getPayload());
         $this->assertEquals(self::PATH, $postbackList->getPath());
-        $this->assertEquals(Request::HTTP_GET, $postbackList->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_GET, $postbackList->getMethod());
     }
 }

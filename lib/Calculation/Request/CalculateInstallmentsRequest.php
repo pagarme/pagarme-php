@@ -2,9 +2,9 @@
 
 namespace PagarMe\Sdk\Calculation\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
-class CalculateInstallmentsRequest implements Request
+class CalculateInstallmentsRequest implements RequestInterface
 {
     /**
      * @var int
