@@ -121,7 +121,7 @@ class RecipientHandler extends AbstractHandler
 
         $response = $this->client->send($request);
 
-        return $this->buildOperation($result);
+        return $this->buildOperation($response);
     }
 
     /**
