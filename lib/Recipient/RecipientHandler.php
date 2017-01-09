@@ -140,7 +140,7 @@ class RecipientHandler extends AbstractHandler
         $response = $this->client->send($request);
         $operations = [];
 
-        foreach ($result as $operation) {
+        foreach ($response as $operation) {
             $operations[] = $this->buildOperation($operation);
         }
 
