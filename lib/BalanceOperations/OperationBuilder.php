@@ -8,7 +8,7 @@ trait OperationBuilder
     use \PagarMe\Sdk\Transfer\TransferBuilder;
 
     /**
-     * @param array $operationData
+     * @param $operationData
      * @return Operation
      */
     private function buildOperation($operationData)
@@ -23,7 +23,7 @@ trait OperationBuilder
     }
 
     /**
-     * @param array $movementData
+     * @param $movementData
      * @return \PagarMe\Sdk\Payable\Payable | \PagarMe\Sdk\Transfer\Transfer
      */
     private function buildMovement($movementData)
