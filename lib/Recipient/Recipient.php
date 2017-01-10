@@ -63,6 +63,7 @@ class Recipient
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getId()
     {
@@ -71,6 +72,7 @@ class Recipient
 
     /**
      * @return PagarMe
+     * @codeCoverageIgnore
      */
     public function getBankAccount()
     {
@@ -89,6 +91,7 @@ class Recipient
 
     /**
      * @return bool
+     * @codeCoverageIgnore
      */
     public function getTransferEnabled()
     {
@@ -107,6 +110,7 @@ class Recipient
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getLastTransfer()
     {
@@ -125,6 +129,7 @@ class Recipient
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getTransferInterval()
     {
@@ -143,6 +148,7 @@ class Recipient
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getTransferDay()
     {
@@ -161,6 +167,7 @@ class Recipient
 
     /**
      * @return bool
+     * @codeCoverageIgnore
      */
     public function getAutomaticAnticipationEnabled()
     {
@@ -179,6 +186,7 @@ class Recipient
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getAnticipatableVolumePercentage()
     {
@@ -197,6 +205,7 @@ class Recipient
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnore
      */
     public function getDateCreated()
     {
@@ -205,6 +214,7 @@ class Recipient
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnore
      */
     public function getDateUpdated()
     {

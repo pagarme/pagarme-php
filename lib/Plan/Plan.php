@@ -62,6 +62,7 @@ class Plan
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getId()
     {
@@ -70,6 +71,7 @@ class Plan
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getAmount()
     {
@@ -78,6 +80,7 @@ class Plan
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getDays()
     {
@@ -86,6 +89,7 @@ class Plan
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getName()
     {
@@ -103,6 +107,7 @@ class Plan
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getTrialDays()
     {
@@ -120,6 +125,7 @@ class Plan
 
     /**
      * @return array
+     * @codeCoverageIgnore
      */
     public function getPaymentMethods()
     {
@@ -128,6 +134,7 @@ class Plan
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getColor()
     {
@@ -145,6 +152,7 @@ class Plan
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getCharges()
     {
@@ -162,6 +170,7 @@ class Plan
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getInstallments()
     {

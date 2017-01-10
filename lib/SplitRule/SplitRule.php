@@ -54,6 +54,7 @@ class SplitRule
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getId()
     {
@@ -62,6 +63,7 @@ class SplitRule
 
     /**
      * @return Recipient
+     * @codeCoverageIgnore
      */
     public function getRecipient()
     {
@@ -78,6 +80,7 @@ class SplitRule
 
     /**
      * @return bool
+     * @codeCoverageIgnore
      */
     public function getChargeProcessingFee()
     {
@@ -86,6 +89,7 @@ class SplitRule
 
     /**
      * @return bool
+     * @codeCoverageIgnore
      */
     public function getLiable()
     {
@@ -94,6 +98,7 @@ class SplitRule
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getPercentage()
     {
@@ -102,6 +107,7 @@ class SplitRule
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getAmount()
     {
@@ -110,6 +116,7 @@ class SplitRule
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getDateCreated()
     {
@@ -118,6 +125,7 @@ class SplitRule
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getDateUpdated()
     {

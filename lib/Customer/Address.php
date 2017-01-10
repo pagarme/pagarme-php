@@ -56,6 +56,7 @@ class Address
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getStreet()
     {
@@ -64,6 +65,7 @@ class Address
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getStreetNumber()
     {
@@ -72,6 +74,7 @@ class Address
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getNeighborhood()
     {
@@ -80,6 +83,7 @@ class Address
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getZipcode()
     {
@@ -88,6 +92,7 @@ class Address
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getComplementary()
     {
@@ -96,6 +101,7 @@ class Address
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getCity()
     {
@@ -104,6 +110,7 @@ class Address
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getState()
     {
@@ -112,6 +119,7 @@ class Address
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getCountry()
     {

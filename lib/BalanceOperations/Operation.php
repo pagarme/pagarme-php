@@ -58,6 +58,7 @@ class Operation
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getId()
     {
@@ -66,6 +67,7 @@ class Operation
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getStatus()
     {
@@ -74,6 +76,7 @@ class Operation
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getBalanceAmount()
     {
@@ -82,6 +85,7 @@ class Operation
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getBalanceOldAmount()
     {
@@ -90,6 +94,7 @@ class Operation
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getMovementType()
     {
@@ -98,6 +103,7 @@ class Operation
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getAmount()
     {
@@ -106,6 +112,7 @@ class Operation
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getFee()
     {
@@ -114,6 +121,7 @@ class Operation
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnore
      */
     public function getDateCreated()
     {
@@ -122,6 +130,7 @@ class Operation
 
     /**
      * @return Movement
+     * @codeCoverageIgnore
      */
     public function getMovement()
     {

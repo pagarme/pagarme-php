@@ -28,6 +28,7 @@ class SearchGet implements Request
 
     /**
      * @return array
+     * @codeCoverageIgnore
      */
     public function getPayload()
     {
@@ -39,6 +40,7 @@ class SearchGet implements Request
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getPath()
     {
@@ -47,6 +49,7 @@ class SearchGet implements Request
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getMethod()
     {

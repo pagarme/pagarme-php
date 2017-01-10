@@ -82,6 +82,7 @@ class Transfer
 
     /**
      * @return int $id
+     * @codeCoverageIgnore
      */
     public function getId()
     {
@@ -90,6 +91,7 @@ class Transfer
 
     /**
      * @return int $amount
+     * @codeCoverageIgnore
      */
     public function getAmount()
     {
@@ -98,6 +100,7 @@ class Transfer
 
     /**
      * @return string $type
+     * @codeCoverageIgnore
      */
     public function getType()
     {
@@ -106,6 +109,7 @@ class Transfer
 
     /**
      * @return string $status
+     * @codeCoverageIgnore
      */
     public function getStatus()
     {
@@ -114,6 +118,7 @@ class Transfer
 
     /**
      * @return int $fee
+     * @codeCoverageIgnore
      */
     public function getFee()
     {
@@ -122,6 +127,7 @@ class Transfer
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnore
      */
     public function getFundingEstimatedDate()
     {
@@ -130,6 +136,7 @@ class Transfer
 
     /**
      * @return PagarMe\Sdk\BankAccount\BankAccount $bankAccount
+     * @codeCoverageIgnore
      */
     public function getBankAccount()
     {
@@ -138,6 +145,7 @@ class Transfer
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnore
      */
     public function getDateCreated()
     {
@@ -146,6 +154,7 @@ class Transfer
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getSourceType()
     {
@@ -154,6 +163,7 @@ class Transfer
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getSourceId()
     {
@@ -162,6 +172,7 @@ class Transfer
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getTargetType()
     {
@@ -170,6 +181,7 @@ class Transfer
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getTargetID()
     {
@@ -178,6 +190,7 @@ class Transfer
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnore
      */
     public function getFundingDate()
     {

@@ -66,6 +66,7 @@ class Payable
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getId()
     {
@@ -74,6 +75,7 @@ class Payable
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getStatus()
     {
@@ -82,6 +84,7 @@ class Payable
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getAmount()
     {
@@ -90,6 +93,7 @@ class Payable
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getFee()
     {
@@ -98,6 +102,7 @@ class Payable
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getInstallment()
     {
@@ -106,6 +111,7 @@ class Payable
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getTransactionId()
     {
@@ -114,6 +120,7 @@ class Payable
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getSplitRuleId()
     {
@@ -122,6 +129,7 @@ class Payable
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnore
      */
     public function getPaymentDate()
     {
@@ -130,6 +138,7 @@ class Payable
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getType()
     {
@@ -138,6 +147,7 @@ class Payable
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnore
      */
     public function getDateCreated()
     {
