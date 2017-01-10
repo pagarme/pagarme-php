@@ -1,10 +1,10 @@
 <?php
 
-namespace PagarMe\SdkTest\AntifraudAnalyses;
+namespace PagarMe\SdkTest\AntifraudAnalysis;
 
 class AntifraudAnalysisBuilderTest extends \PHPUnit_Framework_TestCase
 {
-    use \PagarMe\Sdk\AntifraudAnalyses\AntifraudAnalysisBuilder;
+    use \PagarMe\Sdk\AntifraudAnalysis\AntifraudAnalysisBuilder;
 
     /**
      * @test
@@ -18,7 +18,7 @@ class AntifraudAnalysisBuilderTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertInstanceOf(
-            'PagarMe\Sdk\AntifraudAnalyses\AntifraudAnalysis',
+            'PagarMe\Sdk\AntifraudAnalysis\AntifraudAnalysis',
             $antifraudAnalysis
         );
         $this->assertInstanceOf(

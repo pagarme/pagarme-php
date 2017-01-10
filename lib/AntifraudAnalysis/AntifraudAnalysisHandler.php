@@ -1,13 +1,13 @@
 <?php
 
-namespace PagarMe\Sdk\AntifraudAnalyses;
+namespace PagarMe\Sdk\AntifraudAnalysis;
 
 use PagarMe\Sdk\AbstractHandler;
 use PagarMe\Sdk\Transaction\AbstractTransaction;
-use PagarMe\Sdk\AntifraudAnalyses\Request\AntifraudAnalysesList;
-use PagarMe\Sdk\AntifraudAnalyses\Request\AntifraudAnalysesGet;
+use PagarMe\Sdk\AntifraudAnalysis\Request\AntifraudAnalysisList;
+use PagarMe\Sdk\AntifraudAnalysis\Request\AntifraudAnalysisGet;
 
-class AntifraudAnalysesHandler extends AbstractHandler
+class AntifraudAnalysisHandler extends AbstractHandler
 {
     use AntifraudAnalysisBuilder;
 
@@ -17,18 +17,18 @@ class AntifraudAnalysesHandler extends AbstractHandler
      */
     public function getList(AbstractTransaction $transaction)
     {
-        $request = new AntifraudAnalysesList($transaction);
+        $request = new AntifraudAnalysisList($transaction);
 
         $response = $this->client->send($request);
-        $antifraudAnalyses = [];
+        $antifraudAnalysis = [];
 
         foreach ($response as $antifraudAnalysisData) {
-            $antifraudAnalyses[] = $this->buildAntifraudAnalysis(
+            $antifraudAnalysis[] = $this->buildAntifraudAnalysis(
                 $antifraudAnalysisData
             );
         }
 
-        return $antifraudAnalyses;
+        return $antifraudAnalysis;
     }
 
     /**
@@ -38,7 +38,7 @@ class AntifraudAnalysesHandler extends AbstractHandler
      */
     public function get(AbstractTransaction $transaction, $antifraudId)
     {
-        $request = new AntifraudAnalysesGet($transaction, $antifraudId);
+        $request = new AntifraudAnalysisGet($transaction, $antifraudId);
 
         $response = $this->client->send($request);
 

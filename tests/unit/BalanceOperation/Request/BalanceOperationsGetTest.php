@@ -1,11 +1,11 @@
 <?php
 
-namespace PagarMe\SdkTest\BalanceOperations\Request;
+namespace PagarMe\SdkTest\BalanceOperation\Request;
 
-use PagarMe\Sdk\BalanceOperations\Request\BalanceOperationsGet;
+use PagarMe\Sdk\BalanceOperation\Request\BalanceOperationGet;
 use PagarMe\Sdk\Request;
 
-class BalanceOperationsGetTest extends \PHPUnit_Framework_TestCase
+class BalanceOperationGetTest extends \PHPUnit_Framework_TestCase
 {
     const PATH                  = 'balance/operations/123';
     const BALANCE_OPERATIONS_ID = '123';
@@ -15,7 +15,7 @@ class BalanceOperationsGetTest extends \PHPUnit_Framework_TestCase
      */
     public function mustContentBeCorrect()
     {
-        $request = new BalanceOperationsGet(self::BALANCE_OPERATIONS_ID);
+        $request = new BalanceOperationGet(self::BALANCE_OPERATIONS_ID);
 
         $this->assertEquals(Request::HTTP_GET, $request->getMethod());
         $this->assertEquals(self::PATH, $request->getPath());
