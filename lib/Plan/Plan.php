@@ -98,6 +98,7 @@ class Plan
 
     /**
      * @param string $name
+     * @codeCoverageIgnore
      */
     public function setName($name)
     {
@@ -116,6 +117,7 @@ class Plan
 
     /**
      * @param int $trialDays
+     * @codeCoverageIgnore
      */
     public function setTrialDays($trialDays)
     {
@@ -143,6 +145,7 @@ class Plan
 
     /**
      * @param string $color
+     * @codeCoverageIgnore
      */
     public function setColor($color)
     {
@@ -161,6 +164,7 @@ class Plan
 
     /**
      * @param int $charges
+     * @codeCoverageIgnore
      */
     public function setCharges($charges)
     {

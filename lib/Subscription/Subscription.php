@@ -104,6 +104,7 @@ class Subscription
 
     /**
      * @param Card
+     * @codeCoverageIgnore
      */
     public function setCard(Card $card)
     {
@@ -122,6 +123,7 @@ class Subscription
 
     /**
      * @param Plan
+     * @codeCoverageIgnore
      */
     public function setPlan(Plan $plan)
     {
@@ -176,6 +178,7 @@ class Subscription
 
     /**
      * @param string
+     * @codeCoverageIgnore
      */
     public function setPaymentMethod($paymentMethod)
     {

@@ -72,6 +72,7 @@ class SplitRule
 
     /**
      * @param Recipient $recipient
+     * @codeCoverageIgnore
      */
     public function setRecipient(Recipient $recipient)
     {

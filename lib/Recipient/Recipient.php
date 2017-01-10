@@ -82,6 +82,7 @@ class Recipient
     /**
      * @param PagarMe
      * @return Recipient
+     * @codeCoverageIgnore
      */
     public function setBankAccount($bankAccount)
     {
@@ -101,6 +102,7 @@ class Recipient
     /**
      * @param bool
      * @return Recipient
+     * @codeCoverageIgnore
      */
     public function setTransferEnabled($transferEnabled)
     {
@@ -120,6 +122,7 @@ class Recipient
     /**
      * @param string
      * @return Recipient
+     * @codeCoverageIgnore
      */
     public function setLastTransfer($lastTransfer)
     {
@@ -139,6 +142,7 @@ class Recipient
     /**
      * @param string
      * @return Recipient
+     * @codeCoverageIgnore
      */
     public function setTransferInterval($transferInterval)
     {
@@ -158,6 +162,7 @@ class Recipient
     /**
      * @param int
      * @return Recipient
+     * @codeCoverageIgnore
      */
     public function setTransferDay($transferDay)
     {
@@ -177,6 +182,7 @@ class Recipient
     /**
      * @param bool
      * @return Recipient
+     * @codeCoverageIgnore
      */
     public function setAutomaticAnticipationEnabled($automaticAnticipationEnabled)
     {
@@ -196,6 +202,7 @@ class Recipient
     /**
      * @param int
      * @return Recipient
+     * @codeCoverageIgnore
      */
     public function setAnticipatableVolumePercentage($anticipatableVolumePercentage)
     {
