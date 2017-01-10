@@ -1,12 +1,12 @@
 version: '2'
 services:
   php:
-    image: xduh/php54
+    image: pagarme/php:5.4
     volumes:
       - .:/code
     working_dir: /code
   composer:
-    image: xduh/composer
+    image: pagarme/composer
     volumes:
       - .:/code
     working_dir: /code

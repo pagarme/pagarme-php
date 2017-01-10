@@ -115,7 +115,7 @@ class TransactionHandler extends AbstractHandler
      * @param int $count
      * @return array
      */
-    public function getList($page = 1, $count = 10)
+    public function getList($page = null, $count = null)
     {
         $request = new TransactionList($page, $count);
         $response = $this->client->send($request);

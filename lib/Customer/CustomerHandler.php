@@ -62,7 +62,7 @@ class CustomerHandler extends AbstractHandler
      * @param int $page
      * @param int $count
      */
-    public function getList($page = 1, $count = 10)
+    public function getList($page = null, $count = null)
     {
         $request = new CustomerList($page, $count);
         $response = $this->client->send($request);
