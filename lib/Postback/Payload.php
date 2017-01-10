@@ -51,6 +51,7 @@ class Payload
 
     /**
      * @var int
+     * @codeCoverageIgnore
      */
     public function getId()
     {
@@ -59,6 +60,7 @@ class Payload
 
     /**
      * @var string
+     * @codeCoverageIgnore
      */
     public function getFingerprint()
     {
@@ -67,6 +69,7 @@ class Payload
 
     /**
      * @var string
+     * @codeCoverageIgnore
      */
     public function getEvent()
     {
@@ -75,6 +78,7 @@ class Payload
 
     /**
      * @var string
+     * @codeCoverageIgnore
      */
     public function getOldStatus()
     {
@@ -83,6 +87,7 @@ class Payload
 
     /**
      * @var string
+     * @codeCoverageIgnore
      */
     public function getDesiredStatus()
     {
@@ -91,6 +96,7 @@ class Payload
 
     /**
      * @var string
+     * @codeCoverageIgnore
      */
     public function getCurrentStatus()
     {
@@ -99,6 +105,7 @@ class Payload
 
     /**
      * @var AbstractTransaction
+     * @codeCoverageIgnore
      */
     public function getTransaction()
     {
