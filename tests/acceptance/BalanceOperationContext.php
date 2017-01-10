@@ -14,7 +14,7 @@ class BalanceOperationContext extends BasicContext
 {
     use Helper\CustomerDataProvider;
 
-    private $balanceOperations;
+    private $balanceOperation;
 
     /**
      * @Given a transaction with installments
@@ -41,8 +41,8 @@ class BalanceOperationContext extends BasicContext
      */
     public function iQueryForBalanceOperations()
     {
-        $this->balanceOperations = self::getPagarMe()
-            ->balanceOperations()
+        $this->balanceOperation = self::getPagarMe()
+            ->balanceOperation()
             ->getList(null, null, 'waiting_funds');
     }
 
@@ -52,13 +52,13 @@ class BalanceOperationContext extends BasicContext
     public function aListOfPayablesMustBeReturned()
     {
         assertContainsOnly(
-            'PagarMe\Sdk\BalanceOperations\Operation',
-            $this->balanceOperations
+            'PagarMe\Sdk\BalanceOperation\Operation',
+            $this->balanceOperation
         );
 
         assertGreaterThanOrEqual(
             1,
-            count($this->balanceOperations)
+            count($this->balanceOperation)
         );
     }
 }

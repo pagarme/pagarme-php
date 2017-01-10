@@ -1,10 +1,10 @@
 <?php
 
-namespace PagarMe\Sdk\AntifraudAnalyses\Request;
+namespace PagarMe\Sdk\AntifraudAnalysis\Request;
 
 use PagarMe\Sdk\RequestInterface;
 
-class AntifraudAnalysesGet implements RequestInterface
+class AntifraudAnalysisGet implements RequestInterface
 {
     /**
      * @var PagarMe\Sdk\Transaction\AbstractTransaction
@@ -14,15 +14,15 @@ class AntifraudAnalysesGet implements RequestInterface
     /**
      * @var int
      */
-    private $antifraudAnalyses;
+    private $antifraudAnalysis;
 
     /**
      * @param PagarMe\Sdk\Transaction\AbstractTransaction $transaction
      */
-    public function __construct($transaction, $antifraudAnalyses)
+    public function __construct($transaction, $antifraudAnalysis)
     {
         $this->transaction       = $transaction;
-        $this->antifraudAnalyses = $antifraudAnalyses;
+        $this->antifraudAnalysis = $antifraudAnalysis;
     }
 
     /**
@@ -41,7 +41,7 @@ class AntifraudAnalysesGet implements RequestInterface
         return sprintf(
             'transactions/%d/antifraud_analyses/%d',
             $this->transaction->getId(),
-            $this->antifraudAnalyses
+            $this->antifraudAnalysis
         );
     }
 

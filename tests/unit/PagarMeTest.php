@@ -250,20 +250,20 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function mustReturnSameAntifraudAnalysesHandler()
+    public function mustReturnSameAntifraudAnalysisHandler()
     {
 
-        $antifraudAnalysesHandlerA = $this->pagarMe->antifraudAnalyses();
-        $antifraudAnalysesHandlerB = $this->pagarMe->antifraudAnalyses();
+        $antifraudAnalysisHandlerA = $this->pagarMe->antifraudAnalysis();
+        $antifraudAnalysisHandlerB = $this->pagarMe->antifraudAnalysis();
 
         $this->assertSame(
-            $antifraudAnalysesHandlerA,
-            $antifraudAnalysesHandlerB
+            $antifraudAnalysisHandlerA,
+            $antifraudAnalysisHandlerB
         );
 
         $this->assertInstanceOf(
-            'PagarMe\Sdk\AntifraudAnalyses\AntifraudAnalysesHandler',
-            $antifraudAnalysesHandlerA
+            'PagarMe\Sdk\AntifraudAnalysis\AntifraudAnalysisHandler',
+            $antifraudAnalysisHandlerA
         );
     }
 

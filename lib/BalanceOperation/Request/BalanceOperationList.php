@@ -1,10 +1,10 @@
 <?php
 
-namespace PagarMe\Sdk\BalanceOperations\Request;
+namespace PagarMe\Sdk\BalanceOperation\Request;
 
 use PagarMe\Sdk\RequestInterface;
 
-class BalanceOperationsList implements RequestInterface
+class BalanceOperationList implements RequestInterface
 {
 
     /**

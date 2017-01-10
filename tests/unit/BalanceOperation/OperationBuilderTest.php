@@ -1,10 +1,10 @@
 <?php
 
-namespace PagarMe\SdkTest\BalanceOperations;
+namespace PagarMe\SdkTest\BalanceOperation;
 
 class OperationBuilderTest extends \PHPUnit_Framework_TestCase
 {
-    use \PagarMe\Sdk\BalanceOperations\OperationBuilder;
+    use \PagarMe\Sdk\BalanceOperation\OperationBuilder;
 
     /**
      * @test
@@ -15,7 +15,7 @@ class OperationBuilderTest extends \PHPUnit_Framework_TestCase
 
         $operation = $this->buildOperation(json_decode($payload));
         $this->assertInstanceOf(
-            'PagarMe\Sdk\BalanceOperations\Operation',
+            'PagarMe\Sdk\BalanceOperation\Operation',
             $operation
         );
         $this->assertInstanceOf(
@@ -35,7 +35,7 @@ class OperationBuilderTest extends \PHPUnit_Framework_TestCase
         $operation = $this->buildOperation(json_decode($payload));
 
         $this->assertInstanceOf(
-            'PagarMe\Sdk\BalanceOperations\Operation',
+            'PagarMe\Sdk\BalanceOperation\Operation',
             $operation
         );
         $this->assertInstanceOf(

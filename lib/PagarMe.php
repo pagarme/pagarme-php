@@ -17,9 +17,9 @@ use PagarMe\Sdk\Subscription\SubscriptionHandler;
 use PagarMe\Sdk\BulkAnticipation\BulkAnticipationHandler;
 use PagarMe\Sdk\Payable\PayableHandler;
 use PagarMe\Sdk\Zipcode\ZipcodeHandler;
-use PagarMe\Sdk\BalanceOperations\BalanceOperationsHandler;
+use PagarMe\Sdk\BalanceOperation\BalanceOperationHandler;
 use PagarMe\Sdk\Postback\PostbackHandler;
-use PagarMe\Sdk\AntifraudAnalyses\AntifraudAnalysesHandler;
+use PagarMe\Sdk\AntifraudAnalysis\AntifraudAnalysisHandler;
 use PagarMe\Sdk\Search\SearchHandler;
 
 class PagarMe
@@ -100,9 +100,9 @@ class PagarMe
     private $zipcodeHandler;
 
     /**
-     * @param BalanceOperationsHandler
+     * @param BalanceOperationHandler
      */
-    private $balanceOperationsHandler;
+    private $balanceOperationHandler;
 
     /**
      * @param PostbackHandler
@@ -110,9 +110,9 @@ class PagarMe
     private $postbackHandler;
 
     /**
-     * @param antifraudAnalysesHandler
+     * @param antifraudAnalysisHandler
      */
-    private $antifraudAnalysesHandler;
+    private $antifraudAnalysisHandler;
 
     /**
      * @param SearchHandler
@@ -305,15 +305,15 @@ class PagarMe
     /**
      * @return BalanceOperationsHandler
      */
-    public function balanceOperations()
+    public function balanceOperation()
     {
-        if (!$this->balanceOperationsHandler instanceof BalanceOperationsHandler) {
-            $this->balanceOperationsHandler = new BalanceOperationsHandler(
+        if (!$this->balanceOperationHandler instanceof BalanceOperationHandler) {
+            $this->balanceOperationHandler = new BalanceOperationHandler(
                 $this->client
             );
         }
 
-        return $this->balanceOperationsHandler;
+        return $this->balanceOperationHandler;
     }
 
     /**
@@ -331,17 +331,17 @@ class PagarMe
     }
 
     /**
-     * @return antifraudAnalysesHandler
+     * @return antifraudAnalysisHandler
      */
-    public function antifraudAnalyses()
+    public function antifraudAnalysis()
     {
-        if (!$this->antifraudAnalysesHandler instanceof AntifraudAnalysesHandler) {
-            $this->antifraudAnalysesHandler = new AntifraudAnalysesHandler(
+        if (!$this->antifraudAnalysisHandler instanceof AntifraudAnalysisHandler) {
+            $this->antifraudAnalysisHandler = new AntifraudAnalysisHandler(
                 $this->client
             );
         }
 
-        return $this->antifraudAnalysesHandler;
+        return $this->antifraudAnalysisHandler;
     }
 
     /**

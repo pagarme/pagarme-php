@@ -1,6 +1,6 @@
 <?php
 
-namespace PagarMe\Sdk\AntifraudAnalyses;
+namespace PagarMe\Sdk\AntifraudAnalysis;
 
 trait AntifraudAnalysisBuilder
 {

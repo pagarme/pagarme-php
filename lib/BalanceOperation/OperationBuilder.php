@@ -1,6 +1,6 @@
 <?php
 
-namespace PagarMe\Sdk\BalanceOperations;
+namespace PagarMe\Sdk\BalanceOperation;
 
 trait OperationBuilder
 {

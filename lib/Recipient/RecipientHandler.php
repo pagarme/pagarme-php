@@ -12,13 +12,13 @@ use PagarMe\Sdk\Recipient\Request\RecipientBalance;
 use PagarMe\Sdk\Recipient\Request\RecipientBalanceOperation;
 use PagarMe\Sdk\Recipient\Request\RecipientBalanceOperations;
 use PagarMe\Sdk\Balance\Balance;
-use PagarMe\Sdk\BalanceOperations\Operation;
-use PagarMe\Sdk\BalanceOperations\Movement;
+use PagarMe\Sdk\BalanceOperation\Operation;
+use PagarMe\Sdk\BalanceOperation\Movement;
 
 class RecipientHandler extends AbstractHandler
 {
     use \PagarMe\Sdk\Recipient\RecipientBuilder;
-    use \PagarMe\Sdk\BalanceOperations\OperationBuilder;
+    use \PagarMe\Sdk\BalanceOperation\OperationBuilder;
 
     /**
      * @param BankAccount $bankAccount

@@ -1,10 +1,10 @@
 <?php
 
-namespace PagarMe\Sdk\AntifraudAnalyses\Request;
+namespace PagarMe\Sdk\AntifraudAnalysis\Request;
 
 use PagarMe\Sdk\RequestInterface;
 
-class AntifraudAnalysesList implements RequestInterface
+class AntifraudAnalysisList implements RequestInterface
 {
     /**
      * @var PagarMe\Sdk\Transaction\AbstractTransaction
