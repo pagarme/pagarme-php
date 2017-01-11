@@ -10,16 +10,22 @@ class SubscriptionCancelTest extends \PHPUnit_Framework_TestCase
     const PATH            = 'subscriptions/123/cancel';
     const SUBSCRIPTION_ID = 123;
 
+    private $subscriptionMock;
+
+    public function setup()
+    {
+        $this->subscriptionMock = $this->getMockBuilder('PagarMe\Sdk\Subscription\Subscription')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $this->subscriptionMock->method('getId')->willReturn(self::SUBSCRIPTION_ID);
+    }
+
     /**
      * @test
      */
     public function mustPayloadBeCorrect()
     {
-        $subscriptionMock = $this->getMockBuilder('PagarMe\Sdk\Subscription\Subscription')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $subscriptionMock->method('getId')->willReturn(self::SUBSCRIPTION_ID);
-        $subscriptionCancelRequest = new SubscriptionCancel($subscriptionMock);
+        $subscriptionCancelRequest = new SubscriptionCancel($this->subscriptionMock);
 
         $this->assertEquals(
             $subscriptionCancelRequest->getPayload(),
@@ -32,11 +38,7 @@ class SubscriptionCancelTest extends \PHPUnit_Framework_TestCase
      */
     public function mustMethodBeCorrect()
     {
-        $subscriptionMock = $this->getMockBuilder('PagarMe\Sdk\Subscription\Subscription')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $subscriptionMock->method('getId')->willReturn(self::SUBSCRIPTION_ID);
-        $subscriptionCancelRequest = new SubscriptionCancel($subscriptionMock);
+        $subscriptionCancelRequest = new SubscriptionCancel($this->subscriptionMock);
 
         $this->assertEquals(
             $subscriptionCancelRequest->getMethod(),
@@ -49,11 +51,7 @@ class SubscriptionCancelTest extends \PHPUnit_Framework_TestCase
      */
     public function mustPathBeCorrect()
     {
-        $subscriptionMock = $this->getMockBuilder('PagarMe\Sdk\Subscription\Subscription')
-            ->disableOriginalConstructor()
-            ->getMock();
-        $subscriptionMock->method('getId')->willReturn(self::SUBSCRIPTION_ID);
-        $subscriptionCancelRequest = new SubscriptionCancel($subscriptionMock);
+        $subscriptionCancelRequest = new SubscriptionCancel($this->subscriptionMock);
 
         $this->assertEquals(
             $subscriptionCancelRequest->getPath(),
