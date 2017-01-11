@@ -2,8 +2,6 @@
 
 namespace PagarMe\Sdk;
 
-use GuzzleHttp\Exception\TransferException;
-
 class ClientException extends PagarMeException
 {
     /**

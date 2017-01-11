@@ -2,9 +2,9 @@
 
 namespace PagarMe\Sdk\Company\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
-class CompanyInfo implements Request
+class CompanyInfo implements RequestInterface
 {
     /**
      * @return array

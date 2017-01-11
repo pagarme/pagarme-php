@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTest\Subscription\Request;
 
 use PagarMe\Sdk\Subscription\Request\SubscriptionUpdate;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class SubscriptionUpdateTest extends \PHPUnit_Framework_TestCase
 {
@@ -93,7 +93,7 @@ class SubscriptionUpdateTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             $subscriptionCancelRequest->getMethod(),
-            Request::HTTP_PUT
+            RequestInterface::HTTP_PUT
         );
     }
 

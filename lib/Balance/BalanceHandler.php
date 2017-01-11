@@ -3,7 +3,6 @@
 namespace PagarMe\Sdk\Balance;
 
 use PagarMe\Sdk\AbstractHandler;
-use PagarMe\Sdk\BankAccount\BankAccount;
 use PagarMe\Sdk\Balance\Request\BalanceOperationsList;
 use PagarMe\Sdk\Balance\Operation;
 use PagarMe\Sdk\Balance\Movement;

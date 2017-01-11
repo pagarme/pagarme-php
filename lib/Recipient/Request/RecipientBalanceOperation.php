@@ -2,11 +2,10 @@
 
 namespace PagarMe\Sdk\Recipient\Request;
 
-use PagarMe\Sdk\Request;
-use PagarMe\Sdk\Balance\Operation;
+use PagarMe\Sdk\RequestInterface;
 use PagarMe\Sdk\Recipient\Recipient;
 
-class RecipientBalanceOperation implements Request
+class RecipientBalanceOperation implements RequestInterface
 {
 
     /**

@@ -2,10 +2,10 @@
 
 namespace PagarMe\Sdk\Recipient\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 use PagarMe\Sdk\Recipient\Recipient;
 
-class RecipientUpdate implements Request
+class RecipientUpdate implements RequestInterface
 {
     /**
      * @var Recipient

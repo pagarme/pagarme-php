@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTests\Recipient;
 
 use PagarMe\Sdk\Recipient\Request\RecipientCreate;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class RecipientCreateTest extends \PHPUnit_Framework_TestCase
 {
@@ -57,7 +57,7 @@ class RecipientCreateTest extends \PHPUnit_Framework_TestCase
             null
         );
 
-        $this->assertEquals(Request::HTTP_POST, $recipientCreate->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_POST, $recipientCreate->getMethod());
     }
 
     public function recipientParams()

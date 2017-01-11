@@ -7,7 +7,7 @@ use PagarMe\Sdk\Transaction\CreditCardTransaction;
 use PagarMe\Sdk\SplitRule\SplitRuleCollection;
 use PagarMe\Sdk\SplitRule\SplitRule;
 use PagarMe\Sdk\Recipient\Recipient;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
 {
@@ -309,7 +309,7 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
         $transaction =  $this->getTransaction(rand(1, 12), false, null);
         $transactionCreate = new CreditCardTransactionCreate($transaction);
 
-        $this->assertEquals(Request::HTTP_POST, $transactionCreate->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_POST, $transactionCreate->getMethod());
     }
 
     private function getTransaction($installments, $capture, $postbackUrl)

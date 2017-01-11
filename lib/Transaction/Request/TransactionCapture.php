@@ -2,9 +2,9 @@
 
 namespace PagarMe\Sdk\Transaction\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
-class TransactionCapture implements Request
+class TransactionCapture implements RequestInterface
 {
     /**
      * @var int

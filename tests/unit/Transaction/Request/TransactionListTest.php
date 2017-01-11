@@ -4,7 +4,7 @@ namespace PagarMe\SdkTest\Transaction\Request;
 
 use PagarMe\Sdk\Transaction\Request\TransactionList;
 use PagarMe\Sdk\Transaction\CreditCardTransaction;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class TransactionListTest extends \PHPUnit_Framework_TestCase
 {
@@ -57,6 +57,6 @@ class TransactionListTest extends \PHPUnit_Framework_TestCase
     {
         $transactionCreate = new TransactionList($page, $items);
 
-        $this->assertEquals(Request::HTTP_GET, $transactionCreate->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_GET, $transactionCreate->getMethod());
     }
 }

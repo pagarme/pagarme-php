@@ -2,9 +2,9 @@
 
 namespace PagarMe\Sdk\Card\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
-class CardGet implements Request
+class CardGet implements RequestInterface
 {
     /**
      * @var int

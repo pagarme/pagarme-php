@@ -2,9 +2,9 @@
 
 namespace PagarMe\Sdk\Zipcode\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
-class ZipcodeInfoGet implements Request
+class ZipcodeInfoGet implements RequestInterface
 {
     /**
      * @var string

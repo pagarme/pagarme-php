@@ -3,7 +3,6 @@
 namespace PagarMe\Sdk\Calculation;
 
 use PagarMe\Sdk\AbstractHandler;
-use PagarMe\Sdk\Client;
 use PagarMe\Sdk\Calculation\Request\CalculateInstallmentsRequest;
 
 class CalculationHandler extends AbstractHandler

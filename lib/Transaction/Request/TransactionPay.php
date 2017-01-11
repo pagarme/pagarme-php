@@ -2,10 +2,10 @@
 
 namespace PagarMe\Sdk\Transaction\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 use PagarMe\Sdk\Transaction\BoletoTransaction;
 
-class TransactionPay implements Request
+class TransactionPay implements RequestInterface
 {
     /**
      * @var BoletoTransaction

@@ -2,9 +2,9 @@
 
 namespace PagarMe\Sdk\Subscription\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
-class SubscriptionGet implements Request
+class SubscriptionGet implements RequestInterface
 {
     /**
      * @var int $subscriptionId

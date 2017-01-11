@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTest\Subscription\Request;
 
 use PagarMe\Sdk\Subscription\Request\SubscriptionList;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class SubscriptionListTest extends \PHPUnit_Framework_TestCase
 {
@@ -40,7 +40,7 @@ class SubscriptionListTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             $subscriptionListRequest->getMethod(),
-            Request::HTTP_GET
+            RequestInterface::HTTP_GET
         );
 
         $this->assertEquals(

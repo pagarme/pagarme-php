@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTest\Card\Request;
 
 use PagarMe\Sdk\Card\Request\CardCreate;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class CardCreateTest extends \PHPUnit_Framework_TestCase
 {
@@ -58,6 +58,6 @@ class CardCreateTest extends \PHPUnit_Framework_TestCase
             self::CARD_EXPIRATION
         );
 
-        $this->assertEquals(Request::HTTP_POST, $cardCreate->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_POST, $cardCreate->getMethod());
     }
 }

@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTest\Transaction\Request;
 
 use PagarMe\Sdk\Transaction\Request\TransactionEvents;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class TransactionEventsTest extends \PHPUnit_Framework_TestCase
 {
@@ -28,6 +28,6 @@ class TransactionEventsTest extends \PHPUnit_Framework_TestCase
             $transactionCreate->getPayload()
         );
         $this->assertEquals(self::PATH, $transactionCreate->getPath());
-        $this->assertEquals(Request::HTTP_GET, $transactionCreate->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_GET, $transactionCreate->getMethod());
     }
 }

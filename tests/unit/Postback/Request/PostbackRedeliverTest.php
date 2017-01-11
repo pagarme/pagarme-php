@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTest\Postback\Request;
 
 use PagarMe\Sdk\Postback\Request\PostbackRedeliver;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class PostbackRedeliverTest extends \PHPUnit_Framework_TestCase
 {
@@ -29,6 +29,6 @@ class PostbackRedeliverTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals([], $postbackRedeliver->getPayload());
         $this->assertEquals(self::PATH, $postbackRedeliver->getPath());
-        $this->assertEquals(Request::HTTP_POST, $postbackRedeliver->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_POST, $postbackRedeliver->getMethod());
     }
 }

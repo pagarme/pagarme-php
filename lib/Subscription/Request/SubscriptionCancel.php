@@ -2,10 +2,10 @@
 
 namespace PagarMe\Sdk\Subscription\Request;
 
-use PagarMe\Sdk\Request;
 use PagarMe\Sdk\Subscription\Subscription;
+use PagarMe\Sdk\RequestInterface;
 
-class SubscriptionCancel implements Request
+class SubscriptionCancel implements RequestInterface
 {
     /**
      * @var Subscription

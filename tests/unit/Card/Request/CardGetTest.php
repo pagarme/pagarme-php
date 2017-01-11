@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTest\Card\Request;
 
 use PagarMe\Sdk\Card\Request\CardGet;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
@@ -37,6 +37,6 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         $cardGet = new CardGet(self::CARD_ID);
 
-        $this->assertEquals(Request::HTTP_GET, $cardGet->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_GET, $cardGet->getMethod());
     }
 }

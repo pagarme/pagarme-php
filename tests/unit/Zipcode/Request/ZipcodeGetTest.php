@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTest\Zipcode\Request;
 
 use PagarMe\Sdk\Zipcode\Request\ZipcodeInfoGet;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class ZipcodeInfoGetTest extends \PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class ZipcodeInfoGetTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals([], $zipcodeInfoGet->getPayload());
 
-        $this->assertEquals(Request::HTTP_GET, $zipcodeInfoGet->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_GET, $zipcodeInfoGet->getMethod());
 
         $this->assertEquals(self::PATH, $zipcodeInfoGet->getPath());
     }

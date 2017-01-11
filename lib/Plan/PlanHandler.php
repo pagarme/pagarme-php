@@ -16,7 +16,6 @@ class PlanHandler extends AbstractHandler
      * @param string $name
      * @param int $trialDays
      * @param array $paymentsMethods
-     * @param string $color
      * @param int $charges
      * @param int $installments
      * @return Plan
@@ -27,7 +26,6 @@ class PlanHandler extends AbstractHandler
         $name,
         $trialDays = null,
         $paymentsMethods = [],
-        $color = null,
         $charges = null,
         $installments = null
     ) {
@@ -37,7 +35,6 @@ class PlanHandler extends AbstractHandler
             $name,
             $trialDays,
             $paymentsMethods,
-            $color,
             $charges,
             $installments
         );

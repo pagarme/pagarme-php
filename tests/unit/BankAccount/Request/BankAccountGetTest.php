@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTest\BankAccount\Request;
 
 use PagarMe\Sdk\BankAccount\Request\BankAccountGet;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class BankAccountGetTest extends \PHPUnit_Framework_TestCase
 {
@@ -17,7 +17,7 @@ class BankAccountGetTest extends \PHPUnit_Framework_TestCase
     {
         $request = new BankAccountGet(self::BANK_ACCOUNT_ID);
 
-        $this->assertEquals(Request::HTTP_GET, $request->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_GET, $request->getMethod());
         $this->assertEquals(self::PATH, $request->getPath());
         $this->assertEquals(
             [],

@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTest\Subscription\Request;
 
 use PagarMe\Sdk\Subscription\Request\SubscriptionGet;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class SubscriptionGetTest extends \PHPUnit_Framework_TestCase
 {
@@ -32,7 +32,7 @@ class SubscriptionGetTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             $subscriptionGetRequest->getMethod(),
-            Request::HTTP_GET
+            RequestInterface::HTTP_GET
         );
     }
 

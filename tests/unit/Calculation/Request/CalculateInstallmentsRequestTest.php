@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTest\Calculation\Request;
 
 use PagarMe\Sdk\Calculation\Request\CalculateInstallmentsRequest;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class CalculateInstallmentsRequestTest extends \PHPUnit_Framework_TestCase
 {
@@ -44,7 +44,7 @@ class CalculateInstallmentsRequestTest extends \PHPUnit_Framework_TestCase
     {
         $calculateInstallmentsRequest = $this->getCalculateInstallmentsRequest();
 
-        $this->assertEquals(Request::HTTP_GET, $calculateInstallmentsRequest->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_GET, $calculateInstallmentsRequest->getMethod());
     }
 
     protected function getCalculateInstallmentsRequest()

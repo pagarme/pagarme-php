@@ -2,10 +2,10 @@
 
 namespace PagarMe\Sdk\Recipient\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 use PagarMe\Sdk\BankAccount\BankAccount;
 
-class RecipientCreate implements Request
+class RecipientCreate implements RequestInterface
 {
 
     /**

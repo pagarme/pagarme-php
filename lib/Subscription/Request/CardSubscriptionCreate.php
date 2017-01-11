@@ -2,7 +2,6 @@
 
 namespace PagarMe\Sdk\Subscription\Request;
 
-use PagarMe\Sdk\Request;
 use PagarMe\Sdk\Card\Card;
 use PagarMe\Sdk\Plan\Plan;
 use PagarMe\Sdk\Customer\Customer;

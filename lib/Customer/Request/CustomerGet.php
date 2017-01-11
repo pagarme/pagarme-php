@@ -2,9 +2,9 @@
 
 namespace PagarMe\Sdk\Customer\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
-class CustomerGet implements Request
+class CustomerGet implements RequestInterface
 {
     /**
      * @var int | Identificador do cliente

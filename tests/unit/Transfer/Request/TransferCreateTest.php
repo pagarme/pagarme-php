@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTest\Transfer\Request;
 
 use PagarMe\Sdk\Transfer\Request\TransferCreate;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class TransferCreateTest extends \PHPUnit_Framework_TestCase
 {
@@ -47,7 +47,7 @@ class TransferCreateTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertEquals(
-            Request::HTTP_POST,
+            RequestInterface::HTTP_POST,
             $transferCreate->getMethod()
         );
 
