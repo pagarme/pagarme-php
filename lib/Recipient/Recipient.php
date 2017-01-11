@@ -71,7 +71,7 @@ class Recipient
     }
 
     /**
-     * @return PagarMe
+     * @return PagarMe\Sdk\BankAccount\BankAccount
      * @codeCoverageIgnore
      */
     public function getBankAccount()
@@ -80,7 +80,7 @@ class Recipient
     }
 
     /**
-     * @param PagarMe
+     * @param PagarMe\Sdk\BankAccount\BankAccount
      * @return Recipient
      * @codeCoverageIgnore
      */

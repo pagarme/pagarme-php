@@ -97,7 +97,7 @@ class Card
     }
 
     /**
-     * @return \DateTim
+     * @return \DateTime
      * @codeCoverageIgnoree
      */
     public function getDateCreated()
@@ -106,7 +106,7 @@ class Card
     }
 
     /**
-     * @return \DateTim
+     * @return \DateTime
      * @codeCoverageIgnoree
      */
     public function getDateUpdated()
