@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTests\Recipient;
 
 use PagarMe\Sdk\Recipient\Request\RecipientList;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class RecipientListTest extends \PHPUnit_Framework_TestCase
 {
@@ -39,7 +39,7 @@ class RecipientListTest extends \PHPUnit_Framework_TestCase
     {
         $recipientList = new RecipientList($page, $count);
 
-        $this->assertEquals(Request::HTTP_GET, $recipientList->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_GET, $recipientList->getMethod());
     }
 
     /**

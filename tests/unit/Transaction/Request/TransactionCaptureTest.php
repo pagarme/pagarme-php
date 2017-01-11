@@ -4,7 +4,7 @@ namespace PagarMe\SdkTest\Transaction\Request;
 
 use PagarMe\Sdk\Transaction\Request\TransactionCapture;
 use PagarMe\Sdk\Transaction\CreditCardTransaction;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class TransactionCaptureTest extends \PHPUnit_Framework_TestCase
 {
@@ -37,6 +37,6 @@ class TransactionCaptureTest extends \PHPUnit_Framework_TestCase
             $transactionCreate->getPath()
         );
 
-        $this->assertEquals(Request::HTTP_POST, $transactionCreate->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_POST, $transactionCreate->getMethod());
     }
 }

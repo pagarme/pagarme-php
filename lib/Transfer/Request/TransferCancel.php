@@ -2,10 +2,10 @@
 
 namespace PagarMe\Sdk\Transfer\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 use PagarMe\Sdk\Transfer\Transfer;
 
-class TransferCancel implements Request
+class TransferCancel implements RequestInterface
 {
     /**
      * @var Transfer

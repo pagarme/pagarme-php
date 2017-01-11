@@ -2,11 +2,11 @@
 
 namespace PagarMe\Sdk\Transaction\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 use PagarMe\Sdk\Transaction\BoletoTransaction;
 use PagarMe\Sdk\BankAccount\BankAccount;
 
-class BoletoTransactionRefund implements Request
+class BoletoTransactionRefund implements RequestInterface
 {
     /**
      * @var BoletoTransaction

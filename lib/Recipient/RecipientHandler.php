@@ -121,7 +121,7 @@ class RecipientHandler extends AbstractHandler
 
         $response = $this->client->send($request);
 
-        return $this->buildOperation($result);
+        return $this->buildOperation($response);
     }
 
     /**
@@ -140,7 +140,7 @@ class RecipientHandler extends AbstractHandler
         $response = $this->client->send($request);
         $operations = [];
 
-        foreach ($result as $operation) {
+        foreach ($response as $operation) {
             $operations[] = $this->buildOperation($operation);
         }
 

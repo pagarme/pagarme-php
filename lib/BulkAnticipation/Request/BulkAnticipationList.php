@@ -2,10 +2,10 @@
 
 namespace PagarMe\Sdk\BulkAnticipation\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 use PagarMe\Sdk\Recipient\Recipient;
 
-class BulkAnticipationList implements Request
+class BulkAnticipationList implements RequestInterface
 {
     /**
      * @var Recipient

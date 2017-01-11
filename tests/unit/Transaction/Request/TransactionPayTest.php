@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTest\Transaction\Request;
 
 use PagarMe\Sdk\Transaction\Request\TransactionPay;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class TransactionPayTest extends \PHPUnit_Framework_TestCase
 {
@@ -30,6 +30,6 @@ class TransactionPayTest extends \PHPUnit_Framework_TestCase
             $transactionCreate->getPayload()
         );
         $this->assertEquals(self::PATH, $transactionCreate->getPath());
-        $this->assertEquals(Request::HTTP_PUT, $transactionCreate->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_PUT, $transactionCreate->getMethod());
     }
 }

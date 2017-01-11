@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTest\Transfer\Request;
 
 use PagarMe\Sdk\Transfer\Request\TransferGet;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class TransferGetTest extends \PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class TransferGetTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals([], $transferGet->getPayload());
 
-        $this->assertEquals(Request::HTTP_GET, $transferGet->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_GET, $transferGet->getMethod());
 
         $this->assertEquals(self::PATH, $transferGet->getPath());
     }

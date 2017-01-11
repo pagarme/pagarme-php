@@ -2,9 +2,9 @@
 
 namespace PagarMe\Sdk\BalanceOperation\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
-class BalanceOperationList implements Request
+class BalanceOperationList implements RequestInterface
 {
 
     /**

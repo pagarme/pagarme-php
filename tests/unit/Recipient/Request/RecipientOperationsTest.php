@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTests\Recipient;
 
 use PagarMe\Sdk\Recipient\Request\RecipientBalanceOperations;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class RecipientBalanceOperationsTest extends \PHPUnit_Framework_TestCase
 {
@@ -52,7 +52,7 @@ class RecipientBalanceOperationsTest extends \PHPUnit_Framework_TestCase
             $count
         );
 
-        $this->assertEquals(Request::HTTP_GET, $recipientBalanceOperations->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_GET, $recipientBalanceOperations->getMethod());
     }
 
 

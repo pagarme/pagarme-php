@@ -17,7 +17,6 @@ class PlanContext extends BasicContext
 
     private $trial;
     private $methods;
-    private $color;
     private $charges;
     private $installments;
 
@@ -38,13 +37,12 @@ class PlanContext extends BasicContext
     }
 
     /**
-     * @Given :trial, :methods, :color, :charges, and :installments
+     * @Given :trial, :methods, :charges, and :installments
      */
-    public function planAdditionalFields($trial, $methods, $color, $charges, $installments)
+    public function planAdditionalFields($trial, $methods, $charges, $installments)
     {
         $this->trial        = null;
         $this->methods      = null;
-        $this->color        = null;
         $this->charges      = null;
         $this->installments = null;
 
@@ -54,10 +52,6 @@ class PlanContext extends BasicContext
 
         if ($methods != 'null') {
             $this->methods = explode(',', $methods);
-        }
-
-        if ($color != 'null') {
-            $this->color = $color;
         }
 
         if ($charges != 'null') {
@@ -82,7 +76,6 @@ class PlanContext extends BasicContext
                 $this->name,
                 $this->trial,
                 $this->methods,
-                $this->color,
                 $this->charges,
                 $this->installments
             );
@@ -112,7 +105,6 @@ class PlanContext extends BasicContext
             $this->defaultPaymentMethods($this->methods),
             $this->createdPlan->getPaymentMethods()
         );
-        assertEquals($this->color, $this->createdPlan->getColor());
         assertEquals($this->charges, $this->createdPlan->getCharges());
         assertEquals(
             $this->defaultInstallmets($this->installments),

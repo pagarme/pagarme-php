@@ -4,7 +4,7 @@ namespace PagarMe\SdkTest\Customer\Request;
 
 use PagarMe\Sdk\Customer\Request\CustomerCreate;
 use PagarMe\Sdk\Customer\Customer;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class CustomerCreateTest extends \PHPUnit_Framework_TestCase
 {
@@ -108,7 +108,7 @@ class CustomerCreateTest extends \PHPUnit_Framework_TestCase
             null
         );
 
-        $this->assertEquals(Request::HTTP_POST, $customerCreate->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_POST, $customerCreate->getMethod());
     }
 
     private function getAddressMock()

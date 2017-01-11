@@ -2,10 +2,10 @@
 
 namespace PagarMe\Sdk\Plan\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 use PagarMe\Sdk\Plan\Plan;
 
-class PlanUpdate implements Request
+class PlanUpdate implements RequestInterface
 {
     /**
      * @var Plan $plan
@@ -31,7 +31,6 @@ class PlanUpdate implements Request
             'id'              => $plan->getId(),
             'name'            => $plan->getName(),
             'trial_days'      => $plan->getTrialDays(),
-            'color'           => $plan->getColor(),
             'charges'         => $plan->getCharges(),
         ];
     }

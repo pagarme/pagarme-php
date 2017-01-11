@@ -37,11 +37,6 @@ class Plan
     private $paymentMethods;
 
     /**
-     * @var string
-     */
-    private $color;
-
-    /**
      * @var int
      */
     private $charges;
@@ -132,25 +127,6 @@ class Plan
     public function getPaymentMethods()
     {
         return $this->paymentMethods;
-    }
-
-    /**
-     * @return string
-     * @codeCoverageIgnore
-     */
-    public function getColor()
-    {
-        return $this->color;
-    }
-
-    /**
-     * @param string $color
-     * @codeCoverageIgnore
-     */
-    public function setColor($color)
-    {
-        $this->color = $color;
-        return $this;
     }
 
     /**

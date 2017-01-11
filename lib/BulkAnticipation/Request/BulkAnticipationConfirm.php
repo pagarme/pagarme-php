@@ -2,11 +2,11 @@
 
 namespace PagarMe\Sdk\BulkAnticipation\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 use PagarMe\Sdk\Recipient\Recipient;
 use PagarMe\Sdk\BulkAnticipation\BulkAnticipation;
 
-class BulkAnticipationConfirm implements Request
+class BulkAnticipationConfirm implements RequestInterface
 {
     /**
      * @var Recipient

@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTest;
 
 use PagarMe\Sdk\Client;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
@@ -38,11 +38,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $guzzleClientMock->expects($this->once())->method('send')
             ->willReturn($responseMock);
 
-        $request = $this->getMockBuilder('PagarMe\Sdk\Request')
+        $request = $this->getMockBuilder('PagarMe\Sdk\RequestInterface')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $request->method('getMethod')->willReturn(Request::HTTP_POST);
+        $request->method('getMethod')->willReturn(RequestInterface::HTTP_POST);
         $request->method('getPath')->willReturn(self::REQUEST_PATH);
         $request->method('getPayload')->willReturn(
             ['content' => self::CONTENT]
@@ -68,7 +68,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $guzzleClientMock->expects($this->once())
             ->method('createRequest')
             ->with(
-                Request::HTTP_POST,
+                RequestInterface::HTTP_POST,
                 self::REQUEST_PATH,
                 [
                     'json' => [
@@ -93,11 +93,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $guzzleClientMock->expects($this->once())->method('send')
             ->willReturn($responseMock);
 
-        $request = $this->getMockBuilder('PagarMe\Sdk\Request')
+        $request = $this->getMockBuilder('PagarMe\Sdk\RequestInterface')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $request->method('getMethod')->willReturn(Request::HTTP_POST);
+        $request->method('getMethod')->willReturn(RequestInterface::HTTP_POST);
         $request->method('getPath')->willReturn(self::REQUEST_PATH);
         $request->method('getPayload')->willReturn(
             ['content' => self::CONTENT]
@@ -139,11 +139,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $guzzleClientMock->expects($this->once())->method('send');
 
-        $request = $this->getMockBuilder('PagarMe\Sdk\Request')
+        $request = $this->getMockBuilder('PagarMe\Sdk\RequestInterface')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $request->method('getMethod')->willReturn(Request::HTTP_POST);
+        $request->method('getMethod')->willReturn(RequestInterface::HTTP_POST);
         $request->method('getPath')->willReturn(self::REQUEST_PATH);
         $request->method('getPayload')->willReturn(
             ['content' => self::CONTENT]

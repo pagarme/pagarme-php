@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTest\Payable\Request;
 
 use PagarMe\Sdk\Payable\Request\PayableList;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class PayableListTest extends \PHPUnit_Framework_TestCase
 {
@@ -28,7 +28,7 @@ class PayableListTest extends \PHPUnit_Framework_TestCase
         $request = new PayableList($page, $count);
 
         $this->assertEquals(self::PATH, $request->getPath());
-        $this->assertEquals(Request::HTTP_GET, $request->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_GET, $request->getMethod());
         $this->assertEquals(
             [
                 'page'  => $page,

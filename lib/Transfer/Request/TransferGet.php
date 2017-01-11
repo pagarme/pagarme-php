@@ -2,9 +2,9 @@
 
 namespace PagarMe\Sdk\Transfer\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
-class TransferGet implements Request
+class TransferGet implements RequestInterface
 {
     /**
      * @var int

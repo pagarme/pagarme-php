@@ -2,11 +2,11 @@
 
 namespace PagarMe\Sdk\Subscription\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 use PagarMe\Sdk\Plan\Plan;
 use PagarMe\Sdk\Customer\Customer;
 
-abstract class SubscriptionCreate implements Request
+abstract class SubscriptionCreate implements RequestInterface
 {
     /**
      * @var Plan $plan

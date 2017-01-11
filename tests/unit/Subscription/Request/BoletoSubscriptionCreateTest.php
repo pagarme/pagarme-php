@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTest\Subscription\Request;
 
 use PagarMe\Sdk\Subscription\Request\BoletoSubscriptionCreate;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class BoletoSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
 {
@@ -143,7 +143,7 @@ class BoletoSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             $boletoSubscriptionCreateRequest->getMethod(),
-            Request::HTTP_POST
+            RequestInterface::HTTP_POST
         );
     }
 

@@ -3,7 +3,7 @@
 namespace PagarMe\SdkTest\BalanceOperation\Request;
 
 use PagarMe\Sdk\BalanceOperation\Request\BalanceOperationList;
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 
 class BalanceOperationListTest extends \PHPUnit_Framework_TestCase
 {
@@ -31,7 +31,7 @@ class BalanceOperationListTest extends \PHPUnit_Framework_TestCase
             $status
         );
 
-        $this->assertEquals(Request::HTTP_GET, $request->getMethod());
+        $this->assertEquals(RequestInterface::HTTP_GET, $request->getMethod());
         $this->assertEquals(self::PATH, $request->getPath());
         $this->assertEquals(
             [

@@ -3,7 +3,6 @@
 namespace PagarMe\Sdk;
 
 use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Message\Response as Response;
 
 class Client
 {
@@ -28,11 +27,11 @@ class Client
     }
 
     /**
-     * @param Request $apiRequest
+     * @param RequestInterface $apiRequest
      * @return object
      * @throws ClientException
      */
-    public function send(Request $apiRequest)
+    public function send(RequestInterface $apiRequest)
     {
         $request = $this->client->createRequest(
             $apiRequest->getMethod(),
@@ -56,10 +55,10 @@ class Client
     }
 
     /**
-     * @param Request $apiRequest
+     * @param RequestInterface $apiRequest
      * @return array
      */
-    private function buildBody(Request $request)
+    private function buildBody(RequestInterface $request)
     {
         return [
             'json' => array_merge(

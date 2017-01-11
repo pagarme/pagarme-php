@@ -2,10 +2,10 @@
 
 namespace PagarMe\Sdk\BulkAnticipation\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 use PagarMe\Sdk\Recipient\Recipient;
 
-class BulkAnticipationLimits implements Request
+class BulkAnticipationLimits implements RequestInterface
 {
     use \PagarMe\Sdk\MicrosecondsFormatter;
 
@@ -69,14 +69,5 @@ class BulkAnticipationLimits implements Request
     public function getMethod()
     {
         return self::HTTP_GET;
-    }
-
-    private function getFormatedPaymentDate()
-    {
-        return substr(
-            $this->paymentDate->format('Uu'),
-            0,
-            13
-        );
     }
 }

@@ -2,10 +2,10 @@
 
 namespace PagarMe\Sdk\Transaction\Request;
 
-use PagarMe\Sdk\Request;
+use PagarMe\Sdk\RequestInterface;
 use PagarMe\Sdk\Transaction\CreditCardTransaction;
 
-class CreditCardTransactionRefund implements Request
+class CreditCardTransactionRefund implements RequestInterface
 {
     /**
      * @var CreditCardTransaction
