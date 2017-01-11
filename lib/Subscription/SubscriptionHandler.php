@@ -105,11 +105,11 @@ class SubscriptionHandler extends AbstractHandler
     }
 
     /**
-     * @param int $subscriptionId
+     * @param Subscription $subscription
      */
-    public function cancel($subscriptionId)
+    public function cancel(Subscription $subscription)
     {
-        $request = new SubscriptionCancel($subscriptionId);
+        $request = new SubscriptionCancel($subscription);
 
         $response = $this->client->send($request);
 

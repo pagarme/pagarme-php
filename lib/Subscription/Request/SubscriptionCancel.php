@@ -3,20 +3,21 @@
 namespace PagarMe\Sdk\Subscription\Request;
 
 use PagarMe\Sdk\Request;
+use PagarMe\Sdk\Subscription\Subscription;
 
 class SubscriptionCancel implements Request
 {
     /**
-     * @var int $subscriptionId
+     * @var Subscription
      */
-    protected $subscriptionId;
+    protected $subscription;
 
     /**
-     * @var int $subscriptionId
+     * @var Subscription $subscription
      */
-    public function __construct($subscriptionId)
+    public function __construct(Subscription $subscription)
     {
-        $this->subscriptionId = $subscriptionId;
+        $this->subscription = $subscription;
     }
 
     /**
@@ -32,7 +33,7 @@ class SubscriptionCancel implements Request
      */
     public function getPath()
     {
-        return sprintf('subscriptions/%d/cancel', $this->subscriptionId);
+        return sprintf('subscriptions/%d/cancel', $this->subscription->getId());
     }
 
     /**

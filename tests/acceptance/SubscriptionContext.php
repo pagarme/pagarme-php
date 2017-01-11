@@ -190,7 +190,7 @@ class SubscriptionContext extends BasicContext
     {
         $this->subscription = self::getPagarMe()
             ->subscription()
-            ->cancel($this->subscription->getId());
+            ->cancel($this->subscription);
     }
 
     /**

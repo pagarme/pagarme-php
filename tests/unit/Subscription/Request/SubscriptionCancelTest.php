@@ -15,7 +15,11 @@ class SubscriptionCancelTest extends \PHPUnit_Framework_TestCase
      */
     public function mustPayloadBeCorrect()
     {
-        $subscriptionCancelRequest = new SubscriptionCancel(self::SUBSCRIPTION_ID);
+        $subscriptionMock = $this->getMockBuilder('PagarMe\Sdk\Subscription\Subscription')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $subscriptionMock->method('getId')->willReturn(self::SUBSCRIPTION_ID);
+        $subscriptionCancelRequest = new SubscriptionCancel($subscriptionMock);
 
         $this->assertEquals(
             $subscriptionCancelRequest->getPayload(),
@@ -28,7 +32,11 @@ class SubscriptionCancelTest extends \PHPUnit_Framework_TestCase
      */
     public function mustMethodBeCorrect()
     {
-        $subscriptionCancelRequest = new SubscriptionCancel(self::SUBSCRIPTION_ID);
+        $subscriptionMock = $this->getMockBuilder('PagarMe\Sdk\Subscription\Subscription')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $subscriptionMock->method('getId')->willReturn(self::SUBSCRIPTION_ID);
+        $subscriptionCancelRequest = new SubscriptionCancel($subscriptionMock);
 
         $this->assertEquals(
             $subscriptionCancelRequest->getMethod(),
@@ -41,7 +49,11 @@ class SubscriptionCancelTest extends \PHPUnit_Framework_TestCase
      */
     public function mustPathBeCorrect()
     {
-        $subscriptionCancelRequest = new SubscriptionCancel(self::SUBSCRIPTION_ID);
+        $subscriptionMock = $this->getMockBuilder('PagarMe\Sdk\Subscription\Subscription')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $subscriptionMock->method('getId')->willReturn(self::SUBSCRIPTION_ID);
+        $subscriptionCancelRequest = new SubscriptionCancel($subscriptionMock);
 
         $this->assertEquals(
             $subscriptionCancelRequest->getPath(),
