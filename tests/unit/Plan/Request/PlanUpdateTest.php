@@ -15,7 +15,6 @@ class PlanUpdateTest extends \PHPUnit_Framework_TestCase
     const NAME            = "Plano teste";
     const TRIAL_DAYS      = 10;
     const PAYMENT_METHODS = null;
-    const COLOR           = 'Silver';
     const CHARGES         = 13;
     const INSTALLMENTS    = 26;
 
@@ -34,7 +33,6 @@ class PlanUpdateTest extends \PHPUnit_Framework_TestCase
         $planMock->method('getName')->willReturn(self::NAME);
         $planMock->method('getTrialDays')->willReturn(self::TRIAL_DAYS);
         $planMock->method('getPaymentMethods')->willReturn(self::PAYMENT_METHODS);
-        $planMock->method('getColor')->willReturn(self::COLOR);
         $planMock->method('getCharges')->willReturn(self::CHARGES);
         $planMock->method('getInstallments')->willReturn(self::INSTALLMENTS);
 
@@ -47,7 +45,6 @@ class PlanUpdateTest extends \PHPUnit_Framework_TestCase
                 'id'              => self::ID,
                 'name'            => self::NAME,
                 'trial_days'      => self::TRIAL_DAYS,
-                'color'           => self::COLOR,
                 'charges'         => self::CHARGES
             ],
             $request->getPayload()

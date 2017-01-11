@@ -31,7 +31,6 @@ class PlanUpdate implements RequestInterface
             'id'              => $plan->getId(),
             'name'            => $plan->getName(),
             'trial_days'      => $plan->getTrialDays(),
-            'color'           => $plan->getColor(),
             'charges'         => $plan->getCharges(),
         ];
     }

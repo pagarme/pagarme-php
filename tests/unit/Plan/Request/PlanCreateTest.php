@@ -20,7 +20,6 @@ class PlanCreateTest extends \PHPUnit_Framework_TestCase
             "Plano teste",
             10,
             null,
-            'Silver',
             13,
             26
         );
@@ -29,14 +28,13 @@ class PlanCreateTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(RequestInterface::HTTP_POST, $request->getMethod());
         $this->assertEquals(
             [
-                'amount'           => 1337,
-                'days'             => 15,
-                'name'             => "Plano teste",
-                'trial_days'       => 10,
+                'amount'          => 1337,
+                'days'            => 15,
+                'name'            => "Plano teste",
+                'trial_days'      => 10,
                 'payment_methods' => null,
-                'color'            => 'Silver',
-                'charges'          => 13,
-                'installments'     => 26
+                'charges'         => 13,
+                'installments'    => 26
             ],
             $request->getPayload()
         );

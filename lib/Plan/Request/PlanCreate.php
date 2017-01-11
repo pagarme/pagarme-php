@@ -33,11 +33,6 @@ class PlanCreate implements RequestInterface
     private $paymentsMethods;
 
     /**
-     * @var string
-     */
-    private $color;
-
-    /**
      * @var int
      */
     private $charges;
@@ -54,7 +49,6 @@ class PlanCreate implements RequestInterface
      * @param string $name
      * @param int $trialDays
      * @param array $paymentsMethods
-     * @param string $color
      * @param int $charges
      * @param int $installments
      */
@@ -64,7 +58,6 @@ class PlanCreate implements RequestInterface
         $name,
         $trialDays,
         $paymentsMethods,
-        $color,
         $charges,
         $installments
     ) {
@@ -73,7 +66,6 @@ class PlanCreate implements RequestInterface
         $this->name            = $name;
         $this->trialDays       = $trialDays;
         $this->paymentsMethods = $paymentsMethods;
-        $this->color           = $color;
         $this->charges         = $charges;
         $this->installments    = $installments;
     }
@@ -88,8 +80,7 @@ class PlanCreate implements RequestInterface
             'days'             => $this->days,
             'name'             => $this->name,
             'trial_days'       => $this->trialDays,
-            'payment_methods' => $this->paymentsMethods,
-            'color'            => $this->color,
+            'payment_methods'  => $this->paymentsMethods,
             'charges'          => $this->charges,
             'installments'     => $this->installments
         ];
