@@ -21,7 +21,7 @@ class AntifraudAnalysisHandlerTest extends \PHPUnit_Framework_TestCase
             ->with($this->isInstanceOf(
                 'PagarMe\Sdk\AntifraudAnalysis\Request\AntifraudAnalysisList'
             ))
-            ->willReturn(json_decode('{}'));
+            ->willReturn(json_decode('{"object":"antifraud_analysis","name":"development","score":null,"cost":0,"status":"failed","date_created":"2017-01-03T21:03:55.922Z","date_updated":"2017-01-03T21:03:55.945Z","id":155174}'));
 
         $handler = new AntifraudAnalysisHandler($clientMock);
 
@@ -79,7 +79,7 @@ class AntifraudAnalysisHandlerTest extends \PHPUnit_Framework_TestCase
             ->method('send')
             ->with($this->isInstanceOf(
                 'PagarMe\Sdk\AntifraudAnalysis\Request\AntifraudAnalysisGet'
-            ))->willReturn(json_decode('{}'));
+            ))->willReturn(json_decode('{"object":"antifraud_analysis","name":"development","score":null,"cost":0,"status":"failed","date_created":"2017-01-03T21:03:55.922Z","date_updated":"2017-01-03T21:03:55.945Z","id":155174}'));
 
         $handler = new AntifraudAnalysisHandler($clientMock);
 
