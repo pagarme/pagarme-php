@@ -86,6 +86,7 @@ class Subscription
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getId()
     {
@@ -94,6 +95,7 @@ class Subscription
 
     /**
      * @return Card
+     * @codeCoverageIgnore
      */
     public function getCard()
     {
@@ -102,6 +104,7 @@ class Subscription
 
     /**
      * @param Card
+     * @codeCoverageIgnore
      */
     public function setCard(Card $card)
     {
@@ -111,6 +114,7 @@ class Subscription
 
     /**
      * @return Plan
+     * @codeCoverageIgnore
      */
     public function getPlan()
     {
@@ -119,6 +123,7 @@ class Subscription
 
     /**
      * @param Plan
+     * @codeCoverageIgnore
      */
     public function setPlan(Plan $plan)
     {
@@ -128,6 +133,7 @@ class Subscription
 
     /**
      * @return Customer
+     * @codeCoverageIgnore
      */
     public function getCustomer()
     {
@@ -136,6 +142,7 @@ class Subscription
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getPostbackUrl()
     {
@@ -144,6 +151,7 @@ class Subscription
 
     /**
      * @return array
+     * @codeCoverageIgnore
      */
     public function getMetadata()
     {
@@ -152,6 +160,7 @@ class Subscription
 
     /**
      * @return Transaction
+     * @codeCoverageIgnore
      */
     public function getCurrentTransaction()
     {
@@ -160,6 +169,7 @@ class Subscription
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getPaymentMethod()
     {
@@ -168,6 +178,7 @@ class Subscription
 
     /**
      * @param string
+     * @codeCoverageIgnore
      */
     public function setPaymentMethod($paymentMethod)
     {
@@ -177,6 +188,7 @@ class Subscription
 
     /**
      * @return DateTime
+     * @codeCoverageIgnore
      */
     public function getCurrentPeriodStart()
     {
@@ -185,6 +197,7 @@ class Subscription
 
     /**
      * @return DateTime
+     * @codeCoverageIgnore
      */
     public function getCurrentPeriodEnd()
     {
@@ -193,6 +206,7 @@ class Subscription
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getCharges()
     {
@@ -201,6 +215,7 @@ class Subscription
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getStatus()
     {
@@ -209,6 +224,7 @@ class Subscription
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getDateCreated()
     {

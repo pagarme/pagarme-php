@@ -81,6 +81,7 @@ class Postback
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getID()
     {
@@ -89,6 +90,7 @@ class Postback
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnore
      */
     public function getDateCreated()
     {
@@ -97,6 +99,7 @@ class Postback
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnore
      */
     public function getDateUpdated()
     {
@@ -105,6 +108,7 @@ class Postback
 
     /**
      * @return array
+     * @codeCoverageIgnore
      */
     public function getDeliveries()
     {
@@ -113,6 +117,7 @@ class Postback
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getHeaders()
     {
@@ -121,6 +126,7 @@ class Postback
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getModel()
     {
@@ -129,6 +135,7 @@ class Postback
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getModelId()
     {
@@ -137,6 +144,7 @@ class Postback
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnore
      */
     public function getNextRetry()
     {
@@ -145,6 +153,7 @@ class Postback
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getPayload()
     {
@@ -153,6 +162,7 @@ class Postback
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getRequestUrl()
     {
@@ -161,6 +171,7 @@ class Postback
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getRetries()
     {
@@ -169,6 +180,7 @@ class Postback
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getSignature()
     {
@@ -177,6 +189,7 @@ class Postback
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getStatus()
     {

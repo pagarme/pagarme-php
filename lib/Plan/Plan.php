@@ -57,6 +57,7 @@ class Plan
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getId()
     {
@@ -65,6 +66,7 @@ class Plan
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getAmount()
     {
@@ -73,6 +75,7 @@ class Plan
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getDays()
     {
@@ -81,6 +84,7 @@ class Plan
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getName()
     {
@@ -89,6 +93,7 @@ class Plan
 
     /**
      * @param string $name
+     * @codeCoverageIgnore
      */
     public function setName($name)
     {
@@ -98,6 +103,7 @@ class Plan
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getTrialDays()
     {
@@ -106,6 +112,7 @@ class Plan
 
     /**
      * @param int $trialDays
+     * @codeCoverageIgnore
      */
     public function setTrialDays($trialDays)
     {
@@ -115,6 +122,7 @@ class Plan
 
     /**
      * @return array
+     * @codeCoverageIgnore
      */
     public function getPaymentMethods()
     {
@@ -123,6 +131,7 @@ class Plan
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getCharges()
     {
@@ -131,6 +140,7 @@ class Plan
 
     /**
      * @param int $charges
+     * @codeCoverageIgnore
      */
     public function setCharges($charges)
     {
@@ -140,6 +150,7 @@ class Plan
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getInstallments()
     {

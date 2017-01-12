@@ -71,6 +71,7 @@ class Card
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getId()
     {
@@ -79,6 +80,7 @@ class Card
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getFirstDigits()
     {
@@ -87,6 +89,7 @@ class Card
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getLastDigits()
     {
@@ -95,6 +98,7 @@ class Card
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnoree
      */
     public function getDateCreated()
     {
@@ -103,6 +107,7 @@ class Card
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnoree
      */
     public function getDateUpdated()
     {
@@ -111,6 +116,7 @@ class Card
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getBrand()
     {
@@ -119,6 +125,7 @@ class Card
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getHolderName()
     {
@@ -127,6 +134,7 @@ class Card
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getFingerprint()
     {
@@ -135,6 +143,7 @@ class Card
 
     /**
      * @return object
+     * @codeCoverageIgnore
      */
     public function getCustomer()
     {
@@ -143,6 +152,7 @@ class Card
 
     /**
      * @return boolean
+     * @codeCoverageIgnore
      */
     public function getValid()
     {
@@ -151,6 +161,7 @@ class Card
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getHash()
     {

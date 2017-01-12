@@ -30,6 +30,7 @@ class CreditCardTransaction extends AbstractTransaction
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getCardId()
     {
@@ -38,6 +39,7 @@ class CreditCardTransaction extends AbstractTransaction
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getCardHash()
     {
@@ -46,6 +48,7 @@ class CreditCardTransaction extends AbstractTransaction
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getInstallments()
     {

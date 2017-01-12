@@ -63,6 +63,7 @@ class Recipient
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getId()
     {
@@ -70,7 +71,8 @@ class Recipient
     }
 
     /**
-     * @return PagarMe
+     * @return PagarMe\Sdk\BankAccount\BankAccount
+     * @codeCoverageIgnore
      */
     public function getBankAccount()
     {
@@ -78,8 +80,9 @@ class Recipient
     }
 
     /**
-     * @param PagarMe
+     * @param PagarMe\Sdk\BankAccount\BankAccount
      * @return Recipient
+     * @codeCoverageIgnore
      */
     public function setBankAccount($bankAccount)
     {
@@ -89,6 +92,7 @@ class Recipient
 
     /**
      * @return bool
+     * @codeCoverageIgnore
      */
     public function getTransferEnabled()
     {
@@ -98,6 +102,7 @@ class Recipient
     /**
      * @param bool
      * @return Recipient
+     * @codeCoverageIgnore
      */
     public function setTransferEnabled($transferEnabled)
     {
@@ -107,6 +112,7 @@ class Recipient
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getLastTransfer()
     {
@@ -116,6 +122,7 @@ class Recipient
     /**
      * @param string
      * @return Recipient
+     * @codeCoverageIgnore
      */
     public function setLastTransfer($lastTransfer)
     {
@@ -125,6 +132,7 @@ class Recipient
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getTransferInterval()
     {
@@ -134,6 +142,7 @@ class Recipient
     /**
      * @param string
      * @return Recipient
+     * @codeCoverageIgnore
      */
     public function setTransferInterval($transferInterval)
     {
@@ -143,6 +152,7 @@ class Recipient
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getTransferDay()
     {
@@ -152,6 +162,7 @@ class Recipient
     /**
      * @param int
      * @return Recipient
+     * @codeCoverageIgnore
      */
     public function setTransferDay($transferDay)
     {
@@ -161,6 +172,7 @@ class Recipient
 
     /**
      * @return bool
+     * @codeCoverageIgnore
      */
     public function getAutomaticAnticipationEnabled()
     {
@@ -170,6 +182,7 @@ class Recipient
     /**
      * @param bool
      * @return Recipient
+     * @codeCoverageIgnore
      */
     public function setAutomaticAnticipationEnabled($automaticAnticipationEnabled)
     {
@@ -179,6 +192,7 @@ class Recipient
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getAnticipatableVolumePercentage()
     {
@@ -188,6 +202,7 @@ class Recipient
     /**
      * @param int
      * @return Recipient
+     * @codeCoverageIgnore
      */
     public function setAnticipatableVolumePercentage($anticipatableVolumePercentage)
     {
@@ -197,6 +212,7 @@ class Recipient
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnore
      */
     public function getDateCreated()
     {
@@ -205,6 +221,7 @@ class Recipient
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnore
      */
     public function getDateUpdated()
     {

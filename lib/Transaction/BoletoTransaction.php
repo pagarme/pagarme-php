@@ -22,6 +22,7 @@ class BoletoTransaction extends AbstractTransaction
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnore
      */
     public function getBoletoExpirationDate()
     {

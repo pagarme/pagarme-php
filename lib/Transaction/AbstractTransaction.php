@@ -162,6 +162,7 @@ abstract class AbstractTransaction
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getId()
     {
@@ -170,6 +171,7 @@ abstract class AbstractTransaction
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getStatus()
     {
@@ -178,6 +180,7 @@ abstract class AbstractTransaction
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getRefuseReason()
     {
@@ -186,6 +189,7 @@ abstract class AbstractTransaction
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getStatusReason()
     {
@@ -194,6 +198,7 @@ abstract class AbstractTransaction
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getAcquirerName()
     {
@@ -202,6 +207,7 @@ abstract class AbstractTransaction
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getAcquirerResponseCode()
     {
@@ -210,6 +216,7 @@ abstract class AbstractTransaction
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getAuthorizationCode()
     {
@@ -218,6 +225,7 @@ abstract class AbstractTransaction
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getSoftDescriptor()
     {
@@ -226,6 +234,7 @@ abstract class AbstractTransaction
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getTid()
     {
@@ -234,6 +243,7 @@ abstract class AbstractTransaction
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getNsu()
     {
@@ -242,6 +252,7 @@ abstract class AbstractTransaction
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnore
      */
     public function getDateCreated()
     {
@@ -250,6 +261,7 @@ abstract class AbstractTransaction
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnore
      */
     public function getDateUpdated()
     {
@@ -258,6 +270,7 @@ abstract class AbstractTransaction
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getAmount()
     {
@@ -266,6 +279,7 @@ abstract class AbstractTransaction
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getInstallments()
     {
@@ -274,6 +288,7 @@ abstract class AbstractTransaction
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getCost()
     {
@@ -282,6 +297,7 @@ abstract class AbstractTransaction
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getPostbackUrl()
     {
@@ -290,6 +306,7 @@ abstract class AbstractTransaction
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getPaymentMethod()
     {
@@ -298,6 +315,7 @@ abstract class AbstractTransaction
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getAntifraudScore()
     {
@@ -306,6 +324,7 @@ abstract class AbstractTransaction
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getReferer()
     {
@@ -314,6 +333,7 @@ abstract class AbstractTransaction
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getIp()
     {
@@ -322,6 +342,7 @@ abstract class AbstractTransaction
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getSubscriptionId()
     {
@@ -330,6 +351,7 @@ abstract class AbstractTransaction
 
     /**
      * @return \PagarMe\Sdk\Customer\Phone
+     * @codeCoverageIgnore
      */
     public function getPhone()
     {
@@ -338,6 +360,7 @@ abstract class AbstractTransaction
 
     /**
      * @return \PagarMe\Sdk\Customer\Address
+     * @codeCoverageIgnore
      */
     public function getAddress()
     {
@@ -346,6 +369,7 @@ abstract class AbstractTransaction
 
     /**
      * @return \PagarMe\Sdk\Customer\Customer
+     * @codeCoverageIgnore
      */
     public function getCustomer()
     {
@@ -354,6 +378,7 @@ abstract class AbstractTransaction
 
     /**
      * @return PagarMe\Sdk\Card\Card
+     * @codeCoverageIgnore
      */
     public function getCard()
     {
@@ -362,6 +387,7 @@ abstract class AbstractTransaction
 
     /**
      * @return array
+     * @codeCoverageIgnore
      */
     public function getMetadata()
     {
@@ -370,6 +396,7 @@ abstract class AbstractTransaction
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getPaidAmount()
     {
@@ -378,6 +405,7 @@ abstract class AbstractTransaction
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getRefundedAmount()
     {
@@ -442,6 +470,7 @@ abstract class AbstractTransaction
 
     /**
      * @return \PagarMe\Sdk\SplitRule\SplitRuleCollection
+     * @codeCoverageIgnore
      */
     public function getSplitRules()
     {

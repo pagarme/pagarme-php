@@ -51,6 +51,7 @@ class AntifraudAnalysis
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getId()
     {
@@ -59,6 +60,7 @@ class AntifraudAnalysis
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getCost()
     {
@@ -67,6 +69,7 @@ class AntifraudAnalysis
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnore
      */
     public function getDateCreated()
     {
@@ -75,6 +78,7 @@ class AntifraudAnalysis
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnore
      */
     public function getDateUpdated()
     {
@@ -83,6 +87,7 @@ class AntifraudAnalysis
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getName()
     {
@@ -91,6 +96,7 @@ class AntifraudAnalysis
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getScore()
     {
@@ -99,6 +105,7 @@ class AntifraudAnalysis
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getStatus()
     {

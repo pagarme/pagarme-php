@@ -31,6 +31,7 @@ class Phone
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getDdd()
     {
@@ -39,6 +40,7 @@ class Phone
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getNumber()
     {
@@ -47,6 +49,7 @@ class Phone
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getDdi()
     {

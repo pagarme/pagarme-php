@@ -48,6 +48,7 @@ class Event
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getId()
     {
@@ -56,6 +57,7 @@ class Event
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getName()
     {
@@ -64,6 +66,7 @@ class Event
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getModel()
     {
@@ -72,6 +75,7 @@ class Event
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getModelId()
     {
@@ -80,6 +84,7 @@ class Event
 
     /**
      * @return object
+     * @codeCoverageIgnore
      */
     public function getPayload()
     {
@@ -88,6 +93,7 @@ class Event
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnore
      */
     public function getDateCreated()
     {
@@ -96,6 +102,7 @@ class Event
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnore
      */
     public function getDateUpdated()
     {

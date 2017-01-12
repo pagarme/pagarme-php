@@ -66,6 +66,7 @@ class BankAccount
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getId()
     {
@@ -74,6 +75,7 @@ class BankAccount
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getBankCode()
     {
@@ -82,6 +84,7 @@ class BankAccount
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getAgencia()
     {
@@ -90,6 +93,7 @@ class BankAccount
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getAgenciaDv()
     {
@@ -98,6 +102,7 @@ class BankAccount
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getConta()
     {
@@ -106,6 +111,7 @@ class BankAccount
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getContaDv()
     {
@@ -114,6 +120,7 @@ class BankAccount
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getDocumentNumber()
     {
@@ -122,6 +129,7 @@ class BankAccount
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getDocumentType()
     {
@@ -130,6 +138,7 @@ class BankAccount
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getLegalName()
     {
@@ -138,6 +147,7 @@ class BankAccount
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnore
      */
     public function getDateCreated()
     {

@@ -31,6 +31,7 @@ class Balance
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getWaitingFunds()
     {
@@ -39,6 +40,7 @@ class Balance
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getAvailable()
     {
@@ -47,6 +49,7 @@ class Balance
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getTransferred()
     {

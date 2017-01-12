@@ -61,6 +61,7 @@ class Delivery
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getId()
     {
@@ -69,6 +70,7 @@ class Delivery
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnore
      */
     public function getDateCreated()
     {
@@ -77,6 +79,7 @@ class Delivery
 
     /**
      * @return \DateTime
+     * @codeCoverageIgnore
      */
     public function getDateUpdated()
     {
@@ -85,6 +88,7 @@ class Delivery
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getResponseBody()
     {
@@ -93,6 +97,7 @@ class Delivery
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getResponseHeaders()
     {
@@ -101,6 +106,7 @@ class Delivery
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getResponseTime()
     {
@@ -109,6 +115,7 @@ class Delivery
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getStatus()
     {
@@ -117,6 +124,7 @@ class Delivery
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getStatusCode()
     {
@@ -125,6 +133,7 @@ class Delivery
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getStatusReason()
     {

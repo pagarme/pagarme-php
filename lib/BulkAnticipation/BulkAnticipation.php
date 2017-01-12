@@ -67,6 +67,7 @@ class BulkAnticipation
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getId()
     {
@@ -75,6 +76,7 @@ class BulkAnticipation
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getAmount()
     {
@@ -83,6 +85,7 @@ class BulkAnticipation
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getAnticipationFee()
     {
@@ -91,6 +94,7 @@ class BulkAnticipation
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getDateCreated()
     {
@@ -99,6 +103,7 @@ class BulkAnticipation
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getDateUpdated()
     {
@@ -107,6 +112,7 @@ class BulkAnticipation
 
     /**
      * @return int
+     * @codeCoverageIgnore
      */
     public function getFee()
     {
@@ -115,6 +121,7 @@ class BulkAnticipation
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getPaymentDate()
     {
@@ -123,6 +130,7 @@ class BulkAnticipation
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getStatus()
     {
@@ -131,6 +139,7 @@ class BulkAnticipation
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getTimeframe()
     {
@@ -139,6 +148,7 @@ class BulkAnticipation
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getType()
     {
