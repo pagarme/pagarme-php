@@ -113,7 +113,7 @@ class AntifraudAnalysisHandlerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(
             'PagarMe\Sdk\AntifraudAnalysis\AntifraudAnalysis',
-            $handler->get($transactionMock, rand(1000, 10000))
+            $handler->get($transactionMock, rand(1000, 10000));
         );
     }
 }
