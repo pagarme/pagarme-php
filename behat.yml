@@ -85,3 +85,8 @@ default:
         - %paths.base%/tests/acceptance/features/search.feature
       contexts:
         - PagarMe\Acceptance\SearchContext
+    balance:
+      paths:
+        - %paths.base%/tests/acceptance/features/balance.feature
+      contexts:
+        - PagarMe\Acceptance\BalanceContext

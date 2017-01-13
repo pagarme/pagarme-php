@@ -283,4 +283,20 @@ class PagarMeTest extends \PHPUnit_Framework_TestCase
             $searchHandlerA
         );
     }
+
+    /**
+     * @test
+     */
+    public function mustReturnSameBalanceHandler()
+    {
+        $balanceHandlerA = $this->pagarMe->balance();
+        $balanceHandlerB = $this->pagarMe->balance();
+
+        $this->assertSame($balanceHandlerA, $balanceHandlerB);
+
+        $this->assertInstanceOf(
+            'PagarMe\Sdk\Balance\BalanceHandler',
+            $balanceHandlerA
+        );
+    }
 }

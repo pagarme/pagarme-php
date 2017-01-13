@@ -21,6 +21,7 @@ use PagarMe\Sdk\BalanceOperation\BalanceOperationHandler;
 use PagarMe\Sdk\Postback\PostbackHandler;
 use PagarMe\Sdk\AntifraudAnalysis\AntifraudAnalysisHandler;
 use PagarMe\Sdk\Search\SearchHandler;
+use PagarMe\Sdk\Balance\BalanceHandler;
 
 class PagarMe
 {
@@ -118,6 +119,11 @@ class PagarMe
      * @param SearchHandler
      */
     private $searchHandler;
+
+    /**
+     * @param BalanceHandler
+     */
+    private $balanceHandler;
 
     /**
      * @param $apiKey
@@ -356,5 +362,19 @@ class PagarMe
         }
 
         return $this->searchHandler;
+    }
+
+    /**
+     * @return BalanceHandler
+     */
+    public function balance()
+    {
+        if (!$this->balanceHandler instanceof BalanceHandler) {
+            $this->balanceHandler = new BalanceHandler(
+                $this->client
+            );
+        }
+
+        return $this->balanceHandler;
     }
 }

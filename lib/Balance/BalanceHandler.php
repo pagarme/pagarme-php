@@ -3,29 +3,19 @@
 namespace PagarMe\Sdk\Balance;
 
 use PagarMe\Sdk\AbstractHandler;
-use PagarMe\Sdk\Balance\Request\BalanceOperationsList;
-use PagarMe\Sdk\Balance\Operation;
-use PagarMe\Sdk\Balance\Movement;
+use PagarMe\Sdk\Balance\Request\BalanceGet;
 
-class BalanceOperationsHandler extends AbstractHandler
+class BalanceHandler extends AbstractHandler
 {
     /**
-     * @param int $page
-     * @param int $count
      * @return array
      */
-    public function operations($page = null, $count = null)
+    public function get()
     {
-        $request = new BalanceOperationsList($page, $count);
+        $request = new BalanceGet($page, $count);
 
         $response = $this->client->send($request);
-        $operations = [];
 
-        foreach ($response as $operation) {
-            $operation->movement = new Movement($operation->movement_object);
-            $operations[]= new Operation(get_object_vars($operation));
-        }
-
-        return $operations;
+        return new Balance(get_object_vars($response));
     }
 }
