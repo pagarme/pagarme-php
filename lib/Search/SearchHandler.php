@@ -8,9 +8,9 @@ use PagarMe\Sdk\Search\Request\SearchGet;
 class SearchHandler extends AbstractHandler
 {
     /**
-     * @param string type
-     * @param array params
-     * @return StdClass
+     * @param string $type
+     * @param array $queryParams
+     * @return \stdClass
      */
     public function get($type, $queryParams)
     {

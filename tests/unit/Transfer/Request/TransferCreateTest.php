@@ -28,13 +28,17 @@ class TransferCreateTest extends \PHPUnit_Framework_TestCase
         $recipientMock = $this->getMockBuilder('PagarMe\Sdk\Recipient\Recipient')
             ->disableOriginalConstructor()
             ->getMock();
-
         $recipientMock->method('getId')->willReturn($recipientId);
+
+        $bankAccountMock = $this->getMockBuilder('PagarMe\Sdk\BankAccount\BankAccount')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $bankAccountMock->method('getId')->willReturn($bankAccountId);
 
         $transferCreate = new TransferCreate(
             $amount,
             $recipientMock,
-            $bankAccountId
+            $bankAccountMock
         );
 
         $this->assertEquals(
