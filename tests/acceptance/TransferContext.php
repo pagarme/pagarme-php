@@ -115,7 +115,7 @@ class TransferContext extends BasicContext
             ->create(
                 $this->amount,
                 $defaultRecipient,
-                $defaultRecipient->getBankAccount()->getId()
+                $defaultRecipient->getBankAccount()
             );
     }
 

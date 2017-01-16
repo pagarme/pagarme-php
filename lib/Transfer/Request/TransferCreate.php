@@ -4,6 +4,7 @@ namespace PagarMe\Sdk\Transfer\Request;
 
 use PagarMe\Sdk\RequestInterface;
 use PagarMe\Sdk\Recipient\Recipient;
+use PagarMe\Sdk\BankAccount\BankAccount;
 
 class TransferCreate implements RequestInterface
 {
@@ -18,19 +19,23 @@ class TransferCreate implements RequestInterface
     private $recipient;
 
     /**
-     * @var int
+     * @var \PagarMe\Sdk\BankAccount\BankAccount
      */
-    private $bankAccountId;
+    private $bankAccount;
 
     /**
      * @param int $amount
      * @param Recipient $recipient
+     * @param BankAccount $bankAccount Optional. Default value: null.
      */
-    public function __construct($amount, Recipient $recipient, $bankAccountId)
-    {
-        $this->amount        = $amount;
-        $this->recipient     = $recipient;
-        $this->bankAccountId = $bankAccountId;
+    public function __construct(
+        $amount,
+        Recipient $recipient,
+        BankAccount $bankAccount = null
+    ) {
+        $this->amount      = $amount;
+        $this->recipient   = $recipient;
+        $this->bankAccount = $bankAccount;
     }
 
     /**
@@ -38,10 +43,15 @@ class TransferCreate implements RequestInterface
      */
     public function getPayload()
     {
+        $bankAccountId = null;
+        if ($this->bankAccount instanceof BankAccount) {
+            $bankAccountId = $this->bankAccount->getId();
+        }
+
         return [
-            'amount'          =>$this->amount,
-            'recipient_id'    =>$this->recipient->getId(),
-            'bank_account_id' =>$this->bankAccountId
+            'amount'          => $this->amount,
+            'recipient_id'    => $this->recipient->getId(),
+            'bank_account_id' => $bankAccountId
         ];
     }
 

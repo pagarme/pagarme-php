@@ -13,19 +13,20 @@ use PagarMe\Sdk\Transfer\Request\TransferCancel;
 class TransferHandler extends AbstractHandler
 {
     /**
-     * @param int amount
-     * @param Recipient recipient
-     * @param int id
+     * @param int $amount
+     * @param Recipient $recipient
+     * @param BankAccount $bankAccount Optional. Default: null.
+     * @return Transfer
      */
     public function create(
         $amount,
         Recipient $recipient,
-        $bankAccountId = null
+        BankAccount $bankAccount = null
     ) {
         $request = new TransferCreate(
             $amount,
             $recipient,
-            $bankAccountId
+            $bankAccount
         );
 
         $response = $this->client->send($request);
