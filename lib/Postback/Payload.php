@@ -24,17 +24,17 @@ class Payload
     /**
      * @var string
      */
-    private $old_status;
+    private $oldStatus;
 
     /**
      * @var string
      */
-    private $desired_status;
+    private $desiredStatus;
 
     /**
      * @var string
      */
-    private $current_status;
+    private $currentStatus;
 
     /**
      * @var \PagarMe\Sdk\Transaction\AbstractTransaction
@@ -82,7 +82,7 @@ class Payload
      */
     public function getOldStatus()
     {
-        return $this->old_status;
+        return $this->oldStatus;
     }
 
     /**
@@ -91,7 +91,7 @@ class Payload
      */
     public function getDesiredStatus()
     {
-        return $this->desired_status;
+        return $this->desiredStatus;
     }
 
     /**
@@ -100,7 +100,7 @@ class Payload
      */
     public function getCurrentStatus()
     {
-        return $this->current_status;
+        return $this->currentStatus;
     }
 
     /**
