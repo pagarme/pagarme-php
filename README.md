@@ -20,3 +20,7 @@ $pagarMe =  new \PagarMe\Sdk\PagarMe($apiKey);
 ```
 ### Wiki
 Check the [wiki](https://github.com/pagarme/pagarme-php/wiki) for detailed documentation.
+
+### Contributing
+
+**Also** checkout our [contributing guide](CONTRIBUTING.md) before you send us any contribution.

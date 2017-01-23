@@ -12,7 +12,7 @@ class BalanceHandler extends AbstractHandler
      */
     public function get()
     {
-        $request = new BalanceGet($page, $count);
+        $request = new BalanceGet();
 
         $response = $this->client->send($request);
 
