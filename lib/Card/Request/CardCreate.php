@@ -23,7 +23,7 @@ class CardCreate implements RequestInterface
 
     /**
      * @param int $cardNumber
-     * @param int $holderName
+     * @param string $holderName
      * @param int $cardExpirationDate
      */
     public function __construct($cardNumber, $holderName, $cardExpirationDate)

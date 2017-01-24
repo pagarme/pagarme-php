@@ -36,7 +36,7 @@ class BulkAnticipationCreate implements RequestInterface
 
     /**
      * @param  Recipient $recipient
-     * @param  DateTime $paymentDate
+     * @param  \DateTime $paymentDate
      * @param  string $timeframe
      * @param  int $requestedAmount
      * @param  boolean $building

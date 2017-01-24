@@ -25,7 +25,7 @@ class BalanceOperationList implements RequestInterface
     /**
      * @param int $page
      * @param int $count
-     * @param int $status
+     * @param string $status
      */
     public function __construct($page, $count, $status)
     {

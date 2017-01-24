@@ -26,7 +26,7 @@ class BulkAnticipationLimits implements RequestInterface
 
     /**
      * @param  Recipient $recipient
-     * @param  DateTime $paymentDate
+     * @param  \DateTime $paymentDate
      * @param  string $timeframe
      */
     public function __construct(

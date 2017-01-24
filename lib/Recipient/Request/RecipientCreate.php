@@ -24,12 +24,12 @@ class RecipientCreate implements RequestInterface
     private $transferDay;
 
     /**
-     * @var bool
+     * @var null|bool
      */
     private $transferEnabled;
 
     /**
-     * @var bool
+     * @var null|bool
      */
     private $automaticAnticipationEnabled;
 
@@ -43,8 +43,8 @@ class RecipientCreate implements RequestInterface
      * @param BankAccount $bankAccount
      * @param string $transferInterval
      * @param int $transferDay
-     * @param bool $transferEnabled
-     * @param bool $automaticAnticipationEnabled
+     * @param null|bool $transferEnabled
+     * @param null|bool $automaticAnticipationEnabled
      * @param int $anticipatableVolumePercentage
      */
     public function __construct(

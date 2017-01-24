@@ -6,7 +6,6 @@ class PagarMeException extends \Exception
 {
     /**
      * @param string $message
-     * @param int $code
      */
     public function __construct($message)
     {

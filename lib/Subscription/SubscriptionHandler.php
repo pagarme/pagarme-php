@@ -22,7 +22,6 @@ class SubscriptionHandler extends AbstractHandler
     use SubscriptionBuilder;
 
     /**
-     * @param int $id
      * @param Plan $plan
      * @param Card $card
      * @param Customer $customer

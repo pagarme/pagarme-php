@@ -47,8 +47,8 @@ class BankAccountCreate implements RequestInterface
      * @param int $accountNumber
      * @param int $accountDigit
      * @param int $documentNumber
-     * @param int $legalName
-     * @param string $officeDigit
+     * @param string $legalName
+     * @param int $officeDigit
      */
     public function __construct(
         $bankCode,
