@@ -26,7 +26,7 @@ class SubscriptionHandler extends AbstractHandler
      * @param Card $card
      * @param Customer $customer
      * @param string $postbackUrl
-     * @param $metadata
+     * @param array $metadata
      */
     public function createCardSubscription(
         Plan $plan,
@@ -53,7 +53,7 @@ class SubscriptionHandler extends AbstractHandler
      * @param Plan $plan
      * @param Customer $customer
      * @param string $postbackUrl
-     * @param $metadata
+     * @param array $metadata
      */
     public function createBoletoSubscription(
         Plan $plan,
