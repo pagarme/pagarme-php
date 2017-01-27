@@ -69,4 +69,13 @@ class Client
             )
         ];
     }
+
+    /**
+     * @return string
+     * @codeCoverageIgnore
+     */
+    public function getApiKey()
+    {
+        return $this->apiKey;
+    }
 }
