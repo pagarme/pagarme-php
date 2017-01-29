@@ -61,7 +61,7 @@ class PostbackHandler extends AbstractHandler
     /**
      * @param string $payload
      * @param string $signature
-     * return boolean
+     * @return boolean
      */
     public function validateRequest($payload, $signature)
     {
