@@ -7,12 +7,12 @@ use GuzzleHttp\Client as GuzzleClient;
 class Client
 {
     /**
-     * @var string | Chave da API
+     * @var string
      */
     private $apiKey;
 
     /**
-     * @var GuzzleClient | Client do Guzzle
+     * @var GuzzleClient
      */
     private $client;
 
@@ -28,7 +28,7 @@ class Client
 
     /**
      * @param RequestInterface $apiRequest
-     * @return object
+     * @return \stdClass
      * @throws ClientException
      */
     public function send(RequestInterface $apiRequest)
@@ -68,5 +68,14 @@ class Client
                 ]
             )
         ];
+    }
+
+    /**
+     * @return string
+     * @codeCoverageIgnore
+     */
+    public function getApiKey()
+    {
+        return $this->apiKey;
     }
 }

@@ -57,4 +57,24 @@ class PostbackHandler extends AbstractHandler
 
         return $this->buildPostback($response);
     }
+
+    /**
+     * @param string $payload
+     * @param string $signature
+     * @return boolean
+     */
+    public function validateRequest($payload, $signature)
+    {
+        $parts = explode("=", $signature, 2);
+
+        if (count($parts) != 2) {
+            return false;
+        }
+
+        $apiKey = $this->client->getApiKey();
+        $algorithm = $parts[0];
+        $hash = $parts[1];
+
+        return hash_hmac($algorithm, $payload, $apiKey) === $hash;
+    }
 }
