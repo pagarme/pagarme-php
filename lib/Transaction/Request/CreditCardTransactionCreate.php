@@ -25,6 +25,10 @@ class CreditCardTransactionCreate extends TransactionCreate
             'capture'      => $this->transaction->isCapturable()
         ];
 
+        if (!is_null($this->transaction->getCardCvv())) {
+            $cardData['card_cvv'] = $this->transaction->getCardCvv();
+        }
+
         return array_merge($basicData, $cardData, $this->getCardInfo());
     }
 

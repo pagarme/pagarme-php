@@ -232,6 +232,34 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test
+     */
+    public function mustPayloadContainCardCvv()
+    {
+        $customerMock = $this->getCustomerMock();
+        $cardMock     = $this->getCardMock();
+
+        $transaction =  new CreditCardTransaction(
+            [
+                'amount'       => 1337,
+                'card'         => $cardMock,
+                'customer'     => $customerMock,
+                'installments' => 1,
+                'capture'      => false,
+                'postback_url' => null,
+                'card_cvv'     => 123
+            ]
+        );
+
+        $transactionCreate = new CreditCardTransactionCreate($transaction);
+
+        $payload = $transactionCreate->getPayload();
+
+        $this->assertArrayHasKey('card_cvv', $payload);
+        $this->assertEquals(123, $payload['card_cvv']);
+    }
+
+    /**
      * @dataProvider installmentsProvider
      * @test
      */

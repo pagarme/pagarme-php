@@ -10,14 +10,21 @@ class CreditCardTransaction extends AbstractTransaction
      * @var PagarMe\Sdk\Card\Card
      */
     protected $card;
+
     /**
      * @var int
      */
     protected $installments;
+
     /**
      * @var boolean
      */
     protected $capture;
+
+    /**
+     * @var string
+     */
+    protected $cardCvv;
 
     /**
      * @param array $transactionData
@@ -56,7 +63,17 @@ class CreditCardTransaction extends AbstractTransaction
     }
 
     /**
+     * @return string
+     * @codeCoverageIgnore
+     */
+    public function getCardCvv()
+    {
+        return $this->cardCvv;
+    }
+
+    /**
      * @return boolean
+     * @codeCoverageIgnore
      */
     public function isCapturable()
     {
