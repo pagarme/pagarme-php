@@ -7,7 +7,6 @@ class PayloadBuilderTest extends \PHPUnit_Framework_TestCase
     use \PagarMe\Sdk\Postback\PayloadBuilder;
 
     /**
-     * @group fail
      * @test
      */
     public function mustCreatePayloadCorrectly()
