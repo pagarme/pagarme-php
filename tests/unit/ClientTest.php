@@ -16,6 +16,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function mustSendRequest()
     {
+        $sentryClient = $this->getMockBuilder('Raven_Client')
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $guzzleClientMock = $this->getMockBuilder('GuzzleHttp\Client')
             ->disableOriginalConstructor()
             ->getMock();
@@ -50,7 +54,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $client = new Client(
             $guzzleClientMock,
-            self::API_KEY
+            self::API_KEY,
+            $sentryClient
         );
 
         $client->send($request);
@@ -61,6 +66,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function mustSendRequestWithProperContent()
     {
+        $sentryClient = $this->getMockBuilder('Raven_Client')
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $guzzleClientMock = $this->getMockBuilder('GuzzleHttp\Client')
             ->disableOriginalConstructor()
             ->getMock();
@@ -105,18 +114,27 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $client = new Client(
             $guzzleClientMock,
-            self::API_KEY
+            self::API_KEY,
+            $sentryClient
         );
 
         $client->send($request);
     }
 
     /**
-    * @expectedException PagarMe\Sdk\ClientException
-    * @test
+     * @expectedException PagarMe\Sdk\ClientException
+     * @test
      */
     public function mustReturnClientExeptionWhenGetRequestException()
     {
+        $sentryClient = $this->getMockBuilder('Raven_Client')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $sentryClient->expects($this->once())
+            ->method('captureException')
+            ->willReturn(uniqid());
+
         $guzzleClientMock = $this->getMockBuilder('GuzzleHttp\Client')
             ->disableOriginalConstructor()
             ->getMock();
@@ -151,7 +169,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $client = new Client(
             $guzzleClientMock,
-            self::API_KEY
+            self::API_KEY,
+            $sentryClient
         );
 
         $client->send($request);

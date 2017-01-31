@@ -17,13 +17,22 @@ class Client
     private $client;
 
     /**
+     * @var \Raven_Client
+     */
+    private $sentryClient;
+
+    /**
      * @param GuzzleClient $client
      * @param string $apiKey
      */
-    public function __construct(GuzzleClient $client, $apiKey)
-    {
-        $this->client = $client;
-        $this->apiKey = $apiKey;
+    public function __construct(
+        GuzzleClient $client,
+        $apiKey,
+        \Raven_Client $sentryClient
+    ) {
+        $this->client       = $client;
+        $this->apiKey       = $apiKey;
+        $this->sentryClient = $sentryClient;
     }
 
     /**
@@ -45,8 +54,10 @@ class Client
         } catch (\GuzzleHttp\Exception\ClientException $exception) {
             $response = $exception->getResponse()->getBody()->getContents();
             $code = $exception->getResponse()->getStatusCode();
+            $this->sentryClient->captureException($exception);
             throw new ClientException($response, $code);
         } catch (\GuzzleHttp\Exception\RequestException $exception) {
+            $this->sentryClient->captureException($exception);
             throw new ClientException(
                 $exception->getMessage(),
                 $exception->getCode()
