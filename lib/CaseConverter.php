@@ -2,8 +2,7 @@
 
 namespace PagarMe\Sdk;
 
-trait CaseConverter
-{
+trait CaseConverter {
     use CaseConverter;
 
     /**
