@@ -82,7 +82,7 @@ class TransactionHandler extends AbstractHandler
             [
                 'amount'      => $amount,
                 'customer'    => $customer,
-                'postBackUrl' => $postBackUrl,
+                'postbackUrl' => $postBackUrl,
                 'metadata'    => $metadata
             ],
             $extraAttributes
