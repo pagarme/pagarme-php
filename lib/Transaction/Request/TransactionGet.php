@@ -32,7 +32,7 @@ class TransactionGet implements RequestInterface
      */
     public function getPath()
     {
-        return sprintf('transactions/%d', $this->transactionId);
+        return sprintf('transactions/%s', $this->transactionId);
     }
 
     /**
