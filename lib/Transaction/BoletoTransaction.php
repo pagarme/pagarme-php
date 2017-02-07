@@ -28,4 +28,22 @@ class BoletoTransaction extends AbstractTransaction
     {
         return $this->boletoExpirationDate;
     }
+
+    /**
+     * @return string
+     * @codeCoverageIgnore
+     */
+    public function getBoletoUrl()
+    {
+        return $this->boletoUrl;
+    }
+
+    /**
+     * @return string
+     * @codeCoverageIgnore
+     */
+    public function getBoletoBarcode()
+    {
+        return $this->boletoBarcode;
+    }
 }
