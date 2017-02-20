@@ -46,8 +46,19 @@ class CardSubscriptionCreate extends SubscriptionCreate
     public function getPayload()
     {
         return array_merge(
-            ['card_id' => $this->card->getId()],
+            $this->getCardInfo(),
             parent::getPayload()
         );
+    }
+
+    private function getCardInfo()
+    {
+        if (!is_null($this->card->getId())) {
+            return ['card_id' => $this->card->getId()];
+        }
+
+        if (!is_null($this->card->getHash())) {
+            return ['card_hash' => $this->card->getHash()];
+        }
     }
 }
