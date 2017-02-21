@@ -51,6 +51,9 @@ class CardSubscriptionCreate extends SubscriptionCreate
         );
     }
 
+    /**
+     * @return array
+     */
     private function getCardInfo()
     {
         if (!is_null($this->card->getId())) {
