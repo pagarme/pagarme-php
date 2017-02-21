@@ -31,7 +31,7 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
     const CARD_ID = 123456;
     const CARD_HASH = 'FC1mH7XLFU5fjPAzDsP0ogeAQh3qXRpHzkIrgDz64lITBUGwio67zm';
 
-    private function getConfiguredPlanForPayloadTest()
+    private function getConfiguredPlanMockForPayloadTest()
     {
         $planMock = $this->getMockBuilder('PagarMe\Sdk\Plan\Plan')
             ->disableOriginalConstructor()
@@ -43,8 +43,8 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
 
     private function getConfiguredCustomerMockForPayloadTest()
     {
-        $addressMock = $this->getConfiguredAddressForPayloadTest();
-        $phoneMock = $this->getConfiguredPhoneForPayloadTest();
+        $addressMock = $this->getConfiguredAddressMockForPayloadTest();
+        $phoneMock = $this->getConfiguredPhoneMockForPayloadTest();
 
         $customerMock = $this->getMockBuilder('PagarMe\Sdk\Customer\Customer')
             ->disableOriginalConstructor()
@@ -68,7 +68,7 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
         return $customerMock;
     }
 
-    private function getConfiguredAddressForPayloadTest()
+    private function getConfiguredAddressMockForPayloadTest()
     {
         $addressMock = $this->getMockBuilder('PagarMe\Sdk\Customer\Address')
             ->disableOriginalConstructor()
@@ -86,7 +86,7 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
         return $addressMock;
     }
 
-    private function getConfiguredPhoneForPayloadTest()
+    private function getConfiguredPhoneMockForPayloadTest()
     {
         $phoneMock = $this->getMockBuilder('PagarMe\Sdk\Customer\Phone')
             ->disableOriginalConstructor()
@@ -98,7 +98,7 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
         return $phoneMock;
     }
 
-    private function defaultPayloadWithoutCardInfo()
+    private function getDefaultPayloadWithoutCardInfo()
     {
         return [
             'plan_id'        => self::PLAN_ID,
@@ -127,7 +127,7 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
     private function getExpectedPayloadWithCardId()
     {
         return array_merge(
-            $this->defaultPayloadWithoutCardInfo(),
+            $this->getDefaultPayloadWithoutCardInfo(),
             ['card_id' => self::CARD_ID]
         );
     }
@@ -135,7 +135,7 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
     private function getExpectedPayloadWithCardHash()
     {
         return array_merge(
-            $this->defaultPayloadWithoutCardInfo(),
+            $this->getDefaultPayloadWithoutCardInfo(),
             ['card_hash' => self::CARD_HASH]
         );
     }
@@ -145,7 +145,7 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
      */
     public function mustPayloadBeCorrect()
     {
-        $planMock = $this->getConfiguredPlanForPayloadTest();
+        $planMock = $this->getConfiguredPlanMockForPayloadTest();
 
         $cardMock = $this->getMockBuilder('PagarMe\Sdk\Card\Card')
             ->disableOriginalConstructor()
@@ -173,7 +173,7 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
      */
     public function mustPayloadContainCardHash()
     {
-        $planMock = $this->getConfiguredPlanForPayloadTest();
+        $planMock = $this->getConfiguredPlanMockForPayloadTest();
 
         $cardMock = $this->getMockBuilder('PagarMe\Sdk\Card\Card')
             ->disableOriginalConstructor()
