@@ -7,6 +7,16 @@ class BoletoTransaction extends AbstractTransaction
     const PAYMENT_METHOD = 'boleto';
 
     /**
+     * @var string
+     */
+    protected $boletoUrl;
+
+    /**
+     * @var string
+     */
+    protected $boletoBarcode;
+
+    /**
      * @var \DateTime
      */
     protected $boletoExpirationDate;
