@@ -49,7 +49,6 @@ class PayableHandler extends AbstractHandler
         $request = new TransactionPayableList($transactionId);
 
         $response = $this->client->send($request);
-        print_r($response);
 
         return $this->buildPayables($response);
     }
