@@ -18,6 +18,9 @@ class PayableContext extends BasicContext
 
     private $payables;
 
+    /** @var \PagarMe\Sdk\Transaction\AbstractTransaction */
+    private $transaction;
+
     /**
      * @Given a transaction with installments
      */
@@ -29,7 +32,7 @@ class PayableContext extends BasicContext
             ->card()
             ->create('4929123093547008', 'Joao Silva', '1020');
 
-        self::getPagarMe()
+        $this->transaction = self::getPagarMe()
             ->transaction()
             ->creditCardTransaction(
                 rand(10000, 50000),
@@ -47,6 +50,16 @@ class PayableContext extends BasicContext
         $this->payables = self::getPagarMe()
             ->payable()
             ->getList();
+    }
+
+    /**
+     * @When I query for payables from a transaction
+     */
+    public function iQueryForPayablesFromTransaction()
+    {
+        $this->payables = self::getPagarMe()
+            ->payable()
+            ->getTransactionPayableList($this->transaction->getId());
     }
 
     /**

@@ -7,3 +7,8 @@ Feature: Payable
     Given a transaction with installments
     When I query for payables
     Then a list of payables must be returned
+
+  Scenario: List payables from transaction
+    Given a transaction with installments
+    When I query for payables from a transaction
+    Then a list of payables must be returned
