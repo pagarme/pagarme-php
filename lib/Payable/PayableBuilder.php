@@ -5,7 +5,7 @@ namespace PagarMe\Sdk\Payable;
 trait PayableBuilder
 {
     /**
-     * @param array $payableData
+     * @param \stdClass $payableData
      * @return Payable
      */
     private function buildPayable($payableData)
@@ -14,5 +14,21 @@ trait PayableBuilder
         $payableData->date_created = new \DateTime($payableData->date_created);
 
         return new Payable(get_object_vars($payableData));
+    }
+
+    /**
+     * @param \stdClass[] $payablesData
+     *
+     * @return Payable[]
+     */
+    private function buildPayables($payablesData)
+    {
+        $payables = [];
+
+        foreach ($payablesData as $payableData) {
+            $payables[] = $this->buildPayable($payableData);
+        }
+
+        return $payables;
     }
 }
