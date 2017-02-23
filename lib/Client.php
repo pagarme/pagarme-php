@@ -49,7 +49,7 @@ class Client
 
     /**
      * @param RequestInterface $apiRequest
-     * @return mixed
+     * @return \stdClass
      * @throws ClientException
      */
     public function send(RequestInterface $apiRequest)
