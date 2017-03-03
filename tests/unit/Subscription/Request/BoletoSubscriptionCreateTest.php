@@ -107,7 +107,8 @@ class BoletoSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
                     ],
                     'born_at'         => self::CUSTOMER_BORN_AT,
                     'gender'          => self::CUSTOMER_GENDER
-                ]
+                ],
+                'postback_url' => self::POSTBACK_URL
             ]
         );
     }
