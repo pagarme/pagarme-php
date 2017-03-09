@@ -18,8 +18,11 @@ class PagarMe_Subscription extends PagarMe_TransactionCommon {
 		parent::save();
 	}
 
-	public function getTransactions() {
+	public function getTransactions($params = array()) {
 			$request = new PagarMe_Request(self::getUrl() . '/' . $this->id . '/transactions', 'GET');
+			if(!empty($params)){
+				$request->setParameters($params);
+			}
 			$response = $request->run();
 			$this->transactions = PagarMe_Util::convertToPagarMeObject($response);
 			return $this->transactions;
