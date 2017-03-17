@@ -1,6 +1,7 @@
 <?php
 
-class PagarMe_Model extends PagarMe_Object {
+class PagarMe_Model extends PagarMe_Object
+{
 	protected static $root_url;
 
 	public function __construct($response = array()) {
@@ -21,7 +22,7 @@ class PagarMe_Model extends PagarMe_Object {
 			$response = $request->run();
 			return $this->refresh($response);
 		} catch(Exception $e) {
-			throw new PagarMe_Exception($e->getMessage());
+			throw $e;
 		}
 	}
 
@@ -37,7 +38,7 @@ class PagarMe_Model extends PagarMe_Object {
 			$response = $request->run();
 			return $this->refresh($response);
 		} catch(Exception $e) {
-			throw new PagarMe_Exception($e->getMessage());
+			throw $e;
 		}
 	}
 

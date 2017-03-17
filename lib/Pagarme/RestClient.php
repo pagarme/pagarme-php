@@ -1,6 +1,7 @@
 <?php
 
-class RestClient {
+class RestClient
+{
 	private $http_client;
 	private $method;
 	private $url;
@@ -17,13 +18,13 @@ class RestClient {
 		);
 
 		if(!$params["url"]) {
-			throw new PagarMe_Exception("You must set the URL to make a request.");
+			throw new Exception("You must set the URL to make a request.");
 		} else {
 			$this->url = $params["url"];
 		}
 
 		curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($this->curl, CURLOPT_TIMEOUT, 60);
+		curl_setopt($this->curl, CURLOPT_TIMEOUT, 120);
 
 		if ($params["parameters"]) {
 			$this->parameters = array_merge($this->parameters, $params["parameters"]);
@@ -70,10 +71,10 @@ class RestClient {
 	public function run()
 	{
 		$response = curl_exec($this->curl);
-		$error = curl_error($this->curl);
+		$error = curl_errno($this->curl);
 
-		if ($error) {
-			throw new PagarMe_Exception("error: ".$error);
+		if ($error > 0) {
+			throw new PagarMeNetworkException($error);
 		}
 
 		$code = curl_getinfo($this->curl, CURLINFO_HTTP_CODE);
