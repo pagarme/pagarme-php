@@ -90,3 +90,8 @@ default:
         - %paths.base%/tests/acceptance/features/balance.feature
       contexts:
         - PagarMe\Acceptance\BalanceContext
+    bulk_anticipation:
+      paths:
+        - %paths.base%/tests/acceptance/features/bulk_anticipation.feature
+      contexts:
+        - PagarMe\Acceptance\BulkAnticipationContext
