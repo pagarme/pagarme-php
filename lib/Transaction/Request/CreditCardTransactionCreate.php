@@ -28,8 +28,12 @@ class CreditCardTransactionCreate extends TransactionCreate
         if (!is_null($this->transaction->getCardCvv())) {
             $cardData['card_cvv'] = $this->transaction->getCardCvv();
         }
+		
+		if (!is_null($this->transaction->getCardCvv())) {
+            $cardData['card_cvv'] = $this->transaction->getCardCvv();
+        }
 
-        return array_merge($basicData, $cardData, $this->getCardInfo());
+        return array_merge($basicData, $cardData, $this->getCardInfo(), $this->getSoftDescriptor());
     }
 
     /**
@@ -44,5 +48,17 @@ class CreditCardTransactionCreate extends TransactionCreate
         if (!is_null($this->transaction->getCardHash())) {
             return ['card_hash' => $this->transaction->getCardHash()];
         }
+    }
+	
+	/**
+     * @return array
+     */
+    private function getSoftDescriptor()
+    {
+        if (!is_null($this->transaction->getSoftDescriptor())) {
+            return ['soft_descriptor' => $this->transaction->getSoftDescriptor()];
+        }
+
+        return [];
     }
 }
