@@ -48,7 +48,7 @@ class BulkAnticipationCreateTest extends \PHPUnit_Framework_TestCase
                 'payment_date'     => substr($paymentDate->format('Uu'), 0, 13),
                 'timeframe'        => $timeframe,
                 'requested_amount' => $requestedAmount,
-                'building'         => $building
+                'build'            => $building
             ],
             $bulkAnticipationCreate->getPayload()
         );
