@@ -60,6 +60,8 @@ class BulkAnticipationContext extends BasicContext
      */
     public function registerAAnticipationWith($paymentDate, $timeframe, $requestedAmount, $build)
     {
+        $build = filter_var($build, FILTER_VALIDATE_BOOLEAN);
+
         $paymentDate = new \Datetime($paymentDate);
 
         $this->expectedPaymentDate = $paymentDate;
