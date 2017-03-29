@@ -100,7 +100,7 @@ class BulkAnticipationContext extends BasicContext
     {
         assertEquals($this->anticipation->getPaymentDate(), $this->expectedPaymentDate);
         assertEquals($this->anticipation->getTimeframe(), $this->expectedTimeframe);
-        assertEquals($this->anticipation->getAmount(), $this->expectedRequestedAmount);
+
         assertEquals($this->anticipation->getStatus(), $this->expectedStatus);
     }
 }
