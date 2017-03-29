@@ -26,11 +26,15 @@ class BulkAnticipationContext extends BasicContext
      */
     public function aRecipientWithAnticipatableVolume()
     {
-        $recipients = self::getPagarMe()->recipient()->getList();
+        $companyInformation = self::getPagarMe()->company()->info();
 
-        $recipients[0]->setAnticipatableVolumePercentage(100);
+        $recipient = self::getPagarMe()->recipient()->get(
+            $companyInformation->default_recipient_id->test
+        );
 
-        $this->recipient = self::getPagarMe()->recipient()->update($recipients[0]);
+        $recipient->setAnticipatableVolumePercentage(100);
+
+        $this->recipient = self::getPagarMe()->recipient()->update($recipient);
     }
 
     /**
