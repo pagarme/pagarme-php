@@ -136,13 +136,13 @@ class BulkAnticipationHandler extends AbstractHandler
     private function buildBulkAnticipation($bulkAnticipationData)
     {
         $bulkAnticipationData->dateCreated = new \DateTime(
-            $bulkAnticipationData->dateCreated
+            $bulkAnticipationData->date_created
         );
         $bulkAnticipationData->dateUpdated = new \DateTime(
-            $bulkAnticipationData->dateUpdated
+            $bulkAnticipationData->date_updated
         );
         $bulkAnticipationData->paymentDate = new \DateTime(
-            $bulkAnticipationData->paymentDate
+            $bulkAnticipationData->payment_date
         );
 
         return new BulkAnticipation(get_object_vars($bulkAnticipationData));

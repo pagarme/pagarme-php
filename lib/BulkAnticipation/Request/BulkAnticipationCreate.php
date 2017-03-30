@@ -66,7 +66,7 @@ class BulkAnticipationCreate implements RequestInterface
             ),
             'timeframe'        => $this->timeframe,
             'requested_amount' => $this->requestedAmount,
-            'building'         => $this->building
+            'build'            => $this->building
         ];
     }
 
