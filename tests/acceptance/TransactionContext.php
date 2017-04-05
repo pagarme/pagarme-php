@@ -424,7 +424,7 @@ class TransactionContext extends BasicContext
      */
     public function refundedTransacitionMustBeReturned()
     {
-        assertEquals('pending_refund', $this->transaction->getStatus());
+        assertTrue($this->transaction->isPendingRefund());
     }
 
     private function getRandomMetadata()
