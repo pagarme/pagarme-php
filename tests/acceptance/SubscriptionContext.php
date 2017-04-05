@@ -158,7 +158,7 @@ class SubscriptionContext extends BasicContext
         $this->aPreviousCreatedSubscription();
         $this->aPreviousCreatedSubscription();
         $this->aPreviousCreatedSubscription();
-        sleep(1);
+        sleep(2);
     }
 
     /**

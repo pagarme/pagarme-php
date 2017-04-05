@@ -145,7 +145,7 @@ class PlanContext extends BasicContext
      */
     public function iQueryForPlans()
     {
-        sleep(1);
+        sleep(2);
         $this->plans = self::getPagarMe()
                 ->plan()
                 ->getList();
