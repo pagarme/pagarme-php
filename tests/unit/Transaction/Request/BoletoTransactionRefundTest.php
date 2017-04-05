@@ -74,13 +74,15 @@ class BoletoTransactionRefundTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             [
-                'bank_code'       => self::BANK_CODE,
-                'agencia'         => self::AGENCIA,
-                'agencia_dv'      => self::AGENCIA_DV,
-                'conta'           => self::CONTA,
-                'conta_dv'        => self::CONTA_DV,
-                'document_number' => self::DOCUMENT_NUMBER,
-                'legal_name'      => self::LEGAL_NAME,
+                'bank_account' => [
+                    'bank_code'       => self::BANK_CODE,
+                    'agencia'         => self::AGENCIA,
+                    'agencia_dv'      => self::AGENCIA_DV,
+                    'conta'           => self::CONTA,
+                    'conta_dv'        => self::CONTA_DV,
+                    'document_number' => self::DOCUMENT_NUMBER,
+                    'legal_name'      => self::LEGAL_NAME,
+                ]
             ],
             $transactionCreate->getPayload()
         );
