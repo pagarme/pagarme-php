@@ -54,14 +54,13 @@ class Client
      */
     public function send(RequestInterface $apiRequest)
     {
-        $request = $this->client->createRequest(
-            $apiRequest->getMethod(),
-            $apiRequest->getPath(),
-            $this->buildBody($apiRequest)
-        );
-
         try {
-            $response = $this->client->send($request);
+            $response = $this->client->request(
+                $apiRequest->getMethod(),
+                $apiRequest->getPath(),
+                $this->buildBody($apiRequest)
+            );
+            
             return json_decode($response->getBody()->getContents());
         } catch (\GuzzleHttp\Exception\ClientException $exception) {
             $response = $exception->getResponse()->getBody()->getContents();
