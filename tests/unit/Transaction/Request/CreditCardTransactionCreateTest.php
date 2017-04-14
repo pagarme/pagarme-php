@@ -68,11 +68,57 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @dataProvider installmentsProvider
+     * @test
+     */
+    public function mustNotContainAdressAndPhoneDataOnPayload(
+        $installments,
+        $capture,
+        $postbackUrl
+    ) {
+        $customerMock = $this->getBlankCustomerMock();
+        $cardMock     = $this->getCardMock();
+
+        $transaction =  new CreditCardTransaction(
+            [
+                'amount'       => 1337,
+                'card'         => $cardMock,
+                'customer'     => $customerMock,
+                'installments' => $installments,
+                'capture'      => $capture,
+                'postbackUrl'  => $postbackUrl
+            ]
+        );
+
+        $transactionCreate = new CreditCardTransactionCreate($transaction);
+
+        $this->assertEquals(
+            [
+                'amount'         => 1337,
+                'card_id'        => self::CARD_ID,
+                'installments'   => $installments,
+                'payment_method' => 'credit_card',
+                'capture'        => $capture,
+                'postback_url'   => $postbackUrl,
+                'customer' => [
+                    'name'            => null,
+                    'born_at'         => null,
+                    'document_number' => null,
+                    'email'           => null,
+                    'sex'             => null
+                ],
+                'metadata' => null
+            ],
+            $transactionCreate->getPayload()
+        );
+    }
+
+    /**
      * @test
      */
     public function mustPayloadContainMonetarySplitRules()
     {
-        $customerMock = $this->getCustomerMock();
+        $customerMock = $this->getFullCustomerMock();
         $cardMock     = $this->getCardMock();
 
         $rules = new SplitRuleCollection();
@@ -154,7 +200,7 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
      */
     public function mustPayloadContainPercentageSplitRules()
     {
-        $customerMock = $this->getCustomerMock();
+        $customerMock = $this->getFullCustomerMock();
         $cardMock     = $this->getCardMock();
 
         $rules = new SplitRuleCollection();
@@ -236,7 +282,7 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
      */
     public function mustPayloadContainCardCvv()
     {
-        $customerMock = $this->getCustomerMock();
+        $customerMock = $this->getFullCustomerMock();
         $cardMock     = $this->getCardMock();
 
         $transaction =  new CreditCardTransaction(
@@ -265,7 +311,7 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
      */
     public function mustPayloadContainCardHash($installments, $capture, $postbackUrl)
     {
-        $customerMock = $this->getCustomerMock();
+        $customerMock = $this->getFullCustomerMock();
         $cardMock = $this->getMockBuilder('PagarMe\Sdk\Card\Card')
             ->disableOriginalConstructor()
             ->getMock();
@@ -342,7 +388,7 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
 
     private function getTransaction($installments, $capture, $postbackUrl)
     {
-        $customerMock = $this->getCustomerMock();
+        $customerMock = $this->getFullCustomerMock();
         $cardMock     = $this->getCardMock();
 
         $transaction =  new CreditCardTransaction(
@@ -372,7 +418,7 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    public function getCustomerMock()
+    public function getFullCustomerMock()
     {
         $customerMock = $this->getMockBuilder('PagarMe\Sdk\Customer\Customer')
             ->disableOriginalConstructor()
@@ -397,6 +443,23 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 'number' => 987523421
             ]
         );
+
+        return $customerMock;
+    }
+
+    public function getBlankCustomerMock()
+    {
+        $customerMock = $this->getMockBuilder('PagarMe\Sdk\Customer\Customer')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $customerMock->method('getBornAt')->willReturn(null);
+        $customerMock->method('getDocumentNumber')->willReturn(null);
+        $customerMock->method('getEmail')->willReturn(null);
+        $customerMock->method('getGender')->willReturn(null);
+        $customerMock->method('getName')->willReturn(null);
+        $customerMock->method('getAddress')->willReturn(null);
+        $customerMock->method('getPhone')->willReturn(null);
 
         return $customerMock;
     }
