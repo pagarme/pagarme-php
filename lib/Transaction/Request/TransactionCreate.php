@@ -159,7 +159,8 @@ class TransactionCreate implements RequestInterface
         return [
             'phone' => [
                 'number' => (string) $phone->getNumber(),
-                'ddd'    => (string) $phone->getDdd()
+                'ddd'    => (string) $phone->getDdd(),
+                'ddi'    => (string) $phone->getDdi()
             ]
         ];
     }
