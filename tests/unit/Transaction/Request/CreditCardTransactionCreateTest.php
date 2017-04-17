@@ -57,6 +57,7 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                         'complementary' => null
                     ],
                     'phone' => [
+                        'ddi'    => 55,
                         'ddd'    => 15,
                         'number' => 987523421
                     ]
@@ -171,6 +172,7 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                         'complementary' => null
                     ],
                     'phone' => [
+                        'ddi'    => 55,
                         'ddd'    => 15,
                         'number' => 987523421
                     ]
@@ -253,6 +255,7 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                         'complementary' => null
                     ],
                     'phone' => [
+                        'ddi'    => 55,
                         'ddd'    => 15,
                         'number' => 987523421
                     ]
@@ -354,6 +357,7 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                         'complementary' => null
                     ],
                     'phone' => [
+                        'ddi'    => 55,
                         'ddd'    => 15,
                         'number' => 987523421
                     ]
@@ -439,6 +443,7 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
         );
         $customerMock->method('getPhone')->willReturn(
             [
+                'ddi'    => 55,
                 'ddd'    => 15,
                 'number' => 987523421
             ]
