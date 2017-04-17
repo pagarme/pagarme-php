@@ -19,7 +19,7 @@ class PagarMe_Request extends PagarMe {
 			throw new PagarMe_Exception("You need to configure API key before performing requests.");
 		}
 
-		$this->parameters = array_merge($this->parameters, array( "api_key" => parent::getApiKey()));
+		$this->parameters = array_merge($this->parameters, parent::getApiKey());
 		// var_dump($this->parameters);
 		// $this->headers = (PagarMe::live) ? array("X-Live" => 1) : array();
 		$client = new RestClient(array("method" => $this->method, "url" => $this->full_api_url($this->path), "headers" => $this->headers, "parameters" => $this->parameters ));
