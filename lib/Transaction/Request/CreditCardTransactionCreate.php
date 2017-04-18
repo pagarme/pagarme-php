@@ -21,8 +21,9 @@ class CreditCardTransactionCreate extends TransactionCreate
     {
         $basicData = parent::getPayload();
         $cardData = [
-            'installments' => $this->transaction->getInstallments(),
-            'capture'      => $this->transaction->isCapturable()
+            'installments'    => $this->transaction->getInstallments(),
+            'capture'         => $this->transaction->isCapturable(),
+            'soft_descriptor' => $this->transaction->getSoftDescriptor()
         ];
 
         if (!is_null($this->transaction->getCardCvv())) {

@@ -19,10 +19,10 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
     public function installmentsProvider()
     {
         return [
-            [1,true,null],
-            [3,true, 'example.com'],
-            [12,false, 'example.com'],
-            [rand(1, 12), false, null]
+            [1,true,null, null],
+            [3,true, 'example.com', 'Sua Loja'],
+            [12,false, 'example.com', null],
+            [rand(1, 12), false, null, 'Outra Loja']
         ];
     }
 
@@ -30,9 +30,19 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
      * @dataProvider installmentsProvider
      * @test
      */
-    public function mustPayloadBeCorrect($installments, $capture, $postbackUrl)
-    {
-        $transaction =  $this->getTransaction($installments, $capture, $postbackUrl);
+    public function mustPayloadBeCorrect(
+        $installments,
+        $capture,
+        $postbackUrl,
+        $softDescriptor
+    ) {
+        $transaction =  $this->getTransaction(
+            $installments,
+            $capture,
+            $postbackUrl,
+            $softDescriptor
+        );
+
         $transactionCreate = new CreditCardTransactionCreate($transaction);
 
         $this->assertEquals(
@@ -62,7 +72,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                         'number' => 987523421
                     ]
                 ],
-                'metadata' => null
+                'metadata'        => null,
+                'soft_descriptor' => $softDescriptor
             ],
             $transactionCreate->getPayload()
         );
@@ -108,7 +119,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                     'email'           => null,
                     'sex'             => null
                 ],
-                'metadata' => null
+                'metadata'        => null,
+                'soft_descriptor' => null
             ],
             $transactionCreate->getPayload()
         );
@@ -191,7 +203,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                         'charge_processing_fee' => false
                     ]
                 ],
-                'metadata' => null
+                'metadata'        => null,
+                'soft_descriptor' => null
             ],
             $transactionCreate->getPayload()
         );
@@ -274,7 +287,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                         'charge_processing_fee' => false
                     ]
                 ],
-                'metadata' => null
+                'metadata'        => null,
+                'soft_descriptor' => null
             ],
             $transactionCreate->getPayload()
         );
@@ -362,7 +376,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                         'number' => 987523421
                     ]
                 ],
-                'metadata' => null
+                'metadata'        => null,
+                'soft_descriptor' => null
             ],
             $transactionCreate->getPayload()
         );
@@ -373,7 +388,7 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
      */
     public function mustPathBeCorrect()
     {
-        $transaction =  $this->getTransaction(rand(1, 12), false, null);
+        $transaction =  $this->getTransaction(rand(1, 12), false, null, null);
         $transactionCreate = new CreditCardTransactionCreate($transaction);
 
         $this->assertEquals(self::PATH, $transactionCreate->getPath());
@@ -384,25 +399,30 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
      */
     public function mustMethodBeCorrect()
     {
-        $transaction =  $this->getTransaction(rand(1, 12), false, null);
+        $transaction =  $this->getTransaction(rand(1, 12), false, null, null);
         $transactionCreate = new CreditCardTransactionCreate($transaction);
 
         $this->assertEquals(RequestInterface::HTTP_POST, $transactionCreate->getMethod());
     }
 
-    private function getTransaction($installments, $capture, $postbackUrl)
-    {
+    private function getTransaction(
+        $installments,
+        $capture,
+        $postbackUrl,
+        $softDescriptor
+    ) {
         $customerMock = $this->getFullCustomerMock();
         $cardMock     = $this->getCardMock();
 
         $transaction =  new CreditCardTransaction(
             [
-                'amount'       => 1337,
-                'card'         => $cardMock,
-                'customer'     => $customerMock,
-                'installments' => $installments,
-                'capture'      => $capture,
-                'postbackUrl'  => $postbackUrl
+                'amount'         => 1337,
+                'card'           => $cardMock,
+                'customer'       => $customerMock,
+                'installments'   => $installments,
+                'capture'        => $capture,
+                'postbackUrl'    => $postbackUrl,
+                'softDescriptor' => $softDescriptor
             ]
         );
 
