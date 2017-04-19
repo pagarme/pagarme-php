@@ -12,11 +12,56 @@ class BankAccountCreateTest extends \PHPUnit_Framework_TestCase
     public function accountDataProvider()
     {
         return [
-            [ 001, 1977, 1935, 1, 67178880244, 'Maria Silva', 1],
-            [ 033, 1986, 010203, 2, 75232346660, 'Carlos Silva', null],
-            [ 104, 1991, 10001, 3, 13067245890, 'Cesar Silva', 3],
-            [ 237, 2006, 80486, 4, 26260865686, 'Luiza Silva', null],
-            [ 341, 2007, 233500, 5, 11663782687, 'Joao Silva', null]
+            [
+                001,
+                1977,
+                1935,
+                1,
+                67178880244,
+                'Maria Silva',
+                1,
+                null
+            ],
+            [
+                033,
+                1986,
+                010203,
+                2,
+                75232346660,
+                'Carlos Silva',
+                null,
+                'conta_corrente
+            '],
+            [
+                104,
+                1991,
+                10001,
+                3,
+                13067245890,
+                'Cesar Silva',
+                3,
+                'conta_poupanca
+            '],
+            [
+                237,
+                2006,
+                80486,
+                4,
+                26260865686,
+                'Luiza Silva',
+                null,
+                'conta_corrente_conjunta
+            '],
+            [
+                341,
+                2007,
+                233500,
+                5,
+                11663782687,
+                'Joao Silva',
+                null,
+                'conta_poupanca_conjunta
+            ']
         ];
     }
 
@@ -31,7 +76,8 @@ class BankAccountCreateTest extends \PHPUnit_Framework_TestCase
         $contaDv,
         $documentNumber,
         $legalName,
-        $agenciaDv
+        $agenciaDv,
+        $type
     ) {
         $bankAccountCreate = new BankAccountCreate(
             $bankCode,
@@ -40,7 +86,8 @@ class BankAccountCreateTest extends \PHPUnit_Framework_TestCase
             $contaDv,
             $documentNumber,
             $legalName,
-            $agenciaDv
+            $agenciaDv,
+            $type
         );
 
         $this->assertEquals(RequestInterface::HTTP_POST, $bankAccountCreate->getMethod());
@@ -53,7 +100,8 @@ class BankAccountCreateTest extends \PHPUnit_Framework_TestCase
                 'conta_dv'        => $contaDv,
                 'document_number' => $documentNumber,
                 'legal_name'      => $legalName,
-                'agencia_dv'      => $agenciaDv
+                'agencia_dv'      => $agenciaDv,
+                'type'            => $type
             ],
             $bankAccountCreate->getPayload()
         );

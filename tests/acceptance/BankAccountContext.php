@@ -11,6 +11,8 @@ use Behat\Testwork\Hook\Scope\BeforeSuiteScope;
 
 class BankAccountContext extends BasicContext
 {
+    const DEFAULT_BANK_ACCOUNT_TYPE = 'conta_corrente';
+
     private $bankCode;
     private $office;
     private $accountNumber;
@@ -18,13 +20,14 @@ class BankAccountContext extends BasicContext
     private $document;
     private $name;
     private $officeDigit;
+    private $type;
 
     private $bankAccount;
     private $bankAccounts;
     private $queryBankAccount;
 
     /**
-     * @Given following account data :bankCode, :office, :accountNumber, :accountDigit, :document, :name and :officeDigit
+     * @Given following account data :bankCode, :office, :accountNumber, :accountDigit, :document, :name, :officeDigit and :type
      */
     public function followingAccountData(
         $bankCode,
@@ -33,7 +36,8 @@ class BankAccountContext extends BasicContext
         $accountDigit,
         $document,
         $name,
-        $officeDigit
+        $officeDigit,
+        $type
     ) {
         $this->bankCode      = $bankCode;
         $this->office        = $office;
@@ -42,9 +46,14 @@ class BankAccountContext extends BasicContext
         $this->document      = $document;
         $this->name          = $name;
         $this->officeDigit   = $officeDigit;
+        $this->type          = $type;
 
         if ($officeDigit == 'null') {
             $this->officeDigit = null;
+        }
+
+        if ($type == 'null') {
+            $this->type = null;
         }
     }
 
@@ -62,7 +71,8 @@ class BankAccountContext extends BasicContext
                 $this->accountDigit,
                 $this->document,
                 $this->name,
-                $this->officeDigit
+                $this->officeDigit,
+                $this->type
             );
     }
 
@@ -89,6 +99,10 @@ class BankAccountContext extends BasicContext
         assertEquals($this->document, $this->bankAccount->getDocumentNumber());
         assertEquals($this->name, $this->bankAccount->getLegalName());
         assertEquals($this->officeDigit, $this->bankAccount->getAgenciaDv());
+        assertEquals(
+            $this->getEspectedBankAccountType(),
+            $this->bankAccount->getType()
+        );
     }
 
     /**
@@ -196,7 +210,8 @@ class BankAccountContext extends BasicContext
                     3,
                     13067245890,
                     'Cesar Silva',
-                    3
+                    3,
+                    'conta_poupanca'
                 );
     }
 
@@ -229,5 +244,14 @@ class BankAccountContext extends BasicContext
     public function mustTheSameBankAccount()
     {
         assertEquals($this->bankAccount, $this->queryBankAccount);
+    }
+
+    private function getEspectedBankAccountType()
+    {
+        if (is_null($this->type)) {
+            return self::DEFAULT_BANK_ACCOUNT_TYPE;
+        }
+
+        return $this->type;
     }
 }

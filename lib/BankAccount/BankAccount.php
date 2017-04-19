@@ -57,6 +57,11 @@ class BankAccount
     private $dateCreated;
 
     /**
+     * @var string
+     */
+    private $type;
+
+    /**
      * @param array $arrayData
      */
     public function __construct($arrayData)
@@ -152,5 +157,14 @@ class BankAccount
     public function getDateCreated()
     {
         return $this->dateCreated;
+    }
+
+    /**
+     * @returnstring \DateTime
+     * @codeCoverageIgnore
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

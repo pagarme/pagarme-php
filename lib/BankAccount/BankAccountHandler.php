@@ -27,7 +27,8 @@ class BankAccountHandler extends AbstractHandler
         $accountDigit,
         $documentNumber,
         $legalName,
-        $officeDigit = null
+        $officeDigit = null,
+        $type = null
     ) {
         $request = new BankAccountCreate(
             $bankCode,
@@ -36,7 +37,8 @@ class BankAccountHandler extends AbstractHandler
             $accountDigit,
             $documentNumber,
             $legalName,
-            $officeDigit
+            $officeDigit,
+            $type
         );
 
         $response = $this->client->send($request);

@@ -4,17 +4,17 @@ Feature: Bank Account
  Para que eu possa manter contas bancarias
 
   Scenario Outline: Creating account
-    Given following account data "<bank_code>", "<office>", "<acc_number>", "<acc_digit>", "<document>", "<name>" and "<off_digit>"
+    Given following account data "<bank_code>", "<office>", "<acc_number>", "<acc_digit>", "<document>", "<name>", "<off_digit>" and "<type>"
     When register the bank account
     Then a account must be created
     And must account contain same data
     Examples:
-    | bank_code | office    |  acc_number   | acc_digit | document    | name            | off_digit |
-    | 001       | 1977      | 1935          | 1         | 67178880244 | Maria Silva     | 1         |
-    | 033       | 1986      | 010203        | 2         | 75232346660 | Carlos Silva    | null      |
-    | 104       | 1991      | 10001         | 3         | 13067245890 | Cesar Silva     | 3         |
-    | 237       | 2006      | 80486         | 4         | 26260865686 | Luiza Silva     | null      |
-    | 341       | 2007      | 233500        | 5         | 11663782687 | Joao Silva      | null      |
+    | bank_code | office    |  acc_number   | acc_digit | document    | name            | off_digit | type                      |
+    | 001       | 1977      | 1935          | 1         | 67178880244 | Maria Silva     | 1         | null                      |
+    | 033       | 1986      | 010203        | 2         | 75232346660 | Carlos Silva    | null      | conta_corrente            |
+    | 104       | 1991      | 10001         | 3         | 13067245890 | Cesar Silva     | 3         | conta_poupanca            |
+    | 237       | 2006      | 80486         | 4         | 26260865686 | Luiza Silva     | null      | conta_corrente_conjunta   |
+    | 341       | 2007      | 233500        | 5         | 11663782687 | Joao Silva      | null      | conta_poupanca_conjunta   |
 
   Scenario: Listing bank accounts
     Given a previous created bank accounts

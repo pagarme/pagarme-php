@@ -42,6 +42,11 @@ class BankAccountCreate implements RequestInterface
     private $legalName;
 
     /**
+     * @var string
+     */
+    private $type;
+
+    /**
      * @param int $bankCode
      * @param int $office
      * @param int $accountNumber
@@ -57,7 +62,8 @@ class BankAccountCreate implements RequestInterface
         $accountDigit,
         $documentNumber,
         $legalName,
-        $officeDigit
+        $officeDigit,
+        $type
     ) {
         $this->bankCode       = $bankCode;
         $this->office         = $office;
@@ -66,6 +72,7 @@ class BankAccountCreate implements RequestInterface
         $this->documentNumber = $documentNumber;
         $this->legalName      = $legalName;
         $this->officeDigit    = $officeDigit;
+        $this->type           = $type;
     }
 
     /**
@@ -80,7 +87,8 @@ class BankAccountCreate implements RequestInterface
             'conta_dv'        => $this->accountDigit,
             'document_number' => $this->documentNumber,
             'legal_name'      => $this->legalName,
-            'agencia_dv'      => $this->officeDigit
+            'agencia_dv'      => $this->officeDigit,
+            'type'            => $this->type
         ];
     }
 
