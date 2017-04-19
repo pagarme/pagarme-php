@@ -3,6 +3,7 @@
 namespace PagarMe\Sdk\Card;
 
 use PagarMe\Sdk\AbstractHandler;
+use PagarMe\Sdk\Card\Request\CardCreateFromHash;
 use PagarMe\Sdk\Client;
 use PagarMe\Sdk\Card\Card;
 use PagarMe\Sdk\Card\Request\CardCreate;
@@ -30,6 +31,19 @@ class CardHandler extends AbstractHandler
 
         return $this->buildCard($response);
     }
+
+	/**
+	 * @param string $cardHash
+	 * @return Card
+	 */
+	public function createFromHash($cardHash)
+	{
+		$request = new CardCreateFromHash($cardHash);
+
+		$response = $this->client->send($request);
+
+		return $this->buildCard($response);
+	}
 
     /**
      * @param int $cardId
