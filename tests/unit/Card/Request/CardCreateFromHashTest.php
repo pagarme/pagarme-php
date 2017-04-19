@@ -7,7 +7,7 @@ use PagarMe\Sdk\RequestInterface;
 
 class CardCreateFromHashTest extends \PHPUnit_Framework_TestCase
 {
-    const PATH            = 'cards';
+    const PATH          = 'cards';
     const CARD_HASH     = 'test_transaction_e8Ij0oYalvjTEO17IHqKxNQcigKrYj';
 
     /**

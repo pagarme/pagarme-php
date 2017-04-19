@@ -16,7 +16,7 @@ class CardCreateFromHash implements RequestInterface
      */
     public function __construct($cardHash)
     {
-        $this->cardHash         = $cardHash;
+        $this->cardHash = $cardHash;
     }
 
     /**
@@ -25,7 +25,7 @@ class CardCreateFromHash implements RequestInterface
     public function getPayload()
     {
         return [
-            'card_hash'          => $this->cardHash
+            'card_hash' => $this->cardHash
         ];
     }
 
