@@ -55,7 +55,11 @@ class TransactionContext extends BasicContext
                 $amount,
                 $this->creditCard,
                 $this->customer,
-                $installments
+                $installments,
+                true,
+                null,
+                null,
+                ['soft_descriptor' => 'Sua Loja']
             );
     }
 
