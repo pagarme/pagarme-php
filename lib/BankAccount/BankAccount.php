@@ -6,6 +6,11 @@ class BankAccount
 {
     use \PagarMe\Sdk\Fillable;
 
+    const TYPE_CONTA_CORRENTE          = 'conta_corrente';
+    const TYPE_CONTA_POUPANCA          = 'conta_poupanca';
+    const TYPE_CONTA_CORRENTE_CONJUNTA = 'conta_corrente_conjunta';
+    const TYPE_CONTA_POUPANCA_CONJUNTA = 'conta_poupanca_conjunta';
+
     /**
      * @var int
      */

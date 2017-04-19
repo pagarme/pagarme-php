@@ -11,8 +11,6 @@ use Behat\Testwork\Hook\Scope\BeforeSuiteScope;
 
 class BankAccountContext extends BasicContext
 {
-    const DEFAULT_BANK_ACCOUNT_TYPE = 'conta_corrente';
-
     private $bankCode;
     private $office;
     private $accountNumber;
@@ -249,7 +247,7 @@ class BankAccountContext extends BasicContext
     private function getEspectedBankAccountType()
     {
         if (is_null($this->type)) {
-            return self::DEFAULT_BANK_ACCOUNT_TYPE;
+            return \PagarMe\Sdk\BankAccount\BankAccount::TYPE_CONTA_CORRENTE;
         }
 
         return $this->type;
