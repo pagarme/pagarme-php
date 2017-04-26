@@ -27,6 +27,11 @@ class CreditCardTransaction extends AbstractTransaction
     protected $cardCvv;
 
     /**
+     * @var boolean
+     */
+    protected $async;
+
+    /**
      * @param array $transactionData
      */
     public function __construct($transactionData)
@@ -78,5 +83,14 @@ class CreditCardTransaction extends AbstractTransaction
     public function isCapturable()
     {
         return (bool) $this->capture;
+    }
+
+    /**
+     * @return boolean
+     * @codeCoverageIgnore
+     */
+    public function getAsync()
+    {
+        return $this->async;
     }
 }
