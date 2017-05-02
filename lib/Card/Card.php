@@ -59,6 +59,11 @@ class Card
     /**
      * @var string
      */
+    private $expirationDate;
+
+    /**
+     * @var string
+     */
     private $hash;
 
     /**
