@@ -168,6 +168,15 @@ class Card
      * @return string
      * @codeCoverageIgnore
      */
+    public function getExpirationDate()
+    {
+        return $this->expirationDate;
+    }
+
+    /**
+     * @return string
+     * @codeCoverageIgnore
+     */
     public function getHash()
     {
         return $this->hash;
