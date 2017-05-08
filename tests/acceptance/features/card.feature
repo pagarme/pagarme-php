@@ -6,7 +6,7 @@ Feature: Cards
   Scenario Outline: Registering credit cards
     Given a card with "<number>", "<holder>" and "<expiration>"
     When register the card
-    Then should have a card starting with <start> and ending with <end>
+    Then should have a card starting with "<start>", ending with "<end>", and has "<expiration>"
 
     Examples:
       |       number        |     holder    | expiration |  start | end  |

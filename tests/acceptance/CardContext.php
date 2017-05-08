@@ -43,12 +43,13 @@ class CardContext extends BasicContext
     }
 
     /**
-     * @Then should have a card starting with :start and ending with :end
+     * @Then should have a card starting with :start, ending with :end, and has :expiration
      */
-    public function iShouldHaveACardStartingWithAndEndingWith($start, $end)
+    public function iShouldHaveACardStartingWithAndEndingWith($start, $end, $expiration)
     {
         assertEquals($start, $this->createdCard->getFirstDigits());
         assertEquals($end, $this->createdCard->getLastDigits());
+        assertEquals($expiration, $this->createdCard->getExpirationDate());
     }
 
     /**

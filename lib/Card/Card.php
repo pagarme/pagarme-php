@@ -59,6 +59,11 @@ class Card
     /**
      * @var string
      */
+    private $expirationDate;
+
+    /**
+     * @var string
+     */
     private $hash;
 
     /**
@@ -157,6 +162,15 @@ class Card
     public function getValid()
     {
         return $this->valid;
+    }
+
+    /**
+     * @return string
+     * @codeCoverageIgnore
+     */
+    public function getExpirationDate()
+    {
+        return $this->expirationDate;
     }
 
     /**
