@@ -5,6 +5,7 @@ namespace PagarMe\Sdk\Payable;
 use PagarMe\Sdk\AbstractHandler;
 use PagarMe\Sdk\Payable\Request\PayableGet;
 use PagarMe\Sdk\Payable\Request\PayableList;
+use PagarMe\Sdk\Payable\Request\TransactionPayableList;
 
 class PayableHandler extends AbstractHandler
 {
@@ -26,6 +27,8 @@ class PayableHandler extends AbstractHandler
     /**
      * @param int $page
      * @param int $count
+     *
+     * @return Payable[]
      */
     public function getList($page = null, $count = null)
     {
@@ -33,12 +36,20 @@ class PayableHandler extends AbstractHandler
 
         $response = $this->client->send($request);
 
-        $payables = [];
+        return $this->buildPayables($response);
+    }
 
-        foreach ($response as $payableData) {
-            $payables[] = $this->buildPayable($payableData);
-        }
+    /**
+     * @param int $transactionId
+     *
+     * @return Payable[]
+     */
+    public function getTransactionPayableList($transactionId)
+    {
+        $request = new TransactionPayableList($transactionId);
 
-        return $payables;
+        $response = $this->client->send($request);
+
+        return $this->buildPayables($response);
     }
 }
