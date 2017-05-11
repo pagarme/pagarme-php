@@ -36,9 +36,11 @@ trait SubscriptionBuilder
             get_object_vars($subscriptionData->customer)
         );
 
-        $subscriptionData->current_transaction = $this->buildTransaction(
-            $subscriptionData->current_transaction
-        );
+        if (is_object($subscriptionData->current_transaction)) {
+            $subscriptionData->current_transaction = $this->buildTransaction(
+                $subscriptionData->current_transaction
+            );
+        }
 
         return new Subscription(get_object_vars($subscriptionData));
     }
