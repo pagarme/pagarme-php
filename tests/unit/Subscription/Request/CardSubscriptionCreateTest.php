@@ -41,11 +41,8 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
         return $planMock;
     }
 
-    private function getConfiguredCustomerMockForPayloadTest()
+    private function getConfiguredCustomerGenericMockForPayloadTest()
     {
-        $addressMock = $this->getConfiguredAddressMockForPayloadTest();
-        $phoneMock = $this->getConfiguredPhoneMockForPayloadTest();
-
         $customerMock = $this->getMockBuilder('PagarMe\Sdk\Customer\Customer')
             ->disableOriginalConstructor()
             ->getMock();
@@ -60,6 +57,29 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
             ->willReturn(self::CUSTOMER_BORN_AT);
         $customerMock->method('getGender')
             ->willReturn(self::CUSTOMER_GENDER);
+
+        return $customerMock;
+    }
+
+    private function getConfiguredCustomerWithoutAddressAndPhoneMockForPayloadTest()
+    {
+        $customerMock = $this->getConfiguredCustomerGenericMockForPayloadTest();
+
+        $customerMock->method('getAddress')
+            ->willReturn(null);
+        $customerMock->method('getPhone')
+            ->willReturn(null);
+
+        return $customerMock;
+    }
+
+    private function getConfiguredCustomerMockForPayloadTest()
+    {
+        $addressMock = $this->getConfiguredAddressMockForPayloadTest();
+        $phoneMock = $this->getConfiguredPhoneMockForPayloadTest();
+
+        $customerMock = $this->getConfiguredCustomerGenericMockForPayloadTest();
+
         $customerMock->method('getAddress')
             ->willReturn($addressMock);
         $customerMock->method('getPhone')
@@ -125,6 +145,13 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
+    private function getExpectedPayloadWithoutAddressAndPhone()
+    {
+        $payload = $this->getExpectedPayloadWithCardId();
+        unset($payload['customer']['address'], $payload['customer']['phone']);
+        return $payload;
+    }
+
     private function getExpectedPayloadWithCardId()
     {
         return array_merge(
@@ -166,6 +193,34 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             $cardSubscriptionCreateRequest->getPayload(),
             $this->getExpectedPayloadWithCardId()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function mustPayloadBeCorrectWithoutAddressAndPhone()
+    {
+        $planMock = $this->getConfiguredPlanMockForPayloadTest();
+
+        $cardMock = $this->getMockBuilder('PagarMe\Sdk\Card\Card')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $cardMock->method('getId')->willReturn(self::CARD_ID);
+
+        $customerMock = $this->getConfiguredCustomerWithoutAddressAndPhoneMockForPayloadTest();
+
+        $cardSubscriptionCreateRequest = new CardSubscriptionCreate(
+            $planMock,
+            $cardMock,
+            $customerMock,
+            self::POSTBACK_URL,
+            $this->planMetadata()
+        );
+
+        $this->assertEquals(
+            $cardSubscriptionCreateRequest->getPayload(),
+            $this->getExpectedPayloadWithoutAddressAndPhone()
         );
     }
 
