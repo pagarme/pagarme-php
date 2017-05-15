@@ -106,6 +106,17 @@ Feature: Transaction
     When refund the Boleto Transaction
     Then refunded transaction must be returned
 
+  Scenario Outline: Create and Partially Refund a Boleto Transaction
+    Given a valid customer
+    When make a boleto transaction with the given "<amount>"
+    And refund the given partial "<value>" of the transaction
+    Then refunded transaction must be returned
+    Examples:
+      |  amount  | value  |
+      |  1000    |   500  |
+      |  1300    |   700  |
+      |  1500    |   100  |
+
   Scenario Outline: Creating a Boleto Transaction using Customers from the API
     Given make a boleto transaction with "<amount>", using Customers from the API
     Then a list of valid transactions must be created

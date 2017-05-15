@@ -101,9 +101,7 @@ class BulkAnticipationHandler extends AbstractHandler
     ) {
         $request = new BulkAnticipationDelete($recipient, $bulkAnticipation);
 
-        $response = $this->client->send($request);
-
-        return $this->buildBulkAnticipation($response);
+        return $this->client->send($request);
     }
 
     /**

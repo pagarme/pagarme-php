@@ -7,7 +7,7 @@ use PagarMe\Sdk\RequestInterface;
 
 class BulkAnticipationDeleteTest extends \PHPUnit_Framework_TestCase
 {
-    const PATH         = 'recipients/re_123456/bulk_anticipations/ba_123456/delete';
+    const PATH         = 'recipients/re_123456/bulk_anticipations/ba_123456/';
     const RECIPIENT_ID = 're_123456';
 
     const ANTICIPATION_ID = 'ba_123456';

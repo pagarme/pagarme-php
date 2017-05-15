@@ -105,4 +105,40 @@ class BulkAnticipationContext extends BasicContext
 
         assertEquals($this->anticipation->getStatus(), $this->expectedStatus);
     }
+
+    /**
+     * @Then when I delete the previously created Anticipation
+     */
+    public function iDeleteThePreviouslyCreatedAnticipation()
+    {
+        assertEquals(3, $this->countAnticipations());
+
+        $result = self::getPagarMe()
+            ->bulkAnticipation()
+            ->delete(
+                $this->recipient,
+                $this->anticipation
+            );
+
+        assertEquals([], $result);
+    }
+
+    /**
+     * @Then the Anticipation should no longer exist
+     */
+    public function theAnticipationShouldNoLongerExist()
+    {
+        assertEquals(2, $this->countAnticipations());
+    }
+
+    private function countAnticipations()
+    {
+        return count(
+            self::getPagarMe()
+                ->bulkAnticipation()
+                ->getList(
+                    $this->recipient
+                )
+        );
+    }
 }

@@ -161,13 +161,20 @@ class TransactionHandler extends AbstractHandler
     /**
      * @param BoletoTransaction $transaction
      * @param PagarMe\Sdk\BankAccount\BankAccount $bankAccount
+     * @param int @amount
      * @return BoletoTransaction
      */
     public function boletoRefund(
         BoletoTransaction $transaction,
-        BankAccount $bankAccount
+        BankAccount $bankAccount,
+        $amount = null
     ) {
-        $request = new BoletoTransactionRefund($transaction, $bankAccount);
+        $request = new BoletoTransactionRefund(
+            $transaction,
+            $bankAccount,
+            $amount
+        );
+
         $response = $this->client->send($request);
 
         return $this->buildTransaction($response);
