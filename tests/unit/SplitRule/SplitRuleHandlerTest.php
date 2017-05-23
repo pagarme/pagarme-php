@@ -9,10 +9,10 @@ class SplitRuleHandlerTest extends \PHPUnit_Framework_TestCase
     public function splitData()
     {
         return [
-            [100, 123, true, false],
-            [666, 321, false, false],
-            [23, 233, null, false],
-            [42, 800, null, true],
+            [100, 123, true, false, true],
+            [666, 321, false, false, false],
+            [23, 233, null, false, true],
+            [42, 800, null, true, null],
         ];
     }
 
@@ -24,7 +24,8 @@ class SplitRuleHandlerTest extends \PHPUnit_Framework_TestCase
         $value,
         $recipientId,
         $liable,
-        $chargeProcessingFee
+        $chargeProcessingFee,
+        $chargeRemainder
     ) {
         $recipientMock = $this->getMockBuilder('PagarMe\Sdk\Recipient\Recipient')
             ->disableOriginalConstructor()
@@ -36,7 +37,8 @@ class SplitRuleHandlerTest extends \PHPUnit_Framework_TestCase
             $value,
             $recipientMock,
             $liable,
-            $chargeProcessingFee
+            $chargeProcessingFee,
+            $chargeRemainder
         );
 
         $this->assertEquals($value, $rule->getAmount());
@@ -44,6 +46,7 @@ class SplitRuleHandlerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($liable, $rule->getLiable());
         $this->assertEquals($chargeProcessingFee, $rule->getChargeProcessingFee());
         $this->assertEquals($recipientId, $rule->getRecipient()->getId());
+        $this->assertEquals($chargeRemainder, $rule->getChargeRemainder());
     }
 
     /**
@@ -54,7 +57,8 @@ class SplitRuleHandlerTest extends \PHPUnit_Framework_TestCase
         $value,
         $recipientId,
         $liable,
-        $chargeProcessingFee
+        $chargeProcessingFee,
+        $chargeRemainder
     ) {
         $recipientMock = $this->getMockBuilder('PagarMe\Sdk\Recipient\Recipient')
             ->disableOriginalConstructor()
@@ -66,7 +70,8 @@ class SplitRuleHandlerTest extends \PHPUnit_Framework_TestCase
             $value,
             $recipientMock,
             $liable,
-            $chargeProcessingFee
+            $chargeProcessingFee,
+            $chargeRemainder
         );
 
         $this->assertEquals($value, $rule->getPercentage());
@@ -74,5 +79,6 @@ class SplitRuleHandlerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($liable, $rule->getLiable());
         $this->assertEquals($chargeProcessingFee, $rule->getChargeProcessingFee());
         $this->assertEquals($recipientId, $rule->getRecipient()->getId());
+        $this->assertEquals($chargeRemainder, $rule->getChargeRemainder());
     }
 }
