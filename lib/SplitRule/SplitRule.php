@@ -26,6 +26,10 @@ class SplitRule
     /**
      * @var bool
      */
+    private $chargeRemainder;
+    /**
+     * @var bool
+     */
     private $liable;
     /**
      * @var int
@@ -86,6 +90,15 @@ class SplitRule
     public function getChargeProcessingFee()
     {
         return $this->chargeProcessingFee;
+    }
+
+    /**
+     * @return bool
+     * @codeCoverageIgnore
+     */
+    public function getChargeRemainder()
+    {
+        return $this->chargeRemainder;
     }
 
     /**
