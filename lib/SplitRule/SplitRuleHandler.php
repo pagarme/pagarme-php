@@ -6,7 +6,6 @@ use PagarMe\Sdk\Recipient\Recipient;
 
 class SplitRuleHandler
 {
-
     /**
      * @param int $value
      * @param Recipient $recipient
