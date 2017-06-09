@@ -10,7 +10,12 @@ trait SubscriptionBuilder
 {
     use \PagarMe\Sdk\Transaction\TransactionBuilder;
 
-     /**
+    /**
+     * @var array $subscriptionData
+     */
+    public $subscriptionCookie;
+	
+    /**
      * @param array $subscriptionData
      * @return Subscription
      */
@@ -42,6 +47,14 @@ trait SubscriptionBuilder
             );
         }
 
-        return new Subscription(get_object_vars($subscriptionData));
+        $subscription = new Subscription(get_object_vars($subscriptionData));
+        $this->subscriptionCookie = new SubscriptionCookie($subscription);
+
+        return $subscription;
+    }
+   
+    public function getSubscriptionCookie()
+    {
+        return $this->subscriptionCookie;
     }
 }

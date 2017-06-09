@@ -2,9 +2,10 @@
 
 namespace PagarMe\SdkTest\Subscription;
 
-class SubscriptionGetTest extends \PHPUnit_Framework_TestCase
+class SubscriptionBuilderTest extends \PHPUnit_Framework_TestCase
 {
     use \PagarMe\Sdk\Subscription\SubscriptionBuilder;
+    const PLAN_ID = 'plan_123';
 
     /**
      * @test

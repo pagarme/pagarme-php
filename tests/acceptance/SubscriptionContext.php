@@ -223,4 +223,17 @@ class SubscriptionContext extends BasicContext
             $this->transactions
         );
     }
+
+    /**
+     * @When I change the subscription plan
+     */
+    public function iChangeTheSubscriptionPlan()
+    {
+	$this->aValidPlan();
+	$this->subscription->setPlan($this->plan);
+        $this->subscription = self::getPagarMe()
+            ->subscription()
+            ->update($this->subscription);
+        $this->iQueryForTheSubscription();
+    }
 }

@@ -13,11 +13,18 @@ class SubscriptionUpdate implements RequestInterface
     protected $subscription;
 
     /**
-     * @var Subscription $subscription
+     * @var Subscription $subscriptionCookie
      */
-    public function __construct(Subscription $subscription)
+    protected $subscriptionCookie;
+
+    /**
+     * @param Subscription $subscription
+     * @param Subscription $subscriptionCookie
+     */
+    public function __construct(Subscription $subscription, Subscription $subscriptionCookie)
     {
         $this->subscription = $subscription;
+        $this->subscriptionCookie = $subscriptionCookie;
     }
 
     /**
@@ -25,14 +32,60 @@ class SubscriptionUpdate implements RequestInterface
      */
     public function getPayload()
     {
-        $payload = [
-            'plan'           => $this->subscription->getPlan()->getId(),
-            'payment_method' => $this->subscription->getPaymentMethod()
-        ];
+        $payload = new \ArrayObject();
+        $this->getLoadCard($payload);
+        $this->getLoadPlanId($payload);
+        $this->getLoadPaymentMethod($payload);
 
+        return $payload->getArrayCopy();
+    }
+
+    /**
+     * @param ArrayObject $payload
+     * @return ArrayObject $payload
+     */
+    protected function getLoadCard(\ArrayObject $payload)
+    {
         $card = $this->subscription->getCard();
+
         if ($card instanceof \PagarMe\Sdk\Card\Card) {
-            $payload['card_id'] = $this->subscription->getCard()->getId();
+            $payload->offsetSet('card_id', $card->getId());
+        }
+
+        return $payload;
+    }
+
+    /**
+     * @param ArrayObject $payload
+     * @return ArrayObject $payload
+     */
+    protected function getLoadPlanId(\ArrayObject $payload)
+    {
+        $newPlan = $this->subscription->getPlan();
+        $cookiePlan = $this->subscriptionCookie->getPlan();
+
+        if (!$newPlan instanceof \PagarMe\Sdk\Plan\Plan || !$cookiePlan instanceof \PagarMe\Sdk\Plan\Plan) {
+            return $payload;
+        }
+
+        if ($newPlan->getId() != $cookiePlan->getId()) {
+           $payload->offsetSet('plan_id', $newPlan->getId());
+        }
+
+        return $payload;
+    }
+
+    /**
+     * @param ArrayObject $payload
+     * @return ArrayObject $payload
+     */
+    protected function getLoadPaymentMethod(\ArrayObject $payload)
+    { 
+        $newPaymentMethod = $this->subscription->getPaymentMethod();
+        $cookiePaymentMethod = $this->subscriptionCookie->getPaymentMethod();
+
+        if ($newPaymentMethod != $cookiePaymentMethod) {
+            $payload->offsetSet('payment_method', $newPaymentMethod);
         }
 
         return $payload;
