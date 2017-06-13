@@ -7,7 +7,7 @@ class CreditCardTransaction extends AbstractTransaction
     const PAYMENT_METHOD = 'credit_card';
 
     /**
-     * @var PagarMe\Sdk\Card\Card
+     * @var \PagarMe\Sdk\Card\Card
      */
     protected $card;
 
