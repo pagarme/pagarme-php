@@ -37,8 +37,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function mustSendRequest()
     {
-        $this->guzzleClientMock->method('createRequest')
-            ->willReturn($this->getMock('GuzzleHttp\Message\RequestInterface'));
+        if ($this->isUsingLegacyGuzzle()) {
+            $this->guzzleClientMock->method('createRequest')
+                ->willReturn($this->getMock('GuzzleHttp\Message\RequestInterface'));
+        }
 
         $responseMock = $this->getResponseMock();
 
@@ -58,18 +60,20 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function mustSendRequestWithProperContent()
     {
-        $this->guzzleClientMock->method('createRequest')
-            ->with(
-                RequestInterface::HTTP_POST,
-                self::REQUEST_PATH,
-                [
-                    'json' => [
-                        'content'        => self::CONTENT,
-                        'api_key'        => self::API_KEY
+        if ($this->isUsingLegacyGuzzle()) {
+            $this->guzzleClientMock->method('createRequest')
+                ->with(
+                    RequestInterface::HTTP_POST,
+                    self::REQUEST_PATH,
+                    [
+                        'json' => [
+                            'content'        => self::CONTENT,
+                            'api_key'        => self::API_KEY
+                        ]
                     ]
-                ]
-            )
-            ->willReturn($this->getMock('GuzzleHttp\Message\RequestInterface'));
+                )
+                ->willReturn($this->getMock('GuzzleHttp\Message\RequestInterface'));
+        }
 
         $responseMock = $this->getResponseMock();
 
@@ -94,8 +98,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             $this->getGuzzleRequestInterfaceName()
         );
 
-        $this->guzzleClientMock->method('createRequest')
-            ->willReturn($guzzleRequestMock);
+        if ($this->isUsingLegacyGuzzle()) {
+            $this->guzzleClientMock->method('createRequest')
+                ->willReturn($guzzleRequestMock);
+        }
 
         $this->guzzleClientMock->method('send')
             ->will(
@@ -127,8 +133,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             )->disableOriginalConstructor()
             ->getMock();
 
-        $this->guzzleClientMock->method('createRequest')
-            ->willReturn($guzzleRequestMock);
+        if ($this->isUsingLegacyGuzzle()) {
+            $this->guzzleClientMock->method('createRequest')
+                ->willReturn($guzzleRequestMock);
+        }
 
         $responseMock = $this->getResponseMock();
 
