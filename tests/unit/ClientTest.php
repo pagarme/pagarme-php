@@ -37,16 +37,17 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function mustSendRequest()
     {
-        $this->guzzleClientMock->expects($this->once())
-            ->method('createRequest')
+        $this->guzzleClientMock->method('createRequest')
             ->willReturn($this->getMock('GuzzleHttp\Message\RequestInterface'));
 
-        $responseMock = $this->getMockBuilder('GuzzleHttp\Message\Response')
-            ->disableOriginalConstructor()
+        $streamMock = $this->getMockBuilder(
+            'Psr\Http\Message\StreamInterface'
+            )->disableOriginalConstructor()
             ->getMock();
 
-        $streamMock = $this->getMockBuilder('GuzzleHttp\Stream\Stream')
-            ->disableOriginalConstructor()
+        $responseMock = $this->getMockBuilder(
+            'GuzzleHttp\Psr7\Response'
+            )->disableOriginalConstructor()
             ->getMock();
 
         $responseMock->method('getBody')
@@ -68,8 +69,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function mustSendRequestWithProperContent()
     {
-        $this->guzzleClientMock->expects($this->once())
-            ->method('createRequest')
+        $this->guzzleClientMock->method('createRequest')
             ->with(
                 RequestInterface::HTTP_POST,
                 self::REQUEST_PATH,
@@ -82,11 +82,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             )
             ->willReturn($this->getMock('GuzzleHttp\Message\RequestInterface'));
 
-        $responseMock = $this->getMockBuilder('GuzzleHttp\Message\Response')
+        $responseMock = $this->getMockBuilder('GuzzleHttp\Psr7\Response')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $streamMock = $this->getMockBuilder('GuzzleHttp\Stream\Stream')
+        $streamMock = $this->getMockBuilder('Psr\Http\Message\StreamInterface')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -110,11 +110,13 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function mustReturnClientExeptionWhenGetRequestException()
     {
-        $guzzleRequestMock = $this->getMock('GuzzleHttp\Message\RequestInterface');
+        $guzzleRequestMock = $this->getMock(
+            'Psr\Http\Message\RequestInterface'
+        );
 
-        $this->guzzleClientMock->expects($this->once())
-            ->method('createRequest')
+        $this->guzzleClientMock->method('createRequest')
             ->willReturn($guzzleRequestMock);
+
         $this->guzzleClientMock->method('send')
             ->will(
                 $this->throwException(
@@ -138,40 +140,37 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function mustSetDefaultTimeout()
     {
-        $defaultTimeout = 144;
+        $timeout = 237;
 
-        $this->guzzleClientMock
-            ->expects($this->once())
-            ->method('setDefaultOption')
+        $this->guzzleClientMock->method('createRequest')
+            ->willReturn($this->getMock('GuzzleHttp\Message\RequestInterface'));
+
+        $streamMock = $this->getMockBuilder(
+            'Psr\Http\Message\StreamInterface'
+            )->disableOriginalConstructor()
+            ->getMock();
+
+        $responseMock = $this->getMockBuilder(
+            'GuzzleHttp\Psr7\Response'
+            )->disableOriginalConstructor()
+            ->getMock();
+
+        $responseMock->method('getBody')
+            ->willReturn($streamMock);
+
+        $this->guzzleClientMock->expects($this->once())
+            ->method('send')
             ->with(
-                $this->equalTo('timeout'),
-                $this->equalTo($defaultTimeout)
-            );
+                $this->isInstanceOf('GuzzleHttp\Psr7\Request'),
+                ['timeout' => $timeout]
+            )->willReturn($responseMock);
 
         $client = new Client(
             $this->guzzleClientMock,
-            self::API_KEY
-        );
-
-        $client->setDefaultTimeout($defaultTimeout);
-    }
-
-    /**
-     * @test
-     */
-    public function mustCreateWithDefaultTimeout()
-    {
-        $defaultTimeout = 132;
-
-        $guzzleClient = new GuzzleClient();
-
-        $client = new Client(
-            $guzzleClient,
             self::API_KEY,
-            $defaultTimeout
+            $timeout
         );
 
-        $this->assertEquals($defaultTimeout, $guzzleClient->getDefaultOption('timeout'));
-        $this->assertEquals($guzzleClient->getDefaultOption('timeout'), $client->getDefaultTimeout());
+        $client->send($this->requestMock);
     }
 }

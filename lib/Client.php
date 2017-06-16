@@ -3,6 +3,7 @@
 namespace PagarMe\Sdk;
 
 use GuzzleHttp\Client as GuzzleClient;
+use PagarMe\Sdk\PagarMeException;
 
 class Client
 {
@@ -17,34 +18,23 @@ class Client
     private $client;
 
     /**
+     * @var int
+     */
+    private $timeout;
+
+    /**
      * @param \GuzzleHttp\Client $client
      * @param string $apiKey
      * @param int|null $timeout
      */
-    public function __construct(GuzzleClient $client, $apiKey, $timeout = null)
-    {
-        $this->client = $client;
-        $this->apiKey = $apiKey;
-
-        if (!is_null($timeout)) {
-            $this->setDefaultTimeout($timeout);
-        }
-    }
-
-    /**
-     * @param int $timeout
-     */
-    public function setDefaultTimeout($timeout)
-    {
-        $this->client->setDefaultOption('timeout', $timeout);
-    }
-
-    /**
-     * @return int
-     */
-    public function getDefaultTimeout()
-    {
-        return $this->client->getDefaultOption('timeout');
+    public function __construct(
+        GuzzleClient $client,
+        $apiKey,
+        $timeout = null
+    ) {
+        $this->client  = $client;
+        $this->apiKey  = $apiKey;
+        $this->timeout = $timeout;
     }
 
     /**
@@ -54,19 +44,21 @@ class Client
      */
     public function send(RequestInterface $apiRequest)
     {
-        $request = $this->client->createRequest(
-            $apiRequest->getMethod(),
-            $apiRequest->getPath(),
-            $this->buildBody($apiRequest)
-        );
+        $request = $this->buildRequest($apiRequest);
 
         try {
-            $response = $this->client->send($request);
-            return json_decode($response->getBody()->getContents());
+            $response = $this->client->send(
+                $request,
+                ['timeout' => $this->timeout]
+            );
+
+            $content = $this->extractResponse($response);
+
+            return json_decode($content);
         } catch (\GuzzleHttp\Exception\ClientException $exception) {
-            $response = $exception->getResponse()->getBody()->getContents();
+            $message = $exception->getResponse()->getBody()->getContents();
             $code = $exception->getResponse()->getStatusCode();
-            throw new ClientException($response, $code);
+            throw new ClientException($message, $code);
         } catch (\GuzzleHttp\Exception\RequestException $exception) {
             throw new ClientException(
                 $exception->getMessage(),
@@ -76,19 +68,60 @@ class Client
     }
 
     /**
+     * @param mixed $response
+     * @return mixed
+     */
+    private function extractResponse($response)
+    {
+        if ($response instanceof \GuzzleHttp\Psr7\Response) {
+            return $response->getBody()->getContents();
+        }
+
+        if ($response instanceof \GuzzleHttp\Message\Response) {
+            return $response->getBody()->getContents();
+        }
+
+        throw new \Exception("Can't extract response");
+    }
+
+    /**
+     * @param RequestInterface $apiRequest
+     * @return mixed
+     */
+    private function buildRequest($apiRequest)
+    {
+        if (method_exists($this->client, 'createRequest')) {
+            return $this->client->createRequest(
+                $apiRequest->getMethod(),
+                $apiRequest->getPath(),
+                ['json' => $this->buildBody($apiRequest)]
+            );
+        }
+
+        if (class_exists('\\GuzzleHttp\\Psr7\\Request')) {
+            return new \GuzzleHttp\Psr7\Request(
+                $apiRequest->getMethod(),
+                $apiRequest->getPath(),
+                ['Content-Type' => 'application/json'],
+                json_encode($this->buildBody($apiRequest))
+            );
+        }
+
+        throw new \Exception("Can't build request");
+    }
+
+    /**
      * @param RequestInterface $apiRequest
      * @return array
      */
     private function buildBody(RequestInterface $request)
     {
-        return [
-            'json' => array_merge(
-                $request->getPayload(),
-                [
-                    'api_key' => $this->apiKey
-                ]
-            )
-        ];
+        return array_merge(
+            $request->getPayload(),
+            [
+                'api_key' => $this->apiKey
+            ]
+        );
     }
 
     /**

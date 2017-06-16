@@ -138,13 +138,14 @@ class PagarMe
             new GuzzleClient(
                 [
                     'base_url' => 'https://api.pagar.me/1/',
+                    'base_uri' => 'https://api.pagar.me/1/',
                     'defaults' => [
-                        'headers' => $headers
+                        'headers' => $headers,
+                        'timeout' => $timeout
                     ]
                 ]
             ),
             $apiKey,
-            $timeout
         );
     }
 
