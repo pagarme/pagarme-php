@@ -52,9 +52,7 @@ class Client
                 ['timeout' => $this->timeout]
             );
 
-            $content = $this->extractResponse($response);
-
-            return json_decode($content);
+            return json_decode($response->getBody()->getContents());
         } catch (\GuzzleHttp\Exception\ClientException $exception) {
             $message = $exception->getResponse()->getBody()->getContents();
             $code = $exception->getResponse()->getStatusCode();
@@ -68,29 +66,12 @@ class Client
     }
 
     /**
-     * @param mixed $response
-     * @return mixed
-     */
-    private function extractResponse($response)
-    {
-        if ($response instanceof \GuzzleHttp\Psr7\Response) {
-            return $response->getBody()->getContents();
-        }
-
-        if ($response instanceof \GuzzleHttp\Message\Response) {
-            return $response->getBody()->getContents();
-        }
-
-        throw new \Exception("Can't extract response");
-    }
-
-    /**
      * @param RequestInterface $apiRequest
      * @return mixed
      */
     private function buildRequest($apiRequest)
     {
-        if (method_exists($this->client, 'createRequest')) {
+        if (class_exists('\\GuzzleHttp\\Message\\Request')) {
             return $this->client->createRequest(
                 $apiRequest->getMethod(),
                 $apiRequest->getPath(),

@@ -145,7 +145,7 @@ class PagarMe
                     ]
                 ]
             ),
-            $apiKey,
+            $apiKey
         );
     }
 

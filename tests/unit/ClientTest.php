@@ -21,13 +21,13 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->requestMock = $this->getMockBuilder('PagarMe\Sdk\RequestInterface')
+        $this->pagarMeRequestMock = $this->getMockBuilder('PagarMe\Sdk\RequestInterface')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->requestMock->method('getMethod')->willReturn(RequestInterface::HTTP_POST);
-        $this->requestMock->method('getPath')->willReturn(self::REQUEST_PATH);
-        $this->requestMock->method('getPayload')->willReturn(
+        $this->pagarMeRequestMock->method('getMethod')->willReturn(RequestInterface::HTTP_POST);
+        $this->pagarMeRequestMock->method('getPath')->willReturn(self::REQUEST_PATH);
+        $this->pagarMeRequestMock->method('getPayload')->willReturn(
             ['content' => self::CONTENT]
         );
     }
@@ -40,18 +40,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->guzzleClientMock->method('createRequest')
             ->willReturn($this->getMock('GuzzleHttp\Message\RequestInterface'));
 
-        $streamMock = $this->getMockBuilder(
-            'Psr\Http\Message\StreamInterface'
-            )->disableOriginalConstructor()
-            ->getMock();
-
-        $responseMock = $this->getMockBuilder(
-            'GuzzleHttp\Psr7\Response'
-            )->disableOriginalConstructor()
-            ->getMock();
-
-        $responseMock->method('getBody')
-            ->willReturn($streamMock);
+        $responseMock = $this->getResponseMock();
 
         $this->guzzleClientMock->expects($this->once())->method('send')
             ->willReturn($responseMock);
@@ -61,7 +50,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             self::API_KEY
         );
 
-        $client->send($this->requestMock);
+        $client->send($this->pagarMeRequestMock);
     }
 
     /**
@@ -82,16 +71,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             )
             ->willReturn($this->getMock('GuzzleHttp\Message\RequestInterface'));
 
-        $responseMock = $this->getMockBuilder('GuzzleHttp\Psr7\Response')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $streamMock = $this->getMockBuilder('Psr\Http\Message\StreamInterface')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $responseMock->method('getBody')
-            ->willReturn($streamMock);
+        $responseMock = $this->getResponseMock();
 
         $this->guzzleClientMock->expects($this->once())->method('send')
             ->willReturn($responseMock);
@@ -101,7 +81,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             self::API_KEY
         );
 
-        $client->send($this->requestMock);
+        $client->send($this->pagarMeRequestMock);
     }
 
     /**
@@ -111,7 +91,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     public function mustReturnClientExeptionWhenGetRequestException()
     {
         $guzzleRequestMock = $this->getMock(
-            'Psr\Http\Message\RequestInterface'
+            $this->getGuzzleRequestInterfaceName()
         );
 
         $this->guzzleClientMock->method('createRequest')
@@ -132,7 +112,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             $this->guzzleClientMock,
             self::API_KEY
         );
-        $client->send($this->requestMock);
+        $client->send($this->pagarMeRequestMock);
     }
 
     /**
@@ -142,8 +122,73 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         $timeout = 237;
 
+        $guzzleRequestMock = $this->getMockBuilder(
+            $this->getGuzzleRequestClassName()
+            )->disableOriginalConstructor()
+            ->getMock();
+
         $this->guzzleClientMock->method('createRequest')
-            ->willReturn($this->getMock('GuzzleHttp\Message\RequestInterface'));
+            ->willReturn($guzzleRequestMock);
+
+        $responseMock = $this->getResponseMock();
+
+        $this->guzzleClientMock->expects($this->once())
+            ->method('send')
+            ->with(
+                $this->isInstanceOf($this->getGuzzleRequestClassName()),
+                ['timeout' => $timeout]
+            )->willReturn($responseMock);
+
+        $client = new Client(
+            $this->guzzleClientMock,
+            self::API_KEY,
+            $timeout
+        );
+
+        $client->send($this->pagarMeRequestMock);
+    }
+
+    private function isUsingLegacyGuzzle()
+    {
+        return class_exists('\\GuzzleHttp\\Message\\Request');
+    }
+
+    private function getGuzzleRequestInterfaceName()
+    {
+        if ($this->isUsingLegacyGuzzle()) {
+            return 'GuzzleHttp\Message\RequestInterface';
+        }
+
+        return 'Psr\Http\Message\RequestInterface';
+    }
+
+    private function getGuzzleRequestClassName()
+    {
+        if ($this->isUsingLegacyGuzzle()) {
+            return 'GuzzleHttp\Message\Request';
+        }
+
+        return 'GuzzleHttp\Psr7\Request';
+    }
+
+    private function getResponseMock()
+    {
+        if ($this->isUsingLegacyGuzzle()) {
+            $streamMock = $this->getMockBuilder(
+            'GuzzleHttp\Stream\Stream'
+            )->disableOriginalConstructor()
+            ->getMock();
+
+            $responseMock = $this->getMockBuilder(
+                'GuzzleHttp\Message\Response'
+                )->disableOriginalConstructor()
+                ->getMock();
+
+            $responseMock->method('getBody')
+                ->willReturn($streamMock);
+
+            return $responseMock;
+        }
 
         $streamMock = $this->getMockBuilder(
             'Psr\Http\Message\StreamInterface'
@@ -158,19 +203,6 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $responseMock->method('getBody')
             ->willReturn($streamMock);
 
-        $this->guzzleClientMock->expects($this->once())
-            ->method('send')
-            ->with(
-                $this->isInstanceOf('GuzzleHttp\Psr7\Request'),
-                ['timeout' => $timeout]
-            )->willReturn($responseMock);
-
-        $client = new Client(
-            $this->guzzleClientMock,
-            self::API_KEY,
-            $timeout
-        );
-
-        $client->send($this->requestMock);
+        return $responseMock;
     }
 }
