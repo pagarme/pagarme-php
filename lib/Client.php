@@ -3,7 +3,6 @@
 namespace PagarMe\Sdk;
 
 use GuzzleHttp\Client as GuzzleClient;
-use PagarMe\Sdk\PagarMeException;
 
 class Client
 {
