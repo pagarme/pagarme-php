@@ -37,3 +37,8 @@ Feature: Subscription
     Given a previous created subscription
     When I query the transactions of this subscription
     Then transactions must be returned
+
+ Scenario: Update the plan of the subscription
+    Given previous created subscriptions
+    When I change the subscription plan
+    Then the same subscription must be returned
