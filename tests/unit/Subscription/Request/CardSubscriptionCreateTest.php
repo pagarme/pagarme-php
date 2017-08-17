@@ -128,12 +128,12 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
 
         if ($percentage) {
             $splitRule->method('getPercentage')
-                ->willReturn(SELF::SPLIT_RULE_VALUE);
+                ->willReturn(self::SPLIT_RULE_VALUE);
             $splitRule->method('getAmount')
                 ->willReturn(null);
         } else {
             $splitRule->method('getAmount')
-                ->willReturn(SELF::SPLIT_RULE_VALUE);
+                ->willReturn(self::SPLIT_RULE_VALUE);
         }
 
         return $splitRule;
