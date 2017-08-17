@@ -91,8 +91,6 @@ abstract class SubscriptionCreate implements RequestInterface
             $payload['split_rules'] = $this->getSplitRulesInfo();
         }
 
-        // echo "<pre>";
-        // echo(json_encode($payload));die;
         return $payload;
     }
 
