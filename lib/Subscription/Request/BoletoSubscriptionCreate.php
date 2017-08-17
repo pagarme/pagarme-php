@@ -19,13 +19,15 @@ class BoletoSubscriptionCreate extends SubscriptionCreate
         Plan $plan,
         Customer $customer,
         $postbackUrl,
-        $metadata
+        $metadata,
+        $extraAttributes
     ) {
         parent::__construct(
             $plan,
             $customer,
             $postbackUrl,
-            $metadata
+            $metadata,
+            $extraAttributes
         );
 
         $this->paymentMethod = self::PAYMENT_METHOD;

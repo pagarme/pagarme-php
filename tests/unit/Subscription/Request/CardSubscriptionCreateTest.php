@@ -3,6 +3,8 @@
 namespace PagarMe\SdkTest\Subscription\Request;
 
 use PagarMe\Sdk\Subscription\Request\CardSubscriptionCreate;
+use PagarMe\Sdk\SplitRule\SplitRuleCollection;
+use PagarMe\Sdk\Recipient\Recipient;
 use PagarMe\Sdk\RequestInterface;
 
 class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
@@ -30,6 +32,10 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
 
     const CARD_ID = 123456;
     const CARD_HASH = 'FC1mH7XLFU5fjPAzDsP0ogeAQh3qXRpHzkIrgDz64lITBUGwio67zm';
+
+    const SPLIT_RULE_RECIPIENT_ID_1 = 're_cj2wd5ul500d4946do7qtjrvk';
+    const SPLIT_RULE_RECIPIENT_ID_2 = 're_cj2wd5u2600fecw6eytgcbkd0';
+    const SPLIT_RULE_VALUE = 50;
 
     private function getConfiguredPlanMockForPayloadTest()
     {
@@ -106,6 +112,42 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
         return $addressMock;
     }
 
+    private function getConfiguredSplitRuleMockForPayloadTest($recipientId, $percentage)
+    {
+        $splitRule = $this->getMockBuilder('PagarMe\Sdk\SplitRule\SplitRule')
+            ->disableOriginalConstructor()->getMock();
+
+        $splitRule->method('getRecipient')
+            ->willReturn(new Recipient(['id' => $recipientId]));
+        $splitRule->method('getChargeProcessingFee')
+            ->willReturn(true);
+        $splitRule->method('getChargeRemainder')
+            ->willReturn(true);
+        $splitRule->method('getLiable')
+            ->willReturn(true);
+
+        if ($percentage) {
+            $splitRule->method('getPercentage')
+                ->willReturn(SELF::SPLIT_RULE_VALUE);
+            $splitRule->method('getAmount')
+                ->willReturn(null);
+        } else {
+            $splitRule->method('getAmount')
+                ->willReturn(SELF::SPLIT_RULE_VALUE);
+        }
+
+        return $splitRule;
+    }
+
+    private function getConfiguredSplitRuleCollectionMockForPayloadTest($percentage = true)
+    {
+        $rules = new SplitRuleCollection();
+        $rules[] = $this->getConfiguredSplitRuleMockForPayloadTest(self::SPLIT_RULE_RECIPIENT_ID_1, $percentage);
+        $rules[] = $this->getConfiguredSplitRuleMockForPayloadTest(self::SPLIT_RULE_RECIPIENT_ID_2, $percentage);
+
+        return $rules;
+    }
+
     private function getConfiguredPhoneMockForPayloadTest()
     {
         $phoneMock = $this->getMockBuilder('PagarMe\Sdk\Customer\Phone')
@@ -168,6 +210,58 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    private function getExpectedPayloadWithSplitRulesAmount()
+    {
+        return array_merge(
+            $this->getDefaultPayloadWithoutCardInfo(),
+            [
+                'card_id' => self::CARD_ID,
+                "split_rules" => [
+                    [
+                        "recipient_id" => self::SPLIT_RULE_RECIPIENT_ID_1,
+                        "amount" => self::SPLIT_RULE_VALUE,
+                        "liable" => true,
+                        "charge_processing_fee" => true,
+                        "charge_remainder_fee" => true
+                    ],
+                    [
+                        "recipient_id" => self::SPLIT_RULE_RECIPIENT_ID_2,
+                        "amount" => 50,
+                        "liable" => true,
+                        "charge_processing_fee" => true,
+                        "charge_remainder_fee" => true
+                    ]
+                ]
+            ]
+        );
+    }
+
+    private function getExpectedPayloadWithSplitRulesPercentage()
+    {
+        return array_merge(
+            $this->getDefaultPayloadWithoutCardInfo(),
+            [
+                'card_id' => self::CARD_ID,
+                "split_rules" => [
+                    [
+                        "recipient_id" => self::SPLIT_RULE_RECIPIENT_ID_1,
+                        "percentage" => self::SPLIT_RULE_VALUE,
+                        "liable" => true,
+                        "charge_processing_fee" => true,
+                        "charge_remainder_fee" => true
+                    ],
+                    [
+                        "recipient_id" => self::SPLIT_RULE_RECIPIENT_ID_2,
+                        "percentage" => 50,
+                        "liable" => true,
+                        "charge_processing_fee" => true,
+                        "charge_remainder_fee" => true
+                    ]
+                ]
+            ]
+        );
+    }
+
     /**
      * @test
      */
@@ -187,12 +281,71 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
             $cardMock,
             $customerMock,
             self::POSTBACK_URL,
-            $this->planMetadata()
+            $this->planMetadata(),
+            []
         );
 
         $this->assertEquals(
             $cardSubscriptionCreateRequest->getPayload(),
             $this->getExpectedPayloadWithCardId()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function mustPayloadWithSplitRuleAmountBeCorrect()
+    {
+        $planMock = $this->getConfiguredPlanMockForPayloadTest();
+
+        $cardMock = $this->getMockBuilder('PagarMe\Sdk\Card\Card')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $cardMock->method('getId')->willReturn(self::CARD_ID);
+
+        $customerMock = $this->getConfiguredCustomerMockForPayloadTest();
+
+        $cardSubscriptionCreateRequest = new CardSubscriptionCreate(
+            $planMock,
+            $cardMock,
+            $customerMock,
+            self::POSTBACK_URL,
+            $this->planMetadata(),
+            ['split_rules' => $this->getConfiguredSplitRuleCollectionMockForPayloadTest(false)]
+        );
+
+        $this->assertEquals(
+            $cardSubscriptionCreateRequest->getPayload(),
+            $this->getExpectedPayloadWithSplitRulesAmount()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function mustPayloadWithSplitRulePercentageBeCorrect()
+    {
+        $planMock = $this->getConfiguredPlanMockForPayloadTest();
+
+        $cardMock = $this->getMockBuilder('PagarMe\Sdk\Card\Card')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $cardMock->method('getId')->willReturn(self::CARD_ID);
+
+        $customerMock = $this->getConfiguredCustomerMockForPayloadTest();
+
+        $cardSubscriptionCreateRequest = new CardSubscriptionCreate(
+            $planMock,
+            $cardMock,
+            $customerMock,
+            self::POSTBACK_URL,
+            $this->planMetadata(),
+            ['split_rules' => $this->getConfiguredSplitRuleCollectionMockForPayloadTest()]
+        );
+
+        $this->assertEquals(
+            $cardSubscriptionCreateRequest->getPayload(),
+            $this->getExpectedPayloadWithSplitRulesPercentage()
         );
     }
 
@@ -215,7 +368,8 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
             $cardMock,
             $customerMock,
             self::POSTBACK_URL,
-            $this->planMetadata()
+            $this->planMetadata(),
+            []
         );
 
         $this->assertEquals(
@@ -243,7 +397,8 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
             $cardMock,
             $customerMock,
             self::POSTBACK_URL,
-            $this->planMetadata()
+            $this->planMetadata(),
+            []
         );
 
         $this->assertEquals(
@@ -282,6 +437,7 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
             $cardMock,
             $customerMock,
             null,
+            [],
             []
         );
 
@@ -314,6 +470,7 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
             $cardMock,
             $customerMock,
             null,
+            [],
             []
         );
 

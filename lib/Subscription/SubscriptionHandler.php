@@ -33,14 +33,16 @@ class SubscriptionHandler extends AbstractHandler
         Card $card,
         Customer $customer,
         $postbackUrl = null,
-        $metadata = null
+        $metadata = null,
+        $extraAttributes = []
     ) {
         $request = new CardSubscriptionCreate(
             $plan,
             $card,
             $customer,
             $postbackUrl,
-            $metadata
+            $metadata,
+            $extraAttributes
         );
 
         $response = $this->client->send($request);
@@ -59,13 +61,15 @@ class SubscriptionHandler extends AbstractHandler
         Plan $plan,
         Customer $customer,
         $postbackUrl = null,
-        $metadata = null
+        $metadata = null,
+        $extraAttributes = []
     ) {
         $request = new BoletoSubscriptionCreate(
             $plan,
             $customer,
             $postbackUrl,
-            $metadata
+            $metadata,
+            $extraAttributes
         );
 
         $response = $this->client->send($request);
