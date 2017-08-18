@@ -151,8 +151,7 @@ class BoletoSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
     {
         return array_merge(
             $this->getDefaultPayload(),
-            [
-                "split_rules" => [
+            ["split_rules" => [
                     [
                         "recipient_id"          => self::SPLIT_RULE_RECIPIENT_ID_1,
                         "amount"                => self::SPLIT_RULE_VALUE,
@@ -176,8 +175,7 @@ class BoletoSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
     {
         return array_merge(
             $this->getDefaultPayload(),
-            [
-                "split_rules" => [
+            ["split_rules" => [
                     [
                         "recipient_id"          => self::SPLIT_RULE_RECIPIENT_ID_1,
                         "percentage"            => self::SPLIT_RULE_VALUE,
