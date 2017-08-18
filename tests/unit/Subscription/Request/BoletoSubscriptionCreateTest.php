@@ -154,18 +154,18 @@ class BoletoSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
             [
                 "split_rules" => [
                     [
-                        "recipient_id" => self::SPLIT_RULE_RECIPIENT_ID_1,
-                        "amount" => self::SPLIT_RULE_VALUE,
-                        "liable" => true,
+                        "recipient_id"          => self::SPLIT_RULE_RECIPIENT_ID_1,
+                        "amount"                => self::SPLIT_RULE_VALUE,
+                        "liable"                => true,
                         "charge_processing_fee" => true,
-                        "charge_remainder_fee" => true
+                        "charge_remainder_fee"  => true
                     ],
                     [
-                        "recipient_id" => self::SPLIT_RULE_RECIPIENT_ID_2,
-                        "amount" => 50,
-                        "liable" => true,
+                        "recipient_id"          => self::SPLIT_RULE_RECIPIENT_ID_2,
+                        "amount"                => 50,
+                        "liable"                => true,
                         "charge_processing_fee" => true,
-                        "charge_remainder_fee" => true
+                        "charge_remainder_fee"  => true
                     ]
                 ]
             ]
@@ -179,18 +179,18 @@ class BoletoSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
             [
                 "split_rules" => [
                     [
-                        "recipient_id" => self::SPLIT_RULE_RECIPIENT_ID_1,
-                        "percentage" => self::SPLIT_RULE_VALUE,
-                        "liable" => true,
+                        "recipient_id"          => self::SPLIT_RULE_RECIPIENT_ID_1,
+                        "percentage"            => self::SPLIT_RULE_VALUE,
+                        "liable"                => true,
                         "charge_processing_fee" => true,
-                        "charge_remainder_fee" => true
+                        "charge_remainder_fee"  => true
                     ],
                     [
-                        "recipient_id" => self::SPLIT_RULE_RECIPIENT_ID_2,
-                        "percentage" => 50,
-                        "liable" => true,
+                        "recipient_id"          => self::SPLIT_RULE_RECIPIENT_ID_2,
+                        "percentage"            => 50,
+                        "liable"                => true,
                         "charge_processing_fee" => true,
-                        "charge_remainder_fee" => true
+                        "charge_remainder_fee"  => true
                     ]
                 ]
             ]

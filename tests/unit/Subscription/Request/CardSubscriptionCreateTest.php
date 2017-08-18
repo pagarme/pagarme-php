@@ -30,12 +30,12 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
     const ADDRESS_NEIGHBORHOOD = 'Centro';
     const ADDRESS_ZIPCODE      = '01034020';
 
-    const CARD_ID = 123456;
+    const CARD_ID   = 123456;
     const CARD_HASH = 'FC1mH7XLFU5fjPAzDsP0ogeAQh3qXRpHzkIrgDz64lITBUGwio67zm';
 
     const SPLIT_RULE_RECIPIENT_ID_1 = 're_cj2wd5ul500d4946do7qtjrvk';
     const SPLIT_RULE_RECIPIENT_ID_2 = 're_cj2wd5u2600fecw6eytgcbkd0';
-    const SPLIT_RULE_VALUE = 50;
+    const SPLIT_RULE_VALUE          = 50;
 
     private function getConfiguredPlanMockForPayloadTest()
     {
@@ -215,21 +215,21 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
         return array_merge(
             $this->getDefaultPayloadWithoutCardInfo(),
             [
-                'card_id' => self::CARD_ID,
+                'card_id'     => self::CARD_ID,
                 "split_rules" => [
                     [
-                        "recipient_id" => self::SPLIT_RULE_RECIPIENT_ID_1,
-                        "amount" => self::SPLIT_RULE_VALUE,
-                        "liable" => true,
+                        "recipient_id"          => self::SPLIT_RULE_RECIPIENT_ID_1,
+                        "amount"                => self::SPLIT_RULE_VALUE,
+                        "liable"                => true,
                         "charge_processing_fee" => true,
-                        "charge_remainder_fee" => true
+                        "charge_remainder_fee"  => true
                     ],
                     [
-                        "recipient_id" => self::SPLIT_RULE_RECIPIENT_ID_2,
-                        "amount" => 50,
-                        "liable" => true,
+                        "recipient_id"          => self::SPLIT_RULE_RECIPIENT_ID_2,
+                        "amount"                => 50,
+                        "liable"                => true,
                         "charge_processing_fee" => true,
-                        "charge_remainder_fee" => true
+                        "charge_remainder_fee"  => true
                     ]
                 ]
             ]
@@ -241,21 +241,21 @@ class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
         return array_merge(
             $this->getDefaultPayloadWithoutCardInfo(),
             [
-                'card_id' => self::CARD_ID,
+                'card_id'     => self::CARD_ID,
                 "split_rules" => [
                     [
-                        "recipient_id" => self::SPLIT_RULE_RECIPIENT_ID_1,
-                        "percentage" => self::SPLIT_RULE_VALUE,
-                        "liable" => true,
+                        "recipient_id"          => self::SPLIT_RULE_RECIPIENT_ID_1,
+                        "percentage"            => self::SPLIT_RULE_VALUE,
+                        "liable"                => true,
                         "charge_processing_fee" => true,
-                        "charge_remainder_fee" => true
+                        "charge_remainder_fee"  => true
                     ],
                     [
-                        "recipient_id" => self::SPLIT_RULE_RECIPIENT_ID_2,
-                        "percentage" => 50,
-                        "liable" => true,
+                        "recipient_id"          => self::SPLIT_RULE_RECIPIENT_ID_2,
+                        "percentage"            => 50,
+                        "liable"                => true,
                         "charge_processing_fee" => true,
-                        "charge_remainder_fee" => true
+                        "charge_remainder_fee"  => true
                     ]
                 ]
             ]
