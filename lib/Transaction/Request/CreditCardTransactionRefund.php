@@ -18,27 +18,35 @@ class CreditCardTransactionRefund implements RequestInterface
     protected $amount;
 
     /**
+     * @var bool
+     */
+    protected $async;
+
+    /**
      * @param CreditCardTransaction $transaction
      * @param int $amount
+     * @param bool $async
      */
-    public function __construct(CreditCardTransaction $transaction, $amount)
+    public function __construct(CreditCardTransaction $transaction, $amount, $async = true)
     {
         $this->transaction = $transaction;
         $this->amount      = $amount;
+        $this->async       = $async;
     }
 
     /**
-     * @param string
+     * @return string
      */
     public function getPayload()
     {
         return [
-            'amount' => $this->amount
+            'amount' => $this->amount,
+            'async' => $this->async,
         ];
     }
 
     /**
-     * @param string
+     * @return string
      */
     public function getPath()
     {
@@ -46,7 +54,7 @@ class CreditCardTransactionRefund implements RequestInterface
     }
 
     /**
-     * @param string
+     * @return string
      */
     public function getMethod()
     {
