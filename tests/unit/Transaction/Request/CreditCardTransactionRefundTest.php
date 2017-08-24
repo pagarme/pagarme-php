@@ -40,7 +40,7 @@ class CreditCardTransactionRefundTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             [
-                'amount' => $amount,
+	            'amount' => $amount,
 	            'async' => $async,
             ],
             $transactionCreate->getPayload()
