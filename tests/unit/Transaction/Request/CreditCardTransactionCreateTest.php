@@ -20,8 +20,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [1,true,null, null],
-            [3,true, 'example.com', 'Sua Loja'],
-            [12,false, 'example.com', null],
+            [3,true, 'example.com', 'Sua Loja', true],
+            [12,false, 'example.com', null, false],
             [rand(1, 12), false, null, 'Outra Loja']
         ];
     }
@@ -34,13 +34,15 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
         $installments,
         $capture,
         $postbackUrl,
-        $softDescriptor
+        $softDescriptor,
+        $async = null
     ) {
         $transaction =  $this->getTransaction(
             $installments,
             $capture,
             $postbackUrl,
-            $softDescriptor
+            $softDescriptor,
+            $async
         );
 
         $transactionCreate = new CreditCardTransactionCreate($transaction);
@@ -73,7 +75,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                     ]
                 ],
                 'metadata'        => null,
-                'soft_descriptor' => $softDescriptor
+                'soft_descriptor' => $softDescriptor,
+                'async'           => $async
             ],
             $transactionCreate->getPayload()
         );
@@ -120,7 +123,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                     'sex'             => null
                 ],
                 'metadata'        => null,
-                'soft_descriptor' => null
+                'soft_descriptor' => null,
+                'async'           => null
             ],
             $transactionCreate->getPayload()
         );
@@ -204,7 +208,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                     ]
                 ],
                 'metadata'        => null,
-                'soft_descriptor' => null
+                'soft_descriptor' => null,
+                'async'           => null
             ],
             $transactionCreate->getPayload()
         );
@@ -288,7 +293,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                     ]
                 ],
                 'metadata'        => null,
-                'soft_descriptor' => null
+                'soft_descriptor' => null,
+                'async'           => null
             ],
             $transactionCreate->getPayload()
         );
@@ -377,7 +383,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                     ]
                 ],
                 'metadata'        => null,
-                'soft_descriptor' => null
+                'soft_descriptor' => null,
+                'async'           => null
             ],
             $transactionCreate->getPayload()
         );
@@ -388,7 +395,14 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
      */
     public function mustPathBeCorrect()
     {
-        $transaction =  $this->getTransaction(rand(1, 12), false, null, null);
+        $transaction =  $this->getTransaction(
+            rand(1, 12),
+            false,
+            null,
+            null,
+            null
+        );
+
         $transactionCreate = new CreditCardTransactionCreate($transaction);
 
         $this->assertEquals(self::PATH, $transactionCreate->getPath());
@@ -399,7 +413,14 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
      */
     public function mustMethodBeCorrect()
     {
-        $transaction =  $this->getTransaction(rand(1, 12), false, null, null);
+        $transaction =  $this->getTransaction(
+            rand(1, 12),
+            false,
+            null,
+            null,
+            null
+        );
+
         $transactionCreate = new CreditCardTransactionCreate($transaction);
 
         $this->assertEquals(RequestInterface::HTTP_POST, $transactionCreate->getMethod());
@@ -409,7 +430,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
         $installments,
         $capture,
         $postbackUrl,
-        $softDescriptor
+        $softDescriptor,
+        $async
     ) {
         $customerMock = $this->getFullCustomerMock();
         $cardMock     = $this->getCardMock();
@@ -422,7 +444,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 'installments'   => $installments,
                 'capture'        => $capture,
                 'postbackUrl'    => $postbackUrl,
-                'softDescriptor' => $softDescriptor
+                'softDescriptor' => $softDescriptor,
+                'async'          => $async
             ]
         );
 

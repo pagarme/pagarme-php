@@ -27,13 +27,15 @@ class CardSubscriptionCreate extends SubscriptionCreate
         Card $card,
         Customer $customer,
         $postbackUrl,
-        $metadata
+        $metadata,
+        $extraAttributes
     ) {
         parent::__construct(
             $plan,
             $customer,
             $postbackUrl,
-            $metadata
+            $metadata,
+            $extraAttributes
         );
 
         $this->card          = $card;

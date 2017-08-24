@@ -6,19 +6,20 @@ use PagarMe\Sdk\Recipient\Recipient;
 
 class SplitRuleHandler
 {
-
     /**
      * @param int $value
      * @param Recipient $recipient
      * @param bool $liable
      * @param bool $chargeProcessingFee
+     * @param bool $chargeRemainder
      * @return SplitRule
      */
     public function monetaryRule(
         $value,
         Recipient $recipient,
         $liable = null,
-        $chargeProcessingFee = null
+        $chargeProcessingFee = null,
+        $chargeRemainder = null
     ) {
         return new SplitRule(
             [
@@ -26,6 +27,7 @@ class SplitRuleHandler
                 'recipient'           => $recipient,
                 'liable'              => $liable,
                 'chargeProcessingFee' => $chargeProcessingFee,
+                'chargeRemainder'     => $chargeRemainder,
             ]
         );
     }
@@ -35,13 +37,15 @@ class SplitRuleHandler
      * @param Recipient $recipient
      * @param bool $liable
      * @param bool $chargeProcessingFee
+     * @param bool $chargeRemainder
      * @return SplitRule
      */
     public function percentageRule(
         $value,
         Recipient $recipient,
         $liable = null,
-        $chargeProcessingFee = null
+        $chargeProcessingFee = null,
+        $chargeRemainder = null
     ) {
         return new SplitRule(
             [
@@ -49,6 +53,7 @@ class SplitRuleHandler
                 'recipient'           => $recipient,
                 'liable'              => $liable,
                 'chargeProcessingFee' => $chargeProcessingFee,
+                'chargeRemainder'     => $chargeRemainder,
             ]
         );
     }

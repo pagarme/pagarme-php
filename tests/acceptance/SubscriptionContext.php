@@ -55,21 +55,21 @@ class SubscriptionContext extends BasicContext
     /**
      * @Given a valid plan
      */
-    public function aValidPlan()
+    public function aValidPlan($planName = 'Test Plan')
     {
         $this->plan = self::getPagarMe()
             ->plan()
-            ->create(555, 30, 'Test Plan');
+            ->create(555, 30, $planName);
     }
 
     /**
      * @Given a valid card
      */
-    public function aValidCard()
+    public function aValidCard($cardNumber = '4539706041746367')
     {
         $this->creditCard = self::getPagarMe()
             ->card()
-            ->create('4539706041746367', "John Doe", '0725');
+            ->create($cardNumber, "John Doe", '0725');
     }
 
     /**
@@ -127,6 +127,17 @@ class SubscriptionContext extends BasicContext
         $this->aValidCustomer();
         $this->aValidPlan();
         $this->makeABoletoSubscription();
+    }
+
+    /**
+     * @Given a previous created credit card subscription
+     */
+    public function aPreviousCreatedCreditCardSubscription()
+    {
+        $this->aValidCustomer();
+        $this->aValidPlan();
+	$this->aValidCard();
+        $this->makeACreditCardSubscription();
     }
 
     /**
@@ -223,4 +234,68 @@ class SubscriptionContext extends BasicContext
             $this->transactions
         );
     }
+
+    /**
+     * @When I update the subscription to use plan name :planName
+     */
+    public function iUpdateTheSubscriptionToUsePlan($planName)
+    {
+	$this->aValidPlan($planName);
+	$this->subscription->setPlan($this->plan);
+        $this->subscription = self::getPagarMe()
+            ->subscription()
+            ->update($this->subscription);
+        $this->iQueryForTheSubscription();
+    }
+
+    /**
+     * @When I update the subscription to use card number :cardNumber
+     */
+    public function iUpdateTheSubscriptionToUseCardNumber($cardNumber)
+    {
+        $this->aValidCard($cardNumber);
+        $this->subscription->setCard($this->creditCard);
+        $this->subscription = self::getPagarMe()
+            ->subscription()
+            ->update($this->subscription);
+        $this->iQueryForTheSubscription();
+    }
+
+    /**
+     * @Then must contain :needle in :key
+     */
+    public function mustContain($needle, $key)
+    {
+        $variableMethod = "get{$key}";
+        $objectAttribute = call_user_func([$this->querySubscription, $variableMethod]);
+        $serializeAttribute = json_encode((array) $objectAttribute);
+        assertContains($needle, $serializeAttribute);
+    }
+
+
+    /**
+     * @When I update the subscription to use payment method :paymentMethod
+     */
+    public function iUpdateTheSubscriptionPaymentMethod($paymentMethod)
+    {
+        $this->subscription->setPaymentMethod($paymentMethod);
+        $this->subscription = self::getPagarMe()
+            ->subscription()
+            ->update($this->subscription);
+        $this->iQueryForTheSubscription();
+    }
+
+    /**
+     * @When I change the subscription all
+     */
+    public function iChangeTheSubscriptionAll()
+    {
+        $this->aValidPlan();
+        $this->subscription->setPlan($this->plan);
+        $this->subscription = self::getPagarMe()
+            ->subscription()
+            ->update($this->subscription);
+        $this->iQueryForTheSubscription();
+    }
+
 }

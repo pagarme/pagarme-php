@@ -23,7 +23,8 @@ class CreditCardTransactionCreate extends TransactionCreate
         $cardData = [
             'installments'    => $this->transaction->getInstallments(),
             'capture'         => $this->transaction->isCapturable(),
-            'soft_descriptor' => $this->transaction->getSoftDescriptor()
+            'soft_descriptor' => $this->transaction->getSoftDescriptor(),
+            'async' => $this->transaction->getAsync()
         ];
 
         if (!is_null($this->transaction->getCardCvv())) {

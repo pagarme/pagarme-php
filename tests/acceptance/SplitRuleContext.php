@@ -39,10 +39,10 @@ class SplitRuleContext extends BasicContext
         $this->splitRules = new SplitRuleCollection();
         $this->splitRules[]= self::getPagarMe()
             ->splitRule()
-            ->percentageRule(51, $this->createRecipient());
+            ->percentageRule(51, $this->createRecipient(), null, null, true);
         $this->splitRules[]=self::getPagarMe()
             ->splitRule()
-            ->percentageRule(49, $this->createRecipient());
+            ->percentageRule(49, $this->createRecipient(), null, null, false);
     }
 
     /**

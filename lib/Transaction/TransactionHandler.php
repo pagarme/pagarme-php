@@ -25,12 +25,12 @@ class TransactionHandler extends AbstractHandler
 
     /**
      * @param int $amount
-     * @param PagarMe\Sdk\Card\Card $card
-     * @param PagarMe\Sdk\Customer\Customer $customer
+     * @param \PagarMe\Sdk\Card\Card $card
+     * @param \PagarMe\Sdk\Customer\Customer $customer
      * @param int $installments
      * @param boolean $capture
      * @param string $postBackUrl
-     * @param array $metaData
+     * @param array $metadata
      * @param array $extraAttributes
      * @return CreditCardTransaction
      */
@@ -66,8 +66,9 @@ class TransactionHandler extends AbstractHandler
 
     /**
      * @param int $amount
-     * @param PagarMe\Sdk\Customer\Customer $customer
+     * @param \PagarMe\Sdk\Customer\Customer $customer
      * @param string $postBackUrl
+     * @param mixed $metadata
      * @param array $extraAttributes
      * @return BoletoTransaction
      */
@@ -160,14 +161,21 @@ class TransactionHandler extends AbstractHandler
 
     /**
      * @param BoletoTransaction $transaction
-     * @param PagarMe\Sdk\BankAccount\BankAccount $bankAccount
+     * @param \PagarMe\Sdk\BankAccount\BankAccount $bankAccount
+     * @param int @amount
      * @return BoletoTransaction
      */
     public function boletoRefund(
         BoletoTransaction $transaction,
-        BankAccount $bankAccount
+        BankAccount $bankAccount,
+        $amount = null
     ) {
-        $request = new BoletoTransactionRefund($transaction, $bankAccount);
+        $request = new BoletoTransactionRefund(
+            $transaction,
+            $bankAccount,
+            $amount
+        );
+
         $response = $this->client->send($request);
 
         return $this->buildTransaction($response);

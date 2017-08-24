@@ -10,7 +10,12 @@ trait SubscriptionBuilder
 {
     use \PagarMe\Sdk\Transaction\TransactionBuilder;
 
-     /**
+    /**
+     * @var SubscriptonMemento $subscriptionMemento
+     */
+    public $subscriptionMemento;
+	
+    /**
      * @param array $subscriptionData
      * @return Subscription
      */
@@ -36,10 +41,20 @@ trait SubscriptionBuilder
             get_object_vars($subscriptionData->customer)
         );
 
-        $subscriptionData->current_transaction = $this->buildTransaction(
-            $subscriptionData->current_transaction
-        );
+        if (is_object($subscriptionData->current_transaction)) {
+            $subscriptionData->current_transaction = $this->buildTransaction(
+                $subscriptionData->current_transaction
+            );
+        }
 
-        return new Subscription(get_object_vars($subscriptionData));
+        $subscription = new Subscription(get_object_vars($subscriptionData));
+        $this->subscriptionMemento = new SubscriptionMemento($subscription);
+
+        return $subscription;
+    }
+   
+    public function getSubscriptionMemento()
+    {
+        return $this->subscriptionMemento;
     }
 }

@@ -51,7 +51,7 @@ class BulkAnticipationDelete implements RequestInterface
     public function getPath()
     {
         return sprintf(
-            'recipients/%s/bulk_anticipations/%s/delete',
+            'recipients/%s/bulk_anticipations/%s/',
             $this->recipient->getId(),
             $this->bulkAnticipation->getId()
         );

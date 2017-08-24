@@ -15,7 +15,6 @@ class RecipientBalanceOperationsTest extends \PHPUnit_Framework_TestCase
         $recipientMock = $this->getMockBuilder('PagarMe\Sdk\Recipient\Recipient')
             ->disableOriginalConstructor()
             ->getMock();
-        $recipientMock->method('getId')->willReturn(self::RECIPIENT_ID);
 
         return [
             [$recipientMock, null, null],
@@ -31,6 +30,8 @@ class RecipientBalanceOperationsTest extends \PHPUnit_Framework_TestCase
      */
     public function mustPathBeCorrect($recipientMock, $page, $count)
     {
+        $recipientMock->method('getId')->willReturn(self::RECIPIENT_ID);
+
         $recipientBalanceOperations = new RecipientBalanceOperations(
             $recipientMock,
             $page,

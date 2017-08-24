@@ -424,6 +424,46 @@ class TransactionContext extends BasicContext
     }
 
     /**
+     * @When make a boleto transaction with the given :amount
+     */
+    public function makeABoletoTransactionWithTheGiven($amount)
+    {
+        $this->aValidCustomer();
+
+        $this->makeABoletoTransactionWith($amount);
+
+        $this->transaction = self::getPagarMe()
+            ->transaction()
+            ->payTransaction($this->transaction);
+    }
+
+    /**
+     * @When refund the given partial :value of the transaction
+     */
+    public function refundTheGivenPartialOfTheTransaction($value)
+    {
+        $bankAccount = new \PagarMe\Sdk\BankAccount\BankAccount(
+            [
+                'bank_code'       => '237',
+                'agencia'         => '13383',
+                'agencia_dv'      => '1',
+                'conta'           => '133999',
+                'conta_dv'        => '1',
+                'document_number' => $this->customer->getDocumentNumber(),
+                'legal_name'      => $this->customer->getName()
+            ]
+        );
+
+        $this->transaction = self::getPagarMe()
+            ->transaction()
+            ->boletoRefund(
+                $this->transaction,
+                $bankAccount,
+                $value
+            );
+    }
+
+    /**
      * @Then refunded transaction must be returned
      */
     public function refundedTransactionMustBeReturned()

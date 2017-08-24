@@ -7,7 +7,7 @@ class CreditCardTransaction extends AbstractTransaction
     const PAYMENT_METHOD = 'credit_card';
 
     /**
-     * @var PagarMe\Sdk\Card\Card
+     * @var \PagarMe\Sdk\Card\Card
      */
     protected $card;
 
@@ -25,6 +25,11 @@ class CreditCardTransaction extends AbstractTransaction
      * @var string
      */
     protected $cardCvv;
+
+    /**
+     * @var boolean
+     */
+    protected $async;
 
     /**
      * @param array $transactionData
@@ -78,5 +83,14 @@ class CreditCardTransaction extends AbstractTransaction
     public function isCapturable()
     {
         return (bool) $this->capture;
+    }
+
+    /**
+     * @return boolean
+     * @codeCoverageIgnore
+     */
+    public function getAsync()
+    {
+        return $this->async;
     }
 }

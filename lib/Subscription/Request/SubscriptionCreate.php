@@ -5,6 +5,7 @@ namespace PagarMe\Sdk\Subscription\Request;
 use PagarMe\Sdk\RequestInterface;
 use PagarMe\Sdk\Plan\Plan;
 use PagarMe\Sdk\Customer\Customer;
+use PagarMe\Sdk\SplitRule\SplitRuleCollection;
 
 abstract class SubscriptionCreate implements RequestInterface
 {
@@ -34,6 +35,11 @@ abstract class SubscriptionCreate implements RequestInterface
     protected $paymentMethod;
 
     /**
+     * @var array $extraAttributes
+     */
+    protected $extraAttributes;
+
+    /**
      * @var Plan $plan
      * @var Customer $customer
      * @var string $postbackUrl
@@ -43,12 +49,14 @@ abstract class SubscriptionCreate implements RequestInterface
         Plan $plan,
         Customer $customer,
         $postbackUrl,
-        $metadata
+        $metadata,
+        $extraAttributes
     ) {
-        $this->plan        = $plan;
-        $this->customer    = $customer;
-        $this->postbackUrl = $postbackUrl;
-        $this->metadata    = $metadata;
+        $this->plan            = $plan;
+        $this->customer        = $customer;
+        $this->postbackUrl     = $postbackUrl;
+        $this->metadata        = $metadata;
+        $this->extraAttributes = $extraAttributes;
     }
 
     /**
@@ -56,7 +64,7 @@ abstract class SubscriptionCreate implements RequestInterface
      */
     public function getPayload()
     {
-        return [
+        $payload = [
             'plan_id'        => $this->plan->getId(),
             'payment_method' => $this->paymentMethod,
             'metadata'       => $this->metadata,
@@ -64,13 +72,26 @@ abstract class SubscriptionCreate implements RequestInterface
                 'name'            => $this->customer->getName(),
                 'email'           => $this->customer->getEmail(),
                 'document_number' => $this->customer->getDocumentNumber(),
-                'address'         => $this->getAddresssData(),
-                'phone'           => $this->getPhoneData(),
                 'born_at'         => $this->customer->getBornAt(),
                 'gender'          => $this->customer->getGender()
             ],
             'postback_url' => $this->postbackUrl
         ];
+
+        if (!is_null($this->customer->getAddress())) {
+            $payload['customer']['address'] = $this->getAddresssData();
+        }
+
+        if (!is_null($this->customer->getPhone())) {
+            $payload['customer']['phone'] = $this->getPhoneData();
+        }
+
+        if (array_key_exists('split_rules', $this->extraAttributes)
+            && $this->extraAttributes['split_rules'] instanceof SplitRuleCollection) {
+            $payload['split_rules'] = $this->getSplitRulesInfo();
+        }
+
+        return $payload;
     }
 
     /**
@@ -139,5 +160,40 @@ abstract class SubscriptionCreate implements RequestInterface
         }
 
         return $phoneData;
+    }
+
+    /**
+     * @param \PagarMe\Sdk\SplitRule\SplitRuleCollection $splitRules
+     * @return array
+     */
+    private function getSplitRulesInfo()
+    {
+        $rules = [];
+
+        foreach ($this->extraAttributes['split_rules'] as $key => $splitRule) {
+            $rule = [
+                'recipient_id'          => $splitRule->getRecipient()->getId(),
+                'charge_processing_fee' => $splitRule->getChargeProcessingFee(),
+                'charge_remainder_fee' => $splitRule->getChargeRemainder(),
+                'liable'                => $splitRule->getLiable()
+            ];
+
+            $rules[$key] = array_merge($rule, $this->getRuleValue($splitRule));
+        }
+
+        return $rules;
+    }
+
+    /**
+     * @param \PagarMe\Sdk\SplitRule\SplitRule $splitRule
+     * @return array
+     */
+    private function getRuleValue($splitRule)
+    {
+        if (is_null($splitRule->getAmount())) {
+            return ['percentage' => $splitRule->getPercentage()];
+        }
+
+        return ['amount' => $splitRule->getAmount()];
     }
 }
