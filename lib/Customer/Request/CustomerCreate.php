@@ -44,6 +44,11 @@ class CustomerCreate implements RequestInterface
     private $gender;
 
     /**
+     * @var string
+     */
+    private $externalId;
+
+    /**
      * @param string $name
      * @param string $email
      * @param int $documentNumber
@@ -59,7 +64,8 @@ class CustomerCreate implements RequestInterface
         Address $address,
         Phone $phone,
         $bornAt,
-        $gender
+        $gender,
+        $externalId
     ) {
         $this->name           = $name;
         $this->email          = $email;
@@ -68,6 +74,7 @@ class CustomerCreate implements RequestInterface
         $this->phone          = $phone;
         $this->bornAt         = $bornAt;
         $this->gender         = $gender;
+        $this->externalId     = $externalId;
     }
 
     /**
@@ -82,7 +89,8 @@ class CustomerCreate implements RequestInterface
             'address'         => $this->getAddresssData(),
             'phone'           => $this->getPhoneData(),
             'born_at'         => $this->bornAt,
-            'gender'          => $this->gender
+            'gender'          => $this->gender,
+            'external_id'     => $this->externalId,
         ];
     }
 

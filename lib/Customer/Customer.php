@@ -52,6 +52,11 @@ class Customer
     private $name;
 
     /**
+     * @var string
+     */
+    private $externalId;
+
+    /**
      * @var PagarMe\Sdk\Customer\Phone
      */
     private $phone;
@@ -152,5 +157,15 @@ class Customer
     public function getDocumentType()
     {
         return $this->documentType;
+    }
+
+    public function getExternalId()
+    {
+        return $this->externalId;
+    }
+
+    public function setExternalId($externalId)
+    {
+        $this->externalId = $externalId;
     }
 }

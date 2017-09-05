@@ -30,7 +30,8 @@ class CustomerHandler extends AbstractHandler
         Address $address,
         Phone $phone,
         $bornAt = null,
-        $gender = null
+        $gender = null,
+        $externalId = null
     ) {
         $request = new CustomerCreate(
             $name,
@@ -39,7 +40,8 @@ class CustomerHandler extends AbstractHandler
             $address,
             $phone,
             $bornAt,
-            $gender
+            $gender,
+            $externalId
         );
 
         $response = $this->client->send($request);

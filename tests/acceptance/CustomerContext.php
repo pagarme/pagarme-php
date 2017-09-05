@@ -18,6 +18,8 @@ class CustomerContext extends BasicContext
     private $customerData;
     private $customerList;
 
+    private $externalId = null;
+
     /**
      * @Given customer data
      */
@@ -52,7 +54,10 @@ class CustomerContext extends BasicContext
                         'ddd' =>11,
                         'number' =>987654321
                     ]
-                )
+                ),
+                null,
+                null,
+                $this->externalId
             );
     }
 
@@ -105,5 +110,25 @@ class CustomerContext extends BasicContext
     {
         assertContainsOnly('PagarMe\Sdk\Customer\Customer', $this->customerList);
         assertGreaterThanOrEqual(2, count($this->customerList));
+    }
+
+    /**
+     * @Given customer data with external_id
+     */
+    public function customerDataWithExternalId()
+    {
+        $this->customerData();
+        $this->externalId = uniqid('pagarme');
+    }
+
+    /**
+     * @Then must contain same external_id
+     */
+    public function mustContainSameExternalId()
+    {
+        assertEquals(
+            $this->customer->getExternalId(),
+            $this->externalId
+        );
     }
 }

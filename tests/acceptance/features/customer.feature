@@ -17,3 +17,9 @@ Feature: Customer
     Given I had multiple customers registered
     When query customers
     Then an array of customers must be returned
+
+Scenario: Registering customers with exernal_id
+    Given customer data with external_id
+    When register this data
+    Then an customer must be created
+    And must contain same external_id

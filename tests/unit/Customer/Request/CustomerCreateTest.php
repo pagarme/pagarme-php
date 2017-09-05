@@ -15,6 +15,7 @@ class CustomerCreateTest extends \PHPUnit_Framework_TestCase
     const DOCUMENT_NUMBER = '10586649727';
     const BORN_AT         = '15071991';
     const GENDER          = 'M';
+    const EXTERNAL_ID     = '123teste';
 
     /**
      * @test
@@ -46,7 +47,8 @@ class CustomerCreateTest extends \PHPUnit_Framework_TestCase
                 ]
             ),
             self::BORN_AT,
-            self::GENDER
+            self::GENDER,
+            self::EXTERNAL_ID
         );
 
         $this->assertEquals(
@@ -56,6 +58,7 @@ class CustomerCreateTest extends \PHPUnit_Framework_TestCase
                 'email'           => 'eduardo@eduardo.com',
                 'gender'          => 'M',
                 'name'            => 'Eduardo Nascimento',
+                'external_id'     => self::EXTERNAL_ID,
                 'address' => [
                     'street'        => 'rua teste',
                     'street_number' => 42,
@@ -87,6 +90,7 @@ class CustomerCreateTest extends \PHPUnit_Framework_TestCase
             $this->getAddressMock(),
             $this->getPhoneMock(),
             null,
+            null,
             null
         );
 
@@ -104,6 +108,7 @@ class CustomerCreateTest extends \PHPUnit_Framework_TestCase
             self::DOCUMENT_NUMBER,
             $this->getAddressMock(),
             $this->getPhoneMock(),
+            null,
             null,
             null
         );
