@@ -17,7 +17,7 @@ composer require 'pagarme/pagarme-php'
 
 ## Usage
 ### Basic
-First you need to create an PagarMe object with your API-KEY (Avaliable on your [dashboard](https://dashboard.pagar.me/#/myaccount/apikeys))
+First, you need to create a PagarMe object with your API-KEY (Available on your [dashboard](https://dashboard.pagar.me/#/myaccount/apikeys))
 ```php
 $apiKey = 'ak_test_grXijQ4GicOa2BLGZrDRTR5qNQxJW0';
 $pagarMe =  new \PagarMe\Sdk\PagarMe($apiKey);
@@ -27,4 +27,4 @@ Check the [wiki](https://github.com/pagarme/pagarme-php/wiki) for detailed docum
 
 ### Contributing
 
-**Also** checkout our [contributing guide](CONTRIBUTING.md) before you send us any contribution.
+**Also**, check out our [contributing guide](CONTRIBUTING.md) before you send us any contribution.
