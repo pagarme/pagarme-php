@@ -60,7 +60,8 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
                         'number' => 987523421
                     ]
                 ],
-                'metadata' => null
+                'metadata' => null,
+                'async' => null
             ],
             $transactionCreate->getPayload()
         );
@@ -145,7 +146,8 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
                         'charge_processing_fee' => false
                     ]
                 ],
-                'metadata' => null
+                'metadata' => null,
+                'async' => null
             ],
             $transactionCreate->getPayload()
         );
