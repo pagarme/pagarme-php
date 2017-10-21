@@ -62,11 +62,20 @@ class BulkAnticipationContext extends BasicContext
     /**
      * @When register a anticipation with :paymentDate, :timeframe, :requestedAmount, :build
      */
-    public function registerAAnticipationWith($paymentDate, $timeframe, $requestedAmount, $build)
-    {
+    public function registerAAnticipationWith(
+        $paymentDate,
+        $timeframe,
+        $requestedAmount,
+        $build
+    ) {
         $build = filter_var($build, FILTER_VALIDATE_BOOLEAN);
 
         $paymentDate = new \Datetime($paymentDate);
+
+        $paymentDateWeekDay = (int)$paymentDate->format('w');
+        if (!((1 <= $paymentDateWeekDay) && ($paymentDateWeekDay <= 5))) {
+            $paymentDate->modify('+ 2 days');
+        }
 
         $paymentDate->setTime(0, 0, 0);
 
