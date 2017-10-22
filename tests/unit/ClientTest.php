@@ -130,8 +130,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $guzzleRequestMock = $this->getMockBuilder(
             $this->getGuzzleRequestClassName()
-            )->disableOriginalConstructor()
-            ->getMock();
+        )->disableOriginalConstructor()
+        ->getMock();
 
         if ($this->isUsingLegacyGuzzle()) {
             $this->guzzleClientMock->method('createRequest')
@@ -183,14 +183,14 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         if ($this->isUsingLegacyGuzzle()) {
             $streamMock = $this->getMockBuilder(
-            'GuzzleHttp\Stream\Stream'
+                'GuzzleHttp\Stream\Stream'
             )->disableOriginalConstructor()
             ->getMock();
 
             $responseMock = $this->getMockBuilder(
                 'GuzzleHttp\Message\Response'
-                )->disableOriginalConstructor()
-                ->getMock();
+            )->disableOriginalConstructor()
+            ->getMock();
 
             $responseMock->method('getBody')
                 ->willReturn($streamMock);
@@ -200,13 +200,13 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $streamMock = $this->getMockBuilder(
             'Psr\Http\Message\StreamInterface'
-            )->disableOriginalConstructor()
-            ->getMock();
+        )->disableOriginalConstructor()
+        ->getMock();
 
         $responseMock = $this->getMockBuilder(
             'GuzzleHttp\Psr7\Response'
-            )->disableOriginalConstructor()
-            ->getMock();
+        )->disableOriginalConstructor()
+        ->getMock();
 
         $responseMock->method('getBody')
             ->willReturn($streamMock);

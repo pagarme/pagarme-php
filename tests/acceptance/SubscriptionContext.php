@@ -136,7 +136,7 @@ class SubscriptionContext extends BasicContext
     {
         $this->aValidCustomer();
         $this->aValidPlan();
-	$this->aValidCard();
+        $this->aValidCard();
         $this->makeACreditCardSubscription();
     }
 
@@ -240,8 +240,8 @@ class SubscriptionContext extends BasicContext
      */
     public function iUpdateTheSubscriptionToUsePlan($planName)
     {
-	$this->aValidPlan($planName);
-	$this->subscription->setPlan($this->plan);
+        $this->aValidPlan($planName);
+        $this->subscription->setPlan($this->plan);
         $this->subscription = self::getPagarMe()
             ->subscription()
             ->update($this->subscription);
@@ -297,5 +297,4 @@ class SubscriptionContext extends BasicContext
             ->update($this->subscription);
         $this->iQueryForTheSubscription();
     }
-
 }

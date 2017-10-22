@@ -92,5 +92,4 @@ class BoletoTransactionRefund implements RequestInterface
     {
         return $this->amount;
     }
-
 }

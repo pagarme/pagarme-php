@@ -14,7 +14,7 @@ trait SubscriptionBuilder
      * @var SubscriptonMemento $subscriptionMemento
      */
     public $subscriptionMemento;
-	
+
     /**
      * @param array $subscriptionData
      * @return Subscription

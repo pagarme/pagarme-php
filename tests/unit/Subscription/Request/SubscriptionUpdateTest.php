@@ -27,7 +27,8 @@ class SubscriptionUpdateTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(
             $name = 'PagarMe\Sdk\Subscription\Request\SubscriptionUpdate',
             $this->subscriptionUpdateInstance,
-            "Expected instance of :{$name}");
+            "Expected instance of :{$name}"
+        );
 
         $this->assertEquals(
             RequestInterface::HTTP_PUT,
@@ -94,7 +95,7 @@ class SubscriptionUpdateTest extends \PHPUnit_Framework_TestCase
                 'subscription' => $this->getMockSubscription($cardSupplied, $planSupplied, self::CREDIT_CARD),
                 'subscriptionMemento' => $this->getMockSubscription($cardSupplied, $planNotSupplied, self::BOLETO),
                 'expected' =>['card_id' => self::CARD_ID, 'plan_id' => self::PLAN_ID, 'payment_method' => self::CREDIT_CARD]
-                ],  
+                ],
         ];
     }
 
