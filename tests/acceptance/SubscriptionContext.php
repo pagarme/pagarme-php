@@ -173,28 +173,6 @@ class SubscriptionContext extends BasicContext
     }
 
     /**
-     * @When I query for subscriptions
-     */
-    public function iQueryForSubscriptions()
-    {
-        $this->subscriptions = self::getPagarMe()
-            ->subscription()
-            ->getList();
-    }
-
-    /**
-     * @Then subscriptions must be returned
-     */
-    public function subscriptionsMustBeReturned()
-    {
-        assertGreaterThanOrEqual(3, count($this->subscriptions));
-        assertContainsOnly(
-            'PagarMe\Sdk\Subscription\Subscription',
-            $this->subscriptions
-        );
-    }
-
-    /**
      * @When I cancel the subscription
      */
     public function iCancelTheSubscription()
@@ -210,29 +188,6 @@ class SubscriptionContext extends BasicContext
     public function subscriptionStatusMustBe($status)
     {
         assertEquals($status, $this->subscription->getStatus());
-    }
-
-    /**
-     * @When I query the transactions of this subscription
-     */
-    public function iQueryTheTransactionsOfThisSubscription()
-    {
-        sleep(1);
-        $this->transactions = self::getPagarMe()
-            ->subscription()
-            ->transactions($this->subscription);
-    }
-
-    /**
-     * @Then transactions must be returned
-     */
-    public function transactionsMustBeReturned()
-    {
-        assertGreaterThanOrEqual(1, count($this->transactions));
-        assertContainsOnly(
-            'PagarMe\Sdk\Transaction\AbstractTransaction',
-            $this->transactions
-        );
     }
 
     /**

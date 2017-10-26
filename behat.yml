@@ -55,26 +55,11 @@ default:
         - %paths.base%/tests/acceptance/features/subscription.feature
       contexts:
         - PagarMe\Acceptance\SubscriptionContext
-    payable:
-      paths:
-        - %paths.base%/tests/acceptance/features/payable.feature
-      contexts:
-        - PagarMe\Acceptance\PayableContext
     zipcode:
       paths:
         - %paths.base%/tests/acceptance/features/zipcode.feature
       contexts:
         - PagarMe\Acceptance\ZipcodeContext
-    balance_operation:
-      paths:
-        - %paths.base%/tests/acceptance/features/balance_operation.feature
-      contexts:
-        - PagarMe\Acceptance\BalanceOperationContext
-    postback:
-      paths:
-        - %paths.base%/tests/acceptance/features/postback.feature
-      contexts:
-        - PagarMe\Acceptance\PostbackContext
     antifraud_analysis:
       paths:
         - %paths.base%/tests/acceptance/features/antifraud_analysis.feature

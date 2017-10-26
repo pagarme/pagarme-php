@@ -141,29 +141,6 @@ class PlanContext extends BasicContext
     }
 
     /**
-     * @When I query for plans
-     */
-    public function iQueryForPlans()
-    {
-        sleep(2);
-        $this->plans = self::getPagarMe()
-                ->plan()
-                ->getList();
-    }
-
-    /**
-     * @Then a list of Plans must be returned
-     */
-    public function aListOfPlansMustBeReturned()
-    {
-        assertContainsOnly(
-            'PagarMe\Sdk\Plan\Plan',
-            $this->plans
-        );
-        assertGreaterThanOrEqual(3, count($this->plans));
-    }
-
-    /**
      * @Given a previous created plan
      */
     public function aPreviousCreatedPlan()

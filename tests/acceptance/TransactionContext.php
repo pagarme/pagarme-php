@@ -221,25 +221,6 @@ class TransactionContext extends BasicContext
     }
 
     /**
-     * @When query transactions
-     */
-    public function queryTransactions()
-    {
-        $this->transactionList = self::getPagarMe()
-            ->transaction()
-            ->getList();
-    }
-
-    /**
-     * @Then an array of transactions must be returned
-     */
-    public function anArrayOfTransactionsMustBeReturned()
-    {
-        assertContainsOnly('PagarMe\Sdk\Transaction\AbstractTransaction', $this->transactionList);
-        assertGreaterThanOrEqual(2, count($this->transactionList));
-    }
-
-     /**
      * @Given capture the transaction with amount :amount
      */
     public function captureTheTransactionWithAmount($amount)

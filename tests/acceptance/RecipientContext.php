@@ -192,27 +192,6 @@ class RecipientContext extends BasicContext
         }
     }
 
-    /**
-     * @When query for recipients
-     */
-    public function queryForRecipients()
-    {
-        $this->recipients = self::getPagarMe()
-            ->recipient()
-            ->getList();
-    }
-
-    /**
-     * @Then a list of recipients must be returned
-     */
-    public function aListOfRecipientsMustBeReturned()
-    {
-        assertContainsOnly(
-            'PagarMe\Sdk\Recipient\Recipient',
-            $this->recipients
-        );
-    }
-
     public function getRecipientsData()
     {
         return [

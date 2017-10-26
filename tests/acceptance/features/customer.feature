@@ -12,8 +12,3 @@ Feature: Customer
     Given customer data
     When register this data
     Then the customer must be retrievable
-
- Scenario: Getting customers
-    Given I had multiple customers registered
-    When query customers
-    Then an array of customers must be returned

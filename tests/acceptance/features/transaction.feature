@@ -135,11 +135,6 @@ Feature: Transaction
     When a valid boleto transaction
     Then then transaction must be retriavable
 
-  Scenario: Getting transactions
-    Given I had multiple transactions registered
-    When query transactions
-    Then an array of transactions must be returned
-
   Scenario: Getting transaction events
     Given I had a transactions registered
     When query transactions events
