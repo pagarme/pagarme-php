@@ -135,11 +135,6 @@ Feature: Transaction
     When a valid boleto transaction
     Then then transaction must be retriavable
 
-  Scenario: Getting transactions
-    Given I had multiple transactions registered
-    When query transactions
-    Then an array of transactions must be returned
-
   Scenario: Getting transaction events
     Given I had a transactions registered
     When query transactions events
@@ -157,3 +152,12 @@ Feature: Transaction
     When make a boleto transaction with random amount and metadata
     Then a valid transaction must be created
     And must contain same metadata
+
+  Scenario Outline: Create a Boleto Transaction with async
+    Given a valid customer
+    When make a boleto transaction with "<amount>" and "<async>"
+    Then must have status "<status>"
+    Examples:
+      |  amount  | async  |      status     |
+      |   1000   | true   |    processing   |
+      |   1000   | false  | waiting_payment |

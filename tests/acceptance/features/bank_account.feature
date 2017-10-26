@@ -16,11 +16,6 @@ Feature: Bank Account
     | 237       | 2006      | 80486         | 4         | 26260865686 | Luiza Silva     | null      | conta_corrente_conjunta   |
     | 341       | 2007      | 233500        | 5         | 11663782687 | Joao Silva      | null      | conta_poupanca_conjunta   |
 
-  Scenario: Listing bank accounts
-    Given a previous created bank accounts
-    When I query for bank accounts
-    Then a list of bank account must be returned
-
   Scenario: Get bank account
     Given a previous created bank account
     When I query for created bank account

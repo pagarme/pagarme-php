@@ -19,11 +19,6 @@ Feature: Plan
     | 486     |  35   | Plano F | null  | null    | null    | 6             |
     | 586     |  60   | Plano G | 7     | boleto  | 10      | 5             |
 
-  Scenario: Listing Plans
-    Given a previous created plans
-    When I query for plans
-    Then a list of Plans must be returned
-
   Scenario: Geting Plans
     Given a previous created plan
     When I query for planId
