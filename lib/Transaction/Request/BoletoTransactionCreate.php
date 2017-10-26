@@ -22,7 +22,8 @@ class BoletoTransactionCreate extends TransactionCreate
         $basicData = parent::getPayload();
 
         $boletoData = [
-            'boleto_expiration_date' => $this->transaction->getBoletoExpirationDate()
+            'boleto_expiration_date' => $this->transaction->getBoletoExpirationDate(),
+            'async' => $this->transaction->getAsync()
         ];
 
         return array_merge($basicData, $boletoData);

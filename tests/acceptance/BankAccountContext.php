@@ -173,28 +173,6 @@ class BankAccountContext extends BasicContext
     }
 
     /**
-     * @When I query for bank accounts
-     */
-    public function iQueryForBankAccounts()
-    {
-        $this->bankAccounts = self::getPagarMe()
-                ->bankAccount()
-                ->getList();
-    }
-
-    /**
-     * @Then a list of bank account must be returned
-     */
-    public function aListOfBankAccountMustBeReturned()
-    {
-        assertGreaterThanOrEqual(5, count($this->bankAccounts));
-        assertContainsOnly(
-            'PagarMe\Sdk\BankAccount\BankAccount',
-            $this->bankAccounts
-        );
-    }
-
-     /**
      * @Given a previous created bank account
      */
     public function aPreviousCreatedBankAccount()

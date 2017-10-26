@@ -200,29 +200,6 @@ class TransferContext extends BasicContext
     }
 
     /**
-     * @When I query for the transfers
-     */
-    public function iQueryForTheTransfers()
-    {
-        $this->transfers = self::getPagarMe()
-            ->transfer()
-            ->getList();
-    }
-
-    /**
-     * @Then a list of transfer must be returned
-     */
-    public function aListOfTransferMustBeReturned()
-    {
-        assertGreaterThanOrEqual(3, count($this->transfers));
-
-        assertContainsOnly(
-            'PagarMe\Sdk\Transfer\Transfer',
-            $this->transfers
-        );
-    }
-
-    /**
      * @When I cancel the transfer
      */
     public function iCancelTheTransfer()

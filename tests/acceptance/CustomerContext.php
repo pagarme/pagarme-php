@@ -75,35 +75,4 @@ class CustomerContext extends BasicContext
 
         assertEquals($customer, $this->customer);
     }
-
-    /**
-     * @Given I had multiple customers registered
-     */
-    public function iHadMultipleCustomersRegistered()
-    {
-        $this->customerData();
-        $this->registerThisData();
-        $this->customerData['document_number'] = '55453790962';
-        $this->registerThisData();
-        sleep(3);
-    }
-
-    /**
-     * @When query customers
-     */
-    public function queryCustomers()
-    {
-         $this->customerList = self::getPagarMe()
-            ->customer()
-            ->getList();
-    }
-
-    /**
-     * @Then an array of customers must be returned
-     */
-    public function anArrayOfCustomersMustBeReturned()
-    {
-        assertContainsOnly('PagarMe\Sdk\Customer\Customer', $this->customerList);
-        assertGreaterThanOrEqual(2, count($this->customerList));
-    }
 }

@@ -23,11 +23,6 @@ Feature: Transfer
     Then a transfer must be returned
     And must be the same transfer
 
-  Scenario: Retrieve transfers
-    Given a previous created transfers
-    When I query for the transfers
-    Then a list of transfer must be returned
-
   Scenario: Cancel a transfer
     Given a previous created transfer
     When I cancel the transfer
