@@ -470,4 +470,28 @@ class TransactionContext extends BasicContext
 
         return $ids;
     }
+
+    /**
+     * @When make a boleto transaction with :amount and :async
+     */
+    public function makeABoletoTransactionWithAsync($amount, $async)
+    {
+        $this->transaction = self::getPagarMe()
+            ->transaction()
+            ->boletoTransaction(
+                $amount,
+                $this->customer,
+                self::POSTBACK_URL,
+                null,
+                ['async' => $async]
+            );
+    }
+
+    /**
+     * @Then must have status :status
+     */
+    public function mustHaveStatus($status)
+    {
+        assertEquals($this->transaction->getStatus(), $status);
+    }
 }

@@ -62,6 +62,10 @@ class BoletoTransaction extends AbstractTransaction
         return $this->boletoBarcode;
     }
 
+    /**
+     * @return boolean
+     * @codeCoverageIgnore
+     */
     public function getAsync()
     {
         return $this->async;
