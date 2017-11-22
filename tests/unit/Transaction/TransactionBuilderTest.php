@@ -6,8 +6,9 @@ use PagarMe\Sdk\Transaction\TransactionHandler;
 use PagarMe\Sdk\Transaction\AbstractTransaction;
 use PagarMe\Sdk\Transaction\BoletoTransaction;
 use PagarMe\Sdk\Transaction\CreditCardTransaction;
+use PHPUnit\Framework\TestCase;
 
-class TransactionBuilderTest extends \PHPUnit_Framework_TestCase
+class TransactionBuilderTest extends TestCase
 {
     use \PagarMe\Sdk\Transaction\TransactionBuilder;
 

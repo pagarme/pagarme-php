@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\Postback\Request;
 
 use PagarMe\Sdk\Postback\Request\PostbackList;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class PostbackListTest extends \PHPUnit_Framework_TestCase
+class PostbackListTest extends TestCase
 {
     const TRANSACTION_ID = 1234;
     const PATH           = 'transactions/1234/postbacks';

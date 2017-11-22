@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\Subscription\Request;
 
 use PagarMe\Sdk\Subscription\Request\SubscriptionUpdate;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class SubscriptionUpdateTest extends \PHPUnit_Framework_TestCase
+class SubscriptionUpdateTest extends TestCase
 {
     const SUBSCRIPTION_ID = 123;
     const CARD_ID     = 'card_123';

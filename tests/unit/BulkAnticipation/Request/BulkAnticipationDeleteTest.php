@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\BankAccount\Request;
 
 use PagarMe\Sdk\BulkAnticipation\Request\BulkAnticipationDelete;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class BulkAnticipationDeleteTest extends \PHPUnit_Framework_TestCase
+class BulkAnticipationDeleteTest extends TestCase
 {
     const PATH         = 'recipients/re_123456/bulk_anticipations/ba_123456/';
     const RECIPIENT_ID = 're_123456';

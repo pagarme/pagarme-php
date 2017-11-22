@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\Transfer\Request;
 
 use PagarMe\Sdk\Transfer\Request\TransferCreate;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class TransferCreateTest extends \PHPUnit_Framework_TestCase
+class TransferCreateTest extends TestCase
 {
     const PATH         = 'transfers';
 

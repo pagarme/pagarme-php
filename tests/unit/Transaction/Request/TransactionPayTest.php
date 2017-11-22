@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\Transaction\Request;
 
 use PagarMe\Sdk\Transaction\Request\TransactionPay;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class TransactionPayTest extends \PHPUnit_Framework_TestCase
+class TransactionPayTest extends TestCase
 {
     const PATH           = 'transactions/1337';
     const TRANSACTION_ID = 1337;

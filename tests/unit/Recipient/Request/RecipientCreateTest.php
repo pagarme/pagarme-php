@@ -4,8 +4,9 @@ namespace PagarMe\SdkTests\Recipient;
 
 use PagarMe\Sdk\Recipient\Request\RecipientCreate;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class RecipientCreateTest extends \PHPUnit_Framework_TestCase
+class RecipientCreateTest extends TestCase
 {
     const PATH            = 'recipients';
 

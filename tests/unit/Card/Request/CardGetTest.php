@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\Card\Request;
 
 use PagarMe\Sdk\Card\Request\CardGet;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class ClientTest extends \PHPUnit_Framework_TestCase
+class ClientTest extends TestCase
 {
     const PATH    = 'cards/card_ci6y37h16wrxsmzyi';
     const CARD_ID = 'card_ci6y37h16wrxsmzyi';

@@ -3,8 +3,9 @@
 namespace PagarMe\Sdk\Postback;
 
 use PagarMe\Sdk\Postback\PostbackHandler;
+use PHPUnit\Framework\TestCase;
 
-class PostbackHandlerTest extends \PHPUnit_Framework_TestCase
+class PostbackHandlerTest extends TestCase
 {
     /**
      * @test

@@ -5,8 +5,9 @@ namespace PagarMe\SdkTest\Transaction\Request;
 use PagarMe\Sdk\Transaction\Request\TransactionGet;
 use PagarMe\Sdk\Transaction\CreditCardTransaction;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class TransactionGetTest extends \PHPUnit_Framework_TestCase
+class TransactionGetTest extends TestCase
 {
     const PATH           = 'transactions/1337';
     const TRANSACTION_ID = 1337;

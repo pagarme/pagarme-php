@@ -8,8 +8,9 @@ use PagarMe\Sdk\SplitRule\SplitRuleCollection;
 use PagarMe\Sdk\SplitRule\SplitRule;
 use PagarMe\Sdk\Recipient\Recipient;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
+class CreditCardTransactionCreateTest extends TestCase
 {
     const PATH   = 'transactions';
 

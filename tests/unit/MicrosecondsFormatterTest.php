@@ -2,7 +2,9 @@
 
 namespace PagarMe\SdkTest;
 
-class MicrosecondsFormatterTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class MicrosecondsFormatterTest extends TestCase
 {
     use \PagarMe\Sdk\MicrosecondsFormatter;
 

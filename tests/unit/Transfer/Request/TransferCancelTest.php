@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\Transfer\Request;
 
 use PagarMe\Sdk\Transfer\Request\TransferCancel;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class TransferCancelTest extends \PHPUnit_Framework_TestCase
+class TransferCancelTest extends TestCase
 {
     const PATH        = 'transfers/123/cancel';
     const TRANSFER_ID = '123';

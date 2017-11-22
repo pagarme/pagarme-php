@@ -3,8 +3,9 @@
 namespace Pagarme\SdkTests\BankAccount;
 
 use PagarMe\Sdk\BankAccount\BankAccountHandler;
+use PHPUnit\Framework\TestCase;
 
-class BankAccountTest extends \PHPUnit_Framework_TestCase
+class BankAccountTest extends TestCase
 {
     const BANK_ACCOUNT_ID = 4840;
 

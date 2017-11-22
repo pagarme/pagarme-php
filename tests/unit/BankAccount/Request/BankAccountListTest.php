@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\BankAccount\Request;
 
 use PagarMe\Sdk\BankAccount\Request\BankAccountList;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class BankAccountListTest extends \PHPUnit_Framework_TestCase
+class BankAccountListTest extends TestCase
 {
     const PATH = 'bank_accounts';
 

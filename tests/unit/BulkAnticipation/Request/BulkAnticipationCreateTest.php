@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\BankAccount\Request;
 
 use PagarMe\Sdk\BulkAnticipation\Request\BulkAnticipationCreate;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class BulkAnticipationCreateTest extends \PHPUnit_Framework_TestCase
+class BulkAnticipationCreateTest extends TestCase
 {
     const PATH         = 'recipients/re_123456/bulk_anticipations';
     const RECIPIENT_ID = 're_123456';

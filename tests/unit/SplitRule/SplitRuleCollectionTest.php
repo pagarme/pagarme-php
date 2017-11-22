@@ -2,7 +2,9 @@
 
 namespace PagarMe\SdkTest\SplitRule;
 
-class SplitRuleCollectionTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class SplitRuleCollectionTest extends TestCase
 {
     use \PagarMe\Sdk\Transaction\TransactionBuilder;
 

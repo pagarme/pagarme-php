@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\AntifraudAnalysis\Request;
 
 use PagarMe\Sdk\AntifraudAnalysis\Request\AntifraudAnalysisList;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class AntifraudAnalysisListTest extends \PHPUnit_Framework_TestCase
+class AntifraudAnalysisListTest extends TestCase
 {
     const PATH           = 'transactions/112233/antifraud_analyses';
     const TRANSACTION_ID = 112233;

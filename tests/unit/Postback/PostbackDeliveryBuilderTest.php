@@ -2,7 +2,9 @@
 
 namespace PagarMe\Sdk\Postback;
 
-class PostbackDeliveryBuilderTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class PostbackDeliveryBuilderTest extends TestCase
 {
     use \PagarMe\Sdk\Postback\PostbackDeliveryBuilder;
 

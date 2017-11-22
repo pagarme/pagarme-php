@@ -3,8 +3,9 @@
 namespace PagarMe\SdkTest\SplitRule;
 
 use PagarMe\Sdk\SplitRule\SplitRuleBuilder;
+use PHPUnit\Framework\TestCase;
 
-class SplitRuleBuilderTest extends \PHPUnit_Framework_TestCase
+class SplitRuleBuilderTest extends TestCase
 {
     use \PagarMe\Sdk\SplitRule\SplitRuleBuilder;
 

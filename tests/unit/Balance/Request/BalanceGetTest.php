@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\Balance\Request;
 
 use PagarMe\Sdk\Balance\Request\BalanceGet;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class BalanceGetTest extends \PHPUnit_Framework_TestCase
+class BalanceGetTest extends TestCase
 {
     const PATH   = 'balance';
 

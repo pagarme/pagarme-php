@@ -6,8 +6,9 @@ use PagarMe\Sdk\Subscription\Request\CardSubscriptionCreate;
 use PagarMe\Sdk\SplitRule\SplitRuleCollection;
 use PagarMe\Sdk\Recipient\Recipient;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class CardSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
+class CardSubscriptionCreateTest extends TestCase
 {
     const PATH   = 'subscriptions';
 

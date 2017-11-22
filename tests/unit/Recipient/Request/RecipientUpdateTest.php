@@ -4,8 +4,9 @@ namespace PagarMe\SdkTests\Recipient;
 
 use PagarMe\Sdk\Recipient\Request\RecipientUpdate;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class RecipientUpdateTest extends \PHPUnit_Framework_TestCase
+class RecipientUpdateTest extends TestCase
 {
     const PATH         = 'recipients/re_x1y2z3';
     const RECIPIENT_ID = 're_x1y2z3';

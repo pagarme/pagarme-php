@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\Subscription\Request;
 
 use PagarMe\Sdk\Subscription\Request\SubscriptionCancel;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class SubscriptionCancelTest extends \PHPUnit_Framework_TestCase
+class SubscriptionCancelTest extends TestCase
 {
     const PATH            = 'subscriptions/123/cancel';
     const SUBSCRIPTION_ID = 123;

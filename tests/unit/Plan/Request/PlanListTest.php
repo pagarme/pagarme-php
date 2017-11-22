@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\Request;
 
 use PagarMe\Sdk\Plan\Request\PlanList;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class PlanListTest extends \PHPUnit_Framework_TestCase
+class PlanListTest extends TestCase
 {
     const PATH   = 'plans';
 

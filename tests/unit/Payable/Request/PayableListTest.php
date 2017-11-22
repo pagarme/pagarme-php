@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\Payable\Request;
 
 use PagarMe\Sdk\Payable\Request\PayableList;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class PayableListTest extends \PHPUnit_Framework_TestCase
+class PayableListTest extends TestCase
 {
     const PATH   = 'payables';
 
