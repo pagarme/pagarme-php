@@ -23,7 +23,8 @@ class BoletoTransactionCreate extends TransactionCreate
 
         $boletoData = [
             'boleto_expiration_date' => $this->transaction->getBoletoExpirationDate(),
-            'async' => $this->transaction->getAsync()
+            'async' => $this->transaction->getAsync(),
+            'boleto_instructions' => $this->transaction->getBoletoInstructions()
         ];
 
         return array_merge($basicData, $boletoData);
