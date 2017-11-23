@@ -11,7 +11,7 @@ before_script:
 script:
   - vendor/bin/phpunit
   - vendor/bin/behat
-  - phpunit --coverage-clover build/logs/clover.xml
+  - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
 after_success:
   - sh -c 'php vendor/bin/coveralls -v'
