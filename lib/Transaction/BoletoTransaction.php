@@ -27,6 +27,11 @@ class BoletoTransaction extends AbstractTransaction
     protected $async;
 
     /**
+     * @var string
+     */
+    protected $boletoInstructions;
+
+    /**
      * @param array $transactionData
      */
     public function __construct($transactionData)
@@ -69,5 +74,14 @@ class BoletoTransaction extends AbstractTransaction
     public function getAsync()
     {
         return $this->async;
+    }
+
+    /**
+     * @return string
+     * @codeCoverageIgnore
+     */
+    public function getBoletoInstructions()
+    {
+        return $this->boletoInstructions;
     }
 }
