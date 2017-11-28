@@ -225,7 +225,7 @@ class PagarMe_TransactionTest extends PagarMeTestCase {
 			),
 		));
 
-		$this->assertEqual('pending_refund', $transaction->getStatus());
+		$this->assertEqual('refunded', $transaction->getStatus());
 	}
 
 	public function testCreation() {
