@@ -26,7 +26,8 @@
         "ext-mbstring": "*",
         "phpunit/phpunit": "^4.8",
         "pagarme/git-hooks": "dev-master",
-        "behat/mink-extension": "^2.2"
+        "behat/mink-extension": "^2.2",
+        "squizlabs/php_codesniffer": "*"
     },
     "scripts": {
         "post-update-cmd": "bash vendor/pagarme/git-hooks/phpcs-pre-commit/install.sh",

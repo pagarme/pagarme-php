@@ -51,10 +51,10 @@ class SubscriptionMemento
      * @codeCoverageIgnore
      */
     public function getCard(Subscription $subscription)
-    { 
-       if ($this->card instanceof \PagarMe\Sdk\Card\Card) {
-           $subscription->setCard($this->card);
-       }
+    {
+        if ($this->card instanceof \PagarMe\Sdk\Card\Card) {
+            $subscription->setCard($this->card);
+        }
     }
 
     /**

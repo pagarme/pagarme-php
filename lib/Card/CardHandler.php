@@ -32,18 +32,18 @@ class CardHandler extends AbstractHandler
         return $this->buildCard($response);
     }
 
-	/**
-	 * @param string $cardHash
-	 * @return Card
-	 */
-	public function createFromHash($cardHash)
-	{
-		$request = new CardCreateFromHash($cardHash);
+    /**
+     * @param string $cardHash
+     * @return Card
+     */
+    public function createFromHash($cardHash)
+    {
+        $request = new CardCreateFromHash($cardHash);
 
-		$response = $this->client->send($request);
+        $response = $this->client->send($request);
 
-		return $this->buildCard($response);
-	}
+        return $this->buildCard($response);
+    }
 
     /**
      * @param int $cardId
