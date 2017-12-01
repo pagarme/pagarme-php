@@ -135,6 +135,15 @@ Feature: Transaction
     When a valid boleto transaction
     Then then transaction must be retriavable
 
+  Scenario Outline: Filtering transactions
+    Given I have multiple transactions registered
+    When I use the filter "<filter>" equals to "<value>"
+    Then an array with just transactions with "<property>" equals to "<value>" should be returned
+    Examples:
+      | property         | filter         | value       |
+      | getPaymentMethod | payment_method | boleto      |
+      | getPaymentMethod | payment_method | credit_card |
+
   Scenario: Getting transaction events
     Given I had a transactions registered
     When query transactions events

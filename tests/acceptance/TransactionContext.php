@@ -4,9 +4,9 @@ namespace PagarMe\Acceptance;
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
+use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
-use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Testwork\Hook\Scope\BeforeSuiteScope;
 use PagarMe\Sdk\Customer\Customer;
 
@@ -450,6 +450,39 @@ class TransactionContext extends BasicContext
     public function refundedTransactionMustBeReturned()
     {
         assertTrue($this->transaction->isPendingRefund());
+    }
+
+    /**
+     * @Given I have multiple transactions registered
+     */
+    public function iHaveMultipleTransactionsRegistered()
+    {
+        $this->aValidCard();
+        $this->aValidCustomer();
+        $this->makeABoletoTransactionWithRandomAmountAndMetadata();
+        $this->makeACreditCardTransactionWithRandomAmountAndMetadata();
+    }
+
+    /**
+     * @When I use the filter :filter equals to :value
+     */
+    public function iUseTheFilterEqualsTo($filter, $value)
+    {
+        $this->transactionList = self::getPagarMe()
+            ->transaction()
+            ->find([$filter => $value]);
+    }
+
+    /**
+     * @Then an array with just transactions with :property equals to :value should be returned
+     */
+    public function anArrayWithJustTransactionsWithEqualsToShouldBeReturned($property, $value)
+    {
+        assertContainsOnly('PagarMe\Sdk\Transaction\AbstractTransaction', $this->transactionList);
+
+        foreach ($this->transactionList as $transaction) {
+            assertEquals($value, $transaction->{$property}());
+        }
     }
 
     private function getRandomMetadata()

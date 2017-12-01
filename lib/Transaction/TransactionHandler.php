@@ -3,20 +3,21 @@
 namespace PagarMe\Sdk\Transaction;
 
 use PagarMe\Sdk\AbstractHandler;
-use PagarMe\Sdk\Client;
-use PagarMe\Sdk\Transaction\Request\CreditCardTransactionCreate;
-use PagarMe\Sdk\Transaction\Request\BoletoTransactionCreate;
-use PagarMe\Sdk\Transaction\Request\TransactionGet;
-use PagarMe\Sdk\Transaction\Request\TransactionList;
-use PagarMe\Sdk\Transaction\Request\TransactionCapture;
-use PagarMe\Sdk\Transaction\Request\TransactionEvents;
-use PagarMe\Sdk\Transaction\Request\CreditCardTransactionRefund;
-use PagarMe\Sdk\Transaction\Request\BoletoTransactionRefund;
-use PagarMe\Sdk\Transaction\Request\TransactionPay;
 use PagarMe\Sdk\BankAccount\BankAccount;
 use PagarMe\Sdk\Card\Card;
+use PagarMe\Sdk\Client;
 use PagarMe\Sdk\Customer\Customer;
 use PagarMe\Sdk\Recipient\Recipient;
+use PagarMe\Sdk\Transaction\Request\BoletoTransactionCreate;
+use PagarMe\Sdk\Transaction\Request\BoletoTransactionRefund;
+use PagarMe\Sdk\Transaction\Request\CreditCardTransactionCreate;
+use PagarMe\Sdk\Transaction\Request\CreditCardTransactionRefund;
+use PagarMe\Sdk\Transaction\Request\TransactionCapture;
+use PagarMe\Sdk\Transaction\Request\TransactionEvents;
+use PagarMe\Sdk\Transaction\Request\TransactionFind;
+use PagarMe\Sdk\Transaction\Request\TransactionGet;
+use PagarMe\Sdk\Transaction\Request\TransactionList;
+use PagarMe\Sdk\Transaction\Request\TransactionPay;
 
 class TransactionHandler extends AbstractHandler
 {
@@ -127,6 +128,22 @@ class TransactionHandler extends AbstractHandler
         }
 
         return $transactions;
+    }
+
+    /**
+     * @param  array $filters
+     * @param  int   $page
+     * @param  int   $limit
+     * @return array
+     */
+    public function find(array $filters, $page = null, $limit = null)
+    {
+        $request = new TransactionFind($filters, $page, $limit);
+        $response = $this->client->send($request);
+
+        return array_map(function ($transaction) {
+            return $this->buildTransaction($transaction);
+        }, $response);
     }
 
     /**
