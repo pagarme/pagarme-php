@@ -17,14 +17,16 @@ class CardHandler extends AbstractHandler
      * @param int $cardNumber
      * @param string $holderName
      * @param string $cardExpirationDate
+     * @param int $cardCvv
      * @return Card
      */
-    public function create($cardNumber, $holderName, $cardExpirationDate)
+    public function create($cardNumber, $holderName, $cardExpirationDate, $cardCvv = null)
     {
         $request = new CardCreate(
             $cardNumber,
             $holderName,
-            $cardExpirationDate
+            $cardExpirationDate,
+            $cardCvv
         );
 
         $response = $this->client->send($request);
