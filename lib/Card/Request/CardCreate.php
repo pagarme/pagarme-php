@@ -22,15 +22,22 @@ class CardCreate implements RequestInterface
     private $cardExpirationDate;
 
     /**
+     * @var int
+     */
+    private $cardCvv;
+
+    /**
      * @param int $cardNumber
      * @param string $holderName
      * @param int $cardExpirationDate
+     * @param int $cardCvv
      */
-    public function __construct($cardNumber, $holderName, $cardExpirationDate)
+    public function __construct($cardNumber, $holderName, $cardExpirationDate, $cardCvv = null)
     {
         $this->cardNumber         = $cardNumber;
         $this->holderName         = $holderName;
         $this->cardExpirationDate = $cardExpirationDate;
+        $this->cardCvv            = $cardCvv;
     }
 
     /**
@@ -38,11 +45,17 @@ class CardCreate implements RequestInterface
      */
     public function getPayload()
     {
-        return [
+        $cardData = [
             'card_number'          => $this->cardNumber,
             'holder_name'          => $this->holderName,
             'card_expiration_date' => $this->cardExpirationDate
         ];
+
+        if (!is_null($this->cardCvv)) {
+            $cardData['card_cvv'] = $this->cardCvv;
+        }
+
+        return $cardData;
     }
 
     /**
