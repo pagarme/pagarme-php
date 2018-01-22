@@ -26,7 +26,7 @@ trait Fillable
     public function toArray() {
         $json = array();
         foreach($this as $key => $value) {
-            $json[$key] = $value;
+            $json[$key] = is_object($value) ? (method_exists($value, 'toArray') ? $value->toArray() :  $value) : $value;
         }
         return $json;
     }
