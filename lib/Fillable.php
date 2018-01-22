@@ -19,4 +19,22 @@ trait Fillable
             }
         }
     }
+
+    /*
+    * @summary convert object to an array
+    */
+    public function toArray() {
+        $json = array();
+        foreach($this as $key => $value) {
+            $json[$key] = $value;
+        }
+        return $json;
+    }
+
+    /*
+    * @summary convert object to an array
+    */
+    public function toJson() {
+        return json_encode($this->toArray());
+    }
 }
