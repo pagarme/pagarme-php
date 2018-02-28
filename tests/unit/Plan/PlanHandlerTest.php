@@ -3,8 +3,9 @@
 namespace Pagarme\SdkTests\Plan;
 
 use PagarMe\Sdk\Plan\PlanHandler;
+use PHPUnit\Framework\TestCase;
 
-class PlanHandlerTest extends \PHPUnit_Framework_TestCase
+class PlanHandlerTest extends TestCase
 {
     /**
      * @test

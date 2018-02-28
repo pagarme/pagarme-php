@@ -5,8 +5,9 @@ namespace PagarMe\SdkTest;
 use GuzzleHttp\Client as GuzzleClient;
 use PagarMe\Sdk\Client;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class ClientTest extends \PHPUnit_Framework_TestCase
+class ClientTest extends TestCase
 {
     const REQUEST_PATH   = 'test';
     const CONTENT        = 'sample content';

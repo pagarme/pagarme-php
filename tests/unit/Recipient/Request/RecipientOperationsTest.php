@@ -4,8 +4,9 @@ namespace PagarMe\SdkTests\Recipient;
 
 use PagarMe\Sdk\Recipient\Request\RecipientBalanceOperations;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class RecipientBalanceOperationsTest extends \PHPUnit_Framework_TestCase
+class RecipientBalanceOperationsTest extends TestCase
 {
     const RECIPIENT_ID = 're_x1y2z3';
     const PATH         = 'recipients/re_x1y2z3/balance/operations';

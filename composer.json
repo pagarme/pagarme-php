@@ -24,7 +24,7 @@
     },
     "require-dev": {
         "ext-mbstring": "*",
-        "phpunit/phpunit": "^4.8",
+        "phpunit/phpunit": "^4.8.35",
         "pagarme/git-hooks": "dev-master",
         "behat/mink-extension": "^2.2"
     },

@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\Transfer\Request;
 
 use PagarMe\Sdk\Transfer\Request\TransferList;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class TransferListTest extends \PHPUnit_Framework_TestCase
+class TransferListTest extends TestCase
 {
     const PATH = 'transfers';
 

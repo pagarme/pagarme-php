@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\Subscription\Request;
 
 use PagarMe\Sdk\Subscription\Request\SubscriptionTransactionsGet;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class SubscriptionTransactionsGetTest extends \PHPUnit_Framework_TestCase
+class SubscriptionTransactionsGetTest extends TestCase
 {
     const PATH            = 'subscriptions/123/transactions';
     const SUBSCRIPTION_ID = 123;

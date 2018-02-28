@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\Search\Request;
 
 use PagarMe\Sdk\Search\Request\SearchGet;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class SearchGetTest extends \PHPUnit_Framework_TestCase
+class SearchGetTest extends TestCase
 {
     const PATH   = 'search';
     const TYPE   = 'transaction';

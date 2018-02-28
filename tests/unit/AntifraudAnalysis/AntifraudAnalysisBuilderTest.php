@@ -2,7 +2,9 @@
 
 namespace PagarMe\SdkTest\AntifraudAnalysis;
 
-class AntifraudAnalysisBuilderTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class AntifraudAnalysisBuilderTest extends TestCase
 {
     use \PagarMe\Sdk\AntifraudAnalysis\AntifraudAnalysisBuilder;
 

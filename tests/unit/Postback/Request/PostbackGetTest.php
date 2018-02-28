@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\Postback\Request;
 
 use PagarMe\Sdk\Postback\Request\PostbackGet;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class PostbackGetTest extends \PHPUnit_Framework_TestCase
+class PostbackGetTest extends TestCase
 {
     const TRANSACTION_ID = 1234;
     const POSTBACK_ID    = 'po_10000001';

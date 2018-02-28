@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\BalanceOperation\Request;
 
 use PagarMe\Sdk\BalanceOperation\Request\BalanceOperationGet;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class BalanceOperationGetTest extends \PHPUnit_Framework_TestCase
+class BalanceOperationGetTest extends TestCase
 {
     const PATH                  = 'balance/operations/123';
     const BALANCE_OPERATIONS_ID = '123';

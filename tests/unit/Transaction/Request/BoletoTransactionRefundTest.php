@@ -5,8 +5,9 @@ namespace PagarMe\SdkTest\Transaction\Request;
 use PagarMe\Sdk\Transaction\Request\BoletoTransactionRefund;
 use PagarMe\Sdk\Transaction\BoletoTransaction;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class BoletoTransactionRefundTest extends \PHPUnit_Framework_TestCase
+class BoletoTransactionRefundTest extends TestCase
 {
     const PATH            = 'transactions/1337/refund';
     const TRANSACTION_ID  = 1337;

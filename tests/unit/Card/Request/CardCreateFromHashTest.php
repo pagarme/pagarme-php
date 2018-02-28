@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\Card\Request;
 
 use PagarMe\Sdk\Card\Request\CardCreateFromHash;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class CardCreateFromHashTest extends \PHPUnit_Framework_TestCase
+class CardCreateFromHashTest extends TestCase
 {
     const PATH          = 'cards';
     const CARD_HASH     = 'test_transaction_e8Ij0oYalvjTEO17IHqKxNQcigKrYj';

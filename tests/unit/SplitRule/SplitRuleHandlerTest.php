@@ -3,8 +3,9 @@
 namespace PagarMe\SdkTest\SplitRule;
 
 use PagarMe\Sdk\SplitRule\SplitRuleHandler;
+use PHPUnit\Framework\TestCase;
 
-class SplitRuleHandlerTest extends \PHPUnit_Framework_TestCase
+class SplitRuleHandlerTest extends TestCase
 {
     public function splitData()
     {

@@ -2,7 +2,9 @@
 
 namespace PagarMe\SdkTest\Transfer;
 
-class TransferGetTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class TransferGetTest extends TestCase
 {
     use \PagarMe\Sdk\Transfer\TransferBuilder;
     /**

@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\Card\Request;
 
 use PagarMe\Sdk\Card\Request\CardCreate;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class CardCreateTest extends \PHPUnit_Framework_TestCase
+class CardCreateTest extends TestCase
 {
     const PATH            = 'cards';
     const CARD_NUMBER     = '4539401723324663';

@@ -6,8 +6,9 @@ use PagarMe\Sdk\Subscription\Request\BoletoSubscriptionCreate;
 use PagarMe\Sdk\SplitRule\SplitRuleCollection;
 use PagarMe\Sdk\Recipient\Recipient;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class BoletoSubscriptionCreateTest extends \PHPUnit_Framework_TestCase
+class BoletoSubscriptionCreateTest extends TestCase
 {
     const PATH   = 'subscriptions';
 

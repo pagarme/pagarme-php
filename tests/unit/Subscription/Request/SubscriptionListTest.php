@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\Subscription\Request;
 
 use PagarMe\Sdk\Subscription\Request\SubscriptionList;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class SubscriptionListTest extends \PHPUnit_Framework_TestCase
+class SubscriptionListTest extends TestCase
 {
     const PATH  = 'subscriptions';
     const PAGE  = 1;

@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\BankAccount\Request;
 
 use PagarMe\Sdk\BulkAnticipation\Request\BulkAnticipationLimits;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class BulkAnticipationLimitsTest extends \PHPUnit_Framework_TestCase
+class BulkAnticipationLimitsTest extends TestCase
 {
     use \PagarMe\Sdk\MicrosecondsFormatter;
 

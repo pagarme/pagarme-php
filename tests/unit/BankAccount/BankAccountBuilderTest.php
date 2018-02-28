@@ -2,7 +2,9 @@
 
 namespace PagarMe\SdkTest\BankAccount;
 
-class BankAccountBuilderTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class BankAccountBuilderTest extends TestCase
 {
     use \PagarMe\Sdk\BankAccount\BankAccountBuilder;
 

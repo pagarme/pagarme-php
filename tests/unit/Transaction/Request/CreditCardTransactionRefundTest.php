@@ -5,8 +5,9 @@ namespace PagarMe\SdkTest\Transaction\Request;
 use PagarMe\Sdk\Transaction\Request\CreditCardTransactionRefund;
 use PagarMe\Sdk\Transaction\CreditCardTransaction;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class CreditCardTransactionRefundTest extends \PHPUnit_Framework_TestCase
+class CreditCardTransactionRefundTest extends TestCase
 {
     const PATH           = 'transactions/1337/refund';
     const TRANSACTION_ID = 1337;

@@ -8,8 +8,9 @@ use PagarMe\Sdk\SplitRule\SplitRuleCollection;
 use PagarMe\Sdk\SplitRule\SplitRule;
 use PagarMe\Sdk\Recipient\Recipient;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
+class BoletoTransactionCreateTest extends TestCase
 {
     const PATH   = 'transactions';
 

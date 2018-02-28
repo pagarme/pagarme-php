@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\Customer\Request;
 
 use PagarMe\Sdk\Customer\Request\CustomerGet;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class CustomerGetTest extends \PHPUnit_Framework_TestCase
+class CustomerGetTest extends TestCase
 {
     const PATH        = 'customers/1337';
     const CUSTOMER_ID = '1337';

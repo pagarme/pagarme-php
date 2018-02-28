@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\Zipcode\Request;
 
 use PagarMe\Sdk\Zipcode\Request\ZipcodeInfoGet;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class ZipcodeInfoGetTest extends \PHPUnit_Framework_TestCase
+class ZipcodeInfoGetTest extends TestCase
 {
     const PATH    = 'zipcodes/01034020';
     const ZIPCODE = '01034020';

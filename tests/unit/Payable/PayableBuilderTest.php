@@ -2,7 +2,9 @@
 
 namespace PagarMe\SdkTest\Payable;
 
-class PayableBuilderTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class PayableBuilderTest extends TestCase
 {
     use \PagarMe\Sdk\Payable\PayableBuilder;
 

@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\Company\Request;
 
 use PagarMe\Sdk\Company\Request\CompanyInfo;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class CompanyInfoTest extends \PHPUnit_Framework_TestCase
+class CompanyInfoTest extends TestCase
 {
     const PATH   = 'company';
 

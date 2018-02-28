@@ -2,7 +2,9 @@
 
 namespace PagarMe\SdkTest\BalanceOperation;
 
-class OperationBuilderTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class OperationBuilderTest extends TestCase
 {
     use \PagarMe\Sdk\BalanceOperation\OperationBuilder;
 

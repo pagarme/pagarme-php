@@ -2,7 +2,9 @@
 
 namespace PagarMe\SdkTest;
 
-class CaseConverterTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class CaseConverterTest extends TestCase
 {
     public function upperCamelProvider()
     {

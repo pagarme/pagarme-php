@@ -4,8 +4,9 @@
 namespace PagarMe\SdkTest;
 
 use PagarMe\Sdk\PagarMe;
+use PHPUnit\Framework\TestCase;
 
-class PagarMeTest extends \PHPUnit_Framework_TestCase
+class PagarMeTest extends TestCase
 {
     private $pagarMe;
 

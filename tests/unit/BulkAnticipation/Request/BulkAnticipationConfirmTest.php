@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\BankAccount\Request;
 
 use PagarMe\Sdk\BulkAnticipation\Request\BulkAnticipationConfirm;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class BulkAnticipationConfirmTest extends \PHPUnit_Framework_TestCase
+class BulkAnticipationConfirmTest extends TestCase
 {
     const PATH         = 'recipients/re_123456/bulk_anticipations/ba_123456/confirm';
     const RECIPIENT_ID = 're_123456';

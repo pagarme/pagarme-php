@@ -4,8 +4,9 @@ namespace PagarMe\SdkTest\Calculation\Request;
 
 use PagarMe\Sdk\Calculation\Request\CalculateInstallmentsRequest;
 use PagarMe\Sdk\RequestInterface;
+use PHPUnit\Framework\TestCase;
 
-class CalculateInstallmentsRequestTest extends \PHPUnit_Framework_TestCase
+class CalculateInstallmentsRequestTest extends TestCase
 {
     const PATH   = 'transactions/calculate_installments_amount';
 
