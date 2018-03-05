@@ -4,12 +4,14 @@ namespace PagarMe\Sdk\Transaction;
 
 use PagarMe\Sdk\AbstractHandler;
 use PagarMe\Sdk\Client;
+use PagarMe\Sdk\Payable\PayableBuilder;
 use PagarMe\Sdk\Transaction\Request\CreditCardTransactionCreate;
 use PagarMe\Sdk\Transaction\Request\BoletoTransactionCreate;
 use PagarMe\Sdk\Transaction\Request\TransactionGet;
 use PagarMe\Sdk\Transaction\Request\TransactionList;
 use PagarMe\Sdk\Transaction\Request\TransactionCapture;
 use PagarMe\Sdk\Transaction\Request\TransactionEvents;
+use PagarMe\Sdk\Transaction\Request\TransactionPayables;
 use PagarMe\Sdk\Transaction\Request\CreditCardTransactionRefund;
 use PagarMe\Sdk\Transaction\Request\BoletoTransactionRefund;
 use PagarMe\Sdk\Transaction\Request\TransactionPay;
@@ -20,6 +22,7 @@ use PagarMe\Sdk\Recipient\Recipient;
 
 class TransactionHandler extends AbstractHandler
 {
+    use PayableBuilder;
     use TransactionBuilder;
     use \PagarMe\Sdk\Event\EventBuilder;
 
@@ -109,6 +112,26 @@ class TransactionHandler extends AbstractHandler
         $response = $this->client->send($request);
 
         return $this->buildTransaction($response);
+    }
+
+    /**
+     * @param $transactionId
+     * @return array
+     * @throws \PagarMe\Sdk\ClientException
+     */
+    public function payables($transactionId)
+    {
+        $request = new TransactionPayables($transactionId);
+
+        $response = $this->client->send($request);
+
+        $payables = [];
+
+        foreach ($response as $payableData) {
+            $payables[] = $this->buildPayable($payableData);
+        }
+
+        return $payables;
     }
 
     /**
