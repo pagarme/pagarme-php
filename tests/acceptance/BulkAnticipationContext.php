@@ -68,6 +68,12 @@ class BulkAnticipationContext extends BasicContext
 
         $paymentDate = new \Datetime($paymentDate);
 
+        $weekday = $paymentDate->format('w');
+
+        if (in_array($weekday, [0,6])) {
+            $paymentDate->modify('+2 days');
+        }
+
         $paymentDate->setTime(0, 0, 0);
 
         $this->expectedPaymentDate = $paymentDate;
