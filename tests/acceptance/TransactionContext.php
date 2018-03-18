@@ -590,7 +590,7 @@ class TransactionContext extends BasicContext
     public function theTransactionCustomerMustBeTheSameRetrieved()
     {
         $transactionCustomer = $this->transaction->getCustomer();
-        assertEquals($transactionCustomer->id, $this->customer->getId());
+        assertEquals($transactionCustomer->getId(), $this->customer->getId());
     }
 
     private function createValidSplitRule()
