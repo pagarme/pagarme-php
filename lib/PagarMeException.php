@@ -9,6 +9,6 @@ class PagarMeException extends \Exception
      */
     public function __construct($message)
     {
-        parent::__construct(json_encode($message), 0);
+        parent::__construct(is_string($message) ? $message : json_encode($message), 0);
     }
 }

@@ -89,10 +89,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-    * @expectedException PagarMe\Sdk\ClientException
-    * @test
+     * @expectedException PagarMe\Sdk\ClientException
+     * @test
      */
-    public function mustReturnClientExeptionWhenGetRequestException()
+    public function mustReturnClientExceptionWhenGetRequestException()
     {
         $guzzleRequestMock = $this->getMock(
             $this->getGuzzleRequestInterfaceName()
@@ -124,14 +124,51 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function mustReturnClientExceptionParsedCorrectly()
+    {
+        $guzzleRequestMock = $this->getMock(
+            $this->getGuzzleRequestInterfaceName()
+        );
+
+        if ($this->isUsingLegacyGuzzle()) {
+            $this->guzzleClientMock->method('createRequest')
+                ->willReturn($guzzleRequestMock);
+        }
+
+        $this->guzzleClientMock->method('send')
+            ->will(
+                $this->throwException(
+                    new \GuzzleHttp\Exception\RequestException(
+                        '{"error":{"message":"some json error"}}',
+                        $guzzleRequestMock
+                    )
+                )
+            );
+        $this->guzzleClientMock->expects($this->once())->method('send');
+
+        $client = new Client(
+            $this->guzzleClientMock,
+            self::API_KEY
+        );
+
+        try {
+            $client->send($this->pagarMeRequestMock);
+        } catch (\Exception $e) {
+            $this->assertInstanceOf('stdClass', json_decode($e->getMessage()));
+        }
+    }
+
+    /**
+     * @test
+     */
     public function mustSetDefaultTimeout()
     {
         $timeout = 237;
 
         $guzzleRequestMock = $this->getMockBuilder(
             $this->getGuzzleRequestClassName()
-            )->disableOriginalConstructor()
-            ->getMock();
+        )->disableOriginalConstructor()
+        ->getMock();
 
         if ($this->isUsingLegacyGuzzle()) {
             $this->guzzleClientMock->method('createRequest')
@@ -183,14 +220,14 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         if ($this->isUsingLegacyGuzzle()) {
             $streamMock = $this->getMockBuilder(
-            'GuzzleHttp\Stream\Stream'
+                'GuzzleHttp\Stream\Stream'
             )->disableOriginalConstructor()
             ->getMock();
 
             $responseMock = $this->getMockBuilder(
                 'GuzzleHttp\Message\Response'
-                )->disableOriginalConstructor()
-                ->getMock();
+            )->disableOriginalConstructor()
+            ->getMock();
 
             $responseMock->method('getBody')
                 ->willReturn($streamMock);
@@ -200,13 +237,13 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $streamMock = $this->getMockBuilder(
             'Psr\Http\Message\StreamInterface'
-            )->disableOriginalConstructor()
-            ->getMock();
+        )->disableOriginalConstructor()
+        ->getMock();
 
         $responseMock = $this->getMockBuilder(
             'GuzzleHttp\Psr7\Response'
-            )->disableOriginalConstructor()
-            ->getMock();
+        )->disableOriginalConstructor()
+        ->getMock();
 
         $responseMock->method('getBody')
             ->willReturn($streamMock);
