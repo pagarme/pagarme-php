@@ -20,7 +20,6 @@ abstract class BasicContext implements Context, SnippetAcceptingContext
     {
         if (static::$pagarMe === null) {
             $companyData = self::createCompany();
-            echo sprintf("Key: %s\n", $companyData->api_key->test);
             self::$pagarMe = new PagarMe(
                 $companyData->api_key->test
             );
