@@ -286,15 +286,6 @@ abstract class AbstractTransaction
      * @return int
      * @codeCoverageIgnore
      */
-    public function getInstallments()
-    {
-        return $this->installments;
-    }
-
-    /**
-     * @return int
-     * @codeCoverageIgnore
-     */
     public function getCost()
     {
         return $this->cost;
