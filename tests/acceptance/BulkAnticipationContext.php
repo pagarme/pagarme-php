@@ -71,7 +71,7 @@ class BulkAnticipationContext extends BasicContext
         $weekday = $paymentDate->format('w');
 
         if (in_array($weekday, [0,6])) {
-            $paymentDate->modify('+2 days');
+            $paymentDate = new \Datetime('+3 days');
         }
 
         $paymentDate->setTime(0, 0, 0);
