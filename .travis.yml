@@ -6,6 +6,7 @@ php:
   - '7.0'
 before_script:
   - mkdir -p build/logs
+  - composer clear-cache
   - composer config --global github-protocols https
   - composer install --no-interaction --prefer-dist --dev
   - composer require satooshi/php-coveralls:* --dev
