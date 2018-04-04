@@ -17,13 +17,20 @@ class TransactionList implements RequestInterface
     private $count;
 
     /**
-     * @param int $page
-     * @param int $count
+     * @var array
      */
-    public function __construct($page, $count)
+    private $extraParameters;
+
+    /**
+     * @param $page
+     * @param $count
+     * @param array $extraParameters
+     */
+    public function __construct($page, $count, array $extraParameters = [])
     {
         $this->page  = $page;
         $this->count = $count;
+        $this->extraParameters = $extraParameters;
     }
 
     /**
@@ -31,10 +38,10 @@ class TransactionList implements RequestInterface
      */
     public function getPayload()
     {
-        return [
+        return array_merge([
             'page'  => $this->page,
             'count' => $this->count,
-        ];
+        ], $this->extraParameters);
     }
 
     /**
