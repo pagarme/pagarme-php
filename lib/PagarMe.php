@@ -140,12 +140,12 @@ class PagarMe
                     'base_url' => 'https://api.pagar.me/1/',
                     'base_uri' => 'https://api.pagar.me/1/',
                     'defaults' => [
-                        'headers' => $headers,
-                        'timeout' => $timeout
+                        'headers' => $headers
                     ]
                 ]
             ),
-            $apiKey
+            $apiKey,
+            $timeout
         );
     }
 
