@@ -24,6 +24,7 @@ class RestClient {
 
 		curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($this->curl, CURLOPT_TIMEOUT, 60);
+		curl_setopt($this->curl, CURLOPT_SSLVERSION, 6);
 
 		if ($params["parameters"]) {
 			$this->parameters = array_merge($this->parameters, $params["parameters"]);
