@@ -3,7 +3,7 @@
 abstract class PagarMe {
 	public static $api_key;
 	const live = 1;
-	const endpoint = "https://api.pagarmepci.net";
+	const endpoint = "https://api.pagar.me";
 	const api_version = '1';
 
 	public static function full_api_url($path) {
