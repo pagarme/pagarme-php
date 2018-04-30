@@ -66,7 +66,10 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                         'street_number' => 42,
                         'neighborhood'  => 'centro',
                         'zipcode'       => '01227200',
-                        'complementary' => null
+                        'complementary' => 'sala null',
+                        'city'          => 'São Paulo',
+                        'state'         => 'SP',
+                        'country'       => 'Brazil'
                     ],
                     'phone' => [
                         'ddi'    => 55,
@@ -233,7 +236,10 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                         'street_number' => 42,
                         'neighborhood'  => 'centro',
                         'zipcode'       => '01227200',
-                        'complementary' => null
+                        'complementary' => 'sala null',
+                        'city'          => 'São Paulo',
+                        'state'         => 'SP',
+                        'country'       => 'Brazil'
                     ],
                     'phone' => [
                         'ddi'    => 55,
@@ -318,7 +324,10 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                         'street_number' => 42,
                         'neighborhood'  => 'centro',
                         'zipcode'       => '01227200',
-                        'complementary' => null
+                        'complementary' => 'sala null',
+                        'city'          => 'São Paulo',
+                        'state'         => 'SP',
+                        'country'       => 'Brazil'
                     ],
                     'phone' => [
                         'ddi'    => 55,
@@ -422,7 +431,10 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                         'street_number' => 42,
                         'neighborhood'  => 'centro',
                         'zipcode'       => '01227200',
-                        'complementary' => null
+                        'complementary' => 'sala null',
+                        'city'          => 'São Paulo',
+                        'state'         => 'SP',
+                        'country'       => 'Brazil'
                     ],
                     'phone' => [
                         'ddi'    => 55,
@@ -529,7 +541,11 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 'street'        => 'rua teste',
                 'street_number' => 42,
                 'neighborhood'  => 'centro',
-                'zipcode'       => '01227200'
+                'zipcode'       => '01227200',
+                'complementary' => 'sala null',
+                'city'          => 'São Paulo',
+                'state'         => 'SP',
+                'country'       => 'Brazil'
             ]
         );
         $customerMock->method('getPhone')->willReturn(

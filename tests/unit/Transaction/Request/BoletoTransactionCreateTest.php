@@ -52,7 +52,10 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
                         'street_number' => 42,
                         'neighborhood'  => 'centro',
                         'zipcode'       => '01227200',
-                        'complementary' => null
+                        'complementary' => null,
+                        'city'          => null,
+                        'state'         => null,
+                        'country'       => null
                     ],
                     'phone' => [
                         'ddi'    => 55,
@@ -126,7 +129,10 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
                         'street_number' => 42,
                         'neighborhood'  => 'centro',
                         'zipcode'       => '01227200',
-                        'complementary' => null
+                        'complementary' => null,
+                        'city'          => null,
+                        'state'         => null,
+                        'country'       => null
                     ],
                     'phone' => [
                         'ddi'    => 55,
@@ -248,7 +254,7 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
             ]
         );
 
-        $transactionCreate = new boletoTransactionCreate (
+        $transactionCreate = new boletoTransactionCreate(
             $transaction
         );
 
@@ -269,7 +275,10 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
                         'street_number' => 42,
                         'neighborhood'  => 'centro',
                         'zipcode'       => '01227200',
-                        'complementary' => null
+                        'complementary' => null,
+                        'city'          => null,
+                        'state'         => null,
+                        'country'       => null
                     ],
                     'phone' => [
                         'ddi'    => 55,
