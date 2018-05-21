@@ -25,6 +25,11 @@ abstract class AbstractTransaction
     /**
      * @var string
      */
+    protected $referenceKey;
+
+    /**
+     * @var string
+     */
     protected $status;
 
     /**
@@ -172,6 +177,11 @@ abstract class AbstractTransaction
     public function getId()
     {
         return $this->id;
+    }
+
+    public function getReferenceKey()
+    {
+        return $this->referenceKey;
     }
 
     /**
