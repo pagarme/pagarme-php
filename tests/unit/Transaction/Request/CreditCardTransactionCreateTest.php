@@ -113,7 +113,7 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 'installments' => $installments,
                 'capture'      => $capture,
                 'postbackUrl'  => $postbackUrl,
-                'referenceKey' => null
+                'reference_key' => null
             ]
         );
 
@@ -163,8 +163,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 'customer'     => $customerMock,
                 'installments' => $installments,
                 'capture'      => $capture,
-                'postbackUrl'  => $postbackUrl,
-                'referenceKey' => $referenceKey
+                'postback_url'  => $postbackUrl,
+                'reference_key' => $referenceKey
             ]
         );
 
@@ -212,7 +212,7 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 'installments' => 1,
                 'capture'      => false,
                 'postback_url' => null,
-                'referenceKey' => null
+                'reference_key' => null
             ]
         );
 
@@ -274,7 +274,7 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 'capture'      => false,
                 'postback_url' => null,
                 'split_rules'  => $rules,
-                'referenceKey' => null
+                'reference_key' => null
             ]
         );
 
@@ -466,8 +466,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 'customer'     => $customerMock,
                 'installments' => $installments,
                 'capture'      => $capture,
-                'postbackUrl'  => $postbackUrl,
-                'referenceKey' => null
+                'postback_url'  => $postbackUrl,
+                'reference_key' => null
             ]
         );
 
@@ -562,8 +562,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 'customer'       => $customerMock,
                 'installments'   => $installments,
                 'capture'        => $capture,
-                'postbackUrl'    => $postbackUrl,
-                'softDescriptor' => $softDescriptor,
+                'postback_url'    => $postbackUrl,
+                'soft_descriptor' => $softDescriptor,
                 'async'          => $async,
             ]
         );

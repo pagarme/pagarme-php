@@ -149,7 +149,7 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 'customer'               => $customerMock,
                 'boleto_expiration_date' => $expirationDate,
                 'split_rules'            => $rules,
-                'referenceKey'           => null
+                'reference_key'           => null
             ]
         );
 
@@ -301,7 +301,7 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 'postback_url'           => 'example.com/postback',
                 'customer'               => $customerMock,
                 'soft_descriptor'        => "Minha loja",
-                'referenceKey'           => null
+                'reference_key'           => null
             ]
         );
 
