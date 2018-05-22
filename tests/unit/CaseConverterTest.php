@@ -8,6 +8,7 @@ class CaseConverterTest extends \PHPUnit_Framework_TestCase
     {
         return [
             ['some_string', 'SomeString'],
+            ['SomeString', 'SomeString'],
             ['string', 'String'],
             ['another_string', 'AnotherString'],
             ['string_with_Upper', 'StringWithUpper'],
@@ -33,6 +34,7 @@ class CaseConverterTest extends \PHPUnit_Framework_TestCase
     {
         return [
             ['some_string', 'someString'],
+            ['someString', 'someString'],
             ['string', 'string'],
             ['another_string', 'AnotherString'],
             ['tring_with_Upper', 'stringWithUpper'],
