@@ -79,8 +79,7 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
     public function mustContainsTheRightReferenceKey(
         $expirationDate,
         $referenceKey
-    )
-    {
+    ) {
         $transaction =  $this->createTransaction($expirationDate);
         $transactionCreate = new BoletoTransactionCreate($transaction);
 
@@ -240,8 +239,7 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
     private function createTransaction(
         $expirationDate,
         $referenceKey = null
-    )
-    {
+    ) {
         $customerMock = $this->getCustomerMock();
 
         $transaction =  new BoletoTransaction(
@@ -305,7 +303,7 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
             ]
         );
 
-        $transactionCreate = new boletoTransactionCreate (
+        $transactionCreate = new boletoTransactionCreate(
             $transaction
         );
 
