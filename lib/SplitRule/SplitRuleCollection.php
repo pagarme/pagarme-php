@@ -74,7 +74,8 @@ class SplitRuleCollection implements \ArrayAccess, \Iterator, \Countable
     /**
      * @return int
      */
-    public function count() {
+    public function count()
+    {
         return count($this->rules);
     }
 }

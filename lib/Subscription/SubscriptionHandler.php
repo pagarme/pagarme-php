@@ -124,16 +124,16 @@ class SubscriptionHandler extends AbstractHandler
      */
     public function update(Subscription $subscription)
     {
-	$subscriptionMemento = clone $subscription;
-	$this->getSubscriptionMemento()->getPlan($subscriptionMemento);
-	$this->getSubscriptionMemento()->getPaymentMethod($subscriptionMemento);
-       $this->getSubscriptionMemento()->getCard($subscriptionMemento);
+        $subscriptionMemento = clone $subscription;
+        $this->getSubscriptionMemento()->getPlan($subscriptionMemento);
+        $this->getSubscriptionMemento()->getPaymentMethod($subscriptionMemento);
+        $this->getSubscriptionMemento()->getCard($subscriptionMemento);
 
-       $request = new SubscriptionUpdate($subscription, $subscriptionMemento);
+        $request = new SubscriptionUpdate($subscription, $subscriptionMemento);
 
-       $response = $this->client->send($request);
-        
-       return $this->buildSubscription($response);
+        $response = $this->client->send($request);
+
+        return $this->buildSubscription($response);
     }
 
     /**

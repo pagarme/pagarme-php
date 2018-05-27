@@ -63,7 +63,7 @@ class SubscriptionUpdate implements RequestInterface
     }
 
     /**
-     * @return bool 
+     * @return bool
      */
     protected function isCardIdChanged()
     {
@@ -75,7 +75,7 @@ class SubscriptionUpdate implements RequestInterface
      */
     protected function isPreviousPaymentMethodBoleto()
     {
-       return $this->subscriptionMemento->getPaymentMethod() == self::BOLETO;
+        return $this->subscriptionMemento->getPaymentMethod() == self::BOLETO;
     }
 
     /**
@@ -92,7 +92,7 @@ class SubscriptionUpdate implements RequestInterface
         }
 
         if ($newPlan->getId() != $mementoPlan->getId()) {
-           $payload->offsetSet('plan_id', $newPlan->getId());
+            $payload->offsetSet('plan_id', $newPlan->getId());
         }
     }
 
@@ -101,7 +101,7 @@ class SubscriptionUpdate implements RequestInterface
      * @return ArrayObject $payload
      */
     protected function loadPaymentMethod(\ArrayObject $payload)
-    { 
+    {
         $newPaymentMethod = $this->subscription->getPaymentMethod();
         $mementoPaymentMethod = $this->subscriptionMemento->getPaymentMethod();
 
