@@ -81,10 +81,14 @@ class Client
     private function buildRequest($apiRequest)
     {
         if (class_exists('\\GuzzleHttp\\Message\\Request')) {
+            $options = array_merge(
+                $this->requestOptions,
+                ['json' => $this->buildBody($apiRequest)]
+            );
             return $this->client->createRequest(
                 $apiRequest->getMethod(),
                 $apiRequest->getPath(),
-                ['json' => $this->buildBody($apiRequest)]
+                $options
             );
         }
 
