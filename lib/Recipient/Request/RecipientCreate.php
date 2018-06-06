@@ -110,6 +110,7 @@ class RecipientCreate implements RequestInterface
             'bank_account' =>[
                 'bank_code'       => $bankAccount->getBankCode(),
                 'agencia'         => $bankAccount->getAgencia(),
+                'agencia_dv'      => $bankAccount->getAgenciaDv(),
                 'conta'           => $bankAccount->getConta(),
                 'conta_dv'        => $bankAccount->getContaDv(),
                 'document_number' => $bankAccount->getDocumentNumber(),

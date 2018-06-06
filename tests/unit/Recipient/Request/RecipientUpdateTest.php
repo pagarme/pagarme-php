@@ -20,6 +20,7 @@ class RecipientUpdateTest extends \PHPUnit_Framework_TestCase
 
     const BANK_CODE       = 237;
     const AGENCIA         = 1383;
+    const AGENCIA_DV      = 5;
     const CONTA           = 13399;
     const CONTA_DV        = 2;
     const DOCUMENT_NUMBER = 15344812140;
@@ -67,6 +68,7 @@ class RecipientUpdateTest extends \PHPUnit_Framework_TestCase
         $bankAccountMock->method('getId')->willReturn(self::BANK_ACCOUNT_ID);
         $bankAccountMock->method('getBankCode')->willReturn(self::BANK_CODE);
         $bankAccountMock->method('getAgencia')->willReturn(self::AGENCIA);
+        $bankAccountMock->method('getAgenciaDv')->willReturn(self::AGENCIA_DV);
         $bankAccountMock->method('getConta')->willReturn(self::CONTA);
         $bankAccountMock->method('getContaDv')->willReturn(self::CONTA_DV);
         $bankAccountMock->method('getDocumentNumber')->willReturn(self::DOCUMENT_NUMBER);
@@ -101,6 +103,7 @@ class RecipientUpdateTest extends \PHPUnit_Framework_TestCase
                 'bank_account' => [
                     'bank_code'       => self::BANK_CODE,
                     'agencia'         => self::AGENCIA,
+                    'agencia_dv'      => self::AGENCIA_DV,
                     'conta'           => self::CONTA,
                     'conta_dv'        => self::CONTA_DV,
                     'document_number' => self::DOCUMENT_NUMBER,
