@@ -194,4 +194,47 @@ class RecipientCreateTest extends \PHPUnit_Framework_TestCase
             $payload['bank_account']
         );
     }
+
+    /**
+     * @test
+     */
+    public function mustNotContainAgenciaDv()
+    {
+        $bankAccountMock = $this->getMockBuilder('PagarMe\Sdk\BankAccount\BankAccount')
+          ->disableOriginalConstructor()
+          ->getMock();
+
+        $bankAccountMock->method('getBankCode')->willReturn(self::BANK_CODE);
+        $bankAccountMock->method('getAgencia')->willReturn(self::AGENCIA);
+        $bankAccountMock->method('getAgenciaDv')->willReturn(null);
+        $bankAccountMock->method('getConta')->willReturn(self::CONTA);
+        $bankAccountMock->method('getContaDv')->willReturn(self::CONTA_DV);
+        $bankAccountMock->method('getDocumentNumber')->willReturn(self::DOCUMENT_NUMBER);
+        $bankAccountMock->method('getLegalName')->willReturn(self::LEGAL_NAME);
+
+        $recipientCreate = new RecipientCreate(
+            $bankAccountMock,
+            null,
+            null,
+            null,
+            null,
+            null
+        );
+
+        $payload = $recipientCreate->getPayload();
+
+        $this->assertContains('bank_account', array_keys($payload));
+        $this->assertEquals(
+            [
+                'bank_code'       => self::BANK_CODE,
+                'agencia'         => self::AGENCIA,
+                'agencia_dv'      => null,
+                'conta'           => self::CONTA,
+                'conta_dv'        => self::CONTA_DV,
+                'document_number' => self::DOCUMENT_NUMBER,
+                'legal_name'      => self::LEGAL_NAME,
+            ],
+            $payload['bank_account']
+        );
+    }
 }

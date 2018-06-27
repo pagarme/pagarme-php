@@ -113,4 +113,62 @@ class RecipientUpdateTest extends \PHPUnit_Framework_TestCase
             $recipientUpdate->getPayload()
         );
     }
+
+    /**
+     * @test
+     */
+    public function mustNotContainAgenciaDv()
+    {
+        $bankAccountMock = $this->getMockBuilder('PagarMe\Sdk\BankAccount\BankAccount')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $bankAccountMock->method('getId')->willReturn(self::BANK_ACCOUNT_ID);
+        $bankAccountMock->method('getBankCode')->willReturn(self::BANK_CODE);
+        $bankAccountMock->method('getAgencia')->willReturn(self::AGENCIA);
+        $bankAccountMock->method('getAgenciaDv')->willReturn(null);
+        $bankAccountMock->method('getConta')->willReturn(self::CONTA);
+        $bankAccountMock->method('getContaDv')->willReturn(self::CONTA_DV);
+        $bankAccountMock->method('getDocumentNumber')->willReturn(self::DOCUMENT_NUMBER);
+        $bankAccountMock->method('getLegalName')->willReturn(self::LEGAL_NAME);
+
+        $recipientMock = $this->getMockBuilder('PagarMe\Sdk\Recipient\Recipient')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $recipientMock->method('getBankAccount')->willReturn($bankAccountMock);
+        $recipientMock->method('getTransferInterval')
+            ->willReturn(self::TRANSFER_INTERVAL);
+        $recipientMock->method('getTransferDay')
+            ->willReturn(self::TRANSFER_DAY);
+        $recipientMock->method('getTransferEnabled')
+            ->willReturn(self::TRANSFER_ENABLED);
+        $recipientMock->method('getAutomaticAnticipationEnabled')
+            ->willReturn(self::AUTOMATIC_ANTICIPATION_ENABLED);
+        $recipientMock->method('getAnticipatableVolumePercentage')
+            ->willReturn(self::ANTICIPATABLE_VOLUME_PERCENTAGE);
+
+        $recipientUpdate = new RecipientUpdate($recipientMock);
+
+        $this->assertEquals(
+            [
+                'transfer_interval'               => self::TRANSFER_INTERVAL,
+                'transfer_day'                    => self::TRANSFER_DAY,
+                'transfer_enabled'                => self::TRANSFER_ENABLED,
+                'automatic_anticipation_enabled'  => self::AUTOMATIC_ANTICIPATION_ENABLED,
+                'anticipatable_volume_percentage' => self::ANTICIPATABLE_VOLUME_PERCENTAGE,
+                'bank_account_id'                 => self::BANK_ACCOUNT_ID,
+                'bank_account' => [
+                    'bank_code'       => self::BANK_CODE,
+                    'agencia'         => self::AGENCIA,
+                    'agencia_dv'      => null,
+                    'conta'           => self::CONTA,
+                    'conta_dv'        => self::CONTA_DV,
+                    'document_number' => self::DOCUMENT_NUMBER,
+                    'legal_name'      => self::LEGAL_NAME
+                ]
+            ],
+            $recipientUpdate->getPayload()
+        );
+    }
 }
