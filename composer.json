@@ -35,11 +35,11 @@
     ]
   },
   "autoload": {
-    "psr-4": {"PagarMe\\Sdk\\": "src/"}
+    "psr-4": {"PagarMe\\": "src/"}
   },
   "autoload-dev": {
     "psr-4": {
-      "PagarMe\\SdkTest\\": "tests/unit"
+      "PagarMe\\Test\\": "tests/unit"
     }
   }
 }
