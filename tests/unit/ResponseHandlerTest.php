@@ -1,0 +1,31 @@
+<?php
+
+namespace PagarMe\Test;
+
+use PagarMe\ResponseHandler;
+use PHPUnit\Framework\TestCase;
+
+class ResponseHandlerTest extends TestCase
+{
+    public function testReturnTypeOnSuccess()
+    {
+        $handler = new ResponseHandler();
+
+        $response = $handler->success('{"foo": "bar"}');
+
+        $this->assertInstanceOf(\ArrayObject::class, $response);
+    }
+
+    public function testReturnUsage()
+    {
+        $handler = new ResponseHandler();
+
+        $response = $handler->success('{"foo": "bar"}');
+    
+        $this->assertObjectHasAttribute('foo', $response);
+        $this->assertEquals('bar', $response->foo);
+
+        $this->assertArrayHasKey('foo', $response);
+        $this->assertEquals('bar', $response['foo']);
+    }
+}

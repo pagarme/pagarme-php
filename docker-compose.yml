@@ -6,7 +6,7 @@ services:
       - .:/code
     working_dir: /code
   composer:
-    image: composer
+    image: composer56
     volumes:
       - .:/code
     working_dir: /code
