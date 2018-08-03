@@ -45,7 +45,8 @@ class Client
      * @param $uri string
      * @param $options array
      *
-     * @return array
+     * @throw \PagarMe\PagarMeException
+     * @return \ArrayObject
      */
     public function request($method, $uri, $options = [])
     {
@@ -58,7 +59,7 @@ class Client
 
             return ResponseHandler::success($response->getBody());
         } catch (\Exception $exception) {
-            throw $exception;
+            ResponseHandler::failure($exception);
         }
     }
 }

@@ -3,6 +3,7 @@
 namespace PagarMe\Test;
 
 use PagarMe\Client;
+use PagarMe\PagarMeException;
 use PagarMe\Endpoints\EndpointInterface;
 use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Handler\MockHandler;
@@ -26,12 +27,12 @@ final class ClientTest extends TestCase
     }
 
     /**
-     * @expectedException \Exception
+     * @expectedException \PagarMe\PagarMeException
      */
     public function testFailedResponse()
     {
         $mock = new MockHandler([
-            new Response(401)
+            new Response(401, [], 'Unauthorized')
         ]);
         $handler = HandlerStack::create($mock);
 
