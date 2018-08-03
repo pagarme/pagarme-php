@@ -2,25 +2,42 @@
 
 namespace PagarMe;
 
-use ArrayObject;
+use PagarMe\PagarMeException;
 
 class ResponseHandler
 {
     /**
      * @param $payload string
      *
+     * @throw \PagarMe\PagarMeException
      * @return \ArrayObject
      */
-    public static function success($json)
+    public static function success($payload)
     {
-        $payload = json_decode($json, true);
+        try {
+            $response = new \ArrayObject(
+                json_decode($payload, true),
+                \ArrayObject::STD_PROP_LIST|\ArrayObject::ARRAY_AS_PROPS
+            );
 
-        $response = new ArrayObject($payload);
+            return $response;
+        } catch (\Exception $originalException) {
+            self::failure($originalException);
+        }
+    }
 
-        $response->setFlags(
-            ArrayObject::STD_PROP_LIST|ArrayObject::ARRAY_AS_PROPS
+    /**
+     * @param $originalException \Exception
+     *
+     * @throw \PagarMe\PagarMeException
+     */
+    public static function failure(\Exception $originalException)
+    {
+        $exception = new PagarMeException(
+            $originalException->getMessage()
         );
+        $exception->originalException = $originalException;
 
-        return $response;
+        throw $exception;
     }
 }

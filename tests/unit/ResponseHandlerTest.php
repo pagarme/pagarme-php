@@ -3,6 +3,7 @@
 namespace PagarMe\Test;
 
 use PagarMe\ResponseHandler;
+use PagarMe\PagarMeException;
 use PHPUnit\Framework\TestCase;
 
 class ResponseHandlerTest extends TestCase
@@ -18,14 +19,20 @@ class ResponseHandlerTest extends TestCase
 
     public function testReturnUsage()
     {
-        $handler = new ResponseHandler();
-
-        $response = $handler->success('{"foo": "bar"}');
+        $response = ResponseHandler::success('{"foo": "bar"}');
     
         $this->assertObjectHasAttribute('foo', $response);
         $this->assertEquals('bar', $response->foo);
 
         $this->assertArrayHasKey('foo', $response);
         $this->assertEquals('bar', $response['foo']);
+    }
+
+    /**
+     * @expectedException \PagarMe\PagarMeException
+     */
+    public function testUnparseablePayload()
+    {
+        $response = ResponseHandler::success('{"foo": "bar"');
     }
 }
