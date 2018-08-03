@@ -1,9 +1,15 @@
 language: php
+
 php:
-  - '5.4'
-  - '5.5'
   - '5.6'
   - '7.0'
+  - '7.1'
+  - '7.2'
+
+branches:
+  only:
+    - V4
+
 before_script:
   - mkdir -p build/logs
   - composer clear-cache
@@ -11,12 +17,12 @@ before_script:
   - composer install --no-interaction --prefer-dist --dev
   - composer require satooshi/php-coveralls:* --dev
   - vendor/bin/phpcs --config-set ignore_warnings_on_exit 1
+
 script:
-  - vendor/bin/phpcs lib/ --standard=PSR2
-  - vendor/bin/phpcs tests/ --standard=PSR2
+  - vendor/bin/phpcs src/ --standard=PSR2
   - vendor/bin/phpunit
-  - vendor/bin/behat
-  - phpunit --coverage-clover build/logs/clover.xml
+  - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
 after_success:
   - sh -c 'php vendor/bin/coveralls -v'
+
