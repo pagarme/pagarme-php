@@ -20,6 +20,7 @@ before_script:
 
 script:
   - vendor/bin/phpcs src/ --standard=PSR2
+  - vendor/bin/phpcs tests/ --standard=PSR2
   - vendor/bin/phpunit
   - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
