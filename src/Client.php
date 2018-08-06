@@ -4,6 +4,7 @@ namespace PagarMe;
 
 use PagarMe\RequestHandler;
 use PagarMe\ResponseHandler;
+use PagarMe\Endpoints\Transactions;
 use GuzzleHttp\Client as HttpClient;
 use PagarMe\Exceptions\InvalidJsonException;
 
@@ -64,5 +65,10 @@ class Client
         } catch (\Exception $exception) {
             ResponseHandler::failure($exception);
         }
+    }
+
+    public function transactions()
+    {
+        return new Transactions($this);
     }
 }

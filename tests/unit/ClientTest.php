@@ -5,6 +5,7 @@ namespace PagarMe\Test;
 use PagarMe\Client;
 use PagarMe\Exceptions\PagarMeException;
 use PagarMe\Endpoints\EndpointInterface;
+use PagarMe\Endpoints\Transactions;
 use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -72,5 +73,14 @@ final class ClientTest extends TestCase
         $client = new Client('apiKey', ['handler' => $handler]);
 
         $response = $client->request(EndpointInterface::POST, 'transactions');
+    }
+
+    public function testTransactions()
+    {
+        $client = new Client('apiKey');
+
+        $transactions = $client->transactions();
+
+        $this->assertInstanceOf(Transactions::class, $transactions);
     }
 }
