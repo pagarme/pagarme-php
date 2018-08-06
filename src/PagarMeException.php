@@ -10,7 +10,7 @@ final class PagarMeException extends \Exception
     public $originalException;
 
     /**
-     * @param $message string
+     * @param string $message
      */
     public function __construct($message)
     {

@@ -5,8 +5,8 @@ namespace PagarMe;
 class RequestHandler
 {
     /**
-     * @param $uri string
-     * @param $apiKey string
+     * @param string $uri
+     * @param string $apiKey
      *
      * @return string
      */

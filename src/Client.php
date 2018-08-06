@@ -24,8 +24,8 @@ class Client
     private $apiKey;
 
     /**
-     * @param $apiKey string
-     * @param $extras array
+     * @param string $apiKey
+     * @param array|null $extras
      */
     public function __construct($apiKey, array $extras = null)
     {
@@ -41,11 +41,11 @@ class Client
     }
 
     /**
-     * @param $method string
-     * @param $uri string
-     * @param $options array
+     * @param string method
+     * @param string $uri
+     * @param array $options
      *
-     * @throw \PagarMe\PagarMeException
+     * @throws \PagarMe\PagarMeException
      * @return \ArrayObject
      */
     public function request($method, $uri, $options = [])

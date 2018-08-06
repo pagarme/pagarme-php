@@ -7,9 +7,9 @@ use PagarMe\PagarMeException;
 class ResponseHandler
 {
     /**
-     * @param $payload string
+     * @param string $payload
      *
-     * @throw \PagarMe\PagarMeException
+     * @throws \PagarMe\PagarMeException
      * @return \ArrayObject
      */
     public static function success($payload)
@@ -27,9 +27,9 @@ class ResponseHandler
     }
 
     /**
-     * @param $originalException \Exception
+     * @param \Exception $originalException
      *
-     * @throw \PagarMe\PagarMeException
+     * @throws \PagarMe\PagarMeException
      */
     public static function failure(\Exception $originalException)
     {
