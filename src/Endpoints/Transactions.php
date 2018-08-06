@@ -34,4 +34,15 @@ class Transactions
             ['json' => $payload]
         );
     }
+
+    /*
+     * @return \ArrayObject
+     */
+    public function get()
+    {
+        return $this->client->request(
+            EndpointInterface::GET,
+            Routes::transactions()->base()
+        );
+    }
 }

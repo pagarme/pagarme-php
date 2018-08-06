@@ -10,6 +10,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 use PagarMe\Test\Mocks\TransactionMock;
+use PagarMe\Test\Mocks\TransactionListMock;
 
 final class TransactionTest extends TestCase
 {
@@ -80,5 +81,27 @@ final class TransactionTest extends TestCase
 
         $this->assertEquals('POST', $requestMethod);
         $this->assertEquals($response->getArrayCopy(), json_decode(TransactionMock::mock(), true));
+    }
+
+    public function testTransactionList()
+    {
+        $container = [];
+        $history = Middleware::history($container);
+
+        $mock = new MockHandler([
+            new Response(200, [], TransactionListMock::mock())
+        ]);
+
+        $handler = HandlerStack::create($mock);
+        $handler->push($history);
+
+        $client = new Client('apiKey', ['handler' => $handler]);
+
+        $response = $client->transactions()->get();
+
+        $requestMethod = $container[0]['request']->getMethod();
+
+        $this->assertEquals('GET', $requestMethod);
+        $this->assertEquals($response->getArrayCopy(), json_decode(TransactionListMock::mock(), true));
     }
 }
