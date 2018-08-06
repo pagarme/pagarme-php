@@ -14,10 +14,15 @@ class CreditCardTransactionRefundTest extends \PHPUnit_Framework_TestCase
     public function refundAmountProvider()
     {
         return [
-            [null],
-            [1000],
-            [300],
-            [5050]
+            [null, true],
+            [1000, true],
+            [300, true],
+            [5050, true],
+
+            [null, false],
+            [1000, false],
+            [300, false],
+            [5050, false],
         ];
     }
 
@@ -25,16 +30,18 @@ class CreditCardTransactionRefundTest extends \PHPUnit_Framework_TestCase
      * @dataProvider refundAmountProvider
      * @test
      */
-    public function mustContentBeCorrect($amount)
+    public function mustContentBeCorrect($amount, $async)
     {
         $transactionCreate = new CreditCardTransactionRefund(
             $this->getTransactionMock(),
-            $amount
+            $amount,
+	        $async
         );
 
         $this->assertEquals(
             [
-                'amount' => $amount
+	            'amount' => $amount,
+	            'async' => $async,
             ],
             $transactionCreate->getPayload()
         );
