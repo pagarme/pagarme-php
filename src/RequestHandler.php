@@ -12,6 +12,6 @@ class RequestHandler
      */
     public static function bindApiKey($uri, $apiKey)
     {
-        return $uri.'/?api_key='.$apiKey;
+        return $uri.'?api_key='.$apiKey;
     }
 }

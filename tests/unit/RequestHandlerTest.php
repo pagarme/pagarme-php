@@ -10,7 +10,7 @@ class RequestHandlerTest extends TestCase
     public function testBindApiKey()
     {
         $this->assertEquals(
-            'foo/?api_key=katiau',
+            'foo?api_key=katiau',
             RequestHandler::bindApiKey('foo', 'katiau')
         );
     }
