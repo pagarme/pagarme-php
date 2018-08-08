@@ -29,7 +29,7 @@ class ResponseHandlerTest extends TestCase
     }
 
     /**
-     * @expectedException \PagarMe\PagarMeException
+     * @expectedException \PagarMe\Exceptions\InvalidJsonException
      */
     public function testUnparseablePayload()
     {

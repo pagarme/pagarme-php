@@ -5,6 +5,7 @@ namespace PagarMe;
 use PagarMe\RequestHandler;
 use PagarMe\ResponseHandler;
 use GuzzleHttp\Client as HttpClient;
+use PagarMe\Exceptions\InvalidJsonException;
 
 class Client
 {
@@ -58,6 +59,8 @@ class Client
             );
 
             return ResponseHandler::success($response->getBody());
+        } catch (InvalidJsonException $exception) {
+            throw $exception;
         } catch (\Exception $exception) {
             ResponseHandler::failure($exception);
         }

@@ -2,42 +2,67 @@
 
 namespace PagarMe;
 
-use PagarMe\PagarMeException;
+use PagarMe\Exceptions\PagarMeException;
+use PagarMe\Exceptions\InvalidJsonException;
 
 class ResponseHandler
 {
     /**
      * @param string $payload
      *
-     * @throws \PagarMe\PagarMeException
+     * @throws \PagarMe\Exceptions\InvalidJsonException
      * @return \ArrayObject
      */
     public static function success($payload)
     {
-        try {
-            $response = new \ArrayObject(
-                json_decode($payload, true),
-                \ArrayObject::STD_PROP_LIST|\ArrayObject::ARRAY_AS_PROPS
-            );
+        $json = self::toJson($payload);
 
-            return $response;
-        } catch (\Exception $originalException) {
-            self::failure($originalException);
-        }
+        return new \ArrayObject(
+            $json,
+            \ArrayObject::STD_PROP_LIST|\ArrayObject::ARRAY_AS_PROPS
+        );
     }
 
     /**
      * @param \Exception $originalException
      *
-     * @throws \PagarMe\PagarMeException
+     * @throws \Exception
      */
     public static function failure(\Exception $originalException)
     {
-        $exception = new PagarMeException(
-            $originalException->getMessage()
-        );
-        $exception->originalException = $originalException;
+        throw self::parseException($originalException);
+    }
 
-        throw $exception;
+    /**
+     * @param \Exception $guzzleException
+     *
+     * @return \Exception
+     */
+    private static function parseException($guzzleException)
+    {
+        $body = $guzzleException->getResponse()->getBody()->getContents();
+
+        try {
+            $jsonError = self::toJson($body);
+        } catch (InvalidJsonException $invalidJson) {
+            return $guzzleException;
+        }
+
+        return new PagarMeException(
+            $jsonError['errors'][0]['type'],
+            $jsonError['errors'][0]['parameter_name'],
+            $jsonError['errors'][0]['message']
+        );
+    }
+
+    private static function toJson($json)
+    {
+        $jsonError = json_decode($json, true);
+
+        if (json_last_error() != \JSON_ERROR_NONE) {
+            throw new InvalidJsonException(json_last_error_msg());
+        }
+
+        return $jsonError;
     }
 }
