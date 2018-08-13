@@ -72,4 +72,18 @@ class Transactions
             ['json' => $payload]
         );
     }
+
+    /**
+     * @param array $payload
+     *
+     * @return \ArrayObject
+     */
+    public function refund(array $payload)
+    {
+        return $this->client->request(
+            EndpointInterface::POST,
+            Routes::transactions()->refund($payload['id']),
+            ['json' => $payload]
+        );
+    }
 }
