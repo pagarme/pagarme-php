@@ -45,4 +45,17 @@ class Transactions
             Routes::transactions()->base()
         );
     }
+
+    /**
+     * @param array $payload
+     *
+     * @return \ArrayObject
+     */
+    public function find(array $payload)
+    {
+        return $this->client->request(
+            EndpointInterface::GET,
+            Routes::transactions()->details($payload['id'])
+        );
+    }
 }

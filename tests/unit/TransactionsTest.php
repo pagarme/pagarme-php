@@ -104,4 +104,30 @@ final class TransactionTest extends TestCase
         $this->assertEquals('GET', $requestMethod);
         $this->assertEquals($response->getArrayCopy(), json_decode(TransactionListMock::mock(), true));
     }
+
+    public function testTransactionFind()
+    {
+        $container = [];
+        $history = Middleware::history($container);
+
+        $mock = new MockHandler([
+            new Response(200, [], TransactionMock::mock())
+        ]);
+
+        $handler = HandlerStack::create($mock);
+
+        $handler->push($history);
+
+        $client = new Client('apiKey', ['handler' => $handler]);
+
+        $response = $client->transactions()->find(['id' => 1]);
+
+        $request = $container[0]['request'];
+        $requestMethod = $request->getMethod();
+        $requestUri = $request->getUri()->getPath();
+
+        $this->assertEquals('GET', $requestMethod);
+        $this->assertEquals('/1/transactions/1', $requestUri);
+        $this->assertEquals($response->getArrayCopy(), json_decode(TransactionMock::mock(), true));
+    }
 }
