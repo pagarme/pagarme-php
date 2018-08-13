@@ -130,4 +130,29 @@ final class TransactionTest extends TestCase
         $this->assertEquals('/1/transactions/1', $requestUri);
         $this->assertEquals($response->getArrayCopy(), json_decode(TransactionMock::mock(), true));
     }
+
+    public function testTransactionCapture()
+    {
+        $container = [];
+        $history = Middleware::history($container);
+
+        $mock = new MockHandler([
+            new Response(200, [], TransactionMock::mock())
+        ]);
+
+        $handler = HandlerStack::create($mock);
+        $handler->push($history);
+
+        $client = new Client('apiKey', ['handler' => $handler]);
+
+        $response = $client->transactions()->capture(['id' => 1, 'amount' => '100']);
+
+        $request = $container[0]['request'];
+        $requestUri = $request->getUri()->getPath();
+        $requestMethod = $request->getMethod();
+
+        $this->assertEquals('/1/transactions/1/capture', $requestUri);
+        $this->assertEquals('POST', $requestMethod);
+        $this->assertEquals($response->getArrayCopy(), json_decode(TransactionMock::mock(), true));
+    }
 }

@@ -58,4 +58,18 @@ class Transactions
             Routes::transactions()->details($payload['id'])
         );
     }
+
+    /**
+     * @param array $payload
+     *
+     * @return \ArrayObject
+     */
+    public function capture(array $payload)
+    {
+        return $this->client->request(
+            EndpointInterface::POST,
+            Routes::transactions()->capture($payload['id']),
+            ['json' => $payload]
+        );
+    }
 }
