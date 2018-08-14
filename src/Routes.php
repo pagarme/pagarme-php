@@ -11,7 +11,7 @@ class Routes
         $anonymous = new Anonymous();
 
         $anonymous->base = static function () {
-            return "transactions";
+            return 'transactions';
         };
 
         $anonymous->details = static function ($id) {

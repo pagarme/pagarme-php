@@ -4,12 +4,12 @@ namespace PagarMe;
 
 class Anonymous extends \stdClass
 {
-    public function __call($key, $params)
+    public function __call($methodName, $params)
     {
-        if (!isset($this->{$key})) {
-            throw new Exception("Call to undefined method " . __CLASS__ . "::" . $key . "()");
+        if (!isset($this->{$methodName})) {
+            throw new \Exception('Call to undefined method ' . __CLASS__ . '::' . $methodName . '()');
         }
 
-        return $this->{$key}->__invoke(... $params);
+        return $this->{$methodName}->__invoke(... $params);
     }
 }

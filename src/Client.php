@@ -26,6 +26,11 @@ class Client
     private $apiKey;
 
     /**
+     * @var \PagarMe\Endpoints\Transactions
+     */
+    private $transactions;
+
+    /**
      * @param string $apiKey
      * @param array|null $extras
      */
@@ -40,6 +45,8 @@ class Client
         }
 
         $this->http = new HttpClient($options);
+
+        $this->transactions = new Transactions($this);
     }
 
     /**
@@ -67,8 +74,11 @@ class Client
         }
     }
 
+    /**
+     * @return \PagarMe\Endpoints\Transactions
+     */
     public function transactions()
     {
-        return new Transactions($this);
+        return $this->transactions;
     }
 }

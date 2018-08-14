@@ -38,7 +38,7 @@ class Transactions
     /*
      * @return \ArrayObject
      */
-    public function get()
+    public function getList()
     {
         return $this->client->request(
             EndpointInterface::GET,
@@ -51,7 +51,7 @@ class Transactions
      *
      * @return \ArrayObject
      */
-    public function find(array $payload)
+    public function get(array $payload)
     {
         return $this->client->request(
             EndpointInterface::GET,
