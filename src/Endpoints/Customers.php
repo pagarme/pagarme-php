@@ -44,4 +44,17 @@ class Customers
             Routes::customers()->base()
         );
     }
+
+    /**
+     * @param array $payload
+     *
+     * @return \ArrayObject
+     */
+    public function get(array $payload)
+    {
+        return $this->client->request(
+            EndpointInterface::GET,
+            Routes::customers()->details($payload['id'])
+        );
+    }
 }
