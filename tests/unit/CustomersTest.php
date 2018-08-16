@@ -53,4 +53,21 @@ final class CustomerTest extends PagarMeTestCase
         $this->assertEquals('POST', self::getRequestMethod($requestsContainer));
         $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('CustomerMock'), true));
     }
+
+    /**
+     * @dataProvider customerProvider
+     */
+    public function testCustomerGetList($mock)
+    {
+        $requestsContainer = [];
+        $handler = self::buildHandler($requestsContainer, $mock);
+
+        $client = new Client('apiKey', ['handler' => $handler]);
+
+        $response = $client->customers()->getList();
+
+        $this->assertEquals('/1/customers', self::getRequestUri($requestsContainer));
+        $this->assertEquals('GET', self::getRequestMethod($requestsContainer));
+        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('CustomerMock'), true));
+    }
 }

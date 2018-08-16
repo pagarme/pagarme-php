@@ -33,4 +33,15 @@ class Customers
             ['json' => $payload]
         );
     }
+
+    /*
+     * @return \ArrayObject
+     */
+    public function getList()
+    {
+        return $this->client->request(
+            EndpointInterface::GET,
+            Routes::customers()->base()
+        );
+    }
 }
