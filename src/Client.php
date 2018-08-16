@@ -5,6 +5,7 @@ namespace PagarMe;
 use PagarMe\RequestHandler;
 use PagarMe\ResponseHandler;
 use PagarMe\Endpoints\Transactions;
+use PagarMe\Endpoints\Customers;
 use GuzzleHttp\Client as HttpClient;
 use PagarMe\Exceptions\InvalidJsonException;
 
@@ -31,6 +32,11 @@ class Client
     private $transactions;
 
     /**
+     * @var \PagarMe\Endpoints\Customers
+     */
+    private $customers;
+
+    /**
      * @param string $apiKey
      * @param array|null $extras
      */
@@ -47,6 +53,7 @@ class Client
         $this->http = new HttpClient($options);
 
         $this->transactions = new Transactions($this);
+        $this->customers = new Customers($this);
     }
 
     /**
@@ -80,5 +87,13 @@ class Client
     public function transactions()
     {
         return $this->transactions;
+    }
+
+    /**
+     * @return \PagarMe\Endpoints\Customers
+     */
+    public function customers()
+    {
+        return $this->customers;
     }
 }
