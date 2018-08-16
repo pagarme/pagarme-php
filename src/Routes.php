@@ -37,6 +37,10 @@ class Routes
             return 'customers';
         };
 
+        $anonymous->details = static function ($id) {
+            return "customers/$id";
+        };
+
         return $anonymous;
     }
 }
