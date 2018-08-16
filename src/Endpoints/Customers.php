@@ -3,6 +3,7 @@
 namespace PagarMe\Endpoints;
 
 use PagarMe\Client;
+use PagarMe\Routes;
 
 class Customers
 {
@@ -17,5 +18,19 @@ class Customers
     public function __construct(Client $client)
     {
         $this->client = $client;
+    }
+
+    /**
+     * @param array $payload
+     *
+     * @return \ArrayObject
+     */
+    public function create(array $payload)
+    {
+        return $this->client->request(
+            EndpointInterface::POST,
+            Routes::customers()->base(),
+            ['json' => $payload]
+        );
     }
 }
