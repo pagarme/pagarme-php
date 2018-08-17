@@ -4,22 +4,10 @@ namespace PagarMe\Endpoints;
 
 use PagarMe\Client;
 use PagarMe\Routes;
+use PagarMe\Endpoints\Endpoint;
 
-class Customers
+class Customers extends Endpoint
 {
-    /**
-     * @var \PagarMe\Client
-     */
-    private $client;
-
-    /**
-     * @param \Pagarme\Client $client
-     */
-    public function __construct(Client $client)
-    {
-        $this->client = $client;
-    }
-
     /**
      * @param array $payload
      *
