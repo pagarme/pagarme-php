@@ -20,7 +20,7 @@ abstract class PagarMeTestCase extends TestCase
      */
     protected static function jsonMock($mockName)
     {
-        return file_get_contents("tests/unit/Mocks/$mockName.json");
+        return file_get_contents(__DIR__."/Mocks/$mockName.json");
     }
 
     /**
