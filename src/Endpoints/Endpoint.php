@@ -7,6 +7,23 @@ use PagarMe\Client;
 abstract class Endpoint
 {
     /**
+     * @var string
+     */
+    const POST = 'POST';
+    /**
+     * @var string
+     */
+    const GET = 'GET';
+    /**
+     * @var string
+     */
+    const PUT = 'PUT';
+    /**
+     * @var string
+     */
+    const DELETE = 'DELETE';
+
+    /**
      * @var \PagarMe\Client
      */
     protected $client;

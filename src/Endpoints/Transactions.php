@@ -17,7 +17,7 @@ class Transactions extends Endpoint
     public function create(array $payload)
     {
         return $this->client->request(
-            EndpointInterface::POST,
+            self::POST,
             Routes::transactions()->base(),
             ['json' => $payload]
         );
@@ -29,7 +29,7 @@ class Transactions extends Endpoint
     public function getList()
     {
         return $this->client->request(
-            EndpointInterface::GET,
+            self::GET,
             Routes::transactions()->base()
         );
     }
@@ -42,7 +42,7 @@ class Transactions extends Endpoint
     public function get(array $payload)
     {
         return $this->client->request(
-            EndpointInterface::GET,
+            self::GET,
             Routes::transactions()->details($payload['id'])
         );
     }
@@ -55,7 +55,7 @@ class Transactions extends Endpoint
     public function capture(array $payload)
     {
         return $this->client->request(
-            EndpointInterface::POST,
+            self::POST,
             Routes::transactions()->capture($payload['id']),
             ['json' => $payload]
         );
@@ -69,7 +69,7 @@ class Transactions extends Endpoint
     public function refund(array $payload)
     {
         return $this->client->request(
-            EndpointInterface::POST,
+            self::POST,
             Routes::transactions()->refund($payload['id']),
             ['json' => $payload]
         );

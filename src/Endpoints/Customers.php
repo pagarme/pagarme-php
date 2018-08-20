@@ -16,7 +16,7 @@ class Customers extends Endpoint
     public function create(array $payload)
     {
         return $this->client->request(
-            EndpointInterface::POST,
+            self::POST,
             Routes::customers()->base(),
             ['json' => $payload]
         );
@@ -28,7 +28,7 @@ class Customers extends Endpoint
     public function getList()
     {
         return $this->client->request(
-            EndpointInterface::GET,
+            self::GET,
             Routes::customers()->base()
         );
     }
@@ -41,7 +41,7 @@ class Customers extends Endpoint
     public function get(array $payload)
     {
         return $this->client->request(
-            EndpointInterface::GET,
+            self::GET,
             Routes::customers()->details($payload['id'])
         );
     }
