@@ -8,7 +8,11 @@ use GuzzleHttp\Middleware;
 
 abstract class PagarMeTestCase extends TestCase
 {
+    /**
+     * @var array $container
+     */
     public $container;
+
     /**
      * @param string $mockName
      *
