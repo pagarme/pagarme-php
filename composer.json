@@ -23,7 +23,7 @@
   "scripts": {
     "test": [
       "@composer install",
-      "vendor/bin/phpunit tests/"
+      "vendor/bin/phpunit"
     ],
     "coverage": [
       "@composer install",
@@ -31,7 +31,7 @@
     ],
     "cs": [
       "@composer install",
-      "vendor/bin/phpcs src/ --standard=PSR2"
+      "vendor/bin/phpcs src/ tests/ --standard=PSR2"
     ]
   },
   "autoload": {
