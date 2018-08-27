@@ -1,6 +1,6 @@
 <?php
 
-namespace PagarMe\Test;
+namespace PagarMe\Test\Endpoints;
 
 use PagarMe\Client;
 use GuzzleHttp\Handler\MockHandler;
