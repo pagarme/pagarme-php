@@ -45,7 +45,7 @@ abstract class PagarMeTestCase extends TestCase
     }
 
     /**
-     * @param array @container
+     * @param array $container
      * @param GuzzleHttp\Handler\MockHandler $mock
      *
      * @return PagarMe\Client
