@@ -1,0 +1,32 @@
+[
+  {
+    "object": "card",
+    "id": "card_abc1234abc1234abc1234abc1",
+    "date_created": "2018-08-23T19:37:04.714Z",
+    "date_updated": "2018-08-23T19:37:05.024Z",
+    "brand": "visa",
+    "holder_name": "Ziggy Stardust",
+    "first_digits": "411111",
+    "last_digits": "1111",
+    "country": "UNITED STATES",
+    "fingerprint": "abc1234abc1234abc1234abc1",
+    "customer": null,
+    "valid": true,
+    "expiration_date": "0722"
+  },
+  {
+    "object": "card",
+    "id": "card_def4321def4321def4321def4",
+    "date_created": "2018-08-23T23:41:04.714Z",
+    "date_updated": "2018-08-23T23:41:05.024Z",
+    "brand": "visa",
+    "holder_name": "Major Tom",
+    "first_digits": "424242",
+    "last_digits": "4242",
+    "country": "UNITED STATES",
+    "fingerprint": "def4321def4321def4321def4",
+    "customer": null,
+    "valid": true,
+    "expiration_date": "0125"
+  }
+]

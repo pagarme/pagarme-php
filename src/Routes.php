@@ -6,6 +6,9 @@ use PagarMe\Anonymous;
 
 class Routes
 {
+    /**
+     * @return object
+     */
     public static function transactions()
     {
         $anonymous = new Anonymous();
@@ -29,6 +32,9 @@ class Routes
         return $anonymous;
     }
 
+    /**
+     * @return object
+     */
     public static function customers()
     {
         $anonymous = new Anonymous();
@@ -39,6 +45,24 @@ class Routes
 
         $anonymous->details = static function ($id) {
             return "customers/$id";
+        };
+
+        return $anonymous;
+    }
+
+    /**
+     * @return object
+     */
+    public static function cards()
+    {
+        $anonymous = new Anonymous();
+
+        $anonymous->base = static function () {
+            return 'cards';
+        };
+
+        $anonymous->details = static function ($id) {
+            return "cards/$id";
         };
 
         return $anonymous;
