@@ -67,4 +67,34 @@ class Routes
 
         return $anonymous;
     }
+
+    /**
+     * @return \PagarMe\Anonymous
+     */
+    public static function recipients()
+    {
+        $anonymous = new Anonymous();
+
+        $anonymous->base = static function () {
+            return 'recipients';
+        };
+
+        $anonymous->details = static function ($id) {
+            return "recipients/$id";
+        };
+
+        $anonymous->balance = static function ($id) {
+            return "recipients/$id/balance";
+        };
+
+        $anonymous->balanceOperations = static function ($id) {
+            return "recipients/$id/balance/operations";
+        };
+
+        $anonymous->balanceOperation = static function ($recipientId, $balanceOperationId) {
+            return "recipients/$recipientId/balance/operations/$balanceOperationId";
+        };
+
+        return $anonymous;
+    }
 }
