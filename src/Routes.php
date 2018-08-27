@@ -97,4 +97,22 @@ class Routes
 
         return $anonymous;
     }
+
+    /**
+     * @return \PagarMe\Anonymous
+     */
+    public static function bankAccounts()
+    {
+        $anonymous = new Anonymous();
+
+        $anonymous->base = static function () {
+            return 'bank_accounts';
+        };
+
+        $anonymous->details = static function ($id) {
+            return "bank_accounts/$id";
+        };
+
+        return $anonymous;
+    }
 }

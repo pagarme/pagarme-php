@@ -4,6 +4,7 @@ namespace PagarMe;
 
 use PagarMe\RequestHandler;
 use PagarMe\ResponseHandler;
+use PagarMe\Endpoints\BankAccounts;
 use PagarMe\Endpoints\Transactions;
 use PagarMe\Endpoints\Customers;
 use PagarMe\Endpoints\Cards;
@@ -49,6 +50,11 @@ class Client
     private $recipients;
 
     /**
+     * @var \PagarMe\Endpoints\BankAccounts
+     */
+    private $bankAccounts;
+
+    /**
      * @param string $apiKey
      * @param array|null $extras
      */
@@ -68,6 +74,7 @@ class Client
         $this->customers = new Customers($this);
         $this->cards = new Cards($this);
         $this->recipients = new Recipients($this);
+        $this->bankAccounts = new BankAccounts($this);
     }
 
     /**
@@ -125,5 +132,13 @@ class Client
     public function recipients()
     {
         return $this->recipients;
+    }
+
+    /**
+     * @return \PagarMe\Endpoints\BankAccounts
+     */
+    public function bankAccounts()
+    {
+        return $this->bankAccounts;
     }
 }

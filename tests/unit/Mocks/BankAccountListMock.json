@@ -1,0 +1,47 @@
+[
+  {
+    "object": "bank_account",
+    "id": 17365090,
+    "bank_code": "341",
+    "agencia": "0932",
+    "agencia_dv": "5",
+    "conta": "58054",
+    "conta_dv": "1",
+    "type": "conta_corrente",
+    "document_type": "cpf",
+    "document_number": "26268738888",
+    "legal_name": "API BANK ACCOUNT",
+    "charge_transfer_fees": true,
+    "date_created": "2017-01-06T18:52:22.215Z"
+  },
+  {
+    "object": "bank_account",
+    "id": 17365091,
+    "bank_code": "341",
+    "agencia": "0932",
+    "agencia_dv": "5",
+    "conta": "58054",
+    "conta_dv": "1",
+    "type": "conta_corrente",
+    "document_type": "cpf",
+    "document_number": "26268738888",
+    "legal_name": "API BANK ACCOUNT II",
+    "charge_transfer_fees": true,
+    "date_created": "2017-01-06T18:52:22.215Z"
+  },
+  {
+    "object": "bank_account",
+    "id": 17365092,
+    "bank_code": "341",
+    "agencia": "0932",
+    "agencia_dv": "5",
+    "conta": "58054",
+    "conta_dv": "1",
+    "type": "conta_corrente",
+    "document_type": "cpf",
+    "document_number": "26268738888",
+    "legal_name": "API BANK ACCOUNT III",
+    "charge_transfer_fees": true,
+    "date_created": "2017-01-06T18:52:22.215Z"
+  }
+]
