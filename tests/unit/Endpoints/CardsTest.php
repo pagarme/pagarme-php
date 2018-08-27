@@ -5,9 +5,7 @@ namespace PagarMe\Endpoints\Test;
 use PagarMe\Client;
 use PagarMe\Endpoints\Cards;
 use PagarMe\Test\PagarMeTestCase;
-use GuzzleHttp\Middleware;
 use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 
 class CardsTest extends PagarMeTestCase
@@ -30,10 +28,7 @@ class CardsTest extends PagarMeTestCase
     public function testCardCreate($mock)
     {
         $container = [];
-        $history = Middleware::history($container);
-
-        $handler = HandlerStack::create($mock['card']);
-        $handler->push($history);
+        $handler = self::buildHandler($container, $mock['card']);
 
         $client = new Client('apiKey', ['handler' => $handler]);
 
@@ -47,7 +42,7 @@ class CardsTest extends PagarMeTestCase
         ]);
 
         $this->assertEquals(
-            $container[0]['request']->getMethod(),
+            self::getRequestMethod($container),
             'POST'
         );
         $this->assertEquals(
@@ -62,17 +57,14 @@ class CardsTest extends PagarMeTestCase
     public function testCardList($mock)
     {
         $container = [];
-        $history = Middleware::history($container);
-
-        $handler = HandlerStack::create($mock['cardList']);
-        $handler->push($history);
+        $handler = self::buildHandler($container, $mock['cardList']);
 
         $client = new Client('apiKey', ['handler' => $handler]);
 
         $response = $client->cards()->getList();
 
         $this->assertEquals(
-            $container[0]['request']->getMethod(),
+            self::getRequestMethod($container),
             'GET'
         );
         $this->assertEquals(
@@ -87,10 +79,7 @@ class CardsTest extends PagarMeTestCase
     public function testCardGet($mock)
     {
         $container = [];
-        $history = Middleware::history($container);
-
-        $handler = HandlerStack::create($mock['card']);
-        $handler->push($history);
+        $handler = self::buildHandler($container, $mock['card']);
 
         $client = new Client('apiKey', ['handler' => $handler]);
 
@@ -99,11 +88,11 @@ class CardsTest extends PagarMeTestCase
         ]);
 
         $this->assertEquals(
-            $container[0]['request']->getMethod(),
+            self::getRequestMethod($container),
             'GET'
         );
         $this->assertEquals(
-            $container[0]['request']->getUri()->getPath(),
+            self::getRequestUri($container),
             '/1/cards/card_abc1234abc1234abc1234abc1'
         );
         $this->assertEquals(
