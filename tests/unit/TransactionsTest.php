@@ -3,16 +3,12 @@
 namespace PagarMe\Test;
 
 use PagarMe\Client;
-use PagarMe\Endpoints\Transactions;
-use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
-use PagarMe\Test\Mocks\TransactionMock;
-use PagarMe\Test\Mocks\TransactionListMock;
+use PagarMe\Endpoints\Endpoint;
+use PagarMe\Endpoints\Transactions;
 
-final class TransactionTest extends TestCase
+final class TransactionTest extends PagarMeTestCase
 {
     private static function mock($mockName)
     {
@@ -24,7 +20,7 @@ final class TransactionTest extends TestCase
         return [
             [
                 new MockHandler([
-                    new Response(200, [], self::mock('TransactionMock'))
+                    new Response(200, [], self::jsonMock('TransactionMock'))
                 ])
             ]
         ];
@@ -35,13 +31,8 @@ final class TransactionTest extends TestCase
      */
     public function testTransactionCreate($mock)
     {
-        $container = [];
-        $history = Middleware::history($container);
-
-        $handler = HandlerStack::create($mock);
-        $handler->push($history);
-
-        $client = new Client('apiKey', ['handler' => $handler]);
+        $requestsContainer = [];
+        $client = self::buildClient($requestsContainer, $mock);
 
         $response = $client->transactions()->create([
             'amount' => 1000,
@@ -92,32 +83,24 @@ final class TransactionTest extends TestCase
             ]
         ]);
 
-        $requestMethod = $container[0]['request']->getMethod();
-
-        $this->assertEquals('POST', $requestMethod);
-        $this->assertEquals($response->getArrayCopy(), json_decode(self::mock('TransactionMock'), true));
+        $this->assertEquals(Endpoint::POST, self::getRequestMethod($requestsContainer));
+        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('TransactionMock'), true));
     }
 
     public function testTransactionList()
     {
-        $container = [];
-        $history = Middleware::history($container);
+        $requestsContainer = [];
 
         $mock = new MockHandler([
-            new Response(200, [], self::mock('TransactionListMock'))
+            new Response(200, [], self::jsonMock('TransactionListMock'))
         ]);
 
-        $handler = HandlerStack::create($mock);
-        $handler->push($history);
-
-        $client = new Client('apiKey', ['handler' => $handler]);
+        $client = self::buildClient($requestsContainer, $mock);
 
         $response = $client->transactions()->getList();
 
-        $requestMethod = $container[0]['request']->getMethod();
-
-        $this->assertEquals('GET', $requestMethod);
-        $this->assertEquals($response->getArrayCopy(), json_decode(self::mock('TransactionListMock'), true));
+        $this->assertEquals(Endpoint::GET, self::getRequestMethod($requestsContainer));
+        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('TransactionListMock'), true));
     }
 
     /**
@@ -125,24 +108,14 @@ final class TransactionTest extends TestCase
      */
     public function testTransactionFind($mock)
     {
-        $container = [];
-        $history = Middleware::history($container);
-
-        $handler = HandlerStack::create($mock);
-
-        $handler->push($history);
-
-        $client = new Client('apiKey', ['handler' => $handler]);
+        $requestsContainer = [];
+        $client = self::buildClient($requestsContainer, $mock);
 
         $response = $client->transactions()->get(['id' => 1]);
 
-        $request = $container[0]['request'];
-        $requestMethod = $request->getMethod();
-        $requestUri = $request->getUri()->getPath();
-
-        $this->assertEquals('GET', $requestMethod);
-        $this->assertEquals('/1/transactions/1', $requestUri);
-        $this->assertEquals($response->getArrayCopy(), json_decode(self::mock('TransactionMock'), true));
+        $this->assertEquals(Endpoint::GET, self::getRequestMethod($requestsContainer));
+        $this->assertEquals('/1/transactions/1', self::getRequestUri($requestsContainer));
+        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('TransactionMock'), true));
     }
 
     /**
@@ -150,23 +123,14 @@ final class TransactionTest extends TestCase
      */
     public function testTransactionCapture($mock)
     {
-        $container = [];
-        $history = Middleware::history($container);
-
-        $handler = HandlerStack::create($mock);
-        $handler->push($history);
-
-        $client = new Client('apiKey', ['handler' => $handler]);
+        $requestsContainer = [];
+        $client = self::buildClient($requestsContainer, $mock);
 
         $response = $client->transactions()->capture(['id' => 1, 'amount' => 100]);
 
-        $request = $container[0]['request'];
-        $requestUri = $request->getUri()->getPath();
-        $requestMethod = $request->getMethod();
-
-        $this->assertEquals('/1/transactions/1/capture', $requestUri);
-        $this->assertEquals('POST', $requestMethod);
-        $this->assertEquals($response->getArrayCopy(), json_decode(self::mock('TransactionMock'), true));
+        $this->assertEquals('/1/transactions/1/capture', self::getRequestUri($requestsContainer));
+        $this->assertEquals(Endpoint::POST, self::getRequestMethod($requestsContainer));
+        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('TransactionMock'), true));
     }
 
     /**
@@ -174,22 +138,13 @@ final class TransactionTest extends TestCase
      */
     public function testTransactionRefund($mock)
     {
-        $container = [];
-        $history = Middleware::history($container);
-
-        $handler = HandlerStack::create($mock);
-        $handler->push($history);
-
-        $client = new Client('apiKey', ['handler' => $handler]);
+        $requestsContainer = [];
+        $client = self::buildClient($requestsContainer, $mock);
 
         $response = $client->transactions()->refund(['id' => 1, 'amount' => 100]);
 
-        $request = $container[0]['request'];
-        $requestUri = $request->getUri()->getPath();
-        $requestMethod = $request->getMethod();
-
-        $this->assertEquals('/1/transactions/1/refund', $requestUri);
-        $this->assertEquals('POST', $requestMethod);
-        $this->assertEquals($response->getArrayCopy(), json_decode(self::mock('TransactionMock'), true));
+        $this->assertEquals('/1/transactions/1/refund', self::getRequestUri($requestsContainer));
+        $this->assertEquals(Endpoint::POST, self::getRequestMethod($requestsContainer));
+        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('TransactionMock'), true));
     }
 }
