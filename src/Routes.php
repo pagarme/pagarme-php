@@ -7,7 +7,7 @@ use PagarMe\Anonymous;
 class Routes
 {
     /**
-     * @return object
+     * @return \Pagarme\Anonymous
      */
     public static function transactions()
     {
@@ -33,7 +33,7 @@ class Routes
     }
 
     /**
-     * @return object
+     * @return \PagarMe\Anonymous
      */
     public static function customers()
     {
@@ -51,7 +51,7 @@ class Routes
     }
 
     /**
-     * @return object
+     * @return \PagarMe\Anonymous
      */
     public static function cards()
     {

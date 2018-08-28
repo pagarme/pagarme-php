@@ -4,7 +4,7 @@ namespace PagarMe\Endpoints\Test;
 
 use PagarMe\Client;
 use PagarMe\Endpoints\Cards;
-use PagarMe\Test\PagarMeTestCase;
+use PagarMe\Test\Endpoints\PagarMeTestCase;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 
@@ -28,9 +28,7 @@ class CardsTest extends PagarMeTestCase
     public function testCardCreate($mock)
     {
         $container = [];
-        $handler = self::buildHandler($container, $mock['card']);
-
-        $client = new Client('apiKey', ['handler' => $handler]);
+        $client = self::buildClient($container, $mock['card']);
 
         $response = $client->cards()->create([
             'card_number' => '4111111111111111',
@@ -42,12 +40,12 @@ class CardsTest extends PagarMeTestCase
         ]);
 
         $this->assertEquals(
-            self::getRequestMethod($container),
-            'POST'
+            Cards::POST,
+            self::getRequestMethod($container)
         );
         $this->assertEquals(
-            $response->getArrayCopy(),
-            json_decode(self::jsonMock('CardMock'), true)
+            json_decode(self::jsonMock('CardMock'), true),
+            $response->getArrayCopy()
         );
     }
 
@@ -57,19 +55,17 @@ class CardsTest extends PagarMeTestCase
     public function testCardList($mock)
     {
         $container = [];
-        $handler = self::buildHandler($container, $mock['cardList']);
-
-        $client = new Client('apiKey', ['handler' => $handler]);
+        $client = self::buildClient($container, $mock['cardList']);
 
         $response = $client->cards()->getList();
 
         $this->assertEquals(
-            self::getRequestMethod($container),
-            'GET'
+            Cards::GET,
+            self::getRequestMethod($container)
         );
         $this->assertEquals(
-            $response->getArrayCopy(),
-            json_decode(self::jsonMock('CardListMock'), true)
+            json_decode(self::jsonMock('CardListMock'), true),
+            $response->getArrayCopy()
         );
     }
 
@@ -79,25 +75,23 @@ class CardsTest extends PagarMeTestCase
     public function testCardGet($mock)
     {
         $container = [];
-        $handler = self::buildHandler($container, $mock['card']);
-
-        $client = new Client('apiKey', ['handler' => $handler]);
+        $client = self::buildClient($container, $mock['card']);
 
         $response = $client->cards()->get([
             'id' => 'card_abc1234abc1234abc1234abc1'
         ]);
 
         $this->assertEquals(
-            self::getRequestMethod($container),
-            'GET'
+            Cards::GET,
+            self::getRequestMethod($container)
         );
         $this->assertEquals(
-            self::getRequestUri($container),
-            '/1/cards/card_abc1234abc1234abc1234abc1'
+            '/1/cards/card_abc1234abc1234abc1234abc1',
+            self::getRequestUri($container)
         );
         $this->assertEquals(
-            $response->getArrayCopy(),
-            json_decode(self::jsonMock('CardMock'), true)
+            json_decode(self::jsonMock('CardMock'), true),
+            $response->getArrayCopy()
         );
     }
 }
