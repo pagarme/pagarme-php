@@ -26,9 +26,7 @@ final class CustomerTest extends PagarMeTestCase
     public function testCustomerCreate($mock)
     {
         $requestsContainer = [];
-        $handler = self::buildHandler($requestsContainer, $mock);
-
-        $client = new Client('apiKey', ['handler' => $handler]);
+        $client = self::buildClient($requestsContainer, $mock);
 
         $response = $client->customers()->create([
             'external_id' => '#123456789',
@@ -60,9 +58,7 @@ final class CustomerTest extends PagarMeTestCase
     public function testCustomerGetList($mock)
     {
         $requestsContainer = [];
-        $handler = self::buildHandler($requestsContainer, $mock);
-
-        $client = new Client('apiKey', ['handler' => $handler]);
+        $client = self::buildClient($requestsContainer, $mock);
 
         $response = $client->customers()->getList();
 
@@ -77,9 +73,7 @@ final class CustomerTest extends PagarMeTestCase
     public function testCustomerGet($mock)
     {
         $requestsContainer = [];
-        $handler = self::buildHandler($requestsContainer, $mock);
-
-        $client = new Client('apiKey', ['handler' => $handler]);
+        $client = self::buildClient($requestsContainer, $mock);
 
         $response = $client->customers()->get(['id' => 1]);
 
