@@ -1,0 +1,51 @@
+[
+  {
+    "object": "plan",
+    "id": 164526,
+    "amount": 15000,
+    "days": 30,
+    "name": "The Pro Plan - Platinum  - Best Ever",
+    "trial_days": 0,
+    "date_created": "2017-06-09T22:43:08.048Z",
+    "payment_methods": [
+      "boleto",
+      "credit_card"
+    ],
+    "color": null,
+    "charges": null,
+    "installments": 1,
+    "invoice_reminder": null
+  },
+  {
+    "object": "plan",
+    "id": 164252,
+    "amount": 1000000,
+    "days": 30,
+    "name": "The Pro Plan - Platinum Boleto",
+    "trial_days": 0,
+    "date_created": "2017-06-09T12:34:50.211Z",
+    "payment_methods": [
+      "boleto"
+    ],
+    "color": null,
+    "charges": null,
+    "installments": 1,
+    "invoice_reminder": null
+  },
+  {
+    "object": "plan",
+    "id": 163871,
+    "amount": 500000,
+    "days": 30,
+    "name": "The Pro Plan - Susan",
+    "trial_days": 0,
+    "date_created": "2017-06-07T14:00:23.871Z",
+    "payment_methods": [
+      "credit_card"
+    ],
+    "color": null,
+    "charges": null,
+    "installments": 12,
+    "invoice_reminder": null
+  }
+]

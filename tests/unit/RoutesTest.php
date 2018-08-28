@@ -38,7 +38,7 @@ class RoutesTest extends TestCase
     public function testCustomerRoutes()
     {
         $routes = Routes::customers();
-        
+
         $this->assertObjectHasAttribute('base', $routes);
         $this->assertIsCallable($routes->base);
         $this->assertObjectHasAttribute('details', $routes);
@@ -48,7 +48,7 @@ class RoutesTest extends TestCase
     public function testCardRoutes()
     {
         $routes = Routes::cards();
-        
+
         $this->assertObjectHasAttribute('base', $routes);
         $this->assertIsCallable($routes->base);
         $this->assertObjectHasAttribute('details', $routes);
@@ -58,6 +58,15 @@ class RoutesTest extends TestCase
     public function testBankAccountRoutes()
     {
         $routes = Routes::bankAccounts();
+        $this->assertObjectHasAttribute('base', $routes);
+        $this->assertIsCallable($routes->base);
+        $this->assertObjectHasAttribute('details', $routes);
+        $this->assertIsCallable($routes->details);
+    }
+
+    public function testPlansRoutes()
+    {
+        $routes = Routes::plans();
 
         $this->assertObjectHasAttribute('base', $routes);
         $this->assertIsCallable($routes->base);

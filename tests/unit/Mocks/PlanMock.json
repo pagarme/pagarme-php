@@ -1,0 +1,17 @@
+{
+  "object": "plan",
+  "id": 164526,
+  "amount": 15000,
+  "days": 30,
+  "name": "The Pro Plan - Platinum  - Best Ever",
+  "trial_days": 0,
+  "date_created": "2017-06-09T22:43:08.048Z",
+  "payment_methods": [
+    "boleto",
+    "credit_card"
+  ],
+  "color": null,
+  "charges": null,
+  "installments": 1,
+  "invoice_reminder": null
+}

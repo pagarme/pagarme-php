@@ -9,6 +9,7 @@ use PagarMe\Endpoints\Transactions;
 use PagarMe\Endpoints\Customers;
 use PagarMe\Endpoints\Cards;
 use PagarMe\Endpoints\Recipients;
+use PagarMe\Endpoints\Plans;
 use GuzzleHttp\Client as HttpClient;
 use PagarMe\Exceptions\InvalidJsonException;
 
@@ -55,6 +56,11 @@ class Client
     private $bankAccounts;
 
     /**
+     * @var \PagarMe\Endpoints\Plans
+     */
+    private $plans;
+
+    /**
      * @param string $apiKey
      * @param array|null $extras
      */
@@ -75,6 +81,7 @@ class Client
         $this->cards = new Cards($this);
         $this->recipients = new Recipients($this);
         $this->bankAccounts = new BankAccounts($this);
+        $this->plans = new Plans($this);
     }
 
     /**
@@ -140,5 +147,13 @@ class Client
     public function bankAccounts()
     {
         return $this->bankAccounts;
+    }
+
+    /*
+     * @return \PagarMe\Endpoints\Plans
+     */
+    public function plans()
+    {
+        return $this->plans;
     }
 }
