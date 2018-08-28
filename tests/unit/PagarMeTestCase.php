@@ -5,6 +5,7 @@ namespace PagarMe\Test;
 use PHPUnit\Framework\TestCase;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
+use PagarMe\Client;
 
 abstract class PagarMeTestCase extends TestCase
 {
@@ -47,15 +48,15 @@ abstract class PagarMeTestCase extends TestCase
      * @param array @container
      * @param GuzzleHttp\Handler\MockHandler $mock
      *
-     * @return GuzzleHttp\HandlerStack
+     * @return PagarMe\Client
      */
-    protected static function buildHandler(&$container, $mock)
+    protected static function buildClient(&$container, $mock)
     {
         $history = Middleware::history($container);
 
         $handler = HandlerStack::create($mock);
         $handler->push($history);
 
-        return $handler;
+        return new Client('apiKey', ['handler' => $handler]);
     }
 }
