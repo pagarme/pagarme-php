@@ -68,7 +68,7 @@ class Recipients extends Endpoint
     {
         return $this->client->request(
             self::GET,
-            Routes::recipients()->balance($payload['id'])
+            Routes::recipients()->balance($payload['recipient_id'])
         );
     }
 
@@ -77,11 +77,11 @@ class Recipients extends Endpoint
      *
      * @return \ArrayObject
      */
-    public function getBalanceOperationList(array $payload)
+    public function listBalanceOperation(array $payload)
     {
         return $this->client->request(
             self::GET,
-            Routes::recipients()->balanceOperations($payload['id'])
+            Routes::recipients()->balanceOperations($payload['recipient_id'])
         );
     }
 

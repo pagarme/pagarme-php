@@ -10,35 +10,34 @@ use GuzzleHttp\Psr7\Response;
 
 final class RecipientTest extends PagarMeTestCase
 {
-    public function recipientProvider()
+    public function mockProvider()
     {
-        return [
-            [
-                new MockHandler([
-                    new Response(200, [], self::jsonMock('RecipientMock'))
-                ])
-            ]
-        ];
-    }
-
-    public function balanceProvider()
-    {
-        return [
-            [
-                new MockHandler([
-                    new Response(200, [], self::jsonMock('BalanceMock'))
-                ])
-            ]
-        ];
+        return [[[
+            'recipient' => new MockHandler([
+                new Response(200, [], self::jsonMock('RecipientMock'))
+            ]),
+            'recipientList' => new MockHandler([
+                new Response(200, [], self::jsonMock('RecipientListMock'))
+            ]),
+            'balance' => new MockHandler([
+                new Response(200, [], self::jsonMock('BalanceMock'))
+            ]),
+            'balanceOperation' => new MockHandler([
+                new Response(200, [], self::jsonMock('BalanceOperationMock'))
+            ]),
+            'balanceOperationList' => new MockHandler([
+                new Response(200, [], self::jsonMock('BalanceOperationListMock'))
+            ]),
+        ]]];
     }
 
     /**
-     * @dataProvider recipientProvider
+     * @dataProvider mockProvider
      */
     public function testRecipientCreate($mock)
     {
         $requestsContainer = [];
-        $client = self::buildClient($requestsContainer, $mock);
+        $client = self::buildClient($requestsContainer, $mock['recipient']);
 
         $response = $client->recipients()->create([
             'transfer_interval' => 'weekly',
@@ -49,49 +48,75 @@ final class RecipientTest extends PagarMeTestCase
             'bank_account_id' => 4841
         ]);
 
-        $this->assertEquals(Recipients::POST, self::getRequestMethod($requestsContainer));
-        $this->assertEquals('/1/recipients', self::getRequestUri($requestsContainer));
-        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('RecipientMock'), true));
+        $this->assertEquals(
+            Recipients::POST,
+            self::getRequestMethod($requestsContainer)
+        );
+        $this->assertEquals(
+            '/1/recipients',
+            self::getRequestUri($requestsContainer)
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('RecipientMock'), true),
+            $response->getArrayCopy()
+        );
     }
 
-    public function testRecipientList()
+    /**
+     * @dataProvider mockProvider
+     */
+    public function testRecipientList($mock)
     {
-        $mock = new MockHandler([
-            new Response(200, [], self::jsonMock('RecipientListMock'))
-        ]);
-
         $requestsContainer = [];
-        $client = self::buildClient($requestsContainer, $mock);
+        $client = self::buildClient($requestsContainer, $mock['recipientList']);
 
         $response = $client->recipients()->getList();
 
-        $this->assertEquals(Recipients::GET, self::getRequestMethod($requestsContainer));
-        $this->assertEquals('/1/recipients', self::getRequestUri($requestsContainer));
-        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('RecipientListMock'), true));
+        $this->assertEquals(
+            Recipients::GET,
+            self::getRequestMethod($requestsContainer)
+        );
+        $this->assertEquals(
+            '/1/recipients',
+            self::getRequestUri($requestsContainer)
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('RecipientListMock'), true),
+            $response->getArrayCopy()
+        );
     }
 
     /**
-     * @dataProvider recipientProvider
+     * @dataProvider mockProvider
      */
-    public function testRecipientFind($mock)
+    public function testRecipientGet($mock)
     {
         $requestsContainer = [];
-        $client = self::buildClient($requestsContainer, $mock);
+        $client = self::buildClient($requestsContainer, $mock['recipient']);
 
         $response = $client->recipients()->get(['id' => 1]);
 
-        $this->assertEquals(Recipients::GET, self::getRequestMethod($requestsContainer));
-        $this->assertEquals('/1/recipients/1', self::getRequestUri($requestsContainer));
-        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('RecipientMock'), true));
+        $this->assertEquals(
+            Recipients::GET,
+            self::getRequestMethod($requestsContainer)
+        );
+        $this->assertEquals(
+            '/1/recipients/1',
+            self::getRequestUri($requestsContainer)
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('RecipientMock'), true),
+            $response->getArrayCopy()
+        );
     }
 
     /**
-     * @dataProvider recipientProvider
+     * @dataProvider mockProvider
      */
     public function testRecipientUpdate($mock)
     {
         $requestsContainer = [];
-        $client = self::buildClient($requestsContainer, $mock);
+        $client = self::buildClient($requestsContainer, $mock['recipient']);
 
         $response = $client->recipients()->update([
             'id' => '1',
@@ -103,55 +128,96 @@ final class RecipientTest extends PagarMeTestCase
             'bank_account_id' => 123
         ]);
 
-        $this->assertEquals(Recipients::PUT, self::getRequestMethod($requestsContainer));
-        $this->assertEquals('/1/recipients/1', self::getRequestUri($requestsContainer));
-        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('RecipientMock'), true));
+        $this->assertEquals(
+            Recipients::PUT,
+            self::getRequestMethod($requestsContainer)
+        );
+        $this->assertEquals(
+            '/1/recipients/1',
+            self::getRequestUri($requestsContainer)
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('RecipientMock'), true),
+            $response->getArrayCopy()
+        );
     }
 
     /**
-     * @dataProvider balanceProvider
+     * @dataProvider mockProvider
      */
-    public function testRecipientBalance($mock)
+    public function testRecipientGetBalance($mock)
     {
         $requestsContainer = [];
-        $client = self::buildClient($requestsContainer, $mock);
+        $client = self::buildClient($requestsContainer, $mock['balance']);
 
-        $response = $client->recipients()->getBalance(['id' => '1' ]);
-
-        $this->assertEquals(Recipients::GET, self::getRequestMethod($requestsContainer));
-        $this->assertEquals('/1/recipients/1/balance', self::getRequestUri($requestsContainer));
-        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('BalanceMock'), true));
-    }
-
-    public function testRecipientBalanceOperations()
-    {
-        $mock = new MockHandler([
-            new Response(200, [], self::jsonMock('BalanceOperationListMock'))
+        $response = $client->recipients()->getBalance([
+            'recipient_id' => 're_abc1234abc1234abc1234abc1'
         ]);
 
-        $requestsContainer = [];
-        $client = self::buildClient($requestsContainer, $mock);
-
-        $response = $client->recipients()->getBalanceOperationList(['id' => '1' ]);
-
-        $this->assertEquals(Recipients::GET, self::getRequestMethod($requestsContainer));
-        $this->assertEquals('/1/recipients/1/balance/operations', self::getRequestUri($requestsContainer));
-        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('BalanceOperationListMock'), true));
+        $this->assertEquals(
+            Recipients::GET,
+            self::getRequestMethod($requestsContainer)
+        );
+        $this->assertEquals(
+            '/1/recipients/re_abc1234abc1234abc1234abc1/balance',
+            self::getRequestUri($requestsContainer)
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('BalanceMock'), true),
+            $response->getArrayCopy()
+        );
     }
 
-    public function testRecipientBalanceOperation()
+    /**
+     * @dataProvider mockProvider
+     */
+    public function testRecipientListBalanceOperations($mock)
     {
-        $mock = new MockHandler([
-            new Response(200, [], self::jsonMock('BalanceOperationMock'))
+        $requestsContainer = [];
+        $client = self::buildClient($requestsContainer, $mock['balanceOperationList']);
+
+        $response = $client->recipients()->listBalanceOperation([
+            'recipient_id' => 're_abc1234abc1234abc1234abc1'
         ]);
 
+        $this->assertEquals(
+            Recipients::GET,
+            self::getRequestMethod($requestsContainer)
+        );
+        $this->assertEquals(
+            '/1/recipients/re_abc1234abc1234abc1234abc1/balance/operations',
+            self::getRequestUri($requestsContainer)
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('BalanceOperationListMock'), true),
+            $response->getArrayCopy()
+        );
+    }
+
+    /**
+     * @dataProvider mockProvider
+     */
+    public function testRecipientGetBalanceOperation($mock)
+    {
         $requestsContainer = [];
-        $client = self::buildClient($requestsContainer, $mock);
+        $client = self::buildClient($requestsContainer, $mock['balanceOperation']);
 
-        $response = $client->recipients()->getBalanceOperation(['recipient_id' => '1', 'balance_operation_id' => '1' ]);
+        $response = $client->recipients()->getBalanceOperation([
+            'recipient_id' => 're_abc1234abc1234abc1234abc1',
+            'balance_operation_id' => '1'
+        ]);
 
-        $this->assertEquals(Recipients::GET, self::getRequestMethod($requestsContainer));
-        $this->assertEquals('/1/recipients/1/balance/operations/1', self::getRequestUri($requestsContainer));
-        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('BalanceOperationMock'), true));
+        $this->assertEquals(
+            Recipients::GET,
+            self::getRequestMethod($requestsContainer)
+        );
+        $this->assertEquals(
+            '/1/recipients/re_abc1234abc1234abc1234abc1/balance/operations/1',
+            self::getRequestUri($requestsContainer)
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('BalanceOperationMock'), true),
+            $response->getArrayCopy()
+        );
     }
 }
