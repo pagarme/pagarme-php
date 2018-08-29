@@ -5,6 +5,7 @@ namespace PagarMe;
 use PagarMe\RequestHandler;
 use PagarMe\ResponseHandler;
 use PagarMe\Endpoints\BankAccounts;
+use PagarMe\Endpoints\BulkAnticipations;
 use PagarMe\Endpoints\Transactions;
 use PagarMe\Endpoints\Customers;
 use PagarMe\Endpoints\Cards;
@@ -61,6 +62,11 @@ class Client
     private $plans;
 
     /**
+     * @var \PagarMe\Endpoints\BulkAnticipations
+     */
+    private $bulkAnticipations;
+
+    /**
      * @param string $apiKey
      * @param array|null $extras
      */
@@ -82,6 +88,7 @@ class Client
         $this->recipients = new Recipients($this);
         $this->bankAccounts = new BankAccounts($this);
         $this->plans = new Plans($this);
+        $this->bulkAnticipations = new BulkAnticipations($this);
     }
 
     /**
@@ -149,11 +156,19 @@ class Client
         return $this->bankAccounts;
     }
 
-    /*
+    /**
      * @return \PagarMe\Endpoints\Plans
      */
     public function plans()
     {
         return $this->plans;
+    }
+
+    /**
+     * @return \PagarMe\Endpoints\BulkAnticipations
+     */
+    public function bulkAnticipations()
+    {
+        return $this->bulkAnticipations;
     }
 }

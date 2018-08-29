@@ -1,0 +1,15 @@
+{
+  "object": "bulk_anticipation",
+  "id": "ba_abc1234abc1234abc1234abc1",
+  "status": "building",
+  "amount": 2000,
+  "fee": 0,
+  "fraud_coverage_fee": 0,
+  "anticipation_fee": 83,
+  "automatic_transfer": false,
+  "type": "spot",
+  "timeframe": "start",
+  "payment_date": "2018-08-31T03:00:00.000Z",
+  "date_created": "2018-08-29T20:19:08.018Z",
+  "date_updated": "2018-08-29T20:19:08.018Z"
+}

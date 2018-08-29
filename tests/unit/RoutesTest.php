@@ -58,6 +58,7 @@ class RoutesTest extends TestCase
     public function testBankAccountRoutes()
     {
         $routes = Routes::bankAccounts();
+
         $this->assertObjectHasAttribute('base', $routes);
         $this->assertIsCallable($routes->base);
         $this->assertObjectHasAttribute('details', $routes);
@@ -72,5 +73,20 @@ class RoutesTest extends TestCase
         $this->assertIsCallable($routes->base);
         $this->assertObjectHasAttribute('details', $routes);
         $this->assertIsCallable($routes->details);
+    }
+
+    public function testBulkAnticipationsRoutes()
+    {
+        $routes = Routes::bulkAnticipations();
+
+        $this->assertObjectHasAttribute('base', $routes);
+        $this->assertIsCallable($routes->base);
+        $this->assertObjectHasAttribute('limits', $routes);
+        $this->assertIsCallable($routes->limits);
+        $this->assertObjectHasAttribute('confirm', $routes);
+        $this->assertIsCallable($routes->confirm);
+        $this->assertObjectHasAttribute('cancel', $routes);
+        $this->assertIsCallable($routes->cancel);
+        $this->assertObjectHasAttribute('delete', $routes);
     }
 }

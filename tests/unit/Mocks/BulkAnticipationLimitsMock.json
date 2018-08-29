@@ -1,0 +1,14 @@
+{
+  "maximum": {
+    "amount": 7000,
+    "anticipation_fee": 300,
+    "fee": 0,
+    "fraud_coverage_fee": 0
+  },
+  "minimum": {
+    "amount": 1700,
+    "anticipation_fee": 70,
+    "fee": 0,
+    "fraud_coverage_fee": 0
+  }
+}
