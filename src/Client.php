@@ -10,6 +10,7 @@ use PagarMe\Endpoints\Transactions;
 use PagarMe\Endpoints\Customers;
 use PagarMe\Endpoints\Cards;
 use PagarMe\Endpoints\Recipients;
+use PagarMe\Endpoints\PaymentLinks;
 use PagarMe\Endpoints\Plans;
 use GuzzleHttp\Client as HttpClient;
 use PagarMe\Exceptions\InvalidJsonException;
@@ -67,6 +68,11 @@ class Client
     private $bulkAnticipations;
 
     /**
+     * @var \PagarMe\Endpoints\PaymentLinks
+     */
+    private $paymentLinks;
+
+    /**
      * @param string $apiKey
      * @param array|null $extras
      */
@@ -89,6 +95,7 @@ class Client
         $this->bankAccounts = new BankAccounts($this);
         $this->plans = new Plans($this);
         $this->bulkAnticipations = new BulkAnticipations($this);
+        $this->paymentLinks = new PaymentLinks($this);
     }
 
     /**
@@ -170,5 +177,13 @@ class Client
     public function bulkAnticipations()
     {
         return $this->bulkAnticipations;
+    }
+
+    /**
+     * @return \PagarMe\Endpoints\PaymentLinks
+     */
+    public function paymentLinks()
+    {
+        return $this->paymentLinks;
     }
 }

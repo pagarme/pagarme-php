@@ -89,4 +89,16 @@ class RoutesTest extends TestCase
         $this->assertIsCallable($routes->cancel);
         $this->assertObjectHasAttribute('delete', $routes);
     }
+
+    public function testPaymentLinksRoutes()
+    {
+        $routes = Routes::paymentLinks();
+
+        $this->assertObjectHasAttribute('base', $routes);
+        $this->assertIsCallable($routes->base);
+        $this->assertObjectHasAttribute('details', $routes);
+        $this->assertIsCallable($routes->details);
+        $this->assertObjectHasAttribute('cancel', $routes);
+        $this->assertIsCallable($routes->cancel);
+    }
 }

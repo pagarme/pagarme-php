@@ -163,4 +163,26 @@ class Routes
 
         return $anonymous;
     }
+
+    /**
+     * @return \PagarMe\Anonymous
+     */
+    public static function paymentLinks()
+    {
+        $anonymous = new Anonymous();
+
+        $anonymous->base = static function () {
+            return 'payment_links';
+        };
+
+        $anonymous->details = static function ($paymentLinkId) {
+            return "payment_links/$paymentLinkId";
+        };
+
+        $anonymous->cancel = static function ($paymentLinkId) {
+            return "payment_links/$paymentLinkId/cancel";
+        };
+
+        return $anonymous;
+    }
 }
