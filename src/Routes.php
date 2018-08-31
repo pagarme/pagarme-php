@@ -185,4 +185,26 @@ class Routes
 
         return $anonymous;
     }
+
+    /**
+     * @return \PagarMe\Anonymous
+     */
+    public static function transfers()
+    {
+        $anonymous = new Anonymous();
+
+        $anonymous->base = static function () {
+            return 'transfers';
+        };
+
+        $anonymous->details = static function ($transferId) {
+            return "transfers/$transferId";
+        };
+
+        $anonymous->cancel = static function ($transferId) {
+            return "transfers/$transferId/cancel";
+        };
+
+        return $anonymous;
+    }
 }

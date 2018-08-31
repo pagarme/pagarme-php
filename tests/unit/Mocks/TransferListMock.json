@@ -1,0 +1,70 @@
+[
+  {
+    "object": "transfer",
+    "id": 123456,
+    "amount": 2000,
+    "type": "ted",
+    "status": "pending_transfer",
+    "source_type": "recipient",
+    "source_id": "re_abc1234abc1234abc1234abc1",
+    "target_type": "bank_account",
+    "target_id": "2345678",
+    "fee": 367,
+    "funding_date": null,
+    "funding_estimated_date": "2018-09-01T03:00:00.000Z",
+    "transaction_id": null,
+    "date_created": "2018-08-31T15:32:51.370Z",
+    "metadata": {
+      "testByPostman": true
+    },
+    "bank_account": {
+      "object": "bank_account",
+      "id": 2345678,
+      "bank_code": "000",
+      "agencia": "0000",
+      "agencia_dv": null,
+      "conta": "00000",
+      "conta_dv": "0",
+      "type": "conta_corrente",
+      "document_type": "cnpj",
+      "document_number": "00000000000000",
+      "legal_name": "CONTA BANCARIA DE TESTES",
+      "charge_transfer_fees": true,
+      "date_created": "2016-11-07T16:59:06.096Z"
+    }
+  },
+  {
+    "object": "transfer",
+    "id": 123456,
+    "amount": 2000,
+    "type": "ted",
+    "status": "pending_transfer",
+    "source_type": "recipient",
+    "source_id": "re_abc1234abc1234abc1234abc1",
+    "target_type": "bank_account",
+    "target_id": "2345678",
+    "fee": 367,
+    "funding_date": null,
+    "funding_estimated_date": "2018-09-01T03:00:00.000Z",
+    "transaction_id": null,
+    "date_created": "2018-08-31T15:32:51.370Z",
+    "metadata": {
+      "testByPostman": true
+    },
+    "bank_account": {
+      "object": "bank_account",
+      "id": 2345678,
+      "bank_code": "000",
+      "agencia": "0000",
+      "agencia_dv": null,
+      "conta": "00000",
+      "conta_dv": "0",
+      "type": "conta_corrente",
+      "document_type": "cnpj",
+      "document_number": "00000000000000",
+      "legal_name": "CONTA BANCARIA DE TESTES",
+      "charge_transfer_fees": true,
+      "date_created": "2016-11-07T16:59:06.096Z"
+    }
+  }
+]
