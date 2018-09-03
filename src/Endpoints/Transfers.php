@@ -23,13 +23,16 @@ class Transfers extends Endpoint
     }
 
     /**
+     * @param array|null $payload
+     *
      * @return \ArrayObject
      */
-    public function getList()
+    public function getList(array $payload = null)
     {
         return $this->client->request(
             self::GET,
-            Routes::transfers()->base()
+            Routes::transfers()->base(),
+            ['query' => $payload]
         );
     }
 

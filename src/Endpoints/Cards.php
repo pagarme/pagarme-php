@@ -23,13 +23,16 @@ class Cards extends Endpoint
     }
 
     /**
+     * @param array | null
+     *
      * @return \ArrayObject
      */
-    public function getList()
+    public function getList(array $payload = null)
     {
         return $this->client->request(
             self::GET,
-            Routes::cards()->base()
+            Routes::cards()->base(),
+            ['query' => $payload]
         );
     }
 

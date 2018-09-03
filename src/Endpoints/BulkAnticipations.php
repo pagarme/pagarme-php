@@ -32,7 +32,7 @@ class BulkAnticipations extends Endpoint
         return $this->client->request(
             self::GET,
             Routes::bulkAnticipations()->limits($payload['recipient_id']),
-            ['json' => $payload]
+            ['query' => $payload]
         );
     }
 
@@ -96,7 +96,8 @@ class BulkAnticipations extends Endpoint
     {
         return $this->client->request(
             self::GET,
-            Routes::bulkAnticipations()->base($payload['recipient_id'])
+            Routes::bulkAnticipations()->base($payload['recipient_id']),
+            ['query' => $payload]
         );
     }
 }
