@@ -10,22 +10,30 @@ use PagarMe\Endpoints\Customers;
 use PHPUnit\Framework\TestCase;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 
 final class ClientTest extends TestCase
 {
     public function testSuccessfulResponse()
     {
+        $container = [];
+        $history = Middleware::history($container);
         $mock = new MockHandler([
-            new Response(200, [], '{"status":"Ok!"}')
+            new Response(200, [], '{"status":"Ok!"}'),
         ]);
         $handler = HandlerStack::create($mock);
+        $handler->push($history);
 
         $client = new Client('apiKey', ['handler' => $handler]);
 
         $response = $client->request(Endpoint::POST, 'transactions');
 
         $this->assertEquals($response->status, "Ok!");
+        $this->assertEquals(
+            'api_key=apiKey',
+            $container[0]['request']->getUri()->getQuery()
+        );
     }
 
     /**

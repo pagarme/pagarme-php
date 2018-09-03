@@ -118,8 +118,11 @@ class Client
         try {
             $response = $this->http->request(
                 $method,
-                RequestHandler::bindApiKey($uri, $this->apiKey),
-                $options
+                $uri,
+                RequestHandler::bindApiKeyToQueryString(
+                    $options,
+                    $this->apiKey
+                )
             );
 
             return ResponseHandler::success($response->getBody());

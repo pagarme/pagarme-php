@@ -5,13 +5,15 @@ namespace PagarMe;
 class RequestHandler
 {
     /**
-     * @param string $uri
+     * @param array $options
      * @param string $apiKey
      *
-     * @return string
+     * @return array
      */
-    public static function bindApiKey($uri, $apiKey)
+    public static function bindApiKeyToQueryString(array $options, $apiKey)
     {
-        return $uri.'?api_key='.$apiKey;
+        $options['query']['api_key'] = $apiKey;
+
+        return $options;
     }
 }
