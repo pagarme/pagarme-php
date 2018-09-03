@@ -24,6 +24,7 @@ class Recipients extends Endpoint
 
     /**
      * @param array|null $payload
+     *
      * @return \ArrayObject
      */
     public function getList(array $payload = null)

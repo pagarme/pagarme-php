@@ -23,7 +23,7 @@ class Cards extends Endpoint
     }
 
     /**
-     * @param array | null
+     * @param array|null $payload
      *
      * @return \ArrayObject
      */
