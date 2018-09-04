@@ -17,7 +17,8 @@ class PaymentLinksTest extends PagarMeTestCase
                 new Response(200, [], self::jsonMock('PaymentLinkMock'))
             ]),
             'list' => new MockHandler([
-                new Response(200, [], self::jsonMock('PaymentLinkListMock'))
+                new Response(200, [], self::jsonMock('PaymentLinkListMock')),
+                new Response(200, [], '[]')
             ]),
         ]]];
     }
@@ -73,11 +74,11 @@ class PaymentLinksTest extends PagarMeTestCase
 
         $this->assertEquals(
             PaymentLinks::POST,
-            self::getRequestMethod($container)
+            self::getRequestMethod($container[0])
         );
         $this->assertEquals(
             '/1/payment_links',
-            self::getRequestUri($container)
+            self::getRequestUri($container[0])
         );
         $this->assertEquals(
             json_decode(self::jsonMock('PaymentLinkMock'), true),
@@ -97,14 +98,27 @@ class PaymentLinksTest extends PagarMeTestCase
 
         $this->assertEquals(
             PaymentLinks::GET,
-            self::getRequestMethod($container)
+            self::getRequestMethod($container[0])
         );
         $this->assertEquals(
             '/1/payment_links',
-            self::getRequestUri($container)
+            self::getRequestUri($container[0])
         );
         $this->assertEquals(
             json_decode(self::jsonMock('PaymentLinkListMock'), true),
+            $response->getArrayCopy()
+        );
+
+        $response = $client->paymentLinks()->getList([
+            'short_id' => 'aBcDeFgHiJ'
+        ]);
+
+        $this->assertContains(
+            'short_id=aBcDeFgHiJ',
+            self::getQueryString($container[1])
+        );
+        $this->assertEquals(
+            json_decode('[]', true),
             $response->getArrayCopy()
         );
     }
@@ -123,11 +137,11 @@ class PaymentLinksTest extends PagarMeTestCase
 
         $this->assertEquals(
             PaymentLinks::GET,
-            self::getRequestMethod($container)
+            self::getRequestMethod($container[0])
         );
         $this->assertEquals(
             '/1/payment_links/pl_abc1234abc1234abc1234abc1',
-            self::getRequestUri($container)
+            self::getRequestUri($container[0])
         );
         $this->assertEquals(
             json_decode(self::jsonMock('PaymentLinkMock'), true),
@@ -149,11 +163,11 @@ class PaymentLinksTest extends PagarMeTestCase
 
         $this->assertEquals(
             PaymentLinks::POST,
-            self::getRequestMethod($container)
+            self::getRequestMethod($container[0])
         );
         $this->assertEquals(
             '/1/payment_links/pl_abc1234abc1234abc1234abc1/cancel',
-            self::getRequestUri($container)
+            self::getRequestUri($container[0])
         );
         $this->assertEquals(
             json_decode(self::jsonMock('PaymentLinkMock'), true),

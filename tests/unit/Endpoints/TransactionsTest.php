@@ -3,27 +3,23 @@
 namespace PagarMe\Test\Endpoints;
 
 use PagarMe\Client;
+use PagarMe\Endpoints\Transactions;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
-use PagarMe\Endpoints\Endpoint;
-use PagarMe\Endpoints\Transactions;
 
 final class TransactionTest extends PagarMeTestCase
 {
-    private static function mock($mockName)
-    {
-        return file_get_contents("tests/unit/Mocks/$mockName.json");
-    }
-
     public function transactionProvider()
     {
-        return [
-            [
-                new MockHandler([
-                    new Response(200, [], self::jsonMock('TransactionMock'))
-                ])
-            ]
-        ];
+        return [[[
+            'transaction' => new MockHandler([
+                new Response(200, [], self::jsonMock('TransactionMock'))
+            ]),
+            'list' => new MockHandler([
+                new Response(200, [], self::jsonMock('TransactionListMock')),
+                new Response(200, [], '[]')
+            ])
+        ]]];
     }
 
     /**
@@ -32,7 +28,7 @@ final class TransactionTest extends PagarMeTestCase
     public function testTransactionCreate($mock)
     {
         $requestsContainer = [];
-        $client = self::buildClient($requestsContainer, $mock);
+        $client = self::buildClient($requestsContainer, $mock['transaction']);
 
         $response = $client->transactions()->create([
             'amount' => 1000,
@@ -83,24 +79,60 @@ final class TransactionTest extends PagarMeTestCase
             ]
         ]);
 
-        $this->assertEquals(Endpoint::POST, self::getRequestMethod($requestsContainer));
-        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('TransactionMock'), true));
+        $this->assertEquals(
+            Transactions::POST,
+            self::getRequestMethod($requestsContainer[0])
+        );
+        $this->assertEquals(
+            '/1/transactions',
+            self::getRequestUri($requestsContainer[0])
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('TransactionMock'), true),
+            $response->getArrayCopy()
+        );
     }
 
-    public function testTransactionList()
+    /**
+     * @dataProvider transactionProvider
+     */
+    public function testTransactionList($mock)
     {
         $requestsContainer = [];
 
-        $mock = new MockHandler([
-            new Response(200, [], self::jsonMock('TransactionListMock'))
-        ]);
-
-        $client = self::buildClient($requestsContainer, $mock);
+        $client = self::buildClient($requestsContainer, $mock['list']);
 
         $response = $client->transactions()->getList();
 
-        $this->assertEquals(Endpoint::GET, self::getRequestMethod($requestsContainer));
-        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('TransactionListMock'), true));
+        $this->assertEquals(
+            Transactions::GET,
+            self::getRequestMethod($requestsContainer[0])
+        );
+        $this->assertEquals(
+            '/1/transactions',
+            self::getRequestUri($requestsContainer[0])
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('TransactionListMock'), true),
+            $response->getArrayCopy()
+        );
+
+        $response = $client->transactions()->getList([
+            'nsu' => 'ABC1234',
+            'amount' => 15000,
+            'tid' => '2345678'
+        ]);
+
+        $query = self::getQueryString($requestsContainer[1]);
+
+        $this->assertContains('nsu=ABC1234', $query);
+        $this->assertContains('amount=15000', $query);
+        $this->assertContains('tid=2345678', $query);
+
+        $this->assertEquals(
+            json_decode('[]', true),
+            $response->getArrayCopy()
+        );
     }
 
     /**
@@ -109,13 +141,22 @@ final class TransactionTest extends PagarMeTestCase
     public function testTransactionFind($mock)
     {
         $requestsContainer = [];
-        $client = self::buildClient($requestsContainer, $mock);
+        $client = self::buildClient($requestsContainer, $mock['transaction']);
 
         $response = $client->transactions()->get(['id' => 1]);
 
-        $this->assertEquals(Endpoint::GET, self::getRequestMethod($requestsContainer));
-        $this->assertEquals('/1/transactions/1', self::getRequestUri($requestsContainer));
-        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('TransactionMock'), true));
+        $this->assertEquals(
+            Transactions::GET,
+            self::getRequestMethod($requestsContainer[0])
+        );
+        $this->assertEquals(
+            '/1/transactions/1',
+            self::getRequestUri($requestsContainer[0])
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('TransactionMock'), true),
+            $response->getArrayCopy()
+        );
     }
 
     /**
@@ -124,13 +165,25 @@ final class TransactionTest extends PagarMeTestCase
     public function testTransactionCapture($mock)
     {
         $requestsContainer = [];
-        $client = self::buildClient($requestsContainer, $mock);
+        $client = self::buildClient($requestsContainer, $mock['transaction']);
 
-        $response = $client->transactions()->capture(['id' => 1, 'amount' => 100]);
+        $response = $client->transactions()->capture([
+            'id' => 1,
+            'amount' => 100
+        ]);
 
-        $this->assertEquals('/1/transactions/1/capture', self::getRequestUri($requestsContainer));
-        $this->assertEquals(Endpoint::POST, self::getRequestMethod($requestsContainer));
-        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('TransactionMock'), true));
+        $this->assertEquals(
+            '/1/transactions/1/capture',
+            self::getRequestUri($requestsContainer[0])
+        );
+        $this->assertEquals(
+            Transactions::POST,
+            self::getRequestMethod($requestsContainer[0])
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('TransactionMock'), true),
+            $response->getArrayCopy()
+        );
     }
 
     /**
@@ -139,12 +192,24 @@ final class TransactionTest extends PagarMeTestCase
     public function testTransactionRefund($mock)
     {
         $requestsContainer = [];
-        $client = self::buildClient($requestsContainer, $mock);
+        $client = self::buildClient($requestsContainer, $mock['transaction']);
 
-        $response = $client->transactions()->refund(['id' => 1, 'amount' => 100]);
+        $response = $client->transactions()->refund([
+            'id' => 1,
+            'amount' => 100
+        ]);
 
-        $this->assertEquals('/1/transactions/1/refund', self::getRequestUri($requestsContainer));
-        $this->assertEquals(Endpoint::POST, self::getRequestMethod($requestsContainer));
-        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('TransactionMock'), true));
+        $this->assertEquals(
+            '/1/transactions/1/refund',
+            self::getRequestUri($requestsContainer[0])
+        );
+        $this->assertEquals(
+            Transactions::POST,
+            self::getRequestMethod($requestsContainer[0])
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('TransactionMock'), true),
+            $response->getArrayCopy()
+        );
     }
 }

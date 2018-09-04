@@ -10,11 +10,6 @@ use PagarMe\Client;
 abstract class PagarMeTestCase extends TestCase
 {
     /**
-     * @var array $container
-     */
-    public $container;
-
-    /**
      * @param string $mockName
      *
      * @return string
@@ -31,7 +26,7 @@ abstract class PagarMeTestCase extends TestCase
      */
     protected static function getRequestMethod($container)
     {
-        return $container[0]['request']->getMethod();
+        return $container['request']->getMethod();
     }
 
     /**
@@ -41,7 +36,17 @@ abstract class PagarMeTestCase extends TestCase
      */
     protected static function getRequestUri($container)
     {
-        return $container[0]['request']->getUri()->getPath();
+        return $container['request']->getUri()->getPath();
+    }
+
+    /**
+     * @param array $container
+     *
+     * @return string
+     */
+    protected static function getQueryString($container)
+    {
+        return $container['request']->getUri()->getQuery();
     }
 
     /**

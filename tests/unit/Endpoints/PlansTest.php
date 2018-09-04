@@ -17,7 +17,8 @@ final class PlanTest extends PagarMeTestCase
                 new Response(200, [], self::jsonMock('PlanMock'))
             ]),
             'planList' => new MockHandler([
-                new Response(200, [], self::jsonMock('PlanListMock'))
+                new Response(200, [], self::jsonMock('PlanListMock')),
+                new Response(200, [], '[]')
             ])
         ]]];
     }
@@ -36,9 +37,18 @@ final class PlanTest extends PagarMeTestCase
             'name' => 'The Pro Plan - Platinum  - Best Ever'
         ]);
 
-        $this->assertEquals('/1/plans', self::getRequestUri($requestsContainer));
-        $this->assertEquals(Plans::POST, self::getRequestMethod($requestsContainer));
-        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('PlanMock'), true));
+        $this->assertEquals(
+            '/1/plans',
+            self::getRequestUri($requestsContainer[0])
+        );
+        $this->assertEquals(
+            Plans::POST,
+            self::getRequestMethod($requestsContainer[0])
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('PlanMock'), true),
+            $response->getArrayCopy()
+        );
     }
 
     /**
@@ -50,10 +60,36 @@ final class PlanTest extends PagarMeTestCase
         $client = self::buildClient($requestsContainer, $mock['planList']);
 
         $response = $client->plans()->getList();
+        
+        $this->assertEquals(
+            '/1/plans',
+            self::getRequestUri($requestsContainer[0])
+        );
+        $this->assertEquals(
+            Plans::GET,
+            self::getRequestMethod($requestsContainer[0])
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('PlanListMock'), true),
+            $response->getArrayCopy()
+        );
 
-        $this->assertEquals('/1/plans', self::getRequestUri($requestsContainer));
-        $this->assertEquals(Plans::GET, self::getRequestMethod($requestsContainer));
-        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('PlanListMock'), true));
+        $response = $client->plans()->getList([
+            'amount' => '3000',
+            'days' => 30,
+            'name' => 'Super Duper Plan'
+        ]);
+
+        $query = self::getQueryString($requestsContainer[1]);
+
+        $this->assertContains('amount=3000', $query);
+        $this->assertContains('days=30', $query);
+        $this->assertContains('name=Super%20Duper%20Plan', $query);
+
+        $this->assertEquals(
+            json_decode('[]', true),
+            $response->getArrayCopy()
+        );
     }
 
     /**
@@ -66,9 +102,18 @@ final class PlanTest extends PagarMeTestCase
 
         $response = $client->plans()->get(['id' => 1]);
 
-        $this->assertEquals('/1/plans/1', self::getRequestUri($requestsContainer));
-        $this->assertEquals(Plans::GET, self::getRequestMethod($requestsContainer));
-        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('PlanMock'), true));
+        $this->assertEquals(
+            '/1/plans/1',
+            self::getRequestUri($requestsContainer[0])
+        );
+        $this->assertEquals(
+            Plans::GET,
+            self::getRequestMethod($requestsContainer[0])
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('PlanMock'), true),
+            $response->getArrayCopy()
+        );
     }
 
     /**
@@ -81,8 +126,17 @@ final class PlanTest extends PagarMeTestCase
 
         $response = $client->plans()->update(['id' => 1]);
 
-        $this->assertEquals('/1/plans/1', self::getRequestUri($requestsContainer));
-        $this->assertEquals(Plans::PUT, self::getRequestMethod($requestsContainer));
-        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('PlanMock'), true));
+        $this->assertEquals(
+            '/1/plans/1',
+            self::getRequestUri($requestsContainer[0])
+        );
+        $this->assertEquals(
+            Plans::PUT,
+            self::getRequestMethod($requestsContainer[0])
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('PlanMock'), true),
+            $response->getArrayCopy()
+        );
     }
 }

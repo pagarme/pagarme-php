@@ -12,13 +12,15 @@ final class CustomerTest extends PagarMeTestCase
 {
     public function customerProvider()
     {
-        return [
-            [
-                new MockHandler([
-                    new Response(200, [], self::jsonMock('CustomerMock'))
-                ])
-            ]
-        ];
+        return [[[
+            'customer' => new MockHandler([
+                new Response(200, [], self::jsonMock('CustomerMock'))
+            ]),
+            'list' => new MockHandler([
+                new Response(200, [], self::jsonMock('CustomerListMock')),
+                new Response(200, [], '[]')
+            ])
+        ]]];
     }
 
     /**
@@ -27,7 +29,7 @@ final class CustomerTest extends PagarMeTestCase
     public function testCustomerCreate($mock)
     {
         $requestsContainer = [];
-        $client = self::buildClient($requestsContainer, $mock);
+        $client = self::buildClient($requestsContainer, $mock['customer']);
 
         $response = $client->customers()->create([
             'external_id' => '#123456789',
@@ -48,9 +50,18 @@ final class CustomerTest extends PagarMeTestCase
             'birthday' => '1985-01-01'
         ]);
 
-        $this->assertEquals('/1/customers', self::getRequestUri($requestsContainer));
-        $this->assertEquals('POST', self::getRequestMethod($requestsContainer));
-        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('CustomerMock'), true));
+        $this->assertEquals(
+            '/1/customers',
+            self::getRequestUri($requestsContainer[0])
+        );
+        $this->assertEquals(
+            Customers::POST,
+            self::getRequestMethod($requestsContainer[0])
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('CustomerMock'), true),
+            $response->getArrayCopy()
+        );
     }
 
     /**
@@ -59,13 +70,38 @@ final class CustomerTest extends PagarMeTestCase
     public function testCustomerGetList($mock)
     {
         $requestsContainer = [];
-        $client = self::buildClient($requestsContainer, $mock);
+        $client = self::buildClient($requestsContainer, $mock['list']);
 
         $response = $client->customers()->getList();
+        
+        $this->assertEquals(
+            '/1/customers',
+            self::getRequestUri($requestsContainer[0])
+        );
+        $this->assertEquals(
+            Customers::GET,
+            self::getRequestMethod($requestsContainer[0])
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('CustomerListMock'), true),
+            $response->getArrayCopy()
+        );
 
-        $this->assertEquals('/1/customers', self::getRequestUri($requestsContainer));
-        $this->assertEquals('GET', self::getRequestMethod($requestsContainer));
-        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('CustomerMock'), true));
+        $response = $client->customers()->getList([
+            'name' => 'Fulano da Silva',
+            'email' => 'fulano@silva.com',
+            'id' => '123456'
+        ]);
+
+        $query = self::getQueryString($requestsContainer[1]);
+
+        $this->assertContains('name=Fulano%20da%20Silva', $query);
+        $this->assertContains('email=fulano%40silva.com', $query);
+        $this->assertContains('id=123456', $query);
+        $this->assertEquals(
+            json_decode('[]', true),
+            $response->getArrayCopy()
+        );
     }
 
     /**
@@ -74,12 +110,21 @@ final class CustomerTest extends PagarMeTestCase
     public function testCustomerGet($mock)
     {
         $requestsContainer = [];
-        $client = self::buildClient($requestsContainer, $mock);
+        $client = self::buildClient($requestsContainer, $mock['customer']);
 
         $response = $client->customers()->get(['id' => 1]);
 
-        $this->assertEquals('/1/customers/1', self::getRequestUri($requestsContainer));
-        $this->assertEquals('GET', self::getRequestMethod($requestsContainer));
-        $this->assertEquals($response->getArrayCopy(), json_decode(self::jsonMock('CustomerMock'), true));
+        $this->assertEquals(
+            '/1/customers/1',
+            self::getRequestUri($requestsContainer[0])
+        );
+        $this->assertEquals(
+            Customers::GET,
+            self::getRequestMethod($requestsContainer[0])
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('CustomerMock'), true),
+            $response->getArrayCopy()
+        );
     }
 }

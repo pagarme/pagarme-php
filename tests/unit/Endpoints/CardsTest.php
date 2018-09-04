@@ -17,7 +17,8 @@ class CardsTest extends PagarMeTestCase
                 new Response(200, [], self::jsonMock('CardMock'))
             ]),
             'cardList' => new MockHandler([
-                new Response(200, [], self::jsonMock('CardListMock'))
+                new Response(200, [], self::jsonMock('CardListMock')),
+                new Response(200, [], '[]')
             ]),
         ]]];
     }
@@ -41,7 +42,11 @@ class CardsTest extends PagarMeTestCase
 
         $this->assertEquals(
             Cards::POST,
-            self::getRequestMethod($container)
+            self::getRequestMethod($container[0])
+        );
+        $this->assertEquals(
+            '/1/cards',
+            self::getRequestUri($container[0])
         );
         $this->assertEquals(
             json_decode(self::jsonMock('CardMock'), true),
@@ -58,13 +63,33 @@ class CardsTest extends PagarMeTestCase
         $client = self::buildClient($container, $mock['cardList']);
 
         $response = $client->cards()->getList();
-
+        
         $this->assertEquals(
             Cards::GET,
-            self::getRequestMethod($container)
+            self::getRequestMethod($container[0])
+        );
+        $this->assertEquals(
+            '/1/cards',
+            self::getRequestUri($container[0])
         );
         $this->assertEquals(
             json_decode(self::jsonMock('CardListMock'), true),
+            $response->getArrayCopy()
+        );
+
+        $response = $client->cards()->getList([
+            'brand' => 'mastercard',
+            'holder_name' => 'TESTE DE CARTAO',
+            'first_digits' => '424242'
+        ]);
+
+        $query = self::getQueryString($container[1]);
+
+        $this->assertContains('brand=mastercard', $query);
+        $this->assertContains('holder_name=TESTE%20DE%20CARTAO', $query);
+        $this->assertContains('first_digits=424242', $query);
+        $this->assertEquals(
+            json_decode('[]', true),
             $response->getArrayCopy()
         );
     }
@@ -83,11 +108,11 @@ class CardsTest extends PagarMeTestCase
 
         $this->assertEquals(
             Cards::GET,
-            self::getRequestMethod($container)
+            self::getRequestMethod($container[0])
         );
         $this->assertEquals(
             '/1/cards/card_abc1234abc1234abc1234abc1',
-            self::getRequestUri($container)
+            self::getRequestUri($container[0])
         );
         $this->assertEquals(
             json_decode(self::jsonMock('CardMock'), true),

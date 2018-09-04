@@ -17,7 +17,8 @@ final class RecipientTest extends PagarMeTestCase
                 new Response(200, [], self::jsonMock('RecipientMock'))
             ]),
             'recipientList' => new MockHandler([
-                new Response(200, [], self::jsonMock('RecipientListMock'))
+                new Response(200, [], self::jsonMock('RecipientListMock')),
+                new Response(200, [], '[]')
             ]),
             'balance' => new MockHandler([
                 new Response(200, [], self::jsonMock('BalanceMock'))
@@ -26,7 +27,8 @@ final class RecipientTest extends PagarMeTestCase
                 new Response(200, [], self::jsonMock('BalanceOperationMock'))
             ]),
             'balanceOperationList' => new MockHandler([
-                new Response(200, [], self::jsonMock('BalanceOperationListMock'))
+                new Response(200, [], self::jsonMock('BalanceOperationListMock')),
+                new Response(200, [], '[]')
             ]),
         ]]];
     }
@@ -50,11 +52,11 @@ final class RecipientTest extends PagarMeTestCase
 
         $this->assertEquals(
             Recipients::POST,
-            self::getRequestMethod($requestsContainer)
+            self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
             '/1/recipients',
-            self::getRequestUri($requestsContainer)
+            self::getRequestUri($requestsContainer[0])
         );
         $this->assertEquals(
             json_decode(self::jsonMock('RecipientMock'), true),
@@ -74,14 +76,31 @@ final class RecipientTest extends PagarMeTestCase
 
         $this->assertEquals(
             Recipients::GET,
-            self::getRequestMethod($requestsContainer)
+            self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
             '/1/recipients',
-            self::getRequestUri($requestsContainer)
+            self::getRequestUri($requestsContainer[0])
         );
         $this->assertEquals(
             json_decode(self::jsonMock('RecipientListMock'), true),
+            $response->getArrayCopy()
+        );
+
+        $response = $client->recipients()->getList([
+            'bank_account_id' => 123,
+            'transfer_enabled' => true,
+            'name' => 'RECEBEDOR TESTE'
+        ]);
+
+        $query = self::getQueryString($requestsContainer[1]);
+
+        $this->assertContains('bank_account_id=123', $query);
+        $this->assertContains('transfer_enabled=1', $query);
+        $this->assertContains('name=RECEBEDOR%20TESTE', $query);
+
+        $this->assertEquals(
+            json_decode('[]', true),
             $response->getArrayCopy()
         );
     }
@@ -98,11 +117,11 @@ final class RecipientTest extends PagarMeTestCase
 
         $this->assertEquals(
             Recipients::GET,
-            self::getRequestMethod($requestsContainer)
+            self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
             '/1/recipients/1',
-            self::getRequestUri($requestsContainer)
+            self::getRequestUri($requestsContainer[0])
         );
         $this->assertEquals(
             json_decode(self::jsonMock('RecipientMock'), true),
@@ -130,11 +149,11 @@ final class RecipientTest extends PagarMeTestCase
 
         $this->assertEquals(
             Recipients::PUT,
-            self::getRequestMethod($requestsContainer)
+            self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
             '/1/recipients/1',
-            self::getRequestUri($requestsContainer)
+            self::getRequestUri($requestsContainer[0])
         );
         $this->assertEquals(
             json_decode(self::jsonMock('RecipientMock'), true),
@@ -156,11 +175,11 @@ final class RecipientTest extends PagarMeTestCase
 
         $this->assertEquals(
             Recipients::GET,
-            self::getRequestMethod($requestsContainer)
+            self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
             '/1/recipients/re_abc1234abc1234abc1234abc1/balance',
-            self::getRequestUri($requestsContainer)
+            self::getRequestUri($requestsContainer[0])
         );
         $this->assertEquals(
             json_decode(self::jsonMock('BalanceMock'), true),
@@ -182,14 +201,30 @@ final class RecipientTest extends PagarMeTestCase
 
         $this->assertEquals(
             Recipients::GET,
-            self::getRequestMethod($requestsContainer)
+            self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
             '/1/recipients/re_abc1234abc1234abc1234abc1/balance/operations',
-            self::getRequestUri($requestsContainer)
+            self::getRequestUri($requestsContainer[0])
         );
         $this->assertEquals(
             json_decode(self::jsonMock('BalanceOperationListMock'), true),
+            $response->getArrayCopy()
+        );
+
+        $response = $client->recipients()->listBalanceOperation([
+            'recipient_id' => 're_abc1234abc1234abc1234abc1',
+            'count' => 5,
+            'page' => 1
+        ]);
+
+        $query = self::getQueryString($requestsContainer[1]);
+
+        $this->assertContains('count=5', $query);
+        $this->assertContains('page=1', $query);
+
+        $this->assertEquals(
+            json_decode('[]', true),
             $response->getArrayCopy()
         );
     }
@@ -209,11 +244,11 @@ final class RecipientTest extends PagarMeTestCase
 
         $this->assertEquals(
             Recipients::GET,
-            self::getRequestMethod($requestsContainer)
+            self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
             '/1/recipients/re_abc1234abc1234abc1234abc1/balance/operations/1',
-            self::getRequestUri($requestsContainer)
+            self::getRequestUri($requestsContainer[0])
         );
         $this->assertEquals(
             json_decode(self::jsonMock('BalanceOperationMock'), true),

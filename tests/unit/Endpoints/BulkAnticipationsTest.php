@@ -23,7 +23,8 @@ class BulkAnticipationsTest extends PagarMeTestCase
                 new Response(200, [], '[]')
             ]),
             'list' => new MockHandler([
-                new Response(200, [], self::jsonMock('BulkAnticipationListMock'))
+                new Response(200, [], self::jsonMock('BulkAnticipationListMock')),
+                new Response(200, [], '[]'),
             ]),
         ]]];
     }
@@ -46,11 +47,11 @@ class BulkAnticipationsTest extends PagarMeTestCase
 
         $this->assertEquals(
             BulkAnticipations::POST,
-            self::getRequestMethod($container)
+            self::getRequestMethod($container[0])
         );
         $this->assertEquals(
             '/1/recipients/re_abc1234abc1234abc1234abc1/bulk_anticipations',
-            self::getRequestUri($container)
+            self::getRequestUri($container[0])
         );
         $this->assertEquals(
             json_decode(self::jsonMock('BulkAnticipationMock'), true),
@@ -74,11 +75,11 @@ class BulkAnticipationsTest extends PagarMeTestCase
 
         $this->assertEquals(
             BulkAnticipations::GET,
-            self::getRequestMethod($container)
+            self::getRequestMethod($container[0])
         );
         $this->assertEquals(
             '/1/recipients/re_abc1234abc1234abc1234abc1/bulk_anticipations/limits',
-            self::getRequestUri($container)
+            self::getRequestUri($container[0])
         );
         $this->assertEquals(
             json_decode(self::jsonMock('BulkAnticipationLimitsMock'), true),
@@ -101,11 +102,11 @@ class BulkAnticipationsTest extends PagarMeTestCase
 
         $this->assertEquals(
             BulkAnticipations::POST,
-            self::getRequestMethod($container)
+            self::getRequestMethod($container[0])
         );
         $this->assertEquals(
             '/1/recipients/re_abc1234abc1234abc1234abc1/bulk_anticipations/ba_abc1234abc1234abc1234abc1/confirm',
-            self::getRequestUri($container)
+            self::getRequestUri($container[0])
         );
         $this->assertEquals(
             json_decode(self::jsonMock('BulkAnticipationMock'), true),
@@ -128,11 +129,11 @@ class BulkAnticipationsTest extends PagarMeTestCase
 
         $this->assertEquals(
             BulkAnticipations::POST,
-            self::getRequestMethod($container)
+            self::getRequestMethod($container[0])
         );
         $this->assertEquals(
             '/1/recipients/re_abc1234abc1234abc1234abc1/bulk_anticipations/ba_abc1234abc1234abc1234abc1/cancel',
-            self::getRequestUri($container)
+            self::getRequestUri($container[0])
         );
         $this->assertEquals(
             json_decode(self::jsonMock('BulkAnticipationMock'), true),
@@ -155,11 +156,11 @@ class BulkAnticipationsTest extends PagarMeTestCase
 
         $this->assertEquals(
             BulkAnticipations::DELETE,
-            self::getRequestMethod($container)
+            self::getRequestMethod($container[0])
         );
         $this->assertEquals(
             '/1/recipients/re_abc1234abc1234abc1234abc1/bulk_anticipations/ba_abc1234abc1234abc1234abc1',
-            self::getRequestUri($container)
+            self::getRequestUri($container[0])
         );
         $this->assertEquals(
             [],
@@ -181,14 +182,31 @@ class BulkAnticipationsTest extends PagarMeTestCase
 
         $this->assertEquals(
             BulkAnticipations::GET,
-            self::getRequestMethod($container)
+            self::getRequestMethod($container[0])
         );
         $this->assertEquals(
             '/1/recipients/re_abc1234abc1234abc1234abc1/bulk_anticipations',
-            self::getRequestUri($container)
+            self::getRequestUri($container[0])
         );
         $this->assertEquals(
             json_decode(self::jsonMock('BulkAnticipationListMock'), true),
+            $response->getArrayCopy()
+        );
+
+        $response = $client->bulkAnticipations()->getList([
+            'recipient_id' => 're_abc1234abc1234abc1234abc1',
+            'id' => 123,
+            'fee' => 4567,
+            'anticipation_fee' => 8900
+        ]);
+
+        $query = self::getQueryString($container[1]);
+
+        $this->assertContains('id=123', $query);
+        $this->assertContains('fee=4567', $query);
+        $this->assertContains('anticipation_fee=8900', $query);
+        $this->assertEquals(
+            json_decode('[]', true),
             $response->getArrayCopy()
         );
     }

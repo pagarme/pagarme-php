@@ -1,0 +1,60 @@
+[
+  {
+    "object": "customer",
+    "id": 233406,
+    "external_id": "#123456789",
+    "type": "individual",
+    "country": "br",
+    "document_number": null,
+    "document_type": "cpf",
+    "name": "João das Neves",
+    "email": "joaoneves@norte.com",
+    "phone_numbers": [
+      "+5511999999999",
+      "+5511888888888"
+    ],
+    "born_at": null,
+    "birthday": "1985-01-01",
+    "gender": null,
+    "date_created": "2017-08-14T23:28:36.296Z",
+    "documents": [
+      {
+        "object": "document",
+        "id": "doc_cj6csivuv05zj696dkzzjbfmq",
+        "type": "cpf",
+        "number": "11111111111"
+      }
+    ],
+    "addresses": [],
+    "phones": []
+  },
+  {
+    "object": "customer",
+    "id": 233406,
+    "external_id": "#123456789",
+    "type": "individual",
+    "country": "br",
+    "document_number": null,
+    "document_type": "cpf",
+    "name": "João das Neves",
+    "email": "joaoneves@norte.com",
+    "phone_numbers": [
+      "+5511999999999",
+      "+5511888888888"
+    ],
+    "born_at": null,
+    "birthday": "1985-01-01",
+    "gender": null,
+    "date_created": "2017-08-14T23:28:36.296Z",
+    "documents": [
+      {
+        "object": "document",
+        "id": "doc_cj6csivuv05zj696dkzzjbfmq",
+        "type": "cpf",
+        "number": "11111111111"
+      }
+    ],
+    "addresses": [],
+    "phones": []
+  }
+]
