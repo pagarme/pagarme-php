@@ -207,4 +207,34 @@ class Routes
 
         return $anonymous;
     }
+
+    /**
+     * @return \PagarMe\Anonymous
+     */
+    public static function subscriptions()
+    {
+        $anonymous = new Anonymous();
+
+        $anonymous->base = static function () {
+            return 'subscriptions';
+        };
+
+        $anonymous->details = static function ($subscriptionId) {
+            return "subscriptions/$subscriptionId";
+        };
+
+        $anonymous->cancel = static function ($subscriptionId) {
+            return "subscriptions/$subscriptionId/cancel";
+        };
+
+        $anonymous->transactions = static function ($subscriptionId) {
+            return "subscriptions/$subscriptionId/transactions";
+        };
+
+        $anonymous->settleCharges = static function ($subscriptionId) {
+            return "subscriptions/$subscriptionId/settle_charge";
+        };
+
+        return $anonymous;
+    }
 }
