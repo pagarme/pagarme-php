@@ -83,12 +83,9 @@ class Subscriptions extends Endpoint
      */
     public function transactions(array $payload)
     {
-        $subscriptionId = $payload['id'];
-        unset($payload['id']);
-
         return $this->client->request(
             self::GET,
-            Routes::subscriptions()->transactions($subscriptionId),
+            Routes::subscriptions()->transactions($payload['subscription_id']),
             ['query' => $payload]
         );
     }

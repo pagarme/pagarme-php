@@ -211,7 +211,7 @@ class SubscriptionsTest extends PagarMeTestCase
         $client = self::buildClient($container, $mock['transactions']);
 
         $response = $client->subscriptions()->transactions([
-            'id' => 1245
+            'subscription_id' => 1245
         ]);
 
         $this->assertEquals(
@@ -228,7 +228,7 @@ class SubscriptionsTest extends PagarMeTestCase
         );
 
         $response = $client->subscriptions()->transactions([
-            'id' => 1245,
+            'subscription_id' => 1245,
             'status' => 'paid',
             'amount' => 15000,
             'tid' => 162534
@@ -239,7 +239,6 @@ class SubscriptionsTest extends PagarMeTestCase
         $this->assertContains('status=paid', $query);
         $this->assertContains('amount=15000', $query);
         $this->assertContains('tid=162534', $query);
-        $this->assertNotContains('id=1245', $query);
 
         $this->assertEquals(
             json_decode('[]', true),
