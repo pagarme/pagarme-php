@@ -148,7 +148,15 @@ class RoutesTest extends TestCase
 
     public function testRefundsRoute()
     {
-        $routes = Routes::subscriptions();
+        $routes = Routes::refunds();
+
+        $this->assertObjectHasAttribute('base', $routes);
+        $this->assertIsCallable($routes->base);
+    }
+
+    public function testBalanceRoutes()
+    {
+        $routes = Routes::balances();
 
         $this->assertObjectHasAttribute('base', $routes);
         $this->assertIsCallable($routes->base);
