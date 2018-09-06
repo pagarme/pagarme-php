@@ -251,4 +251,34 @@ class Routes
 
         return $anonymous;
     }
+
+    /**
+     * @return \PagarMe\Anonymous
+     */
+    public static function postbacks()
+    {
+        $anonymous = new Anonymous();
+
+        $anonymous->base = static function ($model, $modelId) {
+            return "$model/$modelId/postbacks";
+        };
+
+        $anonymous->details = static function (
+            $model,
+            $modelId,
+            $postbackId
+        ) {
+            return "$model/$modelId/postbacks/$postbackId";
+        };
+
+        $anonymous->redeliver = static function (
+            $model,
+            $modelId,
+            $postbackId
+        ) {
+            return "$model/$modelId/postbacks/$postbackId/redeliver";
+        };
+
+        return $anonymous;
+    }
 }

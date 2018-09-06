@@ -15,6 +15,7 @@ use PagarMe\Endpoints\Plans;
 use PagarMe\Endpoints\Transfers;
 use PagarMe\Endpoints\Subscriptions;
 use PagarMe\Endpoints\Refunds;
+use PagarMe\Endpoints\Postbacks;
 use GuzzleHttp\Client as HttpClient;
 use PagarMe\Exceptions\InvalidJsonException;
 
@@ -91,6 +92,11 @@ class Client
     private $refunds;
 
     /**
+     * @var \PagarMe\Endpoints\Postbacks
+     */
+    private $postbacks;
+
+    /**
      * @param string $apiKey
      * @param array|null $extras
      */
@@ -117,6 +123,7 @@ class Client
         $this->transfers = new Transfers($this);
         $this->subscriptions = new Subscriptions($this);
         $this->refunds = new Refunds($this);
+        $this->postbacks = new Postbacks($this);
     }
 
     /**
@@ -233,5 +240,13 @@ class Client
     public function refunds()
     {
         return $this->refunds;
+    }
+
+    /**
+     * @return \PagarMe\Endpoints\Postbacks
+     */
+    public function postbacks()
+    {
+        return $this->postbacks;
     }
 }

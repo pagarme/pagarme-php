@@ -1,0 +1,60 @@
+[
+  {
+    "object": "postback",
+    "status": "waiting_retry",
+    "model": "transaction",
+    "model_id": "123456",
+    "headers": "{\"Content-Type\":\"application/x-www-form-urlencoded\",\"X-PagarMe-Event\":\"transaction_status_changed\",\"X-Hub-Signature\":\"sha1=7ed69eb64890daa680cdbe2e0df4e29d7246f84f\",\"User-Agent\":\"PagarMe-Hookshot/1.0\"}",
+    "payload": "id=123456&fingerprint=9c3f286dc60b0c221796ae551271d1217c7abf6f&event=transaction_status_changed&old_status=waiting_payment&desired_status=paid&current_status=paid&object=transaction&transaction%5Bobject%5D=transaction&transaction%5Bstatus%5D=paid&transaction%5Brefuse_reason%5D=&transaction%5Bstatus_reason%5D=acquirer&transaction%5Bacquirer_response_code%5D=&transaction%5Bacquirer_name%5D=pagarme&transaction%5Bacquirer_id%5D=5820b2dabbfaead74655b8c3&transaction%5Bauthorization_code%5D=&transaction%5Bsoft_descriptor%5D=&transaction%5Btid%5D=4240637&transaction%5Bnsu%5D=4240637&transaction%5Bdate_created%5D=2018-09-06T19%3A54%3A36.199Z&transaction%5Bdate_updated%5D=2018-09-06T19%3A55%3A14.063Z&transaction%5Bamount%5D=3100&transaction%5Bauthorized_amount%5D=3100&transaction%5Bpaid_amount%5D=0&transaction%5Brefunded_amount%5D=0&transaction%5Binstallments%5D=1&transaction%5Bid%5D=4240637&transaction%5Bcost%5D=380&transaction%5Bcard_holder_name%5D=&transaction%5Bcard_last_digits%5D=&transaction%5Bcard_first_digits%5D=&transaction%5Bcard_brand%5D=&transaction%5Bcard_pin_mode%5D=&transaction%5Bpostback_url%5D=http%3A%2F%2Frequestb.in%2F1nyheet1&transaction%5Bpayment_method%5D=boleto&transaction%5Bcapture_method%5D=ecommerce&transaction%5Bantifraud_score%5D=&transaction%5Bboleto_url%5D=https%3A%2F%2Fpagar.me&transaction%5Bboleto_barcode%5D=1234%205678&transaction%5Bboleto_expiration_date%5D=2018-09-13T03%3A00%3A00.000Z&transaction%5Breferer%5D=api_key&transaction%5Bip%5D=189.55.154.243&transaction%5Bsubscription_id%5D=&transaction%5Bphone%5D%5Bobject%5D=phone&transaction%5Bphone%5D%5Bddi%5D=55&transaction%5Bphone%5D%5Bddd%5D=11&transaction%5Bphone%5D%5Bnumber%5D=912345678&transaction%5Bphone%5D%5Bid%5D=71354&transaction%5Baddress%5D%5Bobject%5D=address&transaction%5Baddress%5D%5Bstreet%5D=Edvardo%20Teixeira&transaction%5Baddress%5D%5Bcomplementary%5D=&transaction%5Baddress%5D%5Bstreet_number%5D=152&transaction%5Baddress%5D%5Bneighborhood%5D=Centro&transaction%5Baddress%5D%5Bcity%5D=Taubat%C3%A9&transaction%5Baddress%5D%5Bstate%5D=SP&transaction%5Baddress%5D%5Bzipcode%5D=12345678&transaction%5Baddress%5D%5Bcountry%5D=Brasil&transaction%5Baddress%5D%5Bid%5D=73642&transaction%5Bcustomer%5D%5Bobject%5D=customer&transaction%5Bcustomer%5D%5Bid%5D=121212&transaction%5Bcustomer%5D%5Bexternal_id%5D=&transaction%5Bcustomer%5D%5Btype%5D=&transaction%5Bcustomer%5D%5Bcountry%5D=&transaction%5Bcustomer%5D%5Bdocument_number%5D=12312312344&transaction%5Bcustomer%5D%5Bdocument_type%5D=cpf&transaction%5Bcustomer%5D%5Bname%5D=DON%20DIEGO%20DE%20LA%20VEGA&transaction%5Bcustomer%5D%5Bemail%5D=dondiegodel%40vega.com&transaction%5Bcustomer%5D%5Bphone_numbers%5D=&transaction%5Bcustomer%5D%5Bborn_at%5D=1970-01-01T00%3A00%3A00.000Z&transaction%5Bcustomer%5D%5Bbirthday%5D=&transaction%5Bcustomer%5D%5Bgender%5D=other&transaction%5Bcustomer%5D%5Bdate_created%5D=2016-12-26T16%3A25%3A47.456Z&transaction%5Bbilling%5D=&transaction%5Bshipping%5D=&transaction%5Bcard%5D=&transaction%5Bsplit_rules%5D=&transaction%5Bmetadata%5D%5BidProduto%5D=000000&transaction%5Breference_key%5D=&transaction%5Bdevice%5D=&transaction%5Blocal_transaction_id%5D=&transaction%5Blocal_time%5D=&transaction%5Bfraud_covered%5D=false&transaction%5Border_id%5D=&transaction%5Brisk_level%5D=unknown&transaction%5Breceipt_url%5D=&transaction%5Bpayment%5D=&transaction%5Baddition%5D=&transaction%5Bdiscount%5D=",
+    "request_url": "http://requestb.in/1nyheet1",
+    "retries": 1,
+    "next_retry": "2018-09-06T19:57:19.700Z",
+    "deliveries": [
+      {
+        "object": "postback_delivery",
+        "status": "failed",
+        "status_reason": "http_status_code",
+        "status_code": "301",
+        "response_time": 24,
+        "response_headers": "{\"date\":\"Thu, 06 Sep 2018 19:55:14 GMT\",\"transfer-encoding\":\"chunked\",\"connection\":\"close\",\"cache-control\":\"max-age=3600\",\"expires\":\"Thu, 06 Sep 2018 20:55:14 GMT\",\"location\":\"https://github.com/Runscope/requestbin#readme\",\"x-content-type-options\":\"nosniff\",\"server\":\"cloudflare\",\"cf-ray\":\"45637df856f591fa-EWR\"}",
+        "response_body": "",
+        "date_created": "2018-09-06T19:55:14.586Z",
+        "date_updated": "2018-09-06T19:55:14.620Z",
+        "id": "pd_abc1234abc1234abc1234abc1"
+      }
+    ],
+    "date_created": "2018-09-06T19:55:14.384Z",
+    "date_updated": "2018-09-06T19:56:19.700Z",
+    "signature": "sha1=7ed69eb64890daa680cdbe2e0df4e29d7246f84f",
+    "id": "po_abc1234abc1234abc1234abc1"
+  },
+  {
+    "object": "postback",
+    "status": "waiting_retry",
+    "model": "transaction",
+    "model_id": "123456",
+    "headers": "{\"Content-Type\":\"application/x-www-form-urlencoded\",\"X-PagarMe-Event\":\"transaction_status_changed\",\"X-Hub-Signature\":\"sha1=7ed69eb64890daa680cdbe2e0df4e29d7246f84f\",\"User-Agent\":\"PagarMe-Hookshot/1.0\"}",
+    "payload": "id=123456&fingerprint=9c3f286dc60b0c221796ae551271d1217c7abf6f&event=transaction_status_changed&old_status=waiting_payment&desired_status=paid&current_status=paid&object=transaction&transaction%5Bobject%5D=transaction&transaction%5Bstatus%5D=paid&transaction%5Brefuse_reason%5D=&transaction%5Bstatus_reason%5D=acquirer&transaction%5Bacquirer_response_code%5D=&transaction%5Bacquirer_name%5D=pagarme&transaction%5Bacquirer_id%5D=5820b2dabbfaead74655b8c3&transaction%5Bauthorization_code%5D=&transaction%5Bsoft_descriptor%5D=&transaction%5Btid%5D=4240637&transaction%5Bnsu%5D=4240637&transaction%5Bdate_created%5D=2018-09-06T19%3A54%3A36.199Z&transaction%5Bdate_updated%5D=2018-09-06T19%3A55%3A14.063Z&transaction%5Bamount%5D=3100&transaction%5Bauthorized_amount%5D=3100&transaction%5Bpaid_amount%5D=0&transaction%5Brefunded_amount%5D=0&transaction%5Binstallments%5D=1&transaction%5Bid%5D=4240637&transaction%5Bcost%5D=380&transaction%5Bcard_holder_name%5D=&transaction%5Bcard_last_digits%5D=&transaction%5Bcard_first_digits%5D=&transaction%5Bcard_brand%5D=&transaction%5Bcard_pin_mode%5D=&transaction%5Bpostback_url%5D=http%3A%2F%2Frequestb.in%2F1nyheet1&transaction%5Bpayment_method%5D=boleto&transaction%5Bcapture_method%5D=ecommerce&transaction%5Bantifraud_score%5D=&transaction%5Bboleto_url%5D=https%3A%2F%2Fpagar.me&transaction%5Bboleto_barcode%5D=1234%205678&transaction%5Bboleto_expiration_date%5D=2018-09-13T03%3A00%3A00.000Z&transaction%5Breferer%5D=api_key&transaction%5Bip%5D=189.55.154.243&transaction%5Bsubscription_id%5D=&transaction%5Bphone%5D%5Bobject%5D=phone&transaction%5Bphone%5D%5Bddi%5D=55&transaction%5Bphone%5D%5Bddd%5D=11&transaction%5Bphone%5D%5Bnumber%5D=912345678&transaction%5Bphone%5D%5Bid%5D=71354&transaction%5Baddress%5D%5Bobject%5D=address&transaction%5Baddress%5D%5Bstreet%5D=Edvardo%20Teixeira&transaction%5Baddress%5D%5Bcomplementary%5D=&transaction%5Baddress%5D%5Bstreet_number%5D=152&transaction%5Baddress%5D%5Bneighborhood%5D=Centro&transaction%5Baddress%5D%5Bcity%5D=Taubat%C3%A9&transaction%5Baddress%5D%5Bstate%5D=SP&transaction%5Baddress%5D%5Bzipcode%5D=12345678&transaction%5Baddress%5D%5Bcountry%5D=Brasil&transaction%5Baddress%5D%5Bid%5D=73642&transaction%5Bcustomer%5D%5Bobject%5D=customer&transaction%5Bcustomer%5D%5Bid%5D=121212&transaction%5Bcustomer%5D%5Bexternal_id%5D=&transaction%5Bcustomer%5D%5Btype%5D=&transaction%5Bcustomer%5D%5Bcountry%5D=&transaction%5Bcustomer%5D%5Bdocument_number%5D=12312312344&transaction%5Bcustomer%5D%5Bdocument_type%5D=cpf&transaction%5Bcustomer%5D%5Bname%5D=DON%20DIEGO%20DE%20LA%20VEGA&transaction%5Bcustomer%5D%5Bemail%5D=dondiegodel%40vega.com&transaction%5Bcustomer%5D%5Bphone_numbers%5D=&transaction%5Bcustomer%5D%5Bborn_at%5D=1970-01-01T00%3A00%3A00.000Z&transaction%5Bcustomer%5D%5Bbirthday%5D=&transaction%5Bcustomer%5D%5Bgender%5D=other&transaction%5Bcustomer%5D%5Bdate_created%5D=2016-12-26T16%3A25%3A47.456Z&transaction%5Bbilling%5D=&transaction%5Bshipping%5D=&transaction%5Bcard%5D=&transaction%5Bsplit_rules%5D=&transaction%5Bmetadata%5D%5BidProduto%5D=000000&transaction%5Breference_key%5D=&transaction%5Bdevice%5D=&transaction%5Blocal_transaction_id%5D=&transaction%5Blocal_time%5D=&transaction%5Bfraud_covered%5D=false&transaction%5Border_id%5D=&transaction%5Brisk_level%5D=unknown&transaction%5Breceipt_url%5D=&transaction%5Bpayment%5D=&transaction%5Baddition%5D=&transaction%5Bdiscount%5D=",
+    "request_url": "http://requestb.in/1nyheet1",
+    "retries": 1,
+    "next_retry": "2018-09-06T19:57:19.700Z",
+    "deliveries": [
+      {
+        "object": "postback_delivery",
+        "status": "failed",
+        "status_reason": "http_status_code",
+        "status_code": "301",
+        "response_time": 24,
+        "response_headers": "{\"date\":\"Thu, 06 Sep 2018 19:55:14 GMT\",\"transfer-encoding\":\"chunked\",\"connection\":\"close\",\"cache-control\":\"max-age=3600\",\"expires\":\"Thu, 06 Sep 2018 20:55:14 GMT\",\"location\":\"https://github.com/Runscope/requestbin#readme\",\"x-content-type-options\":\"nosniff\",\"server\":\"cloudflare\",\"cf-ray\":\"45637df856f591fa-EWR\"}",
+        "response_body": "",
+        "date_created": "2018-09-06T19:55:14.586Z",
+        "date_updated": "2018-09-06T19:55:14.620Z",
+        "id": "pd_abc1234abc1234abc1234abc1"
+      }
+    ],
+    "date_created": "2018-09-06T19:55:14.384Z",
+    "date_updated": "2018-09-06T19:56:19.700Z",
+    "signature": "sha1=7ed69eb64890daa680cdbe2e0df4e29d7246f84f",
+    "id": "po_abc1234abc1234abc1234abc1"
+  }
+]

@@ -153,4 +153,16 @@ class RoutesTest extends TestCase
         $this->assertObjectHasAttribute('base', $routes);
         $this->assertIsCallable($routes->base);
     }
+
+    public function testPostbackRoutes()
+    {
+        $routes = Routes::postbacks();
+
+        $this->assertObjectHasAttribute('base', $routes);
+        $this->assertIsCallable($routes->base);
+        $this->assertObjectHasAttribute('details', $routes);
+        $this->assertIsCallable($routes->details);
+        $this->assertObjectHasAttribute('redeliver', $routes);
+        $this->assertIsCallable($routes->redeliver);
+    }
 }
