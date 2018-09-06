@@ -237,4 +237,18 @@ class Routes
 
         return $anonymous;
     }
+
+    /**
+     * @return \PagarMe\Anonymous
+     */
+    public static function refunds()
+    {
+        $anonymous = new Anonymous();
+
+        $anonymous->base = static function () {
+            return 'refunds';
+        };
+
+        return $anonymous;
+    }
 }

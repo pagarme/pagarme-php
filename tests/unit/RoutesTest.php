@@ -145,4 +145,12 @@ class RoutesTest extends TestCase
         $this->assertObjectHasAttribute('settleCharges', $routes);
         $this->assertIsCallable($routes->settleCharges);
     }
+
+    public function testRefundsRoute()
+    {
+        $routes = Routes::subscriptions();
+
+        $this->assertObjectHasAttribute('base', $routes);
+        $this->assertIsCallable($routes->base);
+    }
 }

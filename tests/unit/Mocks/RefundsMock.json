@@ -1,0 +1,30 @@
+[
+  {
+    "object": "refund",
+    "id": "rf_cj5yddfhl2f8ujx3tp68ig835",
+    "amount": 1000,
+    "type": "credit_card",
+    "status": "refunded",
+    "charge_fee_recipient_id": null,
+    "bank_account_id": null,
+    "transaction_id": "1793531",
+    "date_created": "2017-08-04 21:15:41.097+00",
+    "metadata": {
+      "idProduto": "13933139"
+    }
+  },
+  {
+    "object": "refund",
+    "id": "rf_cj5yd3hx608m0km3s550mbbqf",
+    "amount": 1390,
+    "type": "credit_card",
+    "status": "refunded",
+    "charge_fee_recipient_id": null,
+    "bank_account_id": null,
+    "transaction_id": "1793468",
+    "date_created": "2017-08-04 21:02:28.71+00",
+    "metadata": {
+      "idProduto": "13933140"
+    }
+  }
+]
