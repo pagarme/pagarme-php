@@ -173,4 +173,14 @@ class RoutesTest extends TestCase
         $this->assertObjectHasAttribute('redeliver', $routes);
         $this->assertIsCallable($routes->redeliver);
     }
+
+    public function testPayableRoutes()
+    {
+        $routes = Routes::payables();
+
+        $this->assertObjectHasAttribute('base', $routes);
+        $this->assertIsCallable($routes->base);
+        $this->assertObjectHasAttribute('details', $routes);
+        $this->assertIsCallable($routes->details);
+    }
 }
