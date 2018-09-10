@@ -313,4 +313,22 @@ class Routes
 
         return $anonymous;
     }
+
+    /**
+     * @return \PagarMe\Anonymous
+     */
+    public static function balanceOperations()
+    {
+        $anonymous = new Anonymous();
+
+        $anonymous->base = static function () {
+            return 'balance/operations';
+        };
+
+        $anonymous->details = static function ($id) {
+            return "balance/operations/$id";
+        };
+
+        return $anonymous;
+    }
 }
