@@ -57,4 +57,23 @@ class Postbacks extends Endpoint
             )
         );
     }
+
+    /**
+     * @param string $payload
+     * @param string $signature
+     *
+     * @return boolean
+     */
+    public function validate($payload, $signature)
+    {
+        $parts = explode('=', $signature, 2);
+
+        if (count($parts) != 2) {
+            return false;
+        }
+
+        $apiKey = $this->client->getApiKey();
+
+        return hash_hmac($parts[0], $payload, $apiKey) === $parts[1];
+    }
 }

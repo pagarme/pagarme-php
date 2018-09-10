@@ -104,4 +104,23 @@ final class PostbacksTest extends PagarMeTestCase
             $response->getArrayCopy()
         );
     }
+
+    public function testPostbackValidate()
+    {
+        $client = new  Client('apiKey');
+        $payload = 'foo=bar&bar=baz&baz=foo';
+        $signature = 'sha1=38114af54396acbba342ffa5076458ef8f0486c4';
+
+        $this->assertTrue(
+            $client->postbacks()->validate($payload, $signature)
+        );
+
+        $this->assertFalse(
+            $client->postbacks()->validate($payload, 'fooBar')
+        );
+
+        $this->assertFalse(
+            $client->postbacks()->validate('{}', $signature)
+        );
+    }
 }

@@ -155,6 +155,14 @@ class Client
     }
 
     /**
+     * @return string
+     */
+    public function getApiKey()
+    {
+        return $this->apiKey;
+    }
+
+    /**
      * @return \PagarMe\Endpoints\Transactions
      */
     public function transactions()
