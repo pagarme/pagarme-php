@@ -1,0 +1,33 @@
+[
+  {
+    "object": "chargeback",
+    "id": "cb_cj4rdyluc00041f73f6rvio8b",
+    "installment": "1",
+    "transaction_id": 1683251,
+    "amount": "30000",
+    "reason_code": "56",
+    "card_brand": "visa",
+    "updated_at": "2017-07-05 19:18:03.543+00",
+    "created_at": "2017-07-05 19:18:03.543+00",
+    "accrual_date": "2017-07-05 00:00:00+00",
+    "status": "presented",
+    "cycle": 1
+
+  },
+  {
+    "object": "chargeback",
+    "id": "cb_cj4rdylrp00031f73f2hezubr",
+    "installment": "1",
+    "transaction_id": 1683249,
+    "amount": "20000",
+    "reason_code": "56",
+    "card_brand": "visa",
+    "updated_at": "2017-07-05 19:18:03.45+00",
+    "created_at": "2017-07-05 19:18:03.45+00",
+    "accrual_date": "2017-07-05 00:00:00+00",
+    "status": "presented",
+    "cycle": 1
+
+  }
+
+]

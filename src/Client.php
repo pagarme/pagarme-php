@@ -19,6 +19,7 @@ use PagarMe\Endpoints\Postbacks;
 use PagarMe\Endpoints\Balances;
 use PagarMe\Endpoints\Payables;
 use PagarMe\Endpoints\BalanceOperations;
+use PagarMe\Endpoints\Chargebacks;
 use GuzzleHttp\Client as HttpClient;
 use PagarMe\Exceptions\InvalidJsonException;
 
@@ -115,6 +116,11 @@ class Client
     private $balanceOperations;
 
     /**
+     * @var \PagarMe\Endpoints\Chargebacks
+     */
+    private $chargebacks;
+
+    /**
      * @param string $apiKey
      * @param array|null $extras
      */
@@ -145,6 +151,7 @@ class Client
         $this->balances = new Balances($this);
         $this->payables = new Payables($this);
         $this->balanceOperations = new BalanceOperations($this);
+        $this->chargebacks = new Chargebacks($this);
     }
 
     /**
@@ -301,5 +308,13 @@ class Client
     public function balanceOperations()
     {
         return $this->balanceOperations;
+    }
+
+    /**
+     * @return \PagarMe\Endpoints\Chargebacks
+     */
+    public function chargebacks()
+    {
+        return $this->chargebacks;
     }
 }
