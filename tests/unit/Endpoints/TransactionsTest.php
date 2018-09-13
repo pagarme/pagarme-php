@@ -300,4 +300,38 @@ final class TransactionTest extends PagarMeTestCase
             $response->getArrayCopy()
         );
     }
+
+    /**
+     * @dataProvider transactionProvider
+     */
+    public function testTransactionCollectPayment($mock)
+    {
+        $requestsContainer = [];
+        $client = self::buildClient($requestsContainer, $mock['transaction']);
+
+        $response = $client->transactions()->collectPayment([
+            'id' => 12345678,
+            'email' => 'teste@email.com'
+        ]);
+
+        $this->assertEquals(
+            Transactions::POST,
+            self::getRequestMethod($requestsContainer[0])
+        );
+
+        $this->assertEquals(
+            '/1/transactions/12345678/collect_payment',
+            self::getRequestUri($requestsContainer[0])
+        );
+
+        $this->assertContains(
+            '"email":"teste@email.com"',
+            self::getBody($requestsContainer[0])
+        );
+
+        $this->assertEquals(
+            json_decode(self::jsonMock('TransactionMock'), true),
+            $response->getArrayCopy()
+        );
+    }
 }

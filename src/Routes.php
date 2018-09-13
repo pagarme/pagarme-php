@@ -41,6 +41,10 @@ class Routes
             return "transactions/$id/operations";
         };
 
+        $anonymous->collectPayment = static function ($id) {
+            return "transactions/$id/collect_payment";
+        };
+
         return $anonymous;
     }
 

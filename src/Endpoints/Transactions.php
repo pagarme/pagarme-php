@@ -122,4 +122,18 @@ class Transactions extends Endpoint
             ['json' => $payload]
         );
     }
+
+    /**
+     * @param array $payload
+     *
+     * @return \ArrayObject
+     */
+    public function collectPayment(array $payload)
+    {
+        return $this->client->request(
+            self::POST,
+            Routes::transactions()->collectPayment($payload['id']),
+            ['json' => $payload]
+        );
+    }
 }
