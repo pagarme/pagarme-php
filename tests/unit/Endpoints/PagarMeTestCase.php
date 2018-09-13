@@ -51,6 +51,19 @@ abstract class PagarMeTestCase extends TestCase
 
     /**
      * @param array $container
+     *
+     * @return string
+     */
+    protected static function getBody($container)
+    {
+        $requestBody = $container['request']->getBody();
+        $bodySize = $requestBody->getSize();
+
+        return $requestBody->read($bodySize);
+    }
+
+    /**
+     * @param array $container
      * @param GuzzleHttp\Handler\MockHandler $mock
      *
      * @return PagarMe\Client
