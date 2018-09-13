@@ -363,4 +363,35 @@ final class TransactionTest extends PagarMeTestCase
             $response->getArrayCopy()
         );
     }
+
+    /**
+     * @dataProvider transactionProvider
+     */
+    public function testTransactionSimulateStatus($mock)
+    {
+        $requestsContainer = [];
+        $client = self::buildClient($requestsContainer, $mock['transaction']);
+
+        $response = $client->transactions()->simulateStatus([
+            'id' => 12345678,
+            'status' => 'paid'
+        ]);
+
+        $this->assertEquals(
+            '/1/transactions/12345678',
+            self::getRequestUri($requestsContainer[0])
+        );
+        $this->assertContains(
+            '"status":"paid"',
+            self::getBody($requestsContainer[0])
+        );
+        $this->assertEquals(
+            Transactions::PUT,
+            self::getRequestMethod($requestsContainer[0])
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('TransactionMock'), true),
+            $response->getArrayCopy()
+        );
+    }
 }

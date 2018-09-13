@@ -150,4 +150,18 @@ class Transactions extends Endpoint
             ['json' => $payload]
         );
     }
+
+    /**
+     * @param array $payload
+     *
+     * @return \ArrayObject
+     */
+    public function simulateStatus(array $payload)
+    {
+        return $this->client->request(
+            self::PUT,
+            Routes::transactions()->details($payload['id']),
+            ['json' => $payload]
+        );
+    }
 }
