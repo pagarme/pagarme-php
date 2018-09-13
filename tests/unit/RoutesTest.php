@@ -31,8 +31,12 @@ class RoutesTest extends TestCase
         $this->assertIsCallable($routes->details);
         $this->assertObjectHasAttribute('capture', $routes);
         $this->assertIsCallable($routes->capture);
-        $this->assertObjectHasAttribute('refund', $routes);
-        $this->assertIsCallable($routes->refund);
+        $this->assertobjecthasattribute('refund', $routes);
+        $this->assertiscallable($routes->refund);
+        $this->assertobjecthasattribute('payables', $routes);
+        $this->assertiscallable($routes->payables);
+        $this->assertobjecthasattribute('payablesDetails', $routes);
+        $this->assertiscallable($routes->payablesDetails);
     }
 
     public function testCustomerRoutes()

@@ -18,6 +18,12 @@ final class TransactionTest extends PagarMeTestCase
             'list' => new MockHandler([
                 new Response(200, [], self::jsonMock('TransactionListMock')),
                 new Response(200, [], '[]')
+            ]),
+            'payableList' => new MockHandler([
+                new Response(200, [], self::jsonMock('PayableListMock'))
+            ]),
+            'payable' => new MockHandler([
+                new Response(200, [], self::jsonMock('PayableMock'))
             ])
         ]]];
     }
@@ -209,6 +215,59 @@ final class TransactionTest extends PagarMeTestCase
         );
         $this->assertEquals(
             json_decode(self::jsonMock('TransactionMock'), true),
+            $response->getArrayCopy()
+        );
+    }
+
+    /**
+     * @dataProvider transactionProvider
+     */
+    public function testTransactionPayablesList($mock)
+    {
+        $requestsContainer = [];
+        $client = self::buildClient($requestsContainer, $mock['payableList']);
+
+        $response = $client->transactions()->listPayables([
+            'id' => 1,
+        ]);
+
+        $this->assertEquals(
+            '/1/transactions/1/payables',
+            self::getRequestUri($requestsContainer[0])
+        );
+        $this->assertEquals(
+            Transactions::GET,
+            self::getRequestMethod($requestsContainer[0])
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('PayableListMock'), true),
+            $response->getArrayCopy()
+        );
+    }
+
+    /**
+     * @dataProvider transactionProvider
+     */
+    public function testTransactionGetPayable($mock)
+    {
+        $requestsContainer = [];
+        $client = self::buildClient($requestsContainer, $mock['payable']);
+
+        $response = $client->transactions()->getPayable([
+            'transaction_id' => 12345678,
+            'payable_id' => 87654321
+        ]);
+
+        $this->assertEquals(
+            '/1/transactions/12345678/payables/87654321',
+            self::getRequestUri($requestsContainer[0])
+        );
+        $this->assertEquals(
+            Transactions::GET,
+            self::getRequestMethod($requestsContainer[0])
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('PayableMock'), true),
             $response->getArrayCopy()
         );
     }

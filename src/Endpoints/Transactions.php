@@ -77,4 +77,35 @@ class Transactions extends Endpoint
             ['json' => $payload]
         );
     }
+
+    /**
+     * @param array $payload
+     *
+     * @return \ArrayObject
+     */
+    public function listPayables(array $payload)
+    {
+        return $this->client->request(
+            self::GET,
+            Routes::transactions()->payables($payload['id']),
+            ['json' => $payload]
+        );
+    }
+
+    /**
+     * @param array $payload
+     *
+     * @return \ArrayObject
+     */
+    public function getPayable(array $payload)
+    {
+        return $this->client->request(
+            self::GET,
+            Routes::transactions()->payablesDetails(
+                $payload['transaction_id'],
+                $payload['payable_id']
+            ),
+            ['json' => $payload]
+        );
+    }
 }
