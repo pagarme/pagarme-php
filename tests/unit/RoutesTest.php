@@ -41,6 +41,8 @@ class RoutesTest extends TestCase
         $this->assertiscallable($routes->operations);
         $this->assertobjecthasattribute('collectPayment', $routes);
         $this->assertiscallable($routes->collectPayment);
+        $this->assertobjecthasattribute('events', $routes);
+        $this->assertiscallable($routes->events);
     }
 
     public function testCustomerRoutes()

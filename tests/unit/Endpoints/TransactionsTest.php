@@ -27,6 +27,9 @@ final class TransactionTest extends PagarMeTestCase
             ]),
             'operations' => new MockHandler([
                 new Response(200, [], self::jsonMock('OperationListMock'))
+            ]),
+            'events' => new MockHandler([
+                new Response(200, [], self::jsonMock('EventListMock'))
             ])
         ]]];
     }
@@ -331,6 +334,32 @@ final class TransactionTest extends PagarMeTestCase
 
         $this->assertEquals(
             json_decode(self::jsonMock('TransactionMock'), true),
+            $response->getArrayCopy()
+        );
+    }
+
+    /**
+     * @dataProvider transactionProvider
+     */
+    public function testTransactionEvents($mock)
+    {
+        $requestsContainer = [];
+        $client = self::buildClient($requestsContainer, $mock['events']);
+
+        $response = $client->transactions()->events([
+            'id' => 12345678,
+        ]);
+
+        $this->assertEquals(
+            '/1/transactions/12345678/events',
+            self::getRequestUri($requestsContainer[0])
+        );
+        $this->assertEquals(
+            Transactions::GET,
+            self::getRequestMethod($requestsContainer[0])
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('EventListMock'), true),
             $response->getArrayCopy()
         );
     }
