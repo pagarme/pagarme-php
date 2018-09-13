@@ -49,6 +49,10 @@ class Routes
             return "transactions/$id/events";
         };
 
+        $anonymous->calculateInstallments = static function () {
+            return "transactions/calculate_installments_amount";
+        };
+
         return $anonymous;
     }
 

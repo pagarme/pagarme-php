@@ -164,4 +164,18 @@ class Transactions extends Endpoint
             ['json' => $payload]
         );
     }
+
+    /**
+     * @param array $payload
+     *
+     * @return \ArrayObject
+     */
+    public function calculateInstallments(array $payload)
+    {
+        return $this->client->request(
+            self::GET,
+            Routes::transactions()->calculateInstallments(),
+            ['json' => $payload]
+        );
+    }
 }

@@ -30,6 +30,9 @@ final class TransactionTest extends PagarMeTestCase
             ]),
             'events' => new MockHandler([
                 new Response(200, [], self::jsonMock('EventListMock'))
+            ]),
+            'calculateInstallments' => new MockHandler([
+                new Response(200, [], self::jsonMock('CalculateInstallmentsMock'))
             ])
         ]]];
     }
@@ -391,6 +394,53 @@ final class TransactionTest extends PagarMeTestCase
         );
         $this->assertEquals(
             json_decode(self::jsonMock('TransactionMock'), true),
+            $response->getArrayCopy()
+        );
+    }
+
+    /**
+     * @dataProvider transactionProvider
+     */
+    public function testTransactionCalculateInstallments($mock)
+    {
+        $requestsContainer = [];
+        $client = self::buildClient($requestsContainer, $mock['calculateInstallments']);
+
+        $response = $client->transactions()->calculateInstallments([
+            'amount' => 10000,
+            'free_installments' => 1,
+            'max_installments' => 12,
+            'interest_rate' => 13
+        ]);
+
+        $requestBody = self::getBody($requestsContainer[0]);
+
+        $this->assertEquals(
+            '/1/transactions/calculate_installments_amount',
+            self::getRequestUri($requestsContainer[0])
+        );
+        $this->assertContains(
+            '"amount":10000',
+            $requestBody
+        );
+        $this->assertContains(
+            '"free_installments":1',
+            $requestBody
+        );
+        $this->assertContains(
+            '"max_installments":12',
+            $requestBody
+        );
+        $this->assertContains(
+            '"interest_rate":13',
+            $requestBody
+        );
+        $this->assertEquals(
+            Transactions::GET,
+            self::getRequestMethod($requestsContainer[0])
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('CalculateInstallmentsMock'), true),
             $response->getArrayCopy()
         );
     }
