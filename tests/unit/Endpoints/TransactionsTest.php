@@ -24,6 +24,9 @@ final class TransactionTest extends PagarMeTestCase
             ]),
             'payable' => new MockHandler([
                 new Response(200, [], self::jsonMock('PayableMock'))
+            ]),
+            'operations' => new MockHandler([
+                new Response(200, [], self::jsonMock('OperationListMock'))
             ])
         ]]];
     }
@@ -268,6 +271,32 @@ final class TransactionTest extends PagarMeTestCase
         );
         $this->assertEquals(
             json_decode(self::jsonMock('PayableMock'), true),
+            $response->getArrayCopy()
+        );
+    }
+
+    /**
+     * @dataProvider transactionProvider
+     */
+    public function testTransactionOperationsList($mock)
+    {
+        $requestsContainer = [];
+        $client = self::buildClient($requestsContainer, $mock['operations']);
+
+        $response = $client->transactions()->listOperations([
+            'id' => 12345678,
+        ]);
+
+        $this->assertEquals(
+            '/1/transactions/12345678/operations',
+            self::getRequestUri($requestsContainer[0])
+        );
+        $this->assertEquals(
+            Transactions::GET,
+            self::getRequestMethod($requestsContainer[0])
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('OperationListMock'), true),
             $response->getArrayCopy()
         );
     }

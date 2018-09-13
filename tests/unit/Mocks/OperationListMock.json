@@ -1,0 +1,52 @@
+[
+  {
+    "id": "go_cj423rfvs1co0023tb95ip38i",
+    "date_created": "2017-06-18T02:38:18.664Z",
+    "date_updated": "2017-06-18T02:38:18.909Z",
+    "status": "success",
+    "fail_reason": null,
+    "type": "capture",
+    "rollbacked": false,
+    "model": "transaction",
+    "model_id": "1627864",
+    "group_id": "gog_cj423rfvs1co1023tgmuch6f0",
+    "next_group_id": null,
+    "request_id": "gr_cj423rfvc1cnz023tjleg2wp6",
+    "started_at": 1497753498775,
+    "ended_at": 1497753498909,
+    "processor": "pagarme",
+    "processor_response_code": null,
+    "metadata": {
+      "environment": {
+        "captured_amount": 75000
+      }
+    }
+  },
+  {
+    "id": "go_cj423rfvz1co2023tznwhz9lk",
+    "date_created": "2017-06-18T02:38:18.671Z",
+    "date_updated": "2017-06-18T02:38:18.768Z",
+    "status": "success",
+    "fail_reason": null,
+    "type": "authorize",
+    "rollbacked": false,
+    "model": "transaction",
+    "model_id": "1627864",
+    "group_id": "gog_cj423rfvz1co3023tep5sw66m",
+    "next_group_id": "gog_cj423rfvs1co1023tgmuch6f0",
+    "request_id": "gr_cj423rfvc1cnz023tjleg2wp6",
+    "started_at": 1497753498691,
+    "ended_at": 1497753498768,
+    "processor": "pagarme",
+    "processor_response_code": "0000",
+    "metadata": {
+      "environment": {
+        "response_code": "0000",
+        "authorization_code": "713332",
+        "authorized_amount": 75000,
+        "tid": "1627864",
+        "nsu": "1627864"
+      }
+    }
+  }
+]

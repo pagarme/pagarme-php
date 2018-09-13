@@ -108,4 +108,18 @@ class Transactions extends Endpoint
             ['json' => $payload]
         );
     }
+
+    /**
+     * @param array $payload
+     *
+     * @return \ArrayObject
+     */
+    public function listOperations(array $payload)
+    {
+        return $this->client->request(
+            self::GET,
+            Routes::transactions()->operations($payload['id']),
+            ['json' => $payload]
+        );
+    }
 }

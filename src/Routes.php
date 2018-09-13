@@ -37,6 +37,10 @@ class Routes
             return "transactions/$transactionId/payables/$payableId";
         };
 
+        $anonymous->operations = static function ($id) {
+            return "transactions/$id/operations";
+        };
+
         return $anonymous;
     }
 
