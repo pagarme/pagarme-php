@@ -16,7 +16,9 @@ trait CustomerBuilder
             );
         }
 
-        $customerData->phone = new Phone($customerData->phones[0]);
+        if (count($customerData->phones) > 0) {
+            $customerData->phone = new Phone($customerData->phones[0]);
+        }
 
         $customerData->date_created = new \DateTime(
             $customerData->date_created
