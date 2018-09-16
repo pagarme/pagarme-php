@@ -10,9 +10,11 @@ trait CustomerBuilder
      */
     private function buildCustomer($customerData)
     {
-        $customerData->address = new Address(
-            get_object_vars($customerData->addresses[0])
-        );
+        if (count($customerData->addresses) > 0) {
+            $customerData->address = new Address(
+                get_object_vars($customerData->addresses[0])
+            );
+        }
 
         $customerData->phone = new Phone($customerData->phones[0]);
 

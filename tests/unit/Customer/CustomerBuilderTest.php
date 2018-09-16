@@ -50,4 +50,18 @@ class CustomerBuilderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($customer);
     }
+
+    /**
+     * @test
+     */
+    public function mustCreateCustomerWithoutAddressCorrectly()
+    {
+        // @codingStandardsIgnoreLine
+        $payload = '{"object":"customer","document_number":"25123317171","document_type":"cpf","name":"John Doe","email":"john@test.com","born_at":null,"gender":null,"date_created":"2016-12-28T19:38:28.618Z","id":122444,"addresses":[],"phones":[{"object":"phone","ddi":"55","ddd":"11","number":"44445555","id":65844}]}';
+
+        $customer = $this->buildCustomer(json_decode($payload));
+
+        $this->assertInstanceOf('PagarMe\Sdk\Customer\Customer', $customer);
+        $this->assertInstanceOf('\DateTime', $customer->getDateCreated());
+    }
 }
