@@ -103,8 +103,8 @@ final class TransactionTest extends PagarMeTestCase
             self::getRequestUri($requestsContainer[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('TransactionMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('TransactionMock')),
+            $response
         );
     }
 
@@ -128,8 +128,8 @@ final class TransactionTest extends PagarMeTestCase
             self::getRequestUri($requestsContainer[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('TransactionListMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('TransactionListMock')),
+            $response
         );
 
         $response = $client->transactions()->getList([
@@ -145,8 +145,8 @@ final class TransactionTest extends PagarMeTestCase
         $this->assertContains('tid=2345678', $query);
 
         $this->assertEquals(
-            json_decode('[]', true),
-            $response->getArrayCopy()
+            json_decode('[]'),
+            $response
         );
     }
 
@@ -169,8 +169,8 @@ final class TransactionTest extends PagarMeTestCase
             self::getRequestUri($requestsContainer[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('TransactionMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('TransactionMock')),
+            $response
         );
     }
 
@@ -196,8 +196,8 @@ final class TransactionTest extends PagarMeTestCase
             self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('TransactionMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('TransactionMock')),
+            $response
         );
     }
 
@@ -223,8 +223,8 @@ final class TransactionTest extends PagarMeTestCase
             self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('TransactionMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('TransactionMock')),
+            $response
         );
     }
 
@@ -249,8 +249,8 @@ final class TransactionTest extends PagarMeTestCase
             self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('PayableListMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('PayableListMock')),
+            $response
         );
     }
 
@@ -276,8 +276,8 @@ final class TransactionTest extends PagarMeTestCase
             self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('PayableMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('PayableMock')),
+            $response
         );
     }
 
@@ -302,8 +302,8 @@ final class TransactionTest extends PagarMeTestCase
             self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('OperationListMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('OperationListMock')),
+            $response
         );
     }
 
@@ -336,8 +336,8 @@ final class TransactionTest extends PagarMeTestCase
         );
 
         $this->assertEquals(
-            json_decode(self::jsonMock('TransactionMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('TransactionMock')),
+            $response
         );
     }
 
@@ -362,8 +362,8 @@ final class TransactionTest extends PagarMeTestCase
             self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('EventListMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('EventListMock')),
+            $response
         );
     }
 
@@ -393,8 +393,8 @@ final class TransactionTest extends PagarMeTestCase
             self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('TransactionMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('TransactionMock')),
+            $response
         );
     }
 
@@ -440,8 +440,8 @@ final class TransactionTest extends PagarMeTestCase
             self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('CalculateInstallmentsMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('CalculateInstallmentsMock')),
+            $response
         );
     }
 }

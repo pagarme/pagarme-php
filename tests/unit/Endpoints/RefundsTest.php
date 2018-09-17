@@ -41,8 +41,8 @@ final class RefundsTest extends PagarMeTestCase
             self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('RefundsMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('RefundsMock')),
+            $response
         );
 
         $response = $client->refunds()->getList([
@@ -53,8 +53,8 @@ final class RefundsTest extends PagarMeTestCase
 
         $this->assertContains('transaction_id=12345', $query);
         $this->assertEquals(
-            json_decode('[]', true),
-            $response->getArrayCopy()
+            json_decode('[]'),
+            $response
         );
     }
 }

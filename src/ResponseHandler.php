@@ -15,12 +15,7 @@ class ResponseHandler
      */
     public static function success($payload)
     {
-        $json = self::toJson($payload);
-
-        return new \ArrayObject(
-            $json,
-            \ArrayObject::STD_PROP_LIST|\ArrayObject::ARRAY_AS_PROPS
-        );
+        return self::toJson($payload);
     }
 
     /**
@@ -49,15 +44,15 @@ class ResponseHandler
         }
 
         return new PagarMeException(
-            $jsonError['errors'][0]['type'],
-            $jsonError['errors'][0]['parameter_name'],
-            $jsonError['errors'][0]['message']
+            $jsonError->errors[0]->type,
+            $jsonError->errors[0]->parameter_name,
+            $jsonError->errors[0]->message
         );
     }
 
     private static function toJson($json)
     {
-        $jsonError = json_decode($json, true);
+        $jsonError = json_decode($json);
 
         if (json_last_error() != \JSON_ERROR_NONE) {
             throw new InvalidJsonException(json_last_error_msg());

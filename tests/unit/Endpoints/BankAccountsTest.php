@@ -50,8 +50,8 @@ final class BankAccountTest extends PagarMeTestCase
             self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('BankAccountMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('BankAccountMock')),
+            $response
         );
     }
 
@@ -75,8 +75,8 @@ final class BankAccountTest extends PagarMeTestCase
             self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('BankAccountListMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('BankAccountListMock')),
+            $response
         );
 
         $response = $client->bankAccounts()->getList([
@@ -91,8 +91,8 @@ final class BankAccountTest extends PagarMeTestCase
         $this->assertContains('bank_code=456', $query);
         $this->assertContains('agencia=7890', $query);
         $this->assertEquals(
-            json_decode('[]', true),
-            $response->getArrayCopy()
+            json_decode('[]'),
+            $response
         );
     }
 
@@ -115,8 +115,8 @@ final class BankAccountTest extends PagarMeTestCase
             self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('BankAccountMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('BankAccountMock')),
+            $response
         );
     }
 }

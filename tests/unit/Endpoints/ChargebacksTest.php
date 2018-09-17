@@ -41,8 +41,8 @@ final class ChargebacksTest extends PagarMeTestCase
             self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('ChargebacksMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('ChargebacksMock')),
+            $response
         );
 
         $response = $client->chargebacks()->getList([
@@ -53,8 +53,8 @@ final class ChargebacksTest extends PagarMeTestCase
 
         $this->assertContains('transaction_id=12345', $query);
         $this->assertEquals(
-            json_decode('[]', true),
-            $response->getArrayCopy()
+            json_decode('[]'),
+            $response
         );
     }
 }

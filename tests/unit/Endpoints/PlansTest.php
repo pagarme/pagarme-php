@@ -46,8 +46,8 @@ final class PlanTest extends PagarMeTestCase
             self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('PlanMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('PlanMock')),
+            $response
         );
     }
 
@@ -70,8 +70,8 @@ final class PlanTest extends PagarMeTestCase
             self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('PlanListMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('PlanListMock')),
+            $response
         );
 
         $response = $client->plans()->getList([
@@ -87,8 +87,8 @@ final class PlanTest extends PagarMeTestCase
         $this->assertContains('name=Super%20Duper%20Plan', $query);
 
         $this->assertEquals(
-            json_decode('[]', true),
-            $response->getArrayCopy()
+            json_decode('[]'),
+            $response
         );
     }
 
@@ -111,8 +111,8 @@ final class PlanTest extends PagarMeTestCase
             self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('PlanMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('PlanMock')),
+            $response
         );
     }
 
@@ -135,8 +135,8 @@ final class PlanTest extends PagarMeTestCase
             self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('PlanMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('PlanMock')),
+            $response
         );
     }
 }

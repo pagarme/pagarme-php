@@ -45,8 +45,8 @@ final class PostbacksTest extends PagarMeTestCase
             self::getRequestMethod($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('PostbackMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('PostbackMock')),
+            $response
         );
     }
 
@@ -72,8 +72,8 @@ final class PostbacksTest extends PagarMeTestCase
             self::getRequestMethod($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('PostbackListMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('PostbackListMock')),
+            $response
         );
     }
 
@@ -100,8 +100,8 @@ final class PostbacksTest extends PagarMeTestCase
             self::getRequestMethod($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('PostbackMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('PostbackMock')),
+            $response
         );
     }
 

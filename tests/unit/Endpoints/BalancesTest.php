@@ -31,8 +31,8 @@ class BalancesTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('BalanceMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('BalanceMock')),
+            $response
         );
     }
 }

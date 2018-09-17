@@ -59,8 +59,8 @@ final class CustomerTest extends PagarMeTestCase
             self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('CustomerMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('CustomerMock')),
+            $response
         );
     }
 
@@ -83,8 +83,8 @@ final class CustomerTest extends PagarMeTestCase
             self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('CustomerListMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('CustomerListMock')),
+            $response
         );
 
         $response = $client->customers()->getList([
@@ -99,8 +99,8 @@ final class CustomerTest extends PagarMeTestCase
         $this->assertContains('email=fulano%40silva.com', $query);
         $this->assertContains('id=123456', $query);
         $this->assertEquals(
-            json_decode('[]', true),
-            $response->getArrayCopy()
+            json_decode('[]'),
+            $response
         );
     }
 
@@ -123,8 +123,8 @@ final class CustomerTest extends PagarMeTestCase
             self::getRequestMethod($requestsContainer[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('CustomerMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('CustomerMock')),
+            $response
         );
     }
 }

@@ -75,8 +75,8 @@ class SubscriptionsTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('SubscriptionMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('SubscriptionMock')),
+            $response
         );
     }
 
@@ -99,8 +99,8 @@ class SubscriptionsTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('SubscriptionMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('SubscriptionMock')),
+            $response
         );
     }
 
@@ -123,8 +123,8 @@ class SubscriptionsTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('SubscriptionListMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('SubscriptionListMock')),
+            $response
         );
 
         $response = $client->subscriptions()->getList([
@@ -143,8 +143,8 @@ class SubscriptionsTest extends PagarMeTestCase
         $this->assertContains('payment_method=credit_card', $query);
 
         $this->assertEquals(
-            json_decode('[]', true),
-            $response->getArrayCopy()
+            json_decode('[]'),
+            $response
         );
     }
 
@@ -171,8 +171,8 @@ class SubscriptionsTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('SubscriptionMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('SubscriptionMock')),
+            $response
         );
     }
 
@@ -197,8 +197,8 @@ class SubscriptionsTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('SubscriptionMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('SubscriptionMock')),
+            $response
         );
     }
 
@@ -223,8 +223,8 @@ class SubscriptionsTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('TransactionListMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('TransactionListMock')),
+            $response
         );
 
         $response = $client->subscriptions()->transactions([
@@ -241,8 +241,8 @@ class SubscriptionsTest extends PagarMeTestCase
         $this->assertContains('tid=162534', $query);
 
         $this->assertEquals(
-            json_decode('[]', true),
-            $response->getArrayCopy()
+            json_decode('[]'),
+            $response
         );
     }
 
@@ -268,8 +268,8 @@ class SubscriptionsTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('SubscriptionMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('SubscriptionMock')),
+            $response
         );
     }
 }

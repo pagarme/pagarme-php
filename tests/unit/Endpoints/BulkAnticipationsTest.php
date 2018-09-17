@@ -54,8 +54,8 @@ class BulkAnticipationsTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('BulkAnticipationMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('BulkAnticipationMock')),
+            $response
         );
     }
 
@@ -82,8 +82,8 @@ class BulkAnticipationsTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('BulkAnticipationLimitsMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('BulkAnticipationLimitsMock')),
+            $response
         );
     }
 
@@ -109,8 +109,8 @@ class BulkAnticipationsTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('BulkAnticipationMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('BulkAnticipationMock')),
+            $response
         );
     }
 
@@ -136,8 +136,8 @@ class BulkAnticipationsTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('BulkAnticipationMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('BulkAnticipationMock')),
+            $response
         );
     }
 
@@ -164,7 +164,7 @@ class BulkAnticipationsTest extends PagarMeTestCase
         );
         $this->assertEquals(
             [],
-            $response->getArrayCopy()
+            $response
         );
     }
 
@@ -189,8 +189,8 @@ class BulkAnticipationsTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('BulkAnticipationListMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('BulkAnticipationListMock')),
+            $response
         );
 
         $response = $client->bulkAnticipations()->getList([
@@ -206,8 +206,8 @@ class BulkAnticipationsTest extends PagarMeTestCase
         $this->assertContains('fee=4567', $query);
         $this->assertContains('anticipation_fee=8900', $query);
         $this->assertEquals(
-            json_decode('[]', true),
-            $response->getArrayCopy()
+            json_decode('[]'),
+            $response
         );
     }
 }

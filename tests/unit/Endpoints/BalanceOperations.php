@@ -42,8 +42,8 @@ class BalanceOperationsTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('BalanceOperationsMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('BalanceOperationsMock')),
+            $response
         );
     }
 
@@ -66,8 +66,8 @@ class BalanceOperationsTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('BalanceOperationsListMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('BalanceOperationsListMock')),
+            $response
         );
 
         $response = $client->balanceOperations()->getList([
@@ -87,8 +87,8 @@ class BalanceOperationsTest extends PagarMeTestCase
             $query
         );
         $this->assertEquals(
-            json_decode('[]', true),
-            $response->getArrayCopy()
+            json_decode('[]'),
+            $response
         );
     }
 }

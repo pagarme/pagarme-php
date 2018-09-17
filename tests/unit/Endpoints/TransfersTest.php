@@ -48,8 +48,8 @@ class TransfersTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('TransferMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('TransferMock')),
+            $response
         );
     }
 
@@ -72,8 +72,8 @@ class TransfersTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('TransferListMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('TransferListMock')),
+            $response
         );
 
         $response = $client->transfers()->getList([
@@ -92,8 +92,8 @@ class TransfersTest extends PagarMeTestCase
         );
 
         $this->assertEquals(
-            json_decode('[]', true),
-            $response->getArrayCopy()
+            json_decode('[]'),
+            $response
         );
     }
 
@@ -118,8 +118,8 @@ class TransfersTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('TransferMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('TransferMock')),
+            $response
         );
     }
 
@@ -144,8 +144,8 @@ class TransfersTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('TransferMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('TransferMock')),
+            $response
         );
     }
 }

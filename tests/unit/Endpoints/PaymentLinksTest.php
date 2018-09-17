@@ -81,8 +81,8 @@ class PaymentLinksTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('PaymentLinkMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('PaymentLinkMock')),
+            $response
         );
     }
 
@@ -105,8 +105,8 @@ class PaymentLinksTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('PaymentLinkListMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('PaymentLinkListMock')),
+            $response
         );
 
         $response = $client->paymentLinks()->getList([
@@ -118,8 +118,8 @@ class PaymentLinksTest extends PagarMeTestCase
             self::getQueryString($container[1])
         );
         $this->assertEquals(
-            json_decode('[]', true),
-            $response->getArrayCopy()
+            json_decode('[]'),
+            $response
         );
     }
 
@@ -144,8 +144,8 @@ class PaymentLinksTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('PaymentLinkMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('PaymentLinkMock')),
+            $response
         );
     }
 
@@ -170,8 +170,8 @@ class PaymentLinksTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('PaymentLinkMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('PaymentLinkMock')),
+            $response
         );
     }
 }

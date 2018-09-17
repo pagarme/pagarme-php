@@ -42,8 +42,8 @@ class PayablesTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('PayableMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('PayableMock')),
+            $response
         );
     }
 
@@ -66,8 +66,8 @@ class PayablesTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('PayableListMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('PayableListMock')),
+            $response
         );
 
         $response = $client->payables()->getList([
@@ -88,8 +88,8 @@ class PayablesTest extends PagarMeTestCase
             $query
         );
         $this->assertEquals(
-            json_decode('[]', true),
-            $response->getArrayCopy()
+            json_decode('[]'),
+            $response
         );
     }
 }

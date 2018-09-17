@@ -49,8 +49,8 @@ class CardsTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('CardMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('CardMock')),
+            $response
         );
     }
 
@@ -73,8 +73,8 @@ class CardsTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('CardListMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('CardListMock')),
+            $response
         );
 
         $response = $client->cards()->getList([
@@ -89,8 +89,8 @@ class CardsTest extends PagarMeTestCase
         $this->assertContains('holder_name=TESTE%20DE%20CARTAO', $query);
         $this->assertContains('first_digits=424242', $query);
         $this->assertEquals(
-            json_decode('[]', true),
-            $response->getArrayCopy()
+            json_decode('[]'),
+            $response
         );
     }
 
@@ -115,8 +115,8 @@ class CardsTest extends PagarMeTestCase
             self::getRequestUri($container[0])
         );
         $this->assertEquals(
-            json_decode(self::jsonMock('CardMock'), true),
-            $response->getArrayCopy()
+            json_decode(self::jsonMock('CardMock')),
+            $response
         );
     }
 }
