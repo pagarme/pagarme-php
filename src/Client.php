@@ -144,9 +144,11 @@ class Client
             $options = array_merge($options, $extras);
         }
 
-        $this->userAgent = $this->buildUserAgent(
-            $options['headers']['User-Agent']
-        );
+        $userAgent = isset($options['headers']['User-Agent']) ?
+            $options['headers']['User-Agent'] :
+            '';
+
+        $this->userAgent = $this->buildUserAgent($userAgent);
 
         $options['headers'] = $this->addUserAgentHeaders();
 
