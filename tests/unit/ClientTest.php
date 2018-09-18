@@ -108,6 +108,41 @@ final class ClientTest extends TestCase
         );
     }
 
+    public function testSuccessfulResponseWithCustomUserAgentHeader()
+    {
+        $container = [];
+        $history = Middleware::history($container);
+        $mock = new MockHandler([
+            new Response(200, [], '{"status":"Ok!"}'),
+        ]);
+        $handler = HandlerStack::create($mock);
+        $handler->push($history);
+
+        $client = new Client(
+            'apiKey',
+            [
+                'handler' => $handler,
+                'headers' => ['User-Agent' => 'MyCustomApplication/10.2.2']
+            ]
+        );
+
+        $response = $client->request(Endpoint::POST, 'transactions');
+
+        $this->assertEquals($response->status, "Ok!");
+        $this->assertEquals(
+            'api_key=apiKey',
+            $container[0]['request']->getUri()->getQuery()
+        );
+        $this->assertEquals(
+            'MyCustomApplication/10.2.2 PHP/5.6.37',
+            $container[0]['request']->getHeaderLine('User-Agent')
+        );
+        $this->assertEquals(
+            'MyCustomApplication/10.2.2 PHP/5.6.37',
+            $container[0]['request']->getHeaderLine('X-PagarMe-User-Agent')
+        );
+    }
+
     public function testTransactions()
     {
         $client = new Client('apiKey');
