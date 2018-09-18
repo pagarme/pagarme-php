@@ -31,6 +31,11 @@ class Client
     const BASE_URI = 'https://api.pagar.me:443/1/';
 
     /**
+     * @var string header used to identify application's requests
+     */
+    const PAGARME_USER_AGENT_HEADER = 'X-PagarMe-User-Agent';
+
+    /**
      * @var \GuzzleHttp\Client
      */
     private $http;
@@ -234,7 +239,7 @@ class Client
     {
         return [
             'User-Agent' => $this->getUserAgent(),
-            'X-PagarMe-User-Agent' => $this->getUserAgent()
+            self::PAGARME_USER_AGENT_HEADER => $this->getUserAgent()
         ];
     }
 

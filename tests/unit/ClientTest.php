@@ -88,8 +88,9 @@ final class ClientTest extends TestCase
     {
         $client = new Client('apikey');
 
+        $expectedUserAgent = sprintf('PHP/%s', phpversion());
         $this->assertEquals(
-            'PHP/5.6.37',
+            $expectedUserAgent,
             $client->getUserAgent(),
             'The default user-agent must have php version'
         );
@@ -101,9 +102,12 @@ final class ClientTest extends TestCase
             'apikey',
             ['headers' => ['User-Agent' => 'MyCustomIntegration/3.14.0']]
         );
-
+        $expectedUserAgent = sprintf(
+            'MyCustomIntegration/3.14.0 PHP/%s',
+            phpversion()
+        );
         $this->assertEquals(
-            'MyCustomIntegration/3.14.0 PHP/5.6.37',
+            $expectedUserAgent,
             $client->getUserAgent()
         );
     }
@@ -133,13 +137,20 @@ final class ClientTest extends TestCase
             'api_key=apiKey',
             $container[0]['request']->getUri()->getQuery()
         );
+
+        $expectedUserAgent = sprintf(
+            'MyCustomApplication/10.2.2 PHP/%s',
+            phpversion()
+        );
         $this->assertEquals(
-            'MyCustomApplication/10.2.2 PHP/5.6.37',
+            $expectedUserAgent,
             $container[0]['request']->getHeaderLine('User-Agent')
         );
         $this->assertEquals(
-            'MyCustomApplication/10.2.2 PHP/5.6.37',
-            $container[0]['request']->getHeaderLine('X-PagarMe-User-Agent')
+            $expectedUserAgent,
+            $container[0]['request']->getHeaderLine(
+                Client::PAGARME_USER_AGENT_HEADER
+            )
         );
     }
 
