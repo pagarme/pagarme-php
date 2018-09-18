@@ -41,6 +41,11 @@ class Client
     private $apiKey;
 
     /**
+     * @var string
+     */
+    private $userAgent;
+
+    /**
      * @var \PagarMe\Endpoints\Transactions
      */
     private $transactions;
@@ -134,6 +139,10 @@ class Client
             $options = array_merge($options, $extras);
         }
 
+        $this->userAgent = $this->buildUserAgent(
+            $extras['headers']['User-Agent']
+        );
+
         $this->http = new HttpClient($options);
 
         $this->transactions = new Transactions($this);
@@ -188,6 +197,30 @@ class Client
     public function getApiKey()
     {
         return $this->apiKey;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserAgent()
+    {
+        return $this->userAgent;
+    }
+
+    /**
+     * Build an user-agent string to be informed on requests
+     *
+     * @param string $customUserAgent
+     *
+     * @return string
+     */
+    private function buildUserAgent($customUserAgent = '')
+    {
+        return trim(sprintf(
+            '%s PHP/%s',
+            $customUserAgent,
+            phpversion()
+        ));
     }
 
     /**
