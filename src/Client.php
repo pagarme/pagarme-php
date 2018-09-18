@@ -31,6 +31,11 @@ class Client
     const BASE_URI = 'https://api.pagar.me:443/1/';
 
     /**
+     * @var string header used to identify application's requests
+     */
+    const PAGARME_USER_AGENT_HEADER = 'X-PagarMe-User-Agent';
+
+    /**
      * @var \GuzzleHttp\Client
      */
     private $http;
@@ -39,6 +44,11 @@ class Client
      * @var string
      */
     private $apiKey;
+
+    /**
+     * @var string
+     */
+    private $userAgent;
 
     /**
      * @var \PagarMe\Endpoints\Transactions
@@ -134,6 +144,14 @@ class Client
             $options = array_merge($options, $extras);
         }
 
+        $userAgent = !is_null($options['headers']['User-Agent']) ?
+            $options['headers']['User-Agent'] :
+            '';
+
+        $this->userAgent = $this->buildUserAgent($userAgent);
+
+        $options['headers'] = $this->addUserAgentHeaders();
+
         $this->http = new HttpClient($options);
 
         $this->transactions = new Transactions($this);
@@ -188,6 +206,43 @@ class Client
     public function getApiKey()
     {
         return $this->apiKey;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserAgent()
+    {
+        return $this->userAgent;
+    }
+
+    /**
+     * Build an user-agent string to be informed on requests
+     *
+     * @param string $customUserAgent
+     *
+     * @return string
+     */
+    private function buildUserAgent($customUserAgent = '')
+    {
+        return trim(sprintf(
+            '%s PHP/%s',
+            $customUserAgent,
+            phpversion()
+        ));
+    }
+
+    /**
+     * Append new keys (the default and pagarme) related to user-agent
+     *
+     * @return array
+     */
+    private function addUserAgentHeaders()
+    {
+        return [
+            'User-Agent' => $this->getUserAgent(),
+            self::PAGARME_USER_AGENT_HEADER => $this->getUserAgent()
+        ];
     }
 
     /**

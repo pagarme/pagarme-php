@@ -105,6 +105,20 @@ require('vendor/autoload.php');
 $pagarme = new PagarMe\Client('SUA_CHAVE_DE_API');
 ```
 
+### Definindo headers customizados
+
+1. Se necessário for é possível definir headers http customizados para os requests. Para isso basta informá-los durante a instanciação do objeto `Client`:
+
+```php
+<?php
+require('vendor/autoload.php');
+
+$pagarme = new PagarMe\Client(
+    'SUA_CHAVE_DE_API',
+    ['headers' => ['MEU_HEADER_CUSTOMIZADO' => 'VALOR HEADER CUSTOMIZADO']]
+); 
+```
+
 E então, você pode poderá utilizar o cliente para fazer requisições ao Pagar.me, como nos exemplos abaixo.
 
 ## Transações
