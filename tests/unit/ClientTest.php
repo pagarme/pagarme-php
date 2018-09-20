@@ -84,34 +84,6 @@ final class ClientTest extends TestCase
         $response = $client->request(Endpoint::POST, 'transactions');
     }
 
-    public function testDefaultUserAgent()
-    {
-        $client = new Client('apikey');
-
-        $expectedUserAgent = sprintf('PHP/%s', phpversion());
-        $this->assertEquals(
-            $expectedUserAgent,
-            $client->getUserAgent(),
-            'The default user-agent must have php version'
-        );
-    }
-
-    public function testBuildUserAgentWithCustomHeader()
-    {
-        $client = new Client(
-            'apikey',
-            ['headers' => ['User-Agent' => 'MyCustomIntegration/3.14.0']]
-        );
-        $expectedUserAgent = sprintf(
-            'MyCustomIntegration/3.14.0 PHP/%s',
-            phpversion()
-        );
-        $this->assertEquals(
-            $expectedUserAgent,
-            $client->getUserAgent()
-        );
-    }
-
     public function testSuccessfulResponseWithCustomUserAgentHeader()
     {
         $container = [];

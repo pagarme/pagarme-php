@@ -46,11 +46,6 @@ class Client
     private $apiKey;
 
     /**
-     * @var string
-     */
-    private $userAgent;
-
-    /**
      * @var \PagarMe\Endpoints\Transactions
      */
     private $transactions;
@@ -148,9 +143,7 @@ class Client
             $options['headers']['User-Agent'] :
             '';
 
-        $this->userAgent = $this->buildUserAgent($userAgent);
-
-        $options['headers'] = $this->addUserAgentHeaders();
+        $options['headers'] = $this->addUserAgentHeaders($userAgent);
 
         $this->http = new HttpClient($options);
 
@@ -209,14 +202,6 @@ class Client
     }
 
     /**
-     * @return string
-     */
-    public function getUserAgent()
-    {
-        return $this->userAgent;
-    }
-
-    /**
      * Build an user-agent string to be informed on requests
      *
      * @param string $customUserAgent
@@ -235,13 +220,16 @@ class Client
     /**
      * Append new keys (the default and pagarme) related to user-agent
      *
+     * @param string $customUserAgent
      * @return array
      */
-    private function addUserAgentHeaders()
+    private function addUserAgentHeaders($customUserAgent = '')
     {
         return [
-            'User-Agent' => $this->getUserAgent(),
-            self::PAGARME_USER_AGENT_HEADER => $this->getUserAgent()
+            'User-Agent' => $this->buildUserAgent($customUserAgent),
+            self::PAGARME_USER_AGENT_HEADER => $this->buildUserAgent(
+                $customUserAgent
+            )
         ];
     }
 
