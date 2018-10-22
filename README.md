@@ -92,7 +92,7 @@ Você pode acessar a documentação oficial do Pagar.me acessando esse [link](ht
 
 Instale a biblioteca utilizando o comando
 
-`composer require pagarme/pagarme-php`
+`composer require pagarme/pagarme-php:v4.0.0-alpha`
 
 ## Configuração
 
