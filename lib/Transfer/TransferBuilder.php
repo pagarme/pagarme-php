@@ -3,6 +3,7 @@
 namespace PagarMe\Sdk\Transfer;
 
 use PagarMe\Sdk\BankAccount\BankAccount;
+use PagarMe\Sdk\Recipient\Recipient;
 
 trait TransferBuilder
 {
@@ -12,9 +13,24 @@ trait TransferBuilder
      */
     private function buildTransfer($transferData)
     {
-        $transferData->bank_account = new BankAccount(
-            $transferData->bank_account
-        );
+
+        if(property_exists($transferData, 'bank_account')) {
+            $transferData->bank_account = new BankAccount(
+                $transferData->bank_account
+            );
+        }
+
+        if (property_exists($transferData, 'recipient')) {
+            $transferData->bank_account = new BankAccount(
+                    $transferData->recipient->bank_account
+            );
+            
+            $transferData->recipient->bank_account = $transferData->bank_account;
+            
+            $transferData->recipient = new Recipient(
+                    $transferData->recipient
+            );  
+        }
 
         $transferData->funding_estimated_date = new \DateTime(
             $transferData->funding_estimated_date

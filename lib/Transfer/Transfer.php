@@ -42,6 +42,11 @@ class Transfer
     private $bankAccount;
 
     /**
+     * @var PagarMe\Sdk\Recipient\Recipient
+     */
+    private $recipient;
+
+    /**
      * @var \DateTime
      */
     private $dateCreated;
@@ -141,6 +146,15 @@ class Transfer
     public function getBankAccount()
     {
         return $this->bankAccount;
+    }
+
+    /**
+     * @return PagarMe\Sdk\Recipient\Recipient $recipient
+     * @codeCoverageIgnore
+     */
+    public function getRecipient()
+    {
+        return $this->recipient;
     }
 
     /**
