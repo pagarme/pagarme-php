@@ -29,7 +29,7 @@ trait TransferBuilder
             
             $transferData->recipient = new Recipient(
                 $transferData->recipient
-            );  
+            );
         }
 
         $transferData->funding_estimated_date = new \DateTime(
