@@ -16,11 +16,17 @@ abstract class AbstractTransaction
     const WAITING_PAYMENT = 'waiting_payment';
     const PENDING_REFUND  = 'pending_refund';
     const REFUSED         = 'refused';
+    const PENDING_REVIEW  = 'pending_review';
 
     /**
      * @var int
      */
     protected $id;
+
+    /**
+     * @var string
+     */
+    protected $referenceKey;
 
     /**
      * @var string
@@ -172,6 +178,11 @@ abstract class AbstractTransaction
     public function getId()
     {
         return $this->id;
+    }
+
+    public function getReferenceKey()
+    {
+        return $this->referenceKey;
     }
 
     /**
@@ -471,6 +482,14 @@ abstract class AbstractTransaction
     public function isRefused()
     {
         return $this->status == self::REFUSED;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isPendingReview()
+    {
+        return $this->status == self::PENDING_REVIEW;
     }
 
     /**

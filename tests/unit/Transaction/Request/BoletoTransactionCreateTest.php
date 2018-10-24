@@ -11,6 +11,8 @@ use PagarMe\Sdk\RequestInterface;
 
 class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
 {
+    use FakeReferenceKey;
+
     const PATH   = 'transactions';
 
     const CARD_ID = 1;
@@ -20,9 +22,9 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
         $customer = $this->getCustomerMock();
 
         return [
-            [null],
-            [date('Y-m-d', strtotime("tomorrow"))],
-            [date('Y-m-d', strtotime("+15 days"))]
+            [null, null],
+            [date('Y-m-d', strtotime("tomorrow")), $this->getFakeReferenceKey()],
+            [date('Y-m-d', strtotime("+15 days")), null]
         ];
     }
 
@@ -63,7 +65,54 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 'metadata' => null,
                 'async' => null,
                 'boleto_instructions' => null,
-                'soft_descriptor' => null
+                'soft_descriptor' => null,
+                'reference_key' => null
+            ],
+            $transactionCreate->getPayload()
+        );
+    }
+
+    /**
+     * @test
+     * @dataProvider boletoOptions
+     */
+    public function mustContainsTheRightReferenceKey(
+        $expirationDate,
+        $referenceKey
+    ) {
+        $transaction =  $this->createTransaction($expirationDate);
+        $transactionCreate = new BoletoTransactionCreate($transaction);
+
+        $this->assertEquals(
+            [
+                'amount'                 => 1337,
+                'payment_method'         => 'boleto',
+                'postback_url'           => 'example.com/postback',
+                'boleto_expiration_date' => $expirationDate,
+                'customer' => [
+                    'name'            => 'Eduardo Nascimento',
+                    'born_at'         => '15071991',
+                    'document_number' => '10586649727',
+                    'email'           => 'eduardo@eduardo.com',
+                    'sex'             => 'M',
+                    'address' => [
+                        'street'        => 'rua teste',
+                        'street_number' => 42,
+                        'neighborhood'  => 'centro',
+                        'zipcode'       => '01227200',
+                        'complementary' => null
+                    ],
+                    'phone' => [
+                        'ddi'    => 55,
+                        'ddd'    => 15,
+                        'number' => 987523421
+                    ]
+                ],
+                'metadata' => null,
+                'async' => null,
+                'boleto_instructions' => null,
+                'soft_descriptor' => null,
+                'reference_key' => null
             ],
             $transactionCreate->getPayload()
         );
@@ -98,7 +147,8 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 'postback_url'           => 'example.com/postback',
                 'customer'               => $customerMock,
                 'boleto_expiration_date' => $expirationDate,
-                'split_rules'            => $rules
+                'split_rules'            => $rules,
+                'reference_key'           => null
             ]
         );
 
@@ -151,7 +201,8 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 'metadata' => null,
                 'async' => null,
                 'boleto_instructions' => null,
-                'soft_descriptor' => null
+                'soft_descriptor' => null,
+                'reference_key' => null
             ],
             $transactionCreate->getPayload()
         );
@@ -185,16 +236,19 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(RequestInterface::HTTP_POST, $transactionCreate->getMethod());
     }
 
-    private function createTransaction($expirationDate)
-    {
+    private function createTransaction(
+        $expirationDate,
+        $referenceKey = null
+    ) {
         $customerMock = $this->getCustomerMock();
 
         $transaction =  new BoletoTransaction(
             [
                 'amount'                 => 1337,
-                'postback_url'          => 'example.com/postback',
+                'postback_url'           => 'example.com/postback',
                 'customer'               => $customerMock,
-                'boleto_expiration_date' => $expirationDate
+                'boleto_expiration_date' => $expirationDate,
+                'reference_key' => $referenceKey
             ]
         );
 
@@ -244,11 +298,12 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 'amount'                 => 1338,
                 'postback_url'           => 'example.com/postback',
                 'customer'               => $customerMock,
-                'soft_descriptor'        => "Minha loja"
+                'soft_descriptor'        => "Minha loja",
+                'reference_key'           => null
             ]
         );
 
-        $transactionCreate = new boletoTransactionCreate (
+        $transactionCreate = new boletoTransactionCreate(
             $transaction
         );
 
@@ -280,7 +335,8 @@ class BoletoTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 'metadata' => null,
                 'async' => null,
                 'boleto_instructions' => null,
-                'soft_descriptor' => 'Minha loja'
+                'soft_descriptor' => 'Minha loja',
+                'reference_key' => null
             ],
             $transactionCreate->getPayload()
         );

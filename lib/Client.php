@@ -18,8 +18,14 @@ class Client
 
     /**
      * @var int
+     * @deprecated
      */
     private $timeout;
+
+    /**
+     * @var array
+     */
+    private $requestOptions = [];
 
     /**
      * @param \GuzzleHttp\Client $client
@@ -29,11 +35,15 @@ class Client
     public function __construct(
         GuzzleClient $client,
         $apiKey,
-        $timeout = null
+        $timeout = null,
+        $requestOptions = []
     ) {
         $this->client  = $client;
         $this->apiKey  = $apiKey;
-        $this->timeout = $timeout;
+        $this->requestOptions = array_merge(
+            ['timeout' => $timeout],
+            $requestOptions
+        );
     }
 
     /**
@@ -48,7 +58,7 @@ class Client
         try {
             $response = $this->client->send(
                 $request,
-                ['timeout' => $this->timeout]
+                $this->requestOptions
             );
 
             return json_decode($response->getBody()->getContents());
@@ -71,10 +81,14 @@ class Client
     private function buildRequest($apiRequest)
     {
         if (class_exists('\\GuzzleHttp\\Message\\Request')) {
+            $options = array_merge(
+                $this->requestOptions,
+                ['json' => $this->buildBody($apiRequest)]
+            );
             return $this->client->createRequest(
                 $apiRequest->getMethod(),
                 $apiRequest->getPath(),
-                ['json' => $this->buildBody($apiRequest)]
+                $options
             );
         }
 

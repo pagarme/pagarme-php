@@ -11,10 +11,20 @@ use PagarMe\Sdk\RequestInterface;
 
 class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
 {
+    use FakeReferenceKey;
+
     const PATH   = 'transactions';
 
     const CARD_ID   = 1;
     const CARD_HASH = 'FC1mH7XLFU5fjPAzDsP0ogeAQh3qXRpHzkIrgDz64lITBUGwio67zm';
+
+    public function referenceKeyProvider()
+    {
+        return [
+            [1, true, null, null],
+            [1, true, null, $this->getFakeReferenceKey()],
+        ];
+    }
 
     public function installmentsProvider()
     {
@@ -76,7 +86,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 ],
                 'metadata'        => null,
                 'soft_descriptor' => $softDescriptor,
-                'async'           => $async
+                'async'           => $async,
+                'reference_key'   => null
             ],
             $transactionCreate->getPayload()
         );
@@ -101,7 +112,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 'customer'     => $customerMock,
                 'installments' => $installments,
                 'capture'      => $capture,
-                'postbackUrl'  => $postbackUrl
+                'postbackUrl'  => $postbackUrl,
+                'reference_key' => null
             ]
         );
 
@@ -124,7 +136,59 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 ],
                 'metadata'        => null,
                 'soft_descriptor' => null,
-                'async'           => null
+                'async'           => null,
+                'reference_key'   => null
+            ],
+            $transactionCreate->getPayload()
+        );
+    }
+
+    /**
+     * @dataProvider referenceKeyProvider
+     * @test
+     */
+    public function mustContainsTheRightReferenceKey(
+        $installments,
+        $capture,
+        $postbackUrl,
+        $referenceKey
+    ) {
+        $customerMock = $this->getBlankCustomerMock();
+        $cardMock     = $this->getCardMock();
+
+        $transaction =  new CreditCardTransaction(
+            [
+                'amount'       => 1337,
+                'card'         => $cardMock,
+                'customer'     => $customerMock,
+                'installments' => $installments,
+                'capture'      => $capture,
+                'postback_url'  => $postbackUrl,
+                'reference_key' => $referenceKey
+            ]
+        );
+
+        $transactionCreate = new CreditCardTransactionCreate($transaction);
+
+        $this->assertEquals(
+            [
+                'amount'         => 1337,
+                'card_id'        => self::CARD_ID,
+                'installments'   => $installments,
+                'payment_method' => 'credit_card',
+                'capture'        => $capture,
+                'postback_url'   => $postbackUrl,
+                'customer' => [
+                    'name'            => null,
+                    'born_at'         => null,
+                    'document_number' => null,
+                    'email'           => null,
+                    'sex'             => null
+                ],
+                'metadata'        => null,
+                'soft_descriptor' => null,
+                'async'           => null,
+                'reference_key'   => $referenceKey
             ],
             $transactionCreate->getPayload()
         );
@@ -147,7 +211,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 'customer'     => $customer,
                 'installments' => 1,
                 'capture'      => false,
-                'postback_url' => null
+                'postback_url' => null,
+                'reference_key' => null
             ]
         );
 
@@ -171,8 +236,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 ],
                 'metadata'        => null,
                 'soft_descriptor' => null,
-                'async'           => null
-
+                'async'           => null,
+                'reference_key'   => null
             ],
             $transactionCreate->getPayload()
         );
@@ -208,7 +273,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 'installments' => 1,
                 'capture'      => false,
                 'postback_url' => null,
-                'split_rules'  => $rules
+                'split_rules'  => $rules,
+                'reference_key' => null
             ]
         );
 
@@ -257,7 +323,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 ],
                 'metadata'        => null,
                 'soft_descriptor' => null,
-                'async'           => null
+                'async'           => null,
+                'reference_key'   => null
             ],
             $transactionCreate->getPayload()
         );
@@ -287,13 +354,14 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
 
         $transaction =  new CreditCardTransaction(
             [
-                'amount'       => 1337,
-                'card'         => $cardMock,
-                'customer'     => $customerMock,
-                'installments' => 1,
-                'capture'      => false,
-                'postback_url' => null,
-                'split_rules'  => $rules
+                'amount'        => 1337,
+                'card'          => $cardMock,
+                'customer'      => $customerMock,
+                'installments'  => 1,
+                'capture'       => false,
+                'postback_url'  => null,
+                'split_rules'   => $rules,
+                'reference_key' => null
             ]
         );
 
@@ -342,7 +410,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 ],
                 'metadata'        => null,
                 'soft_descriptor' => null,
-                'async'           => null
+                'async'           => null,
+                'reference_key'   => null
             ],
             $transactionCreate->getPayload()
         );
@@ -397,7 +466,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 'customer'     => $customerMock,
                 'installments' => $installments,
                 'capture'      => $capture,
-                'postbackUrl'  => $postbackUrl
+                'postback_url'  => $postbackUrl,
+                'reference_key' => null
             ]
         );
 
@@ -432,7 +502,8 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 ],
                 'metadata'        => null,
                 'soft_descriptor' => null,
-                'async'           => null
+                'async'           => null,
+                'reference_key'   => null
             ],
             $transactionCreate->getPayload()
         );
@@ -491,9 +562,9 @@ class CreditCardTransactionCreateTest extends \PHPUnit_Framework_TestCase
                 'customer'       => $customerMock,
                 'installments'   => $installments,
                 'capture'        => $capture,
-                'postbackUrl'    => $postbackUrl,
-                'softDescriptor' => $softDescriptor,
-                'async'          => $async
+                'postback_url'    => $postbackUrl,
+                'soft_descriptor' => $softDescriptor,
+                'async'          => $async,
             ]
         );
 

@@ -25,6 +25,7 @@ class BankAccountContext extends BasicContext
     private $queryBankAccount;
 
     /**
+     * @codingStandardsIgnoreLine
      * @Given following account data :bankCode, :office, :accountNumber, :accountDigit, :document, :name, :officeDigit and :type
      */
     public function followingAccountData(

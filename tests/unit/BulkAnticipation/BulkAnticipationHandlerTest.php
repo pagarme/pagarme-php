@@ -12,7 +12,8 @@ class BulkAnticipationHandlerTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function mustHandlerParseBulkAnticipationCorrectly() {
+    public function mustHandlerParseBulkAnticipationCorrectly()
+    {
         $recipientMock = $this->getMockBuilder('PagarMe\Sdk\Recipient\Recipient')
             ->disableOriginalConstructor()
             ->getMock();

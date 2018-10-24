@@ -10,7 +10,9 @@ use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Testwork\Hook\Scope\BeforeSuiteScope;
 use PagarMe\Sdk\PagarMe;
 
+// @codingStandardsIgnoreStart
 require_once __DIR__ . '../../../vendor/phpunit/phpunit/src/Framework/Assert/Functions.php';
+// @codingStandardsIgnoreEnd
 
 abstract class BasicContext implements Context, SnippetAcceptingContext
 {

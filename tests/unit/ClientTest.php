@@ -69,7 +69,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
                         'json' => [
                             'content'        => self::CONTENT,
                             'api_key'        => self::API_KEY
-                        ]
+                        ],
+                        'timeout' => null
                     ]
                 )
                 ->willReturn($this->getMock('GuzzleHttp\Message\RequestInterface'));
