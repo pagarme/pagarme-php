@@ -100,9 +100,9 @@ class TransferContext extends BasicContext
     }
 
     /**
-     * @When make transfer with amount of :amount
+     * @When transfer should have the same Recipient
      */
-    public function mustBeTheSameRecipient($amount)
+    public function mustBeTheSameRecipient()
     {
         assertEquals(
             $this->recipient,
