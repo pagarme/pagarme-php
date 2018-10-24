@@ -38,17 +38,17 @@ class TransferGetTest extends \PHPUnit_Framework_TestCase
         $transfer = $this->buildTransfer(json_decode($payload));
 
         $this->assertInstanceOf(
-            'PagarMe\Sdk\Transfer\Transfer', 
+            'PagarMe\Sdk\Transfer\Transfer',
             $transfer
         );
 
         $this->assertInstanceOf(
-            'PagarMe\Sdk\Recipient\Recipient', 
+            'PagarMe\Sdk\Recipient\Recipient',
             $transfer->getRecipient()
         );
 
         $this->assertInstanceOf(
-            'PagarMe\Sdk\BankAccount\BankAccount', 
+            'PagarMe\Sdk\BankAccount\BankAccount',
             $transfer->getRecipient()->getBankAccount()
         );
     }
