@@ -14,7 +14,7 @@ trait TransferBuilder
     private function buildTransfer($transferData)
     {
 
-        if (property_exists($transferData, 'bank_account')) {
+        if(property_exists($transferData, 'bank_account')) {
             $transferData->bank_account = new BankAccount(
                 $transferData->bank_account
             );
@@ -22,13 +22,13 @@ trait TransferBuilder
 
         if (property_exists($transferData, 'recipient')) {
             $transferData->bank_account = new BankAccount(
-                $transferData->recipient->bank_account
+                    $transferData->recipient->bank_account
             );
             
             $transferData->recipient->bank_account = $transferData->bank_account;
             
             $transferData->recipient = new Recipient(
-                $transferData->recipient
+                    $transferData->recipient
             );  
         }
 
