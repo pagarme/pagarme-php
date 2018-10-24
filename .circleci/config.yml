@@ -1,0 +1,67 @@
+version: 2
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test-5.4
+      - test-5.5
+      - test-5.6
+      - test-7.0
+      - test-7.1
+      - test-7.2
+
+jobs:
+  test-5.6: &test-template
+    docker:
+      - image: php:5.6-alpine
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - run:
+         name: Install composer
+         command: |
+            curl -sS https://getcomposer.org/installer | php
+            mv composer.phar /usr/local/bin/composer
+
+      - run:
+          name: Install Dependencies
+          command: composer install -n --prefer-dist
+
+      - run:
+          name: Code Sniffer
+          command: |
+            vendor/bin/phpcs --config-set ignore_warnings_on_exit 1
+            vendor/bin/phpcs lib/ --standard=PSR2
+            vendor/bin/phpcs tests/ --standard=PSR2
+
+      - run:
+          name: Unit tests
+          command: vendor/bin/phpunit
+
+      - run:
+          name: E2E tests
+          command: vendor/bin/behat
+
+  test-7.0:
+    <<: *test-template
+    docker:
+      - image: php:7.0-alpine
+  test-7.1:
+    <<: *test-template
+    docker:
+      - image: php:7.1-alpine
+  test-7.2:
+    <<: *test-template
+    docker:
+      - image: php:7.2-alpine
+  #Legacy versions
+  test-5.4:
+    <<: *test-template
+    docker:
+      - image: devilbox/php-fpm:5.4-mods
+  test-5.5:
+    <<: *test-template
+    docker:
+      - image: devilbox/php-fpm:5.5-mods

@@ -128,11 +128,13 @@ class PagarMe
     /**
      * @param string $apiKey
      * @param int|null $timeout
+     * @param array $requestOptions
      */
     public function __construct(
         $apiKey,
         $timeout = null,
-        $headers = []
+        $headers = [],
+        $requestOptions = []
     ) {
         $this->client = new Client(
             new GuzzleClient(
@@ -145,7 +147,8 @@ class PagarMe
                 ]
             ),
             $apiKey,
-            $timeout
+            $timeout,
+            $requestOptions
         );
     }
 
