@@ -202,6 +202,7 @@ $transaction = $pagarme->transactions()->create([
 <?php
 $capturedTransaction = $pagarme->transactions()->capture([
     'id' => 'ID_OU_TOKEN_DA_TRANSAÇÃO',
+    'amount' => VALOR_TOTAL_COM_CENTAVOS
 ]);
 ```
 
