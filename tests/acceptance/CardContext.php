@@ -76,7 +76,7 @@ class CardContext extends BasicContext
     }
 
     /**
-     * @And the card must be valid
+     * @Then the card must be valid
      */
     public function theCardMustBeValid()
     {
