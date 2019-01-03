@@ -60,7 +60,7 @@ final class PlanTest extends PagarMeTestCase
         $client = self::buildClient($requestsContainer, $mock['planList']);
 
         $response = $client->plans()->getList();
-        
+
         $this->assertEquals(
             '/1/plans',
             self::getRequestUri($requestsContainer[0])
@@ -124,7 +124,12 @@ final class PlanTest extends PagarMeTestCase
         $requestsContainer = [];
         $client = self::buildClient($requestsContainer, $mock['plan']);
 
-        $response = $client->plans()->update(['id' => 1]);
+        $response = $client->plans()->update([
+            'id' => 1,
+            'name' => 'novo nome do plano',
+        ]);
+
+        $requestBody = self::getBody($requestsContainer[0]);
 
         $this->assertEquals(
             '/1/plans/1',
@@ -137,6 +142,10 @@ final class PlanTest extends PagarMeTestCase
         $this->assertEquals(
             json_decode(self::jsonMock('PlanMock')),
             $response
+        );
+        $this->assertContains(
+            '"name":"novo nome do plano"',
+            $requestBody
         );
     }
 }

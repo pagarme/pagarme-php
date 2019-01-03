@@ -58,7 +58,8 @@ class Plans extends Endpoint
     {
         return $this->client->request(
             self::PUT,
-            Routes::plans()->details($payload['id'])
+            Routes::plans()->details($payload['id']),
+            ['json' => $payload]
         );
     }
 }
