@@ -139,13 +139,10 @@ final class RecipientTest extends PagarMeTestCase
 
         $response = $client->recipients()->update([
             'id' => '1',
-            'transfer_interval' => 'monthly',
-            'transfer_day' => 5,
-            'transfer_enabled' => true,
-            'automatic_anticipation_enabled' => true,
-            'anticipatable_volume_percentage' => 100,
             'bank_account_id' => 123
         ]);
+
+        $requestBody = self::getBody($requestsContainer[0]);
 
         $this->assertEquals(
             Recipients::PUT,
@@ -158,6 +155,10 @@ final class RecipientTest extends PagarMeTestCase
         $this->assertEquals(
             json_decode(self::jsonMock('RecipientMock')),
             $response
+        );
+        $this->assertContains(
+            '"bank_account_id":123',
+            $requestBody
         );
     }
 

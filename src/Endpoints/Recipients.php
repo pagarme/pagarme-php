@@ -58,7 +58,8 @@ class Recipients extends Endpoint
     {
         return $this->client->request(
             self::PUT,
-            Routes::recipients()->details($payload['id'])
+            Routes::recipients()->details($payload['id']),
+            ['json' => $payload]
         );
     }
 
