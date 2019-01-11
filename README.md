@@ -337,11 +337,11 @@ O parâmetro `free_installments` decide a quantidade de parcelas sem juros. Ou s
 
 Nessa rota, é calculado juros simples, efetuando o seguinte calculo:
 
-ValorTotal = Valor_da_Transação * ( 1 + ( Taxa_de_juros * Número_de_parcelas ) )
+valorTotal = valorDaTransacao * ( 1 + ( taxaDeJuros * numeroDeParcelas ) / 100 )
 
 Então, utilizando os valores acima, na quinta parcela, a conta ficaria dessa maneira:
 
-ValorTotal = 1000 * (1 + (3 * 5))
+valorTotal = 1000 * (1 + (3 * 5) / 100)
 
 Então, o valor a ser pago na quinta parcela seria de 15% da compra, totalizando 1150.
 
