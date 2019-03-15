@@ -21,6 +21,7 @@ use PagarMe\Endpoints\Payables;
 use PagarMe\Endpoints\BalanceOperations;
 use PagarMe\Endpoints\Chargebacks;
 use GuzzleHttp\Client as HttpClient;
+use GuzzleHttp\Exception\ClientException as ClientException;
 use PagarMe\Exceptions\InvalidJsonException;
 
 class Client
@@ -188,8 +189,10 @@ class Client
             return ResponseHandler::success($response->getBody());
         } catch (InvalidJsonException $exception) {
             throw $exception;
-        } catch (\Exception $exception) {
+        } catch (ClientException $exception) {
             ResponseHandler::failure($exception);
+        } catch (\Exception $exception) {
+            throw $exception;
         }
     }
 
