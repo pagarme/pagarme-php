@@ -7,7 +7,7 @@ use PagarMe\Anonymous;
 class Routes
 {
     /**
-     * @return \Pagarme\Anonymous
+     * @return \PagarMe\Anonymous
      */
     public static function transactions()
     {

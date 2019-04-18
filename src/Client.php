@@ -167,7 +167,7 @@ class Client
     }
 
     /**
-     * @param string method
+     * @param string $method
      * @param string $uri
      * @param array $options
      *

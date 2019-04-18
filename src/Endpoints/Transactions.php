@@ -24,7 +24,7 @@ class Transactions extends Endpoint
     }
 
     /**
-     * @param array|null payload
+     * @param array|null $payload
      *
      * @return \ArrayObject
      */

@@ -5,7 +5,7 @@ namespace PagarMe;
 final class PagarMeException extends \Exception
 {
     /**
-     * @param $message string
+     * @param string $message
      */
     public function __construct($message)
     {

@@ -29,7 +29,7 @@ abstract class Endpoint
     protected $client;
 
     /**
-     * @param \Pagarme\Client $client
+     * @param \PagarMe\Client $client
      */
     public function __construct(Client $client)
     {
