@@ -14,6 +14,8 @@ class RestClient {
 		$this->headers = array(
 			'Accept: application/json',
 			'Content-Type: application/json',
+			'X-PagarMe-User-Agent: pagarme-php/2.0',
+			'User-Agent: pagarme-php/2.0'
 		);
 
 		if(!$params["url"]) {
