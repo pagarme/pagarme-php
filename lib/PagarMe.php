@@ -25,6 +25,8 @@ use PagarMe\Sdk\Balance\BalanceHandler;
 
 class PagarMe
 {
+    const VERSION = '3.7.12';
+
     /**
      * @param Client
      */
@@ -136,13 +138,15 @@ class PagarMe
         $headers = [],
         $requestOptions = []
     ) {
+        $requestHeaders = new RequestHeaders();
+
         $this->client = new Client(
             new GuzzleClient(
                 [
                     'base_url' => 'https://api.pagar.me/1/',
                     'base_uri' => 'https://api.pagar.me/1/',
                     'defaults' => [
-                        'headers' => $headers
+                        'headers' => $requestHeaders->getSdkHeaders($headers)
                     ]
                 ]
             ),
