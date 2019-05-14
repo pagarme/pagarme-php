@@ -17,6 +17,7 @@ abstract class AbstractTransaction
     const PENDING_REFUND  = 'pending_refund';
     const REFUSED         = 'refused';
     const PENDING_REVIEW  = 'pending_review';
+    const ANALYZING  = 'analyzing';
 
     /**
      * @var int
@@ -490,6 +491,14 @@ abstract class AbstractTransaction
     public function isPendingReview()
     {
         return $this->status == self::PENDING_REVIEW;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isAnalyzing()
+    {
+        return $this->status == self::ANALYZING;
     }
 
     /**
