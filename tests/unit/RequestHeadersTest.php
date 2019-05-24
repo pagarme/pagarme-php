@@ -33,7 +33,7 @@ class RequestHeadersTest extends \PHPUnit_Framework_TestCase
         $sdkHeadersFilled = $requestHeaders->getSdkHeaders($filledHeaders);
 
         $expectedUserAgent = sprintf(
-            'Magento/1.9.1.0 pagarme-php/3.7.12',
+            'Magento/1.9.1.0 pagarme-php/%s',
             PagarMe::VERSION
         );
         $expectedHeaders = [
