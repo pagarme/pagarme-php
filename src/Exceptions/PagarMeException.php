@@ -17,6 +17,7 @@ final class PagarMeException extends \Exception
     /**
      * @param string $type
      * @param string $parameterName
+     * @param string $errorMessage
      */
     public function __construct($type, $parameterName, $errorMessage)
     {

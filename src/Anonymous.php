@@ -4,6 +4,10 @@ namespace PagarMe;
 
 class Anonymous extends \stdClass
 {
+    /**
+     * @param string $methodName
+     * @param array $params
+     */
     public function __call($methodName, $params)
     {
         if (!isset($this->{$methodName})) {

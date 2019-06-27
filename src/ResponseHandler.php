@@ -2,6 +2,7 @@
 
 namespace PagarMe;
 
+use GuzzleHttp\Exception\ClientException;
 use PagarMe\Exceptions\PagarMeException;
 use PagarMe\Exceptions\InvalidJsonException;
 
@@ -19,9 +20,10 @@ class ResponseHandler
     }
 
     /**
-     * @param \Exception $originalException
+     * @param ClientException $originalException
      *
-     * @throws \Exception
+     * @throws PagarMeException
+     * @return void
      */
     public static function failure(\Exception $originalException)
     {
@@ -29,13 +31,19 @@ class ResponseHandler
     }
 
     /**
-     * @param \Exception $guzzleException
+     * @param ClientException $guzzleException
      *
-     * @return \Exception
+     * @return PagarMeException|ClientException
      */
-    private static function parseException($guzzleException)
+    private static function parseException(ClientException $guzzleException)
     {
-        $body = $guzzleException->getResponse()->getBody()->getContents();
+        $response = $guzzleException->getResponse();
+
+        if (is_null($response)) {
+            return $guzzleException;
+        }
+
+        $body = $response->getBody()->getContents();
 
         try {
             $jsonError = self::toJson($body);
@@ -50,14 +58,18 @@ class ResponseHandler
         );
     }
 
+    /**
+     * @param string $json
+     * @return \ArrayObject
+     */
     private static function toJson($json)
     {
-        $jsonError = json_decode($json);
+        $result = json_decode($json);
 
         if (json_last_error() != \JSON_ERROR_NONE) {
             throw new InvalidJsonException(json_last_error_msg());
         }
 
-        return $jsonError;
+        return $result;
     }
 }

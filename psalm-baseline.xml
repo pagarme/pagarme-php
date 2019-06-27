@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="3.4.5@a0866da88e605adaa648e9f1ad37f4990650f55c">
+  <file src="src/Client.php">
+    <InvalidNullableReturnType occurrences="1">
+      <code>\ArrayObject</code>
+    </InvalidNullableReturnType>
+  </file>
+  <file src="src/ResponseHandler.php">
+    <UndefinedPropertyFetch occurrences="1">
+      <code>$jsonError-&gt;errors</code>
+    </UndefinedPropertyFetch>
+  </file>
+</files>

@@ -22,7 +22,7 @@ class Customers extends Endpoint
         );
     }
 
-    /*
+    /**
      * @param array|null $payload
      *
      * @return \ArrayObject

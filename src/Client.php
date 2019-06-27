@@ -173,6 +173,8 @@ class Client
      *
      * @throws \PagarMe\PagarMeException
      * @return \ArrayObject
+     *
+     * @psalm-suppress InvalidNullableReturnType
      */
     public function request($method, $uri, $options = [])
     {
@@ -186,7 +188,7 @@ class Client
                 )
             );
 
-            return ResponseHandler::success($response->getBody());
+            return ResponseHandler::success((string)$response->getBody());
         } catch (InvalidJsonException $exception) {
             throw $exception;
         } catch (ClientException $exception) {

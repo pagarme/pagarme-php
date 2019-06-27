@@ -5,6 +5,15 @@ services:
     volumes:
       - .:/code
     working_dir: /code
+
+  php7:
+    build:
+      dockerfile: ./docker/php7/Dockerfile
+      context: ./
+    volumes:
+      - .:/code
+    working_dir: /code
+
   composer:
     image: pagarme/composer:php5.6
     volumes:
