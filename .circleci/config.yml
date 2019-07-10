@@ -4,6 +4,7 @@ workflows:
   version: 2
   test:
     jobs:
+      - test-code-quality
       - test-5.6
       - test-7.0
       - test-7.1
@@ -54,3 +55,17 @@ jobs:
     docker:
       - image: php:7.2-alpine
 
+  test-code-quality:
+    machine:
+      enabled: true
+    steps:
+      - checkout
+      - run:
+          name: 'Up and running php7'
+          command: 'docker-compose up'
+      - run:
+          name: 'Install dependencies'
+          command: 'docker-compose run php7 composer install -n --prefer-dist'
+      - run:
+          name: 'Finding for obvious and hard-to-spot bugs with Psalm PHP'
+          command: 'docker-compose run php7 psalm'
