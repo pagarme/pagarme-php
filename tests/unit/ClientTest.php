@@ -57,12 +57,22 @@ final class ClientTest extends TestCase
 
         $client = new Client('apiKey', ['handler' => $handler]);
 
+        $errorType = 'invalid_parameter';
+        $parameter = 'api_key';
+        $message = 'api_key está faltando';
+        $expectedExceptionMessage = sprintf(
+            'ERROR TYPE: %s. PARAMETER: %s. MESSAGE: %s',
+            $errorType,
+            $parameter,
+            $message
+        );
+
         try {
             $response = $client->request(Endpoint::POST, 'transactions');
         } catch (\PagarMe\Exceptions\PagarMeException $exception) {
-            $this->assertEquals('api_key está faltando', $exception->getMessage());
-            $this->assertEquals('api_key', $exception->getParameterName());
-            $this->assertEquals('invalid_parameter', $exception->getType());
+            $this->assertEquals($expectedExceptionMessage, $exception->getMessage());
+            $this->assertEquals($parameter, $exception->getParameterName());
+            $this->assertEquals($errorType, $exception->getType());
 
             throw $exception;
         }
