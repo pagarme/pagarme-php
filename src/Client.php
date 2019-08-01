@@ -171,7 +171,7 @@ class Client
      * @param string $uri
      * @param array $options
      *
-     * @throws \PagarMe\PagarMeException
+     * @throws \PagarMe\Exceptions\PagarMeException
      * @return \ArrayObject
      *
      * @psalm-suppress InvalidNullableReturnType

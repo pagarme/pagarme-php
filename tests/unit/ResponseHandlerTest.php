@@ -3,7 +3,6 @@
 namespace PagarMe\Test;
 
 use PagarMe\ResponseHandler;
-use PagarMe\PagarMeException;
 use PHPUnit\Framework\TestCase;
 
 class ResponseHandlerTest extends TestCase
