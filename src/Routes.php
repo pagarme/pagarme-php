@@ -53,6 +53,10 @@ class Routes
             return "transactions/calculate_installments_amount";
         };
 
+        $anonymous->reprocess = static function ($id) {
+            return "transactions/$id/reprocess";
+        };
+
         return $anonymous;
     }
 

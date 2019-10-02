@@ -178,4 +178,21 @@ class Transactions extends Endpoint
             ['json' => $payload]
         );
     }
+
+    /**
+     * @param array $payload
+     *
+     * @return \ArrayObject
+     */
+    public function reprocess(array $payload)
+    {
+        $transactionId = $payload['id'];
+        unset($payload['id']);
+
+        return $this->client->request(
+            self::POST,
+            Routes::transactions()->reprocess($transactionId),
+            ['json' => $payload]
+        );
+    }
 }

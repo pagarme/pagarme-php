@@ -33,7 +33,10 @@ final class TransactionTest extends PagarMeTestCase
             ]),
             'calculateInstallments' => new MockHandler([
                 new Response(200, [], self::jsonMock('CalculateInstallmentsMock'))
-            ])
+            ]),
+            'reprocessTransaction' => new MockHandler([
+                new Response(200, [], self::jsonMock('ReprocessTransactionMock'))
+            ]),
         ]]];
     }
 
@@ -442,6 +445,33 @@ final class TransactionTest extends PagarMeTestCase
         $this->assertEquals(
             json_decode(self::jsonMock('CalculateInstallmentsMock')),
             $response
+        );
+    }
+
+    /**
+     * @dataProvider transactionProvider
+     */
+    public function testTransactionReprocess($mock)
+    {
+        $requestsContainer = [];
+        $client = self::buildClient(
+            $requestsContainer,
+            $mock['reprocessTransaction']
+        );
+
+        $response = $client->transactions()->reprocess([
+            'id' => 1830855,
+            'capture' => true,
+        ]);
+
+        $this->assertEquals(
+            '/1/transactions/1830855/reprocess',
+            self::getRequestUri($requestsContainer[0])
+        );
+
+        $this->assertEquals(
+            Transactions::POST,
+            self::getRequestMethod($requestsContainer[0])
         );
     }
 }

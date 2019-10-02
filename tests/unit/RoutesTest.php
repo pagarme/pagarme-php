@@ -45,6 +45,8 @@ class RoutesTest extends TestCase
         $this->assertiscallable($routes->events);
         $this->assertobjecthasattribute('calculateInstallments', $routes);
         $this->assertiscallable($routes->calculateInstallments);
+        $this->assertObjectHasAttribute('reprocess', $routes);
+        $this->assertIsCallable($routes->reprocess);
     }
 
     public function testCustomerRoutes()
