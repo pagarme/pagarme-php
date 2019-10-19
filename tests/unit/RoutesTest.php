@@ -31,20 +31,20 @@ class RoutesTest extends TestCase
         $this->assertIsCallable($routes->details);
         $this->assertObjectHasAttribute('capture', $routes);
         $this->assertIsCallable($routes->capture);
-        $this->assertobjecthasattribute('refund', $routes);
-        $this->assertiscallable($routes->refund);
-        $this->assertobjecthasattribute('payables', $routes);
-        $this->assertiscallable($routes->payables);
-        $this->assertobjecthasattribute('payablesDetails', $routes);
-        $this->assertiscallable($routes->payablesDetails);
-        $this->assertobjecthasattribute('operations', $routes);
-        $this->assertiscallable($routes->operations);
-        $this->assertobjecthasattribute('collectPayment', $routes);
-        $this->assertiscallable($routes->collectPayment);
-        $this->assertobjecthasattribute('events', $routes);
-        $this->assertiscallable($routes->events);
-        $this->assertobjecthasattribute('calculateInstallments', $routes);
-        $this->assertiscallable($routes->calculateInstallments);
+        $this->assertObjectHasAttribute('refund', $routes);
+        $this->assertIsCallable($routes->refund);
+        $this->assertObjectHasAttribute('payables', $routes);
+        $this->assertIsCallable($routes->payables);
+        $this->assertObjectHasAttribute('payablesDetails', $routes);
+        $this->assertIsCallable($routes->payablesDetails);
+        $this->assertObjectHasAttribute('operations', $routes);
+        $this->assertIsCallable($routes->operations);
+        $this->assertObjectHasAttribute('collectPayment', $routes);
+        $this->assertIsCallable($routes->collectPayment);
+        $this->assertObjectHasAttribute('events', $routes);
+        $this->assertIsCallable($routes->events);
+        $this->assertObjectHasAttribute('calculateInstallments', $routes);
+        $this->assertIsCallable($routes->calculateInstallments);
     }
 
     public function testCustomerRoutes()
