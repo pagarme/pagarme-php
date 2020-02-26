@@ -1,5 +1,5 @@
 {
-    "name": "pagarme/pagarme-php",
+    "name": "betalabs/pagarme-php",
     "description": "Pagar.Me PHP Library",
     "type": "lib",
     "keywords": [
