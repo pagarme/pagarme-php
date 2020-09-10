@@ -48,4 +48,18 @@ class Customers extends Endpoint
             Routes::customers()->details($payload['id'])
         );
     }
+
+    /**
+     * @param array $payload
+     *
+     * @return \ArrayObject
+     */
+    public function update(array $payload)
+    {
+        return $this->client->request(
+            self::PUT,
+            Routes::customers()->details($payload['id']),
+            ['json' => $payload]
+        );
+    }
 }

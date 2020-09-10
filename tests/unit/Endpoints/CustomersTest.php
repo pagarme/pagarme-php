@@ -67,6 +67,40 @@ final class CustomerTest extends PagarMeTestCase
     /**
      * @dataProvider customerProvider
      */
+    public function testCustomerUpdate($mock)
+    {
+        $requestsContainer = [];
+        $client = self::buildClient($requestsContainer, $mock['customer']);
+
+        $response = $client->customers()->update([
+            'id'    => 1234,
+            'name'  => 'João das Neves',
+            'email' => 'joaoneves@sul.com',
+        ]);
+
+        $requestBody = self::getBody($requestsContainer[0]);
+
+        $this->assertEquals(
+            Customers::PUT,
+            self::getRequestMethod($requestsContainer[0])
+        );
+        $this->assertEquals(
+            '/1/customers/1234',
+            self::getRequestUri($requestsContainer[0])
+        );
+        $this->assertEquals(
+            json_decode(self::jsonMock('CustomerMock')),
+            $response
+        );
+        $this->assertContains(
+            '"email":"joaoneves@sul.com"',
+            $requestBody
+        );
+    }
+
+    /**
+     * @dataProvider customerProvider
+     */
     public function testCustomerGetList($mock)
     {
         $requestsContainer = [];

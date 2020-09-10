@@ -80,6 +80,7 @@ Você pode acessar a documentação oficial do Pagar.me acessando esse [link](ht
   - [Operação de saldo específica de um recebedor](#operação-de-saldo-específica-de-um-recebedor)
 - [Clientes](#clientes)
   - [Criando um cliente](#criando-um-cliente)
+  - [Atualizando um cliente](#atualizando-um-cliente)
   - [Retornando clientes](#retornando-clientes)
   - [Retornando um cliente](#retornando-um-cliente)
 - [Links de pagamento](#links-de-pagamento)
@@ -1066,6 +1067,16 @@ $customer = $pagarme->customers()->create([
       '+5511888888888'
     ],
     'birthday' => '1985-01-01'
+]);
+```
+### Atualizando um cliente
+
+```php
+<?php
+$customer = $pagarme->customers()->update([
+    'id'    => '1234',
+    'name'  => 'João das Neves',
+    'email' => 'joaoneves@norte.com',
 ]);
 ```
 ### Retornando clientes
