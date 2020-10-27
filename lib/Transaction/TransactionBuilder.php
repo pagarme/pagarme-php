@@ -54,6 +54,14 @@ trait TransactionBuilder
             return new CreditCardTransaction(get_object_vars($transactionData));
         }
 
+        if ($transactionData->payment_method == PixTransaction::PAYMENT_METHOD) {
+            $transactionData->pix_expiration_date = new \DateTime(
+                $transactionData->pix_expiration_date
+            );
+
+            return new PixTransaction(get_object_vars($transactionData));
+        }
+
         throw new UnsupportedTransaction(
             sprintf(
                 'Transaction type: %s, is not supported',

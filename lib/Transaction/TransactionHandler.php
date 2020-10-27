@@ -7,6 +7,7 @@ use PagarMe\Sdk\Client;
 use PagarMe\Sdk\Payable\PayableBuilder;
 use PagarMe\Sdk\Transaction\Request\CreditCardTransactionCreate;
 use PagarMe\Sdk\Transaction\Request\BoletoTransactionCreate;
+use PagarMe\Sdk\Transaction\Request\PixTransactionCreate;
 use PagarMe\Sdk\Transaction\Request\TransactionGet;
 use PagarMe\Sdk\Transaction\Request\TransactionList;
 use PagarMe\Sdk\Transaction\Request\TransactionCapture;
@@ -96,6 +97,44 @@ class TransactionHandler extends AbstractHandler
         $transaction = new BoletoTransaction($transactionData);
 
         $request = new BoletoTransactionCreate($transaction);
+
+        $response = $this->client->send($request);
+
+        return $this->buildTransaction($response);
+    }
+
+    /**
+     * @param int                            $amount
+     * @param \PagarMe\Sdk\Customer\Customer $customer
+     * @param                                $postBackUrl
+     * @param                                $pixExpirationDate
+     * @param array                          $pixAdditionalFields
+     * @param null                           $metadata
+     *
+     * @return \PagarMe\Sdk\Transaction\PixTransaction
+     * @throws \PagarMe\Sdk\ClientException
+     * @throws \PagarMe\Sdk\Transaction\UnsupportedTransaction
+     */
+    public function pixTransaction(
+        $amount,
+        Customer $customer,
+        $postBackUrl,
+        $pixExpirationDate,
+        $pixAdditionalFields = [],
+        $metadata = null
+    ) {
+        $transactionData = [
+            'amount'                => $amount,
+            'customer'              => $customer,
+            'postbackUrl'           => $postBackUrl,
+            'pixExpirationDate'     => $pixExpirationDate,
+            'pixAdditionalFields'   => $pixAdditionalFields,
+            'metadata'              => $metadata
+        ];
+
+        $transaction = new PixTransaction($transactionData);
+
+        $request = new PixTransactionCreate($transaction);
 
         $response = $this->client->send($request);
 
