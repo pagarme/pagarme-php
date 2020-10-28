@@ -15,7 +15,7 @@ class PixTransactionCreateTest extends \PHPUnit_Framework_TestCase
 {
     use FakeReferenceKey;
 
-    const PATH   = 'transactions';
+    const PATH = 'transactions';
 
     public function boletoOptions()
     {
