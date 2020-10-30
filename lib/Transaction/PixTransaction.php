@@ -9,7 +9,7 @@ class PixTransaction extends AbstractTransaction
     /**
      * @var string
      */
-    protected $pixQrcode;
+    protected $pixQrCode;
 
     /**
      * @var \DateTime
@@ -33,9 +33,9 @@ class PixTransaction extends AbstractTransaction
     /**
      * @return string
      */
-    public function getPixQrcode()
+    public function getPixQrCode()
     {
-        return $this->pixQrcode;
+        return $this->pixQrCode;
     }
 
     /**
