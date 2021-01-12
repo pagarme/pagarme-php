@@ -7,6 +7,7 @@ use PagarMe\Sdk\Client;
 use PagarMe\Sdk\Payable\PayableBuilder;
 use PagarMe\Sdk\Transaction\Request\CreditCardTransactionCreate;
 use PagarMe\Sdk\Transaction\Request\BoletoTransactionCreate;
+use PagarMe\Sdk\Transaction\Request\PixTransactionCreate;
 use PagarMe\Sdk\Transaction\Request\TransactionGet;
 use PagarMe\Sdk\Transaction\Request\TransactionList;
 use PagarMe\Sdk\Transaction\Request\TransactionCapture;
@@ -14,12 +15,14 @@ use PagarMe\Sdk\Transaction\Request\TransactionEvents;
 use PagarMe\Sdk\Transaction\Request\TransactionPayables;
 use PagarMe\Sdk\Transaction\Request\CreditCardTransactionRefund;
 use PagarMe\Sdk\Transaction\Request\BoletoTransactionRefund;
+use PagarMe\Sdk\Transaction\Request\PixTransactionRefund;
 use PagarMe\Sdk\Transaction\Request\TransactionPay;
 use PagarMe\Sdk\BankAccount\BankAccount;
 use PagarMe\Sdk\Card\Card;
 use PagarMe\Sdk\Customer\Customer;
 use PagarMe\Sdk\Recipient\Recipient;
 use PagarMe\Sdk\SplitRule\SplitRuleCollection;
+use PagarMe\Sdk\PixAdditionalField\PixAdditionalFieldCollection;
 
 class TransactionHandler extends AbstractHandler
 {
@@ -103,8 +106,45 @@ class TransactionHandler extends AbstractHandler
     }
 
     /**
+     * @param int $amount
+     * @param \PagarMe\Sdk\Customer\Customer $customer
+     * @param string $postBackUrl
+     * @param mixed $metadata
+     * @param \DateTime $pixExpirationDate
+     * @param array $extraAttributes
+     * @return PixTransaction
+     */
+    public function pixTransaction(
+        $amount,
+        Customer $customer,
+        $postBackUrl,
+        $metadata = null,
+        $pixExpirationDate = null,
+        $extraAttributes = []
+    ) {
+        $transactionData = array_merge(
+            [
+                'amount'              => $amount,
+                'customer'            => $customer,
+                'postbackUrl'         => $postBackUrl,
+                'metadata'            => $metadata,
+                'pix_expiration_date' => $pixExpirationDate
+            ],
+            $extraAttributes
+        );
+
+        $transaction = new PixTransaction($transactionData);
+
+        $request = new PixTransactionCreate($transaction);
+
+        $response = $this->client->send($request);
+
+        return $this->buildTransaction($response);
+    }
+
+    /**
      * @param int $transactionId
-     * @return BoletoTransaction | CreditCardTransaction
+     * @return BoletoTransaction | CreditCardTransaction | PixTransaction
      */
     public function get($transactionId)
     {
@@ -202,6 +242,19 @@ class TransactionHandler extends AbstractHandler
             $amount
         );
 
+        $response = $this->client->send($request);
+
+        return $this->buildTransaction($response);
+    }
+
+    /**
+     * @param PixTransaction $transaction
+     * @param int $amount
+     * @return PixTransaction
+     */
+    public function pixRefund(PixTransaction $transaction, $amount = null)
+    {
+        $request = new PixTransactionRefund($transaction, $amount);
         $response = $this->client->send($request);
 
         return $this->buildTransaction($response);

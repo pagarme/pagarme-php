@@ -54,6 +54,10 @@ trait TransactionBuilder
             return new CreditCardTransaction(get_object_vars($transactionData));
         }
 
+        if ($transactionData->payment_method == PixTransaction::PAYMENT_METHOD) {
+            return new PixTransaction(get_object_vars($transactionData));
+        }
+
         throw new UnsupportedTransaction(
             sprintf(
                 'Transaction type: %s, is not supported',

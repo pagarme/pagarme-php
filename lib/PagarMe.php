@@ -10,6 +10,7 @@ use PagarMe\Sdk\Calculation\CalculationHandler;
 use PagarMe\Sdk\Recipient\RecipientHandler;
 use PagarMe\Sdk\Plan\PlanHandler;
 use PagarMe\Sdk\SplitRule\SplitRuleHandler;
+use PagarMe\Sdk\PixAdditionalField\PixAdditionalFieldHandler;
 use PagarMe\Sdk\Transfer\TransferHandler;
 use PagarMe\Sdk\Company\CompanyHandler;
 use PagarMe\Sdk\BankAccount\BankAccountHandler;
@@ -25,7 +26,7 @@ use PagarMe\Sdk\Balance\BalanceHandler;
 
 class PagarMe
 {
-    const VERSION = '3.8.2';
+    const VERSION = '3.9.0';
 
     /**
      * @param Client
@@ -66,6 +67,11 @@ class PagarMe
      * @param SplitRuleHandler
      */
     private $splitRuleHandler;
+
+    /**
+     * @param PixAdditionalFieldHandler
+     */
+    private $pixAdditionalFieldHandler;
 
     /**
      * @param TransferHandler
@@ -238,6 +244,18 @@ class PagarMe
         }
 
         return $this->splitRuleHandler;
+    }
+
+    /**
+     * @return PixAdditionalFieldHandler
+     */
+    public function pixAdditionalField()
+    {
+        if (!$this->pixAdditionalFieldHandler instanceof PixAdditionalFieldHandler) {
+            $this->pixAdditionalFieldHandler = new PixAdditionalFieldHandler();
+        }
+
+        return $this->pixAdditionalFieldHandler;
     }
 
     /**

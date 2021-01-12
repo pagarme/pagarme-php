@@ -299,6 +299,8 @@ class TransactionContext extends BasicContext
      */
     public function fullRefundTheTransaction()
     {
+        sleep(5);
+
         $this->transaction = $transaction = self::getPagarMe()
             ->transaction()
             ->creditCardRefund($this->transaction);
@@ -318,6 +320,8 @@ class TransactionContext extends BasicContext
      */
     public function refundGivenTheTransaction($amount)
     {
+        sleep(5);
+        
         $this->transaction = $transaction = self::getPagarMe()
             ->transaction()
             ->creditCardRefund($this->transaction, $amount);

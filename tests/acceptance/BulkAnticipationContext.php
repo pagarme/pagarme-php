@@ -66,15 +66,15 @@ class BulkAnticipationContext extends BasicContext
     {
         $build = filter_var($build, FILTER_VALIDATE_BOOLEAN);
 
-        $paymentDate = new \Datetime($paymentDate);
+        $paymentDate = new \Datetime($paymentDate, new \DateTimeZone('UTC'));
 
         $weekday = $paymentDate->format('w');
 
         if (in_array($weekday, [0,6])) {
-            $paymentDate = new \Datetime('+3 days');
+            $paymentDate = new \Datetime('+3 days', new \DateTimeZone('UTC'));
         }
 
-        $paymentDate->setTime(0, 0, 0);
+        $paymentDate->setTime(3, 0, 0);
 
         $this->expectedPaymentDate = $paymentDate;
         $this->expectedTimeframe = $timeframe;
@@ -106,10 +106,10 @@ class BulkAnticipationContext extends BasicContext
      */
     public function mustAnticipationContainSameData()
     {
-        assertEquals($this->anticipation->getPaymentDate(), $this->expectedPaymentDate);
-        assertEquals($this->anticipation->getTimeframe(), $this->expectedTimeframe);
+        assertEquals($this->expectedPaymentDate, $this->anticipation->getPaymentDate());
+        assertEquals($this->expectedTimeframe, $this->anticipation->getTimeframe());
 
-        assertEquals($this->anticipation->getStatus(), $this->expectedStatus);
+        assertEquals($this->expectedStatus, $this->anticipation->getStatus());
     }
 
     /**
