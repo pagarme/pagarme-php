@@ -8,6 +8,7 @@ use PagarMe\ResponseHandler;
 use PagarMe\Endpoints\BankAccounts;
 use PagarMe\Endpoints\BulkAnticipations;
 use PagarMe\Endpoints\Transactions;
+use PagarMe\Endpoints\Company;
 use PagarMe\Endpoints\Customers;
 use PagarMe\Endpoints\Cards;
 use PagarMe\Endpoints\Recipients;
@@ -52,6 +53,11 @@ class Client
      * @var \PagarMe\Endpoints\Transactions
      */
     private $transactions;
+
+    /**
+     * @var \PagarMe\Endpoints\Company
+     */
+    private $company;
 
     /**
      * @var \PagarMe\Endpoints\Customers
@@ -157,6 +163,7 @@ class Client
         $this->http = new HttpClient($options);
 
         $this->transactions = new Transactions($this);
+        $this->company = new Company($this);
         $this->customers = new Customers($this);
         $this->cards = new Cards($this);
         $this->recipients = new Recipients($this);
@@ -249,6 +256,14 @@ class Client
     public function transactions()
     {
         return $this->transactions;
+    }
+
+    /**
+     * @return \PagarMe\Endpoints\Company
+     */
+    public function company()
+    {
+        return $this->company;
     }
 
     /**
