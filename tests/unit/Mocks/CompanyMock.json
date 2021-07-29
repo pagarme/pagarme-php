@@ -1,0 +1,255 @@
+{
+    "object": "company",
+    "name": "Teste",
+    "pagarme_code": "3419999999",
+    "stone_code": null,
+    "phone_number": "+551140041330",
+    "site_url": "https://pagar.me/",
+    "statement_descriptor": null,
+    "full_name": "Teste",
+    "type": "default",
+    "cnpj": "99727053000999",
+    "mcc": null,
+    "segment": null,
+    "address": {
+        "street": "R. Gomes de Carvalho",
+        "complementary": "teste",
+        "street_number": "10",
+        "neighborhood": "Vila Olímpia",
+        "city": "São Paulo",
+        "state": "SP",
+        "zipcode": "04551010"
+    },
+    "marketplace": {
+        "live": {
+            "can_create_recipient": true,
+            "can_split": true
+        },
+        "test": {
+            "can_create_recipient": true,
+            "can_split": true
+        }
+    },
+    "managing_partner": {
+        "name": "Teste",
+        "cpf": "99991986999",
+        "phone_number": "+5511991919191",
+        "mother_name": null,
+        "birthday": null,
+        "address": {}
+    },
+    "account_manager": {
+        "name": "Teste",
+        "cpf": "99991986999",
+        "email": "testepagarme@gmail.com"
+    },
+    "anticipation_config": {
+        "max_anticipation_days": 31,
+        "minimum_delay": 29,
+        "config_default_recipient": false,
+        "config_anticipation_params": false,
+        "spread_fee_base": {
+            "fixed": 0
+        },
+        "spread_rate": 0
+    },
+    "status": "active",
+    "seller_id": null,
+    "id": "5e74c1d40b76d63910399999",
+    "date_created": "2020-05-13T13:04:00.046Z",
+    "preferences": {},
+    "branding": {
+        "primary_color": null,
+        "logo": null,
+        "use_on_payment_link": null
+    },
+    "default_recipient_id": {
+        "live": "re_zk807h7lu05h69s6dffi99999",
+        "test": "re_zk807h7lu05h69s6dffi87878"
+    },
+    "events": {
+        "transaction": {
+            "transaction_status_changed": {
+                "postback": true
+            }
+        },
+        "subscription": {
+            "subscription_status_changed": {
+                "postback": true
+            },
+            "transaction_created": {
+                "postback": false
+            }
+        },
+        "recipient": {
+            "recipient_status_changed": {
+                "postback": true
+            }
+        }
+    },
+    "transactions": {
+        "enforce_zipcode_existence": true
+    },
+    "pricing": {
+        "gateway": {
+            "live": {
+                "transaction_cost": {
+                    "credit_card": 0,
+                    "debit_card": 0,
+                    "boleto": 0
+                },
+                "transaction_spread": {
+                    "credit_card": 0,
+                    "debit_card": 0,
+                    "boleto": 0
+                },
+                "minimum_monthly_payment": 0,
+                "antifraud_cost": [
+                    {
+                        "name": "pagarme",
+                        "cost": 0
+                    }
+                ],
+                "boletos": {
+                    "payment_fixed_fee": 1,
+                    "payment_spread_fee": 0
+                }
+            }
+        },
+        "psp": {
+            "live": {
+                "anticipation": 5.4,
+                "mdrs": [
+                    {
+                        "_id": "5999070ab090a400177f8999",
+                        "installments": [
+                            {
+                                "installment": 1,
+                                "mdr": 3.79,
+                                "_id": "5999070ab090a400177f8666"
+                            },
+                            {
+                                "installment": 7,
+                                "mdr": 4.59,
+                                "_id": "5999070ab090a400177f8777"
+                            },
+                            {
+                                "installment": 2,
+                                "mdr": 4.19,
+                                "_id": "5999070ab090a400177f8888"
+                            }
+                        ],
+                        "payment_method": null,
+                        "capture_method": "ecommerce",
+                        "card_brand": null
+                    }
+                ]
+            }
+        },
+        "transfers": {
+            "credito_em_conta": 0,
+            "ted": 0,
+            "doc": 367,
+            "inter_recipient": 0
+        }
+    },
+    "boletos": {
+        "instrucoes": "Testes de instrucoes",
+        "days_to_add_in_expiration_date": 5,
+        "rules": [
+            "no_strict"
+        ]
+    },
+    "notifications": {
+        "live": [],
+        "test": []
+    },
+    "api_version": {
+        "live": "2019-09-01",
+        "test": "2019-09-01"
+    },
+    "payment_link": {
+        "allow_charge_transaction_fee": false
+    },
+    "capabilities": {
+        "allow_dashboard_login": true,
+        "allow_transaction_anticipation": false,
+        "allow_compulsory_anticipation": false,
+        "allow_chatbot": true,
+        "allow_chat": false,
+        "allow_payment_link": true,
+        "allow_manage_recipient": false,
+        "allow_reprocess_without_antifraud": true,
+        "allow_reimburse_anticipation_fee": false
+    },
+    "max_chargeback_index": 2,
+    "transfers": {
+        "blocked_balance_amount": 0
+    },
+    "api_key": {
+        "live": "...",
+        "test": "ak_test_abcDEFghijklmnopqRstuvWXyz9999"
+    },
+    "users": [
+        {
+            "object": "user",
+            "id": "5e74c1d50b76d63910999999",
+            "email": "testepagarme@gmail.com",
+            "name": "Teste",
+            "permission": "admin",
+            "date_created": "2020-05-13T13:04:00.267Z"
+        }
+    ],
+    "encryption_key": {
+        "live": "...",
+        "test": "ek_test_cbaDEFghijklmnopqRstuvWXyz8787"
+    },
+    "subscriptions": {
+        "payment_deadline": 5,
+        "email_customers": true,
+        "charge_attempts": 4,
+        "charges_interval_in_days": 3,
+        "cancel_after_failed_charges": false,
+        "customer_can_cancel_subscription": true,
+        "use_proportional_amount_on_downgrade": false
+    },
+    "transaction_cost": {
+        "credit_card": 0,
+        "debit_card": 0,
+        "boleto": 0
+    },
+    "transaction_spread": {
+        "credit_card": 0,
+        "debit_card": 0,
+        "boleto": 0
+    },
+    "antifraud": {
+        "test": {
+            "fraud_covered": false,
+            "fraud_coverage_fee": 0,
+            "providers": [],
+            "manual_review": {
+                "enabled": false
+            },
+            "enabled": true,
+            "last_enabled_change": "2020-05-13T13:04:00.037Z",
+            "rule": ""
+        },
+        "live": {
+            "fraud_covered": false,
+            "fraud_coverage_fee": 0.015,
+            "providers": [],
+            "manual_review": {
+                "enabled": false
+            },
+            "enabled": false,
+            "last_enabled_change": "2020-05-13T13:04:00.037Z",
+            "rule": ""
+        }
+    },
+    "customer_manager": {
+        "id": "5999a3a41144ea1a2fcbc999",
+        "name": "Teste",
+        "email": "relacionamento@pagar.me"
+    }
+}
