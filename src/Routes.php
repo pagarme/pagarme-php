@@ -370,6 +370,19 @@ class Routes
         return $anonymous;
     }
 
+    /**
+     * @return \PagarMe\Anonymous
+     */
+    public static function company()
+    {
+        $anonymoys = new Anonymous();
+
+        $anonymoys->base = static function () {
+            return 'company';
+        };
+
+        return $anonymoys;
+    }
 
     /**
      * @return \PagarMe\Anonymous

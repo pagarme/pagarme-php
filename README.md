@@ -8,6 +8,8 @@ Você pode acessar a documentação oficial do Pagar.me acessando esse [link](ht
 
 - [Instalação](#instalação)
 - [Configuração](#configuração)
+- [Empresa](#empresa)
+  - [Retornando dados da empresa](#retornando-dados-da-empresa)
 - [Transações](#transações)
   - [Criando uma transação](#criando-uma-transação)
   - [Capturando uma transação](#capturando-uma-transação)
@@ -122,6 +124,15 @@ $pagarme = new PagarMe\Client(
 ```
 
 E então, você pode poderá utilizar o cliente para fazer requisições ao Pagar.me, como nos exemplos abaixo.
+
+## Empresa
+
+### Retornando dados da empresa
+
+```php
+<?php
+$company = $pagarme->company()->get();
+```
 
 ## Transações
 
