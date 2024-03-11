@@ -847,7 +847,6 @@ Para entender o que são as antecipações, você deve acessar esse [link](https
 <?php
 $anticipation = $pagarme->bulkAnticipations()->create([
     'recipient_id' => 're_cjeptpdyg03u3cb6elj68p5ej',
-    'build' => 'true',
     'payment_date' => '1536883200000',
     'requested_amount' => '300000',
     'timeframe' => 'start'
@@ -865,31 +864,11 @@ $anticipationLimits = $pagarme->bulkAnticipations()->getLimits([
 ]);
 ```
 
-### Confirmando uma antecipação building
-
-```php
-<?php
-$confirmedAnticipation = $pagarme->bulkAnticipations()->confirm([
-    'recipient_id' => 'ID_DO_RECEBEDOR',
-    'bulk_anticipation_id' => 'ID_DA_ANTECIPAÇÃO',
-]);
-```
-
 ### Cancelando uma antecipação pending
 
 ```php
 <?php
 $canceledAnticipation = $pagarme->bulkAnticipations()->cancel([
-    'recipient_id' => 'ID_DO_RECEBEDOR',
-    'bulk_anticipation_id' => 'ID_DA_ANTECIPAÇÃO',
-]);
-```
-
-### Deletando uma antecipação building
-
-```php
-<?php
-$deletedAnticipation = $pagarme->bulkAnticipations()->delete([
     'recipient_id' => 'ID_DO_RECEBEDOR',
     'bulk_anticipation_id' => 'ID_DA_ANTECIPAÇÃO',
 ]);

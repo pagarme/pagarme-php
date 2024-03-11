@@ -95,11 +95,8 @@ class RoutesTest extends TestCase
         $this->assertIsCallable($routes->base);
         $this->assertObjectHasAttribute('limits', $routes);
         $this->assertIsCallable($routes->limits);
-        $this->assertObjectHasAttribute('confirm', $routes);
-        $this->assertIsCallable($routes->confirm);
         $this->assertObjectHasAttribute('cancel', $routes);
         $this->assertIsCallable($routes->cancel);
-        $this->assertObjectHasAttribute('delete', $routes);
     }
 
     public function testPaymentLinksRoutes()

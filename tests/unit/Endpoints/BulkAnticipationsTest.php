@@ -19,9 +19,6 @@ class BulkAnticipationsTest extends PagarMeTestCase
             'limits' => new MockHandler([
                 new Response(200, [], self::jsonMock('BulkAnticipationLimitsMock'))
             ]),
-            'delete' => new MockHandler([
-                new Response(200, [], '[]')
-            ]),
             'list' => new MockHandler([
                 new Response(200, [], self::jsonMock('BulkAnticipationListMock')),
                 new Response(200, [], '[]'),
@@ -42,7 +39,6 @@ class BulkAnticipationsTest extends PagarMeTestCase
             'payment_date' => '1234567890000',
             'timeframe' => 'start',
             'requested_amount' => '1000',
-            'build' => true
         ]);
 
         $this->assertEquals(
@@ -90,33 +86,6 @@ class BulkAnticipationsTest extends PagarMeTestCase
     /**
      * @dataProvider mockProvider
      */
-    public function testBulkAnticipationConfirm($mock)
-    {
-        $container = [];
-        $client = self::buildClient($container, $mock['anticipation']);
-
-        $response = $client->bulkAnticipations()->confirm([
-            'recipient_id' => 're_abc1234abc1234abc1234abc1',
-            'bulk_anticipation_id' => 'ba_abc1234abc1234abc1234abc1'
-        ]);
-
-        $this->assertEquals(
-            BulkAnticipations::POST,
-            self::getRequestMethod($container[0])
-        );
-        $this->assertEquals(
-            '/1/recipients/re_abc1234abc1234abc1234abc1/bulk_anticipations/ba_abc1234abc1234abc1234abc1/confirm',
-            self::getRequestUri($container[0])
-        );
-        $this->assertEquals(
-            json_decode(self::jsonMock('BulkAnticipationMock')),
-            $response
-        );
-    }
-
-    /**
-     * @dataProvider mockProvider
-     */
     public function testBulkAnticipationCancel($mock)
     {
         $container = [];
@@ -137,33 +106,6 @@ class BulkAnticipationsTest extends PagarMeTestCase
         );
         $this->assertEquals(
             json_decode(self::jsonMock('BulkAnticipationMock')),
-            $response
-        );
-    }
-
-    /**
-     * @dataProvider mockProvider
-     */
-    public function testBulkAnticipationDelete($mock)
-    {
-        $container = [];
-        $client = self::buildClient($container, $mock['delete']);
-
-        $response = $client->bulkAnticipations()->delete([
-            'recipient_id' => 're_abc1234abc1234abc1234abc1',
-            'bulk_anticipation_id' => 'ba_abc1234abc1234abc1234abc1'
-        ]);
-
-        $this->assertEquals(
-            BulkAnticipations::DELETE,
-            self::getRequestMethod($container[0])
-        );
-        $this->assertEquals(
-            '/1/recipients/re_abc1234abc1234abc1234abc1/bulk_anticipations/ba_abc1234abc1234abc1234abc1',
-            self::getRequestUri($container[0])
-        );
-        $this->assertEquals(
-            [],
             $response
         );
     }
