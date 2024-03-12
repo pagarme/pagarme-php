@@ -27,8 +27,7 @@ class BulkAnticipationCreateTest extends \PHPUnit_Framework_TestCase
     public function mustContentBeCorrect(
         $paymentDate,
         $timeframe,
-        $requestedAmount,
-        $building
+        $requestedAmount
     ) {
         $recipientMock = $this->getMockBuilder('PagarMe\Sdk\Recipient\Recipient')
             ->disableOriginalConstructor()
@@ -39,16 +38,14 @@ class BulkAnticipationCreateTest extends \PHPUnit_Framework_TestCase
             $recipientMock,
             $paymentDate,
             $timeframe,
-            $requestedAmount,
-            $building
+            $requestedAmount
         );
 
         $this->assertEquals(
             [
                 'payment_date'     => substr($paymentDate->format('Uu'), 0, 13),
                 'timeframe'        => $timeframe,
-                'requested_amount' => $requestedAmount,
-                'build'            => $building
+                'requested_amount' => $requestedAmount
             ],
             $bulkAnticipationCreate->getPayload()
         );

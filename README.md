@@ -850,8 +850,7 @@ $anticipation = $pagarMe->bulkAnticipation()->create(
     $recipient,
     $date,
     $timeframe,
-    $requestedAmount,
-    $build
+    $requestedAmount
 );
 ```
 

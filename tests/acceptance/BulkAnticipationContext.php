@@ -17,7 +17,6 @@ class BulkAnticipationContext extends BasicContext
     private $recipient;
     private $anticipation;
     private $expectedPaymentDate;
-    private $expectedStatus;
     private $expectedTimeframe;
     private $expectedRequestedAmount;
 
@@ -60,12 +59,10 @@ class BulkAnticipationContext extends BasicContext
     }
 
     /**
-     * @When register a anticipation with :paymentDate, :timeframe, :requestedAmount, :build
+     * @When register a anticipation with :paymentDate, :timeframe, :requestedAmount
      */
-    public function registerAAnticipationWith($paymentDate, $timeframe, $requestedAmount, $build)
+    public function registerAAnticipationWith($paymentDate, $timeframe, $requestedAmount)
     {
-        $build = filter_var($build, FILTER_VALIDATE_BOOLEAN);
-
         $paymentDate = new \Datetime($paymentDate, new \DateTimeZone('UTC'));
 
         $weekday = $paymentDate->format('w');
@@ -79,7 +76,6 @@ class BulkAnticipationContext extends BasicContext
         $this->expectedPaymentDate = $paymentDate;
         $this->expectedTimeframe = $timeframe;
         $this->expectedRequestedAmount = $requestedAmount;
-        $this->expectedStatus = ($build) ? 'building' : 'pending';
 
         $this->anticipation = self::getPagarMe()
             ->BulkAnticipation()
@@ -87,8 +83,7 @@ class BulkAnticipationContext extends BasicContext
                 $this->recipient,
                 $paymentDate,
                 $timeframe,
-                $requestedAmount,
-                $build
+                $requestedAmount
             );
     }
 
@@ -108,43 +103,5 @@ class BulkAnticipationContext extends BasicContext
     {
         assertEquals($this->expectedPaymentDate, $this->anticipation->getPaymentDate());
         assertEquals($this->expectedTimeframe, $this->anticipation->getTimeframe());
-
-        assertEquals($this->expectedStatus, $this->anticipation->getStatus());
-    }
-
-    /**
-     * @Then when I delete the previously created Anticipation
-     */
-    public function iDeleteThePreviouslyCreatedAnticipation()
-    {
-        assertEquals(3, $this->countAnticipations());
-
-        $result = self::getPagarMe()
-            ->bulkAnticipation()
-            ->delete(
-                $this->recipient,
-                $this->anticipation
-            );
-
-        assertEquals([], $result);
-    }
-
-    /**
-     * @Then the Anticipation should no longer exist
-     */
-    public function theAnticipationShouldNoLongerExist()
-    {
-        assertEquals(2, $this->countAnticipations());
-    }
-
-    private function countAnticipations()
-    {
-        return count(
-            self::getPagarMe()
-                ->bulkAnticipation()
-                ->getList(
-                    $this->recipient
-                )
-        );
     }
 }
