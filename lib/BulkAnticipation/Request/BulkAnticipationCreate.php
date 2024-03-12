@@ -30,29 +30,21 @@ class BulkAnticipationCreate implements RequestInterface
     private $requestedAmount;
 
     /**
-     * @var  boolean
-     */
-    private $building;
-
-    /**
      * @param  Recipient $recipient
      * @param  \DateTime $paymentDate
      * @param  string $timeframe
      * @param  int $requestedAmount
-     * @param  boolean $building
      */
     public function __construct(
         Recipient $recipient,
         \DateTime $paymentDate,
         $timeframe,
-        $requestedAmount,
-        $building
+        $requestedAmount
     ) {
         $this->recipient       = $recipient;
         $this->paymentDate     = $paymentDate;
         $this->timeframe       = $timeframe;
         $this->requestedAmount = $requestedAmount;
-        $this->building        = $building;
     }
 
     /**
@@ -65,8 +57,7 @@ class BulkAnticipationCreate implements RequestInterface
                 $this->paymentDate
             ),
             'timeframe'        => $this->timeframe,
-            'requested_amount' => $this->requestedAmount,
-            'build'            => $this->building
+            'requested_amount' => $this->requestedAmount
         ];
     }
 
