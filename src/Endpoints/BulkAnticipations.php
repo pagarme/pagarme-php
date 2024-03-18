@@ -41,45 +41,11 @@ class BulkAnticipations extends Endpoint
      *
      * @return \ArrayObject
      */
-    public function confirm(array $payload)
-    {
-        return $this->client->request(
-            self::POST,
-            Routes::bulkAnticipations()->confirm(
-                $payload['recipient_id'],
-                $payload['bulk_anticipation_id']
-            ),
-            ['json' => $payload]
-        );
-    }
-
-    /**
-     * @param array $payload
-     *
-     * @return \ArrayObject
-     */
     public function cancel(array $payload)
     {
         return $this->client->request(
             self::POST,
             Routes::bulkAnticipations()->cancel(
-                $payload['recipient_id'],
-                $payload['bulk_anticipation_id']
-            ),
-            ['json' => $payload]
-        );
-    }
-
-    /**
-     * @param array $payload
-     *
-     * @return \ArrayObject
-     */
-    public function delete(array $payload)
-    {
-        return $this->client->request(
-            self::DELETE,
-            Routes::bulkAnticipations()->delete(
                 $payload['recipient_id'],
                 $payload['bulk_anticipation_id']
             ),

@@ -62,9 +62,7 @@ Você pode acessar a documentação oficial do Pagar.me acessando esse [link](ht
 - [Antecipações](#antecipações)
   - [Criando uma antecipação](#criando-uma-antecipação)
   - [Obtendo os limites de antecipação](#obtendo-os-limites-de-antecipação)
-  - [Confirmando uma antecipação building](#confirmando-uma-antecipação-building)
   - [Cancelando uma antecipação pending](#cancelando-uma-antecipação-pending)
-  - [Deletando uma antecipação building](#deletando-uma-antecipação-building)
   - [Retornando antecipações](#retornando-antecipações)
 - [Contas bancárias](#contas-bancárias)
   - [Criando uma conta bancária](#criando-uma-conta-bancária)
@@ -847,7 +845,6 @@ Para entender o que são as antecipações, você deve acessar esse [link](https
 <?php
 $anticipation = $pagarme->bulkAnticipations()->create([
     'recipient_id' => 're_cjeptpdyg03u3cb6elj68p5ej',
-    'build' => 'true',
     'payment_date' => '1536883200000',
     'requested_amount' => '300000',
     'timeframe' => 'start'
@@ -865,31 +862,11 @@ $anticipationLimits = $pagarme->bulkAnticipations()->getLimits([
 ]);
 ```
 
-### Confirmando uma antecipação building
-
-```php
-<?php
-$confirmedAnticipation = $pagarme->bulkAnticipations()->confirm([
-    'recipient_id' => 'ID_DO_RECEBEDOR',
-    'bulk_anticipation_id' => 'ID_DA_ANTECIPAÇÃO',
-]);
-```
-
 ### Cancelando uma antecipação pending
 
 ```php
 <?php
 $canceledAnticipation = $pagarme->bulkAnticipations()->cancel([
-    'recipient_id' => 'ID_DO_RECEBEDOR',
-    'bulk_anticipation_id' => 'ID_DA_ANTECIPAÇÃO',
-]);
-```
-
-### Deletando uma antecipação building
-
-```php
-<?php
-$deletedAnticipation = $pagarme->bulkAnticipations()->delete([
     'recipient_id' => 'ID_DO_RECEBEDOR',
     'bulk_anticipation_id' => 'ID_DA_ANTECIPAÇÃO',
 ]);
