@@ -69,9 +69,7 @@ Integração em PHP para a [Pagar.me API](https://docs.pagar.me/)
   - [Antecipações](#Antecipações)
     - [Criando uma antecipação](#Criando-uma-antecipação)
     - [Obtendo os limites de antecipação](#Obtendo-os-limites-de-antecipação)
-    - [Confirmando uma antecipação building](#Confirmando-uma-antecipação-building)
     - [Cancelando uma antecipação pending](#Cancelando-uma-antecipação-pending)
-    - [Deletando uma antecipação building](#Deletando-uma-antecipação-building)
     - [Retornando antecipações](#Retornando-antecipações)
   - [Contas bancárias](#Contas-bancárias)
     - [Criando uma conta bancária](#Criando-uma-conta-bancária)
@@ -848,13 +846,11 @@ $date = new \DateTime();
 $date->add(new \DateInterval("P10D"));
 $timeframe = 'end';
 $requestedAmount = 13000;
-$build = true;
 $anticipation = $pagarMe->bulkAnticipation()->create(
     $recipient,
     $date,
     $timeframe,
-    $requestedAmount,
-    $build
+    $requestedAmount
 );
 ```
 
@@ -877,24 +873,6 @@ $limits = $pagarMe->bulkAnticipation()->limits(
 );
 ```
 
-### Confirmando uma antecipação building
-
-```php
-<?php
-$recipient = new \PagarMe\Sdk\Recipient\Recipient([
-    "id" => "re_ciu4jif1j007td56dsm17yew9"
-]);
-
-$anticipation = new PagarMe\Sdk\BulkAnticipation\BulkAnticipation([
-    "id" => "ba_cj3uppown001gvm6dqgmjw2ce"
-]);
-
-$anticipation = $pagarMe->bulkAnticipation()->confirm(
-    $recipient,
-    $anticipation
-);
-```
-
 ### Cancelando uma antecipação pending
 
 ```php
@@ -908,24 +886,6 @@ $anticipation = new PagarMe\Sdk\BulkAnticipation\BulkAnticipation([
 ]);
 
 $anticipation = $pagarMe->bulkAnticipation()->cancel(
-    $recipient,
-    $anticipation
-);
-```
-
-### Deletando uma antecipação building
-
-```php
-<?php
-$recipient = new \PagarMe\Sdk\Recipient\Recipient([
-    "id" => "re_ciu4jif1j007td56dsm17yew9"
-]);
-
-$anticipation = new PagarMe\Sdk\BulkAnticipation\BulkAnticipation([
-    "id" => "ba_cj3us6nal0022v86daxfamp4t"
-]);
-
-$anticipation = $pagarMe->bulkAnticipation()->delete(
     $recipient,
     $anticipation
 );

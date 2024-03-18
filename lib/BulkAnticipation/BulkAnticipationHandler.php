@@ -18,22 +18,19 @@ class BulkAnticipationHandler extends AbstractHandler
      * @param  DateTime $paymentDate
      * @param  string $timeframe
      * @param  int $requestedAmount
-     * @param  boolean $building
      * @return BulkAnticipation
      */
     public function create(
         Recipient $recipient,
         \DateTime $paymentDate,
         $timeframe,
-        $requestedAmount,
-        $building
+        $requestedAmount
     ) {
         $request = new BulkAnticipationCreate(
             $recipient,
             $paymentDate,
             $timeframe,
             $requestedAmount,
-            $building
         );
 
         $response = $this->client->send($request);
@@ -63,22 +60,6 @@ class BulkAnticipationHandler extends AbstractHandler
      * @param BulkAnticipation $bulkAnticipation
      * @return BulkAnticipation
      */
-    public function confirm(
-        Recipient $recipient,
-        BulkAnticipation $bulkAnticipation
-    ) {
-        $request = new BulkAnticipationConfirm($recipient, $bulkAnticipation);
-
-        $response = $this->client->send($request);
-
-        return $this->buildBulkAnticipation($response);
-    }
-
-    /**
-     * @param Recipient $recipient
-     * @param BulkAnticipation $bulkAnticipation
-     * @return BulkAnticipation
-     */
     public function cancel(
         Recipient $recipient,
         BulkAnticipation $bulkAnticipation
@@ -88,20 +69,6 @@ class BulkAnticipationHandler extends AbstractHandler
         $response = $this->client->send($request);
 
         return $this->buildBulkAnticipation($response);
-    }
-
-    /**
-     * @param Recipient $recipient
-     * @param BulkAnticipation $bulkAnticipation
-     * @return array
-     */
-    public function delete(
-        Recipient $recipient,
-        BulkAnticipation $bulkAnticipation
-    ) {
-        $request = new BulkAnticipationDelete($recipient, $bulkAnticipation);
-
-        return $this->client->send($request);
     }
 
     /**
