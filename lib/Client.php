@@ -53,15 +53,16 @@ class Client
      */
     public function send(RequestInterface $apiRequest)
     {
-        $request = $this->buildRequest($apiRequest);
+        $options = array_merge($this->requestOptions, [
+            'body' => json_encode($this->buildBody($apiRequest)),
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'ServiceRefererName' => '62fa7b926ae07600199d7dfc'
+            ]
+        ]);
 
         try {
-            $response = $this->client->send(
-                $request,
-                $this->requestOptions
-            );
-
-            return json_decode($response->getBody()->getContents());
+            $response = $this->client->request($apiRequest->getMethod(), $apiRequest->getPath(), $options);
         } catch (\GuzzleHttp\Exception\ClientException $exception) {
             $message = $exception->getResponse()->getBody()->getContents();
             $code = $exception->getResponse()->getStatusCode();
@@ -72,38 +73,8 @@ class Client
                 $exception->getCode()
             );
         }
-    }
 
-    /**
-     * @param RequestInterface $apiRequest
-     * @return mixed
-     */
-    private function buildRequest($apiRequest)
-    {
-        if (class_exists('\\GuzzleHttp\\Psr7\\Request')) {
-            return new \GuzzleHttp\Psr7\Request(
-                $apiRequest->getMethod(),
-                $apiRequest->getPath(),
-                ['Content-Type' => 'application/json'],
-                json_encode($this->buildBody($apiRequest))
-            );
-        }
-
-        if (class_exists('\\GuzzleHttp\\Message\\Request')
-            && method_exists($this->client, 'createRequest')
-        ) {
-            $options = array_merge(
-                $this->requestOptions,
-                ['json' => $this->buildBody($apiRequest)]
-            );
-            return $this->client->createRequest(
-                $apiRequest->getMethod(),
-                $apiRequest->getPath(),
-                $options
-            );
-        }
-
-        throw new \Exception("Can't build request");
+        return json_decode($response->getBody()->getContents());
     }
 
     /**
